@@ -1,0 +1,43 @@
+Id	Tag	Name	Detail	Kind	UseTiming	Side	Target	PowMin	PowMax	Cost	BaseParam	Element	BuffType	BuffPercent	BuffPower	EffectTime	Type	HitEffect	Info
+0	Tag	名前	詳細	種別	使用できるシーン	敵(TARGET)・味方(FRIEND)	単体か全体か	最小効果	最大効果	消費MP	依存ステータス	属性	バフ種別	バフ確率	バフ威力	効果時間	通常・必殺	演出	フレーバーテキスト
+1	magic1	エネルギーミサイル	エネルギーミサイル	DAMAGE	BATTLE	TARGET	ONE	15	20	1	MAG	0				0	0	Claw	
+2	magic1all	バースティングライト	バースティングライト	DAMAGE	BATTLE	TARGET	ANYTHING	25	30	4	MAG	0				0	0	Claw	
+3	magic2	シャイニングブレード	シャイニングブレード	DAMAGE	BATTLE	TARGET	ONE	60	80	3	MAG	0				0	0	Claw	
+4	magic2all	オーラブラスト	オーラブラスト	DAMAGE	BATTLE	TARGET	ANYTHING	55	70	10	MAG	0				0	0	Claw	
+5	magic3	オメガレイ	オメガレイ	DAMAGE	BATTLE	TARGET	ONE	115	150	15	MAG	0				0	0	Claw	
+6	fire1	ファイアボルト	ファイアボルト	DAMAGE	BATTLE	TARGET	ONE	15	20	1	MAG	1				0	0	Claw	
+7	fire1all	ファイアーボール	ファイアーボール	DAMAGE	BATTLE	TARGET	ANYTHING	25	30	4	MAG	1				0	0	Claw	
+8	fire2	バーニングエッジ	バーニングエッジ	DAMAGE	BATTLE	TARGET	ONE	60	80	3	MAG	1				0	0	Claw	
+9	fire2all	ブレイジングストーム	ブレイジングストーム	DAMAGE	BATTLE	TARGET	s	55	70	10	MAG	1				0	0	Claw	
+10	fire3	プロミネンス	プロミネンス	DAMAGE	BATTLE	TARGET	ANYTHING	75	100	15	MAG	1				0	0	Claw	
+11	ice1	アイスアロー	アイスアロー	DAMAGE	BATTLE	TARGET	ONE	15	20	1	MAG	2				0	0	Claw	
+12	ice1all	フロージングストーム	フロージングストーム	DAMAGE	BATTLE	TARGET	ANYTHING	25	30	4	MAG	2				0	0	Claw	
+13	ice2	コールドランス	コールドランス	DAMAGE	BATTLE	TARGET	ONE	60	80	3	MAG	2				0	0	Claw	
+14	ice2all	ブリザード	ブリザード	DAMAGE	BATTLE	TARGET	ANYTHING	55	70	10	MAG	2				0	0	Claw	
+15	ice3	アブソリュート・ゼロ	アブソリュート・ゼロ	DAMAGE	BATTLE	TARGET	ONE	115	150	15	MAG	2				0	0	Claw	
+16	stone1	ストーンバレット	ストーンバレット	DAMAGE	BATTLE	TARGET	ONE	15	20	1	MAG	3				0	0	Claw	
+17	stone1all	アースウェイブ	アースウェイブ	DAMAGE	BATTLE	TARGET	ANYTHING	25	30	4	MAG	3				0	0	Claw	
+18	stone2	ロックハンマー	ロックハンマー	DAMAGE	BATTLE	TARGET	ONE	60	80	3	MAG	3				0	0	Claw	
+19	stone2all	ランドスライド	ランドスライド	DAMAGE	BATTLE	TARGET	ANYTHING	55	70	10	MAG	3				0	0	Claw	
+20	stone3	メテオスウォーム	メテオスウォーム	DAMAGE	BATTLE	TARGET	ANYTHING	75	100	15	MAG	3				0	0	Claw	
+21	heal1	ライトヒール	ライトヒール	HEAL	DUAL	FRIEND	ONE	40	50	4	MAG	0				0	0	Claw	
+22	heal2	ミディアムヒール	ミディアムヒール	HEAL	DUAL	FRIEND	ONE	115	150	8	MAG	0				0	0	Claw	
+23	heal3	ラージヒール	ラージヒール	HEAL	DUAL	FRIEND	ONE	225	300	18	MAG	0				0	0	Claw	
+24	heal4	パーフェクトヒール	パーフェクトヒール	HEAL	DUAL	FRIEND	ONE	999	999	25	MAG	0				0	0	Claw	
+25	cure_poison	キュアポイズン	キュアポイズン	CURE_POISON	DUAL	FRIEND	ANYTHING	1	1	5	MAG	0				0	0	Claw	
+26	cure_stan	キュアスタン	キュアスタン	CURE_STAN	DUAL	FRIEND	ANYTHING	1	1	5	MAG	0				0	0	Claw	
+27	up_atk	エンチャントウエポン	エンチャントウエポン	ENCHANT_MAGIC	BATTLE	FRIEND	ONE	10	10	10	MAG	0				3	0	Claw	
+28	up_def	エンチャントアーマー	エンチャントアーマー	ENCHANT_MAGIC	BATTLE	FRIEND	ONE	10	10	10	MAG	0				3	0	Claw	
+29	up_spd	ヘイスト	ヘイスト	ENCHANT_MAGIC	BATTLE	FRIEND	ONE	10	10	10	MAG	0				3	0	Claw	
+30	up_mgi	マジックブースト	マジックブースト	ENCHANT_MAGIC	BATTLE	FRIEND	ONE	10	10	10	MAG	0				3	0	Claw	
+31	up_mdef	マジックバリア	マジックバリア	ENCHANT_MAGIC	BATTLE	FRIEND	ONE	10	10	10	MAG	0				3	0	Claw	
+32	down_atk	エンチャントウエポン	エンチャントウエポン	ENCHANT_MAGIC	BATTLE	FRIEND	ONE	10	10	10	MAG	0				3	0	Claw	
+33	down_def	エンチャントアーマー	エンチャントアーマー	ENCHANT_MAGIC	BATTLE	FRIEND	ONE	10	10	10	MAG	0				3	0	Claw	
+34	down_spd	ヘイスト	ヘイスト	ENCHANT_MAGIC	BATTLE	FRIEND	ONE	10	10	10	MAG	0				3	0	Claw	
+35	down_mgi	マジックブースト	マジックブースト	ENCHANT_MAGIC	BATTLE	FRIEND	ONE	10	10	10	MAG	0				3	0	Claw	
+36	down_mdef	マジックバリア	マジックバリア	ENCHANT_MAGIC	BATTLE	FRIEND	ONE	10	10	10	MAG	0				3	0	Claw	
+37	heal1all	マスヒール	マスヒール	HEAL	DUAL	FRIEND	ANYTHING	115	150	8	MAG	0				0	0	Claw	
+38	heal2all	マスパーフェクトヒール	マスパーフェクトヒール	HEAL	DUAL	FRIEND	ANYTHING	999	999	25	MAG	0				0	0	Claw	
+39	poison1	毒１	ファイアボルト	DAMAGE	BATTLE	TARGET	ONE	15	20	1	MAG	1	HP_SLIP	100	-5	3	0	Claw	
+40	poison2	毒２	ファイアボルト	DAMAGE	BATTLE	TARGET	ONE	15	20	1	MAG	1	HP_SLIP	100	-5	3	0	Claw	
+41	poison3	毒３	ファイアボルト	DAMAGE	BATTLE	TARGET	ONE	15	20	1	MAG	1	HP_SLIP	100	-5	3	0	Claw	

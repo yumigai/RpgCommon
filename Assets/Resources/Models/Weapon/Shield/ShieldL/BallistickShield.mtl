@@ -1,0 +1,23 @@
+# Created by Metasequoia
+
+newmtl details
+Ka 0.38353 0.38353 0.38353
+Kd 0.51137 0.51137 0.51137
+Ks 0.00000 0.00000 0.00000
+Ns 5.00000
+map_Kd details_Base_Color.png
+
+newmtl lights
+Ka 0.38353 0.38353 0.38353
+Kd 0.51137 0.51137 0.51137
+Ks 0.00000 0.00000 0.00000
+Ns 5.00000
+map_Kd lights_Base_Color.png
+
+newmtl shield
+Ka 0.38353 0.38353 0.38353
+Kd 0.51137 0.51137 0.51137
+Ks 0.00000 0.00000 0.00000
+Ns 5.00000
+map_Kd shield_Base_Color.png
+

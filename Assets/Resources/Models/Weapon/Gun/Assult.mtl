@@ -1,0 +1,51 @@
+# Created by Metasequoia
+
+newmtl chainsaw
+Ka 0.48000 0.48000 0.48000
+Kd 0.64000 0.64000 0.64000
+Ks 0.00000 0.00000 0.00000
+Ns 5.00000
+map_Kd chainsaw_1.bmp
+
+newmtl mat_cannnon
+Ka 0.48000 0.48000 0.48000
+Kd 0.64000 0.64000 0.64000
+Ks 0.00000 0.00000 0.00000
+Ns 5.00000
+map_Kd tex1.jpg
+
+newmtl m4
+Ka 0.48000 0.48000 0.48000
+Kd 0.64000 0.64000 0.64000
+Ks 0.00000 0.00000 0.00000
+Ns 5.00000
+map_Kd M4_3.bmp
+
+newmtl mat_gimlet_knife
+Ka 0.48000 0.48000 0.48000
+Kd 0.64000 0.64000 0.64000
+Ks 0.00000 0.00000 0.00000
+Ns 5.00000
+map_Kd tex_gimlet_knife.jpg
+
+newmtl m-134
+Ka 0.60000 0.60000 0.60000
+Kd 0.80000 0.80000 0.80000
+Ks 0.00000 0.00000 0.00000
+Ns 5.00000
+map_Kd M134_1.bmp
+
+newmtl anti
+Ka 0.48000 0.48000 0.48000
+Kd 0.64000 0.64000 0.64000
+Ks 0.00000 0.00000 0.00000
+Ns 5.00000
+map_Kd meterialrifle_custom.jpg
+
+newmtl shotgun
+Ka 0.60000 0.60000 0.60000
+Kd 0.80000 0.80000 0.80000
+Ks 0.00000 0.00000 0.00000
+Ns 5.00000
+map_Kd Mossberg_1.bmp
+

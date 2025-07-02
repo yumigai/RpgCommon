@@ -1,0 +1,63 @@
+Id	ChapterId	Name	FloorNum	Image	Rule	Kind	Info	StagePrefab	Bgm	Story	EnemyNum	FieldSize	EncountMapId
+													
+1	1	少年は空を目指す	5	ForestIcon	0	0	少年は地上に続く塔へと挑む。そこに望むものがあると信じて。	DungeonStage	PerituneMaterial_Prairie3_loop		3	3	1
+2	1	悪魔と呼ばれるモノ	5	ForestIcon	0	0	空へと目指す少年の前に、悪魔と呼ばれる異形の戦士が立ちふさがる。	DungeonStage	PerituneMaterial_Prairie3_loop		3	3	1
+3	1	剣士達の戦い	5	ForestIcon	0	0	少年剣士と悪魔の剣士との戦いは続く。打ち鳴らされる剣戟。	DungeonStage	PerituneMaterial_Prairie3_loop		3	3	1
+4	1	実戦こそ最高の師	5	ForestIcon	0	0	命がけの戦いが少年を急成長させていく。たとえそれが望まぬ師であったとしても。	DungeonStage	PerituneMaterial_Prairie3_loop		3	3	1
+5	1	閉ざされた門	5	ForestIcon	1	0	少年の道を巨大な門が閉ざす。必要なカギを見つけ出し、突破するのだ！	DungeonStage	PerituneMaterial_Prairie3_loop		3	3	1
+6	1	剣と銃	5	ForestIcon	0	0	失われた技術、銃。間合いを必要としないその武器を持った悪魔が襲い掛かる。	DungeonStage	PerituneMaterial_Prairie3_loop		3	3	1
+7	1	混成部隊	5	ForestIcon	0	0	剣と銃の悪魔が同時に襲い掛かる。かつてない連携を破ることができるか。	DungeonStage	PerituneMaterial_Prairie3_loop		3	3	1
+8	1	剣と魔法と銃弾と	5	ForestIcon	0	0	少年の剣と魔法。そして悪魔の剣と銃。勝利だけが強者の証明。	DungeonStage	PerituneMaterial_Prairie3_loop		3	3	1
+9	1	試練の門	5	ForestIcon	0	0	少年は確信した。この大きな門の先に、これまでとは違う何かが待ち受けていることを。	DungeonStage	PerituneMaterial_Prairie3_loop		3	3	1
+10	1	試される資質	5	ForestIcon	0	1	今までとは違う、大型の悪魔との対決。これは試金石…空へと挑む者達への。	DungeonStage	BossBattle		3	3	1
+11	2	レイン	5	StoneDungeonIcon	0	2	彼の名はレイン。高潔な騎士にして、少年の師であり兄弟子。	DungeonStage		Story_1	3	3	1
+12	2	悪魔の一刺し	5	StoneDungeonIcon	0	0	強力な炎を吐き出す魔のサソリ。その炎は金属さえも蒸発させる。	DungeonStage	bgm_0510mp		3	3	1
+13	2	悪魔の散歩	5	StoneDungeonIcon	0	0	魔のサソリを連れた悪魔の剣士。それはあたかも悪魔の散歩。	DungeonStage	bgm_0510mp		3	3	1
+14	2	混成部隊２	5	StoneDungeonIcon	0	0	剣と銃とサソリの悪魔が同時に襲い掛かる。混沌とした戦場を制せよ！	DungeonStage	bgm_0510mp		3	3	1
+15	2	太古の医療器具	5	StoneDungeonIcon	1	0	妹の病状が悪化し、発作を起こした。吸入器を集め、彼女の元へ戻るのだ！	DungeonStage	bgm_0510mp		3	3	1
+16	2	自爆者の憂鬱	5	StoneDungeonIcon	0	0	迷うな。迷えば自爆者の道連れとなってしまうだろう。	DungeonStage	bgm_0510mp		3	3	1
+17	2	刃・弾・炎・爆	5	StoneDungeonIcon	0	0	襲い来る悪魔のカルテット。その剣で連携を絶て！	DungeonStage	bgm_0510mp		3	3	1
+18	2	傷だらけの道を行く	5	StoneDungeonIcon	0	0	悪魔の攻撃は激しさを増す。けれど、行かねばならない。その先へ。	DungeonStage	bgm_0510mp		3	3	1
+19	2	第二の門	5	StoneDungeonIcon	0	0	第二の試練を予感させる巨大な門。守り手たる悪魔たちを蹴散らし、進むのだ。	DungeonStage	bgm_0510mp		3	3	1
+20	2	アベルの亡霊	5	StoneDungeonIcon	0	1	それはまるで巨大なゴースト。古き文明が残した未練を断ち切れ！	DungeonStage	BossBattle		3	3	1
+21	3	この街で生きるということ	5	IceIcon	0	2	この街は優しくない。生き抜くために、誰もが心を尖らせる。	DungeonStage		Story_2	3	3	1
+22	3	氷の世界	5	IceIcon	0	0	そこは見た事の無い、きれいな水が凍った世界。	DungeonStage	FREEBGM_03052LLP		3	3	1
+23	3	悪魔のドクター	5	IceIcon	0	0	悪魔的ドクター現る。	DungeonStage	FREEBGM_03052LLP		3	3	1
+24	3	ヘイト管理	5	IceIcon	0	0	回復役を先に倒すか、回復される前に倒すか。戦略と選択。	DungeonStage	FREEBGM_03052LLP		3	3	1
+25	3	罠！	5	IceIcon	1	0	入ってきた道が閉ざされ、閉じ込められた。脱出するためのカギを集めなくては。	DungeonStage	FREEBGM_03052LLP		3	3	1
+26	3	過剰医療体制	5	IceIcon	0	0	明らかに医者供給過剰。どうやら悪魔にバランスという意識は無い様だ。	DungeonStage	FREEBGM_03052LLP		3	3	1
+27	3	悪魔の進化	5	IceIcon	0	0	少年は戦慄した。悪魔たちは自分の弱点を学習し、克服し始めている！	DungeonStage	FREEBGM_03052LLP		3	3	1
+28	3	ヘビーアーマー	5	IceIcon	0	0	重量級悪魔登場。これまでに無い耐久力と火力に用心せよ。	DungeonStage	FREEBGM_03052LLP		3	3	1
+29	3	無差別級	5	IceIcon	0	0	軽・中・重量級が入り混じる戦場。そこには階級制もルールも存在しない。	DungeonStage	FREEBGM_03052LLP		3	3	1
+30	3	巨大悪魔・改	5	IceIcon	0	1	巨大悪魔、再び。油断するな、強くなったと思った時こそ、危険は訪れる。	DungeonStage	BossBattle		3	3	1
+31	4	ガルフ	5	StainedGlassIcon	0	2	純血の天使、ガルフ。この街の支配者であり、兄妹の父を奪った人物。	DungeonStage		Story_3	3	3	1
+32	4	アベル芸術館へようこそ	5	StainedGlassIcon	0	0	失われた芸術で作られたフロア。残念ながら、少年にその価値は分からなかった。	DungeonStage	Jumping_to_the_moon		3	3	1
+33	4	剣士の誇り	5	StainedGlassIcon	0	0	無粋な飛び道具は無しだ。さぁ、剣と剣の戦いを始めよう。	DungeonStage	Jumping_to_the_moon		3	3	1
+34	4	重剣	5	StainedGlassIcon	0	0	重火器と剣が組めばどうなるか。その答えがここにある。	DungeonStage	Jumping_to_the_moon		3	3	1
+35	4	君に残された時間	5	StainedGlassIcon	1	0	再び妹の病状が悪化した。発作のスパンが短くなっている。吸入器を探さなくては！	DungeonStage	Jumping_to_the_moon		3	3	1
+36	4	混成部隊３	5	StainedGlassIcon	0	0	これまでの全種の悪魔が襲い掛かる。それぞれの弱点を突き、勝機を見いだせ！	DungeonStage	Jumping_to_the_moon		3	3	1
+37	4	接近専科	5	StainedGlassIcon	0	0	彼らこそ接近戦専門部隊。命知らずのクレイジー悪魔の恐怖を知れ。	DungeonStage	Jumping_to_the_moon		3	3	1
+38	4	銃士の流儀	5	StainedGlassIcon	0	0	さぁ来い、剣士よ。その間合いに入る前に、銃口の洗礼を与えよう。	DungeonStage	Jumping_to_the_moon		3	3	1
+39	4	ファイア・イズ・パワー	5	StainedGlassIcon	0	0	大火力こそ力。その火力の前に反論など存在しない。	DungeonStage	Jumping_to_the_moon		3	3	1
+40	4	悪夢は蘇る	5	StainedGlassIcon	0	1	亡霊は一度では消えない。再び現れた悪夢を断ち切れ！	DungeonStage	BossBattle		3	3	1
+41	5	タイムリミット	5	MagmaIcon	0	2	終焉の時が近づいてきている。決断しなければならない。	DungeonStage		Story_4	3	3	1
+42	5	マグマの世界	5	MagmaIcon	0	0	容赦の無い熱波が襲う地獄のような環境で、少年は地獄の住人に立ち向かう。	DungeonStage	FREEBGM_02102LLP		3	3	1
+43	5	サソリのテリトリー	5	MagmaIcon	0	0	サソリの部屋に迷い込めば、それはどんな英雄でも獲物となる。	DungeonStage	FREEBGM_02102LLP		3	3	1
+44	5	剣は銃より強し？	5	MagmaIcon	0	0	小火器と重火器。それに対するは剣一本。喜劇か悲劇か、それとも痛快劇か。	DungeonStage	FREEBGM_02102LLP		3	3	1
+45	5	罠、再び！	5	MagmaIcon	1	0	罠だ！　少年は確信した。いや、知っていた。悪魔以外に自分を狙う存在の正体を。	DungeonStage	FREEBGM_02102LLP		3	3	1
+46	5	混成部隊４	5	MagmaIcon	0	0	全種混成戦。油断はするな、奴らの練度は上がっている。	DungeonStage	FREEBGM_02102LLP		3	3	1
+47	5	サタデーナイトフィーバー	5	MagmaIcon	0	0	練度の低い悪魔が物量で襲い掛かる。苛立つな、冷静さを失えば負けだ！	DungeonStage	FREEBGM_02102LLP		3	3	1
+48	5	重兵士の死線	5	MagmaIcon	0	0	雨のごとく降り注ぐ銃弾。悪魔の持つ重火器に少年の剣は届くのか。	DungeonStage	FREEBGM_02102LLP		3	3	1
+49	5	予感	5	MagmaIcon	0	0	この先に行けば、もう引き返せない運命が待つ。そんな予感がした。	DungeonStage	FREEBGM_02102LLP		3	3	1
+50	5	師弟対決	5	MagmaIcon	0	1	お互いの想いがある限り、それは避けられぬ戦いであった。	DungeonStage	Reflect		3	3	1
+51	6	王	5	SpaceIcon	0	2	人類の王と悪魔の王が相まみえた時、その所業は断罪される。	DungeonStage		Story_5	3	3	1
+52	6	そらのうえ	5	SpaceIcon	0	0	見よ、これが真実だ。ここは地下などでは無かった……。	DungeonStage	FREEBGM_02142LLP		3	3	1
+53	6	失意の戦路	5	SpaceIcon	0	0	失ったものは大きい。しかし、その歩みを止めることはできない。	DungeonStage	FREEBGM_02142LLP		3	3	1
+54	6	最強の剣士	5	SpaceIcon	0	0	人類最強の剣士となった少年に、悪魔の剣士たちが挑む。	DungeonStage	FREEBGM_02142LLP		3	3	1
+55	6	最後の証	5	SpaceIcon	1	0	王に挑む権利を獲得せよ。７つの証を集めることで、その門は開かれる。	DungeonStage	FREEBGM_02142LLP		3	3	1
+56	6	地上へ至る通路	5	SpaceIcon	0	0	悪魔の王、そして地上へ向かう長い長い通路。無数の護衛がそれを阻む。	DungeonStage	FREEBGM_02142LLP		3	3	1
+57	6	チェックメイト	5	SpaceIcon	0	0	少年は地上に迫っている。それは悪魔の中枢に近づくということでもある。	DungeonStage	FREEBGM_02142LLP		3	3	1
+58	6	四天王	5	SpaceIcon	0	0	プロトタイプ- 4。原型にして最強の４体が、行く手を阻む。	DungeonStage	FREEBGM_02142LLP		3	3	1
+59	6	総力戦！	5	SpaceIcon	0	0	互いの存亡をかけた総力戦。残る全ての力と力がぶつかり合う。	DungeonStage	FREEBGM_02142LLP		3	3	1
+60	6	悪魔の王	5	SpaceIcon	0	1	さあ少年よ、王へと挑む覚悟はできたか？　全てを賭した最後の戦いを。	DungeonStage	LastBattle		3	3	1
+61	7	そらのした	5	SoranoShitaIcon	0	2	見よ。君が望んだ結末を。君の願った未来を。	DungeonStage		Ending	3	3	1

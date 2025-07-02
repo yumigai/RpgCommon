@@ -1,0 +1,15 @@
+Id	Tag	Name	BaseLv	Img	Job	Element	Potentials	Potentials	Potentials	Potentials	Potentials	Potentials	Potentials	Join	JoinId	CanSell	CanNameChange	AssignLoginNum	AtkEffect	SkillTags	SkillLeans	SkillTags	SkillLeans	SkillTags	SkillLeans	SkillTags	SkillLeans	SkillTags	SkillLeans	SkillTags	SkillLeans	SkillTags	SkillLeans	SkillTags	SkillLeans
+	認識タグ		最低Lv	画像名	職業タイプ	属性	atk	def	agi	con	luck	mag	men	加入(1:初期、2:クエストクリア)	加入ID（JoinごとのID)	売却可能か	名前変更可能か	獲得に必要なログイン日数（０で獲得不能）	素手時攻撃エフェクト	使用可能スキルID	スキル習得Lv	使用可能スキルID	スキル習得Lv	使用可能スキルID	スキル習得Lv	使用可能スキルID	スキル習得Lv	使用可能スキルID	スキル習得Lv	使用可能スキルID	スキル習得Lv	使用可能スキルID	スキル習得Lv	使用可能スキルID	スキル習得Lv
+0	hero	界導師	0	hero	1	0	3	3	3	3	5	3	6	1	0	FALSE	TRUE	0	Blow	magic1	2	heal1	5	magic1all	8	magic2	12	heal2	17	heal1all	24	magic3	32	heal3	40
+1	ract	ラクト	0	ract	2	1	4	3	3	3	2	1	3	2	10	FALSE	FALSE	0	Blow	fire1	2	fire2	5	fire3	8		12		17		24		32		40
+2	rea	リア	0	rea	3	2	1	2	2	1	2	5	3	2	10	FALSE	FALSE	0	Blow	ice1	1	up_atk	5	ice1all	8	down_atk	12	ice2	17	down_def	24	ice2all	32	ice3	40
+3	d197	D197	0	d197	4	1	2	5	2	4	1	0	2	2	10	FALSE	FALSE	3	Blow	magic1	10		5		8		12		17		24		32		40
+4	nirma	二ルーマ	0	nirma	7	3	3	2	4	2	2	3	3	2	10	FALSE	FALSE	5	Blow	up_spd	2	heal1	5	up_atk	8	heal2	12	up_mgi	17	up_mdef	24		32		40
+5	witz	ウィッツ	0	witz	6	2	2	3	1	3	0	3	4	2	10	FALSE	FALSE	7	Blow	heal1	2	cure_poison	5	heal2	8	cure_stan	12	up_def	17	heal1all	24	down_atk	32	heal3	40
+6	marcus	マーカス	0	marcus	5	1	3	3	3	3	2	2	2	2	10	FALSE	FALSE	9	Blow	fire1	2	up_atk	5	fire1all	8	down_def	12	fire2all	17		24		32		40
+7	goemon	ゴエモン	0	goemon	5	3	2	2	5	2	4	1	3	2	10	FALSE	FALSE	11	Blow	down_def	2	down_atk	5	down_mgi	8	down_spd	12	down_mdef	17		24		32		40
+8	leon	レオン	0	leon	4	2	3	4	2	3	2	2	3	2	10	FALSE	FALSE	13	Blow	up_def	2	up_mdef	5		8		12		17		24		32		40
+9	bela	ベラ	0	bela	3	1	1	1	2	1	4	3	5	2	10	FALSE	FALSE	15	Blow	fire1	2	ice2	5	down_mdef	8	cure_poison	12	fire1all	17	fire3	24	down_spd	32	fire2all	40
+10	sho	ショー	0	sho	2	3	3	2	5	2	2	2	1	2	10	FALSE	FALSE	17	Blow	stone1	2	stone2	5	stone1all	8	stone3	12		17		24		32		40
+11	kyle	カイル	0	kyle	7	2	3	2	4	2	3	1	3	2	10	FALSE	FALSE	19	Blow	up_def	2	down_def	5	heal1	8	cure_poison	12	down_atk	17	up_atk	24		32		40
+12	est	エスト	0	est	6	3	3	3	2	3	1	5	2	2	10	FALSE	FALSE	21	Blow	heal1	2	up_def	5	heal2	8	heal1all	12	up_mdef	17	heal3	24	heal2all	32	heal4	40

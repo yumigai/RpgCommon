@@ -1,0 +1,1423 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<MetasequoiaDocument>
+    <IncludedBy>iroha_combine.mqo</IncludedBy>
+    <Plugin.56A31D20.71F282AB name="ボーン">
+        <BoneSet fxLim="0" wtNorm="1" skn="1" list="0" boneConf="0">
+            <Bone id="1" rtX="0.0000000" rtY="10.370859" rtZ="-0.76161504" tpX="0.0000000" tpY="11.150743" tpZ="-0.76161504" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="1.7500000" wScRootY="1.7500000" wScRootZ="1.7500000" wScTipX="1.7500000" wScTipY="1.7500000" wScTipZ="1.7500000" wStRoot="50.000000" wStTip="50.000000" wWid="7.0000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="Hips" tip_name="Hips_end" ik_name="Hips_IK" ik_tip_name="Hips_IK_end" tip_id="12" upVec="0.0000000" col="ff239f5e" group="0">
+                <P id="0"/>
+                <C id="12"/>
+                <B id="2"/>
+                <B id="7"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="734" w="100"/>
+                <W oi="1" vi="735" w="100"/>
+                <W oi="1" vi="736" w="100"/>
+                <W oi="1" vi="737" w="100"/>
+                <W oi="1" vi="739" w="100"/>
+                <W oi="1" vi="773" w="100"/>
+                <W oi="1" vi="774" w="100"/>
+                <W oi="1" vi="775" w="100"/>
+                <W oi="1" vi="776" w="100"/>
+                <W oi="1" vi="778" w="100"/>
+            </Bone>
+            <Bone id="2" rtX="0.0000000" rtY="10.370859" rtZ="-0.76161504" tpX="1.0027082" tpY="9.7023869" tpZ="-0.76161504" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="2.7041636" wScRootY="2.7041636" wScRootZ="2.7041636" wScTipX="2.7041636" wScTipY="2.7041636" wScTipZ="2.7041636" wStRoot="50.000000" wStTip="50.000000" wWid="10.816654" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftHip_Dummy" tip_name="LeftHip_Dummy_end" ik_name="LeftHip_Dummy_IK" ik_tip_name="LeftHip_Dummy_IK_end" tip_id="3" upVec="0.0000000" col="ff2141ba" group="0">
+                <P id="0"/>
+                <C id="3"/>
+                <B id="1"/>
+                <B id="7"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="809" w="100"/>
+                <W oi="1" vi="810" w="100"/>
+                <W oi="1" vi="811" w="100"/>
+                <W oi="1" vi="812" w="100"/>
+                <W oi="1" vi="813" w="100"/>
+                <W oi="1" vi="814" w="100"/>
+                <W oi="1" vi="815" w="100"/>
+                <W oi="1" vi="817" w="34.087204"/>
+                <W oi="1" vi="818" w="70.104294"/>
+                <W oi="1" vi="819" w="69.915276"/>
+                <W oi="1" vi="822" w="47.530251"/>
+                <W oi="1" vi="826" w="100"/>
+                <W oi="1" vi="832" w="100"/>
+                <W oi="1" vi="833" w="90.219681"/>
+                <W oi="1" vi="834" w="94.979378"/>
+                <W oi="1" vi="835" w="100"/>
+                <W oi="1" vi="836" w="100"/>
+                <W oi="1" vi="837" w="70.483894"/>
+                <W oi="1" vi="838" w="84.106979"/>
+                <W oi="1" vi="839" w="100"/>
+                <W oi="1" vi="886" w="60.059380"/>
+                <W oi="1" vi="887" w="43.651279"/>
+                <W oi="1" vi="889" w="54.512772"/>
+                <W oi="1" vi="890" w="24.102930"/>
+                <W oi="1" vi="891" w="33.497070"/>
+                <W oi="1" vi="892" w="45.462017"/>
+            </Bone>
+            <Bone id="3" rtX="1.0027082" rtY="9.7023869" rtZ="-0.76161504" tpX="1.0027082" tpY="4.6888433" tpZ="-0.76161504" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="11.250000" wScRootY="11.250000" wScRootZ="11.250000" wScTipX="11.250000" wScTipY="11.250000" wScTipZ="11.250000" wStRoot="50.000000" wStTip="50.000000" wWid="45.000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftUpperLeg" tip_name="LeftUpperLeg_end" ik_name="LeftUpperLeg_IK" ik_tip_name="LeftUpperLeg_IK_end" tip_id="4" upVec="0.0000000" col="ffbe0cbf" group="0">
+                <P id="2"/>
+                <C id="4"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="592" w="100"/>
+                <W oi="1" vi="593" w="100"/>
+                <W oi="1" vi="594" w="100"/>
+                <W oi="1" vi="595" w="100"/>
+                <W oi="1" vi="596" w="100"/>
+                <W oi="1" vi="597" w="100"/>
+                <W oi="1" vi="598" w="100"/>
+                <W oi="1" vi="599" w="100"/>
+                <W oi="1" vi="600" w="100"/>
+                <W oi="1" vi="601" w="100"/>
+                <W oi="1" vi="602" w="100"/>
+                <W oi="1" vi="603" w="100"/>
+                <W oi="1" vi="604" w="100"/>
+                <W oi="1" vi="605" w="100"/>
+                <W oi="1" vi="606" w="100"/>
+                <W oi="1" vi="607" w="100"/>
+                <W oi="1" vi="608" w="100"/>
+                <W oi="1" vi="609" w="100"/>
+                <W oi="1" vi="610" w="100"/>
+                <W oi="1" vi="611" w="100"/>
+                <W oi="1" vi="612" w="100"/>
+                <W oi="1" vi="658" w="44.724037"/>
+                <W oi="1" vi="659" w="45.883350"/>
+                <W oi="1" vi="660" w="45.006336"/>
+                <W oi="1" vi="661" w="44.529221"/>
+                <W oi="1" vi="662" w="43.668324"/>
+                <W oi="1" vi="663" w="45.311668"/>
+                <W oi="1" vi="664" w="45.022362"/>
+                <W oi="1" vi="665" w="45.448189"/>
+                <W oi="1" vi="816" w="100"/>
+                <W oi="1" vi="817" w="65.912796"/>
+                <W oi="1" vi="818" w="29.895702"/>
+                <W oi="1" vi="819" w="30.084723"/>
+                <W oi="1" vi="820" w="100"/>
+                <W oi="1" vi="821" w="100"/>
+                <W oi="1" vi="822" w="52.469749"/>
+                <W oi="1" vi="823" w="100"/>
+                <W oi="1" vi="833" w="9.7803202"/>
+                <W oi="1" vi="834" w="5.0206261"/>
+                <W oi="1" vi="837" w="29.516104"/>
+                <W oi="1" vi="838" w="15.893017"/>
+                <W oi="1" vi="878" w="100"/>
+                <W oi="1" vi="879" w="100"/>
+                <W oi="1" vi="880" w="100"/>
+                <W oi="1" vi="881" w="100"/>
+                <W oi="1" vi="882" w="100"/>
+                <W oi="1" vi="883" w="100"/>
+                <W oi="1" vi="884" w="100"/>
+                <W oi="1" vi="885" w="100"/>
+                <W oi="1" vi="886" w="39.940624"/>
+                <W oi="1" vi="887" w="56.348717"/>
+                <W oi="1" vi="888" w="100"/>
+                <W oi="1" vi="889" w="45.487228"/>
+                <W oi="1" vi="890" w="75.897072"/>
+                <W oi="1" vi="891" w="66.502930"/>
+                <W oi="1" vi="892" w="54.537979"/>
+                <W oi="1" vi="901" w="100"/>
+                <W oi="1" vi="902" w="100"/>
+                <W oi="1" vi="903" w="100"/>
+                <W oi="1" vi="904" w="100"/>
+                <W oi="1" vi="905" w="100"/>
+                <W oi="1" vi="906" w="100"/>
+                <W oi="1" vi="907" w="100"/>
+                <W oi="1" vi="908" w="100"/>
+                <W oi="1" vi="917" w="100"/>
+                <W oi="1" vi="918" w="100"/>
+                <W oi="1" vi="919" w="100"/>
+                <W oi="1" vi="920" w="100"/>
+                <W oi="1" vi="921" w="100"/>
+                <W oi="1" vi="922" w="100"/>
+                <W oi="1" vi="923" w="100"/>
+                <W oi="1" vi="924" w="100"/>
+            </Bone>
+            <Bone id="4" rtX="1.0027082" rtY="4.6888433" rtZ="-0.76161504" tpX="1.0027082" tpY="1.1143520" tpZ="-0.76161504" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="10.250000" wScRootY="10.250000" wScRootZ="10.250000" wScTipX="10.250000" wScTipY="10.250000" wScTipZ="10.250000" wStRoot="50.000000" wStTip="50.000000" wWid="41.000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftLowerLeg" tip_name="LeftLowerLeg_end" ik_name="LeftLowerLeg_IK" ik_tip_name="LeftLowerLeg_IK_end" tip_id="5" upVec="0.0000000" col="ff288b93" group="0">
+                <P id="3"/>
+                <C id="5"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="588" w="67.831276"/>
+                <W oi="1" vi="590" w="93.369965"/>
+                <W oi="1" vi="591" w="69.265511"/>
+                <W oi="1" vi="621" w="100"/>
+                <W oi="1" vi="622" w="100"/>
+                <W oi="1" vi="623" w="100"/>
+                <W oi="1" vi="624" w="100"/>
+                <W oi="1" vi="625" w="100"/>
+                <W oi="1" vi="626" w="100"/>
+                <W oi="1" vi="643" w="100"/>
+                <W oi="1" vi="644" w="50.000000"/>
+                <W oi="1" vi="657" w="100"/>
+                <W oi="1" vi="658" w="55.275963"/>
+                <W oi="1" vi="659" w="54.116646"/>
+                <W oi="1" vi="660" w="54.993664"/>
+                <W oi="1" vi="661" w="55.470779"/>
+                <W oi="1" vi="662" w="56.331676"/>
+                <W oi="1" vi="663" w="54.688332"/>
+                <W oi="1" vi="664" w="54.977638"/>
+                <W oi="1" vi="665" w="54.551811"/>
+            </Bone>
+            <Bone id="5" rtX="1.0027082" rtY="1.1143520" rtZ="-0.76161504" tpX="1.0027082" tpY="0.57834482" tpZ="0.57532907" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="3.3541019" wScRootY="3.3541019" wScRootZ="3.3541019" wScTipX="3.3541019" wScTipY="3.3541019" wScTipZ="3.3541019" wStRoot="50.000000" wStTip="50.000000" wWid="13.416408" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftFoot" tip_name="LeftFoot_end" ik_name="LeftFoot_IK" ik_tip_name="LeftFoot_IK_end" tip_id="6" upVec="0.0000000" col="fff2ac49" group="0">
+                <P id="4"/>
+                <C id="6"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="588" w="32.168724"/>
+                <W oi="1" vi="589" w="100"/>
+                <W oi="1" vi="590" w="6.6300330"/>
+                <W oi="1" vi="591" w="30.734491"/>
+                <W oi="1" vi="627" w="100"/>
+                <W oi="1" vi="628" w="100"/>
+                <W oi="1" vi="629" w="100"/>
+                <W oi="1" vi="634" w="100"/>
+                <W oi="1" vi="635" w="100"/>
+                <W oi="1" vi="636" w="100"/>
+                <W oi="1" vi="639" w="100"/>
+                <W oi="1" vi="642" w="53.342873"/>
+                <W oi="1" vi="644" w="50.000000"/>
+                <W oi="1" vi="645" w="100"/>
+                <W oi="1" vi="646" w="100"/>
+                <W oi="1" vi="648" w="90.579857"/>
+                <W oi="1" vi="649" w="100"/>
+                <W oi="1" vi="650" w="100"/>
+                <W oi="1" vi="651" w="100"/>
+                <W oi="1" vi="652" w="100"/>
+                <W oi="1" vi="666" w="100"/>
+                <W oi="1" vi="667" w="100"/>
+            </Bone>
+            <Bone id="6" rtX="1.0027082" rtY="0.57834482" rtZ="0.57532907" tpX="1.0027082" tpY="0.31343555" tpZ="1.9695294" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="3.5000000" wScRootY="3.5000000" wScRootZ="3.5000000" wScTipX="3.5000000" wScTipY="3.5000000" wScTipZ="3.5000000" wStRoot="50.000000" wStTip="50.000000" wWid="14.000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftToeBase" tip_name="LeftToeBase_end" ik_name="LeftToeBase_IK" ik_tip_name="LeftToeBase_IK_end" tip_id="0" upVec="0.0000000" col="ffe766ee" group="0">
+                <P id="5"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="630" w="100"/>
+                <W oi="1" vi="631" w="100"/>
+                <W oi="1" vi="632" w="100"/>
+                <W oi="1" vi="633" w="100"/>
+                <W oi="1" vi="637" w="100"/>
+                <W oi="1" vi="638" w="100"/>
+                <W oi="1" vi="640" w="100"/>
+                <W oi="1" vi="641" w="100"/>
+                <W oi="1" vi="642" w="46.657124"/>
+                <W oi="1" vi="647" w="100"/>
+                <W oi="1" vi="648" w="9.4201441"/>
+                <W oi="1" vi="653" w="100"/>
+                <W oi="1" vi="654" w="100"/>
+                <W oi="1" vi="655" w="100"/>
+                <W oi="1" vi="656" w="100"/>
+            </Bone>
+            <Bone id="7" rtX="0.0000000" rtY="10.370859" rtZ="-0.76161504" tpX="-1.0027082" tpY="9.7023869" tpZ="-0.76161504" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="2.7041636" wScRootY="2.7041636" wScRootZ="2.7041636" wScTipX="2.7041636" wScTipY="2.7041636" wScTipZ="2.7041636" wStRoot="50.000000" wStTip="50.000000" wWid="10.816654" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightHip_Dummy" tip_name="RightHip_Dummy_end" ik_name="RightHip_Dummy_IK" ik_tip_name="RightHip_Dummy_IK_end" tip_id="8" upVec="0.0000000" col="ff4764a8" group="0">
+                <P id="0"/>
+                <C id="8"/>
+                <B id="1"/>
+                <B id="2"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="827" w="100"/>
+                <W oi="1" vi="828" w="100"/>
+                <W oi="1" vi="829" w="100"/>
+                <W oi="1" vi="831" w="100"/>
+                <W oi="1" vi="841" w="23.843822"/>
+                <W oi="1" vi="842" w="67.306847"/>
+                <W oi="1" vi="843" w="68.483932"/>
+                <W oi="1" vi="846" w="36.630714"/>
+                <W oi="1" vi="848" w="100"/>
+                <W oi="1" vi="849" w="85.151886"/>
+                <W oi="1" vi="850" w="100"/>
+                <W oi="1" vi="851" w="100"/>
+                <W oi="1" vi="852" w="94.047874"/>
+                <W oi="1" vi="853" w="100"/>
+                <W oi="1" vi="854" w="100"/>
+                <W oi="1" vi="855" w="100"/>
+                <W oi="1" vi="856" w="69.627052"/>
+                <W oi="1" vi="857" w="83.249695"/>
+                <W oi="1" vi="858" w="100"/>
+                <W oi="1" vi="859" w="100"/>
+                <W oi="1" vi="868" w="58.378239"/>
+                <W oi="1" vi="869" w="41.335762"/>
+                <W oi="1" vi="871" w="53.366821"/>
+                <W oi="1" vi="872" w="15.545254"/>
+                <W oi="1" vi="873" w="25.075844"/>
+                <W oi="1" vi="874" w="40.591454"/>
+                <W oi="1" vi="875" w="100"/>
+            </Bone>
+            <Bone id="8" rtX="-1.0027082" rtY="9.7023869" rtZ="-0.76161504" tpX="-1.0027082" tpY="4.6888433" tpZ="-0.76161504" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="11.250000" wScRootY="11.250000" wScRootZ="11.250000" wScTipX="11.250000" wScTipY="11.250000" wScTipZ="11.250000" wStRoot="50.000000" wStTip="50.000000" wWid="45.000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightUpperLeg" tip_name="RightUpperLeg_end" ik_name="RightUpperLeg_IK" ik_tip_name="RightUpperLeg_IK_end" tip_id="9" upVec="0.0000000" col="ffe9e70c" group="0">
+                <P id="7"/>
+                <C id="9"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="512" w="100"/>
+                <W oi="1" vi="513" w="100"/>
+                <W oi="1" vi="514" w="100"/>
+                <W oi="1" vi="515" w="100"/>
+                <W oi="1" vi="516" w="100"/>
+                <W oi="1" vi="517" w="100"/>
+                <W oi="1" vi="518" w="100"/>
+                <W oi="1" vi="519" w="100"/>
+                <W oi="1" vi="520" w="100"/>
+                <W oi="1" vi="521" w="100"/>
+                <W oi="1" vi="522" w="100"/>
+                <W oi="1" vi="523" w="100"/>
+                <W oi="1" vi="524" w="100"/>
+                <W oi="1" vi="525" w="100"/>
+                <W oi="1" vi="526" w="100"/>
+                <W oi="1" vi="527" w="100"/>
+                <W oi="1" vi="528" w="100"/>
+                <W oi="1" vi="529" w="100"/>
+                <W oi="1" vi="530" w="100"/>
+                <W oi="1" vi="531" w="100"/>
+                <W oi="1" vi="532" w="100"/>
+                <W oi="1" vi="578" w="44.724037"/>
+                <W oi="1" vi="579" w="45.883350"/>
+                <W oi="1" vi="580" w="45.006336"/>
+                <W oi="1" vi="581" w="44.529221"/>
+                <W oi="1" vi="582" w="43.668324"/>
+                <W oi="1" vi="583" w="45.311668"/>
+                <W oi="1" vi="584" w="45.022362"/>
+                <W oi="1" vi="585" w="45.448189"/>
+                <W oi="1" vi="824" w="100"/>
+                <W oi="1" vi="825" w="100"/>
+                <W oi="1" vi="830" w="100"/>
+                <W oi="1" vi="840" w="100"/>
+                <W oi="1" vi="841" w="76.156181"/>
+                <W oi="1" vi="842" w="32.693153"/>
+                <W oi="1" vi="843" w="31.516069"/>
+                <W oi="1" vi="844" w="100"/>
+                <W oi="1" vi="845" w="100"/>
+                <W oi="1" vi="846" w="63.369282"/>
+                <W oi="1" vi="847" w="100"/>
+                <W oi="1" vi="849" w="14.848115"/>
+                <W oi="1" vi="852" w="5.9521246"/>
+                <W oi="1" vi="856" w="30.372944"/>
+                <W oi="1" vi="857" w="16.750307"/>
+                <W oi="1" vi="860" w="100"/>
+                <W oi="1" vi="861" w="100"/>
+                <W oi="1" vi="862" w="100"/>
+                <W oi="1" vi="863" w="100"/>
+                <W oi="1" vi="864" w="100"/>
+                <W oi="1" vi="865" w="100"/>
+                <W oi="1" vi="866" w="100"/>
+                <W oi="1" vi="867" w="100"/>
+                <W oi="1" vi="868" w="41.621761"/>
+                <W oi="1" vi="869" w="58.664242"/>
+                <W oi="1" vi="870" w="100"/>
+                <W oi="1" vi="871" w="46.633179"/>
+                <W oi="1" vi="872" w="84.454742"/>
+                <W oi="1" vi="873" w="74.924156"/>
+                <W oi="1" vi="874" w="59.408550"/>
+                <W oi="1" vi="876" w="100"/>
+                <W oi="1" vi="877" w="100"/>
+                <W oi="1" vi="893" w="100"/>
+                <W oi="1" vi="894" w="100"/>
+                <W oi="1" vi="895" w="100"/>
+                <W oi="1" vi="896" w="100"/>
+                <W oi="1" vi="897" w="100"/>
+                <W oi="1" vi="898" w="100"/>
+                <W oi="1" vi="899" w="100"/>
+                <W oi="1" vi="900" w="100"/>
+                <W oi="1" vi="909" w="100"/>
+                <W oi="1" vi="910" w="100"/>
+                <W oi="1" vi="911" w="100"/>
+                <W oi="1" vi="912" w="100"/>
+                <W oi="1" vi="913" w="100"/>
+                <W oi="1" vi="914" w="100"/>
+                <W oi="1" vi="915" w="100"/>
+                <W oi="1" vi="916" w="100"/>
+            </Bone>
+            <Bone id="9" rtX="-1.0027082" rtY="4.6888433" rtZ="-0.76161504" tpX="-1.0027082" tpY="1.1143520" tpZ="-0.76161504" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="10.250000" wScRootY="10.250000" wScRootZ="10.250000" wScTipX="10.250000" wScTipY="10.250000" wScTipZ="10.250000" wStRoot="50.000000" wStTip="50.000000" wWid="41.000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightLowerLeg" tip_name="RightLowerLeg_end" ik_name="RightLowerLeg_IK" ik_tip_name="RightLowerLeg_IK_end" tip_id="10" upVec="0.0000000" col="ffe3851a" group="0">
+                <P id="8"/>
+                <C id="10"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="508" w="67.831276"/>
+                <W oi="1" vi="510" w="93.369965"/>
+                <W oi="1" vi="511" w="69.265511"/>
+                <W oi="1" vi="541" w="100"/>
+                <W oi="1" vi="542" w="100"/>
+                <W oi="1" vi="543" w="100"/>
+                <W oi="1" vi="544" w="100"/>
+                <W oi="1" vi="545" w="100"/>
+                <W oi="1" vi="546" w="100"/>
+                <W oi="1" vi="563" w="100"/>
+                <W oi="1" vi="564" w="50.000000"/>
+                <W oi="1" vi="577" w="100"/>
+                <W oi="1" vi="578" w="55.275963"/>
+                <W oi="1" vi="579" w="54.116646"/>
+                <W oi="1" vi="580" w="54.993664"/>
+                <W oi="1" vi="581" w="55.470779"/>
+                <W oi="1" vi="582" w="56.331676"/>
+                <W oi="1" vi="583" w="54.688332"/>
+                <W oi="1" vi="584" w="54.977638"/>
+                <W oi="1" vi="585" w="54.551811"/>
+            </Bone>
+            <Bone id="10" rtX="-1.0027082" rtY="1.1143520" rtZ="-0.76161504" tpX="-1.0027082" tpY="0.57834482" tpZ="0.57532907" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="3.3541019" wScRootY="3.3541019" wScRootZ="3.3541019" wScTipX="3.3541019" wScTipY="3.3541019" wScTipZ="3.3541019" wStRoot="50.000000" wStTip="50.000000" wWid="13.416408" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightFoot" tip_name="RightFoot_end" ik_name="RightFoot_IK" ik_tip_name="RightFoot_IK_end" tip_id="11" upVec="0.0000000" col="ff65e858" group="0">
+                <P id="9"/>
+                <C id="11"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="508" w="32.168724"/>
+                <W oi="1" vi="509" w="100"/>
+                <W oi="1" vi="510" w="6.6300330"/>
+                <W oi="1" vi="511" w="30.734491"/>
+                <W oi="1" vi="547" w="100"/>
+                <W oi="1" vi="548" w="100"/>
+                <W oi="1" vi="549" w="100"/>
+                <W oi="1" vi="554" w="100"/>
+                <W oi="1" vi="555" w="100"/>
+                <W oi="1" vi="556" w="100"/>
+                <W oi="1" vi="559" w="100"/>
+                <W oi="1" vi="562" w="53.342873"/>
+                <W oi="1" vi="564" w="50.000000"/>
+                <W oi="1" vi="565" w="100"/>
+                <W oi="1" vi="566" w="100"/>
+                <W oi="1" vi="568" w="90.579857"/>
+                <W oi="1" vi="569" w="100"/>
+                <W oi="1" vi="570" w="100"/>
+                <W oi="1" vi="571" w="100"/>
+                <W oi="1" vi="572" w="100"/>
+                <W oi="1" vi="586" w="100"/>
+                <W oi="1" vi="587" w="100"/>
+            </Bone>
+            <Bone id="11" rtX="-1.0027082" rtY="0.57834482" rtZ="0.57532907" tpX="-1.0027082" tpY="0.31343555" tpZ="1.9695294" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="3.5000000" wScRootY="3.5000000" wScRootZ="3.5000000" wScTipX="3.5000000" wScTipY="3.5000000" wScTipZ="3.5000000" wStRoot="50.000000" wStTip="50.000000" wWid="14.000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightToeBase" tip_name="RightToeBase_end" ik_name="RightToeBase_IK" ik_tip_name="RightToeBase_IK_end" tip_id="0" upVec="0.0000000" col="ff4938e8" group="0">
+                <P id="10"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="550" w="100"/>
+                <W oi="1" vi="551" w="100"/>
+                <W oi="1" vi="552" w="100"/>
+                <W oi="1" vi="553" w="100"/>
+                <W oi="1" vi="557" w="100"/>
+                <W oi="1" vi="558" w="100"/>
+                <W oi="1" vi="560" w="100"/>
+                <W oi="1" vi="561" w="100"/>
+                <W oi="1" vi="562" w="46.657124"/>
+                <W oi="1" vi="567" w="100"/>
+                <W oi="1" vi="568" w="9.4201441"/>
+                <W oi="1" vi="573" w="100"/>
+                <W oi="1" vi="574" w="100"/>
+                <W oi="1" vi="575" w="100"/>
+                <W oi="1" vi="576" w="100"/>
+            </Bone>
+            <Bone id="12" rtX="0.0000000" rtY="11.150743" rtZ="-0.76161504" tpX="0.0000000" tpY="12.599102" tpZ="-0.76161504" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="3.2500000" wScRootY="3.2500000" wScRootZ="3.2500000" wScTipX="3.2500000" wScTipY="3.2500000" wScTipZ="3.2500000" wStRoot="50.000000" wStTip="50.000000" wWid="13.000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="Spine" tip_name="Spine_end" ik_name="Spine_IK" ik_tip_name="Spine_IK_end" tip_id="13" upVec="0.0000000" col="ff834a32" group="0">
+                <P id="1"/>
+                <C id="13"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+            </Bone>
+            <Bone id="13" rtX="0.0000000" rtY="12.599102" rtZ="-0.76161504" tpX="0.0000000" tpY="14.270285" tpZ="-0.76161504" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="3.7500000" wScRootY="3.7500000" wScRootZ="3.7500000" wScTipX="3.7500000" wScTipY="3.7500000" wScTipZ="3.7500000" wStRoot="50.000000" wStTip="50.000000" wWid="15.000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="Chest" tip_name="Chest_end" ik_name="Chest_IK" ik_tip_name="Chest_IK_end" tip_id="14" upVec="0.0000000" col="ffbb0e21" group="0">
+                <P id="12"/>
+                <C id="14"/>
+                <C id="38"/>
+                <C id="62"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="722" w="100"/>
+                <W oi="1" vi="723" w="100"/>
+                <W oi="1" vi="728" w="100"/>
+                <W oi="1" vi="742" w="100"/>
+                <W oi="1" vi="743" w="100"/>
+                <W oi="1" vi="744" w="100"/>
+                <W oi="1" vi="745" w="100"/>
+                <W oi="1" vi="746" w="100"/>
+                <W oi="1" vi="747" w="100"/>
+                <W oi="1" vi="748" w="100"/>
+                <W oi="1" vi="771" w="100"/>
+                <W oi="1" vi="781" w="100"/>
+                <W oi="1" vi="782" w="100"/>
+                <W oi="1" vi="783" w="100"/>
+                <W oi="1" vi="784" w="100"/>
+            </Bone>
+            <Bone id="14" rtX="0.0000000" rtY="14.270285" rtZ="-0.76161504" tpX="0.77988398" tpY="15.384399" tpZ="-1.0306640" rotB="0.0000000" rotH="0.00000043" rotP="-0.00000085" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="3.0516388" wScRootY="3.0516388" wScRootZ="3.0516388" wScTipX="3.0516388" wScTipY="3.0516388" wScTipZ="3.0516388" wStRoot="50.000000" wStTip="50.000000" wWid="12.206555" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftShoulder_Dummy" tip_name="LeftShoulder_Dummy_end" ik_name="LeftShoulder_Dummy_IK" ik_tip_name="LeftShoulder_Dummy_IK_end" tip_id="15" upVec="0.0000000" col="ff53b474" group="0">
+                <P id="13"/>
+                <C id="15"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+            </Bone>
+            <Bone id="15" rtX="0.77988398" rtY="15.384399" rtZ="-1.0306640" tpX="1.8940066" tpY="15.384399" tpZ="-1.2298636" rotB="0.0000000" rotH="0.0000000" rotP="-0.00000085" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="2.5000000" wScRootY="2.5000000" wScRootZ="2.5000000" wScTipX="2.5000000" wScTipY="2.5000000" wScTipZ="2.5000000" wStRoot="50.000000" wStTip="50.000000" wWid="10.000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftShoulder" tip_name="LeftShoulder_end" ik_name="LeftShoulder_IK" ik_tip_name="LeftShoulder_IK_end" tip_id="16" upVec="0.0000000" col="ff0d3ea3" group="0">
+                <P id="14"/>
+                <C id="16"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="724" w="100"/>
+                <W oi="1" vi="725" w="100"/>
+                <W oi="1" vi="726" w="92.425087"/>
+                <W oi="1" vi="727" w="100"/>
+                <W oi="1" vi="738" w="100"/>
+                <W oi="1" vi="741" w="100"/>
+                <W oi="1" vi="749" w="100"/>
+                <W oi="1" vi="750" w="100"/>
+                <W oi="1" vi="804" w="100"/>
+                <W oi="1" vi="805" w="98.119324"/>
+                <W oi="1" vi="807" w="100"/>
+            </Bone>
+            <Bone id="16" rtX="1.8940066" rtY="15.384399" rtZ="-1.2298636" tpX="5.0135407" tpY="15.384399" tpZ="-0.92718339" rotB="0.0000000" rotH="-0.00000043" rotP="0.00000085" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="7.0000000" wScRootY="7.0000000" wScRootZ="7.0000000" wScTipX="7.0000000" wScTipY="7.0000000" wScTipZ="7.0000000" wStRoot="50.000000" wStTip="50.000000" wWid="28.000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftUpperArm" tip_name="LeftUpperArm_end" ik_name="LeftUpperArm_IK" ik_tip_name="LeftUpperArm_IK_end" tip_id="17" upVec="0.0000000" col="ff8b5537" group="0">
+                <P id="15"/>
+                <C id="17"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="432" w="100"/>
+                <W oi="1" vi="433" w="100"/>
+                <W oi="1" vi="434" w="100"/>
+                <W oi="1" vi="435" w="100"/>
+                <W oi="1" vi="436" w="100"/>
+                <W oi="1" vi="437" w="100"/>
+                <W oi="1" vi="438" w="100"/>
+                <W oi="1" vi="439" w="100"/>
+                <W oi="1" vi="450" w="80.753838"/>
+                <W oi="1" vi="726" w="7.5749111"/>
+                <W oi="1" vi="751" w="100"/>
+                <W oi="1" vi="752" w="100"/>
+                <W oi="1" vi="753" w="100"/>
+                <W oi="1" vi="754" w="100"/>
+                <W oi="1" vi="755" w="100"/>
+                <W oi="1" vi="756" w="100"/>
+                <W oi="1" vi="757" w="100"/>
+                <W oi="1" vi="758" w="100"/>
+                <W oi="1" vi="759" w="100"/>
+                <W oi="1" vi="760" w="100"/>
+                <W oi="1" vi="761" w="100"/>
+                <W oi="1" vi="762" w="100"/>
+                <W oi="1" vi="763" w="100"/>
+                <W oi="1" vi="764" w="100"/>
+                <W oi="1" vi="765" w="100"/>
+                <W oi="1" vi="766" w="100"/>
+                <W oi="1" vi="805" w="1.8806741"/>
+            </Bone>
+            <Bone id="17" rtX="5.0135407" rtY="15.384399" rtZ="-0.92718339" tpX="7.9102545" tpY="15.384399" tpZ="-0.76161504" rotB="0.0000000" rotH="-0.00000021" rotP="0.00000021" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="6.5000000" wScRootY="6.5000000" wScRootZ="6.5000000" wScTipX="6.5000000" wScTipY="6.5000000" wScTipZ="6.5000000" wStRoot="50.000000" wStTip="50.000000" wWid="26.000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftLowerArm" tip_name="LeftHand" ik_name="LeftLowerArm_IK" ik_tip_name="LeftLowerArm_IK_end" tip_id="18" upVec="0.0000000" col="ffdd03b2" group="0">
+                <P id="16"/>
+                <C id="18"/>
+                <C id="22"/>
+                <C id="26"/>
+                <C id="30"/>
+                <C id="34"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="425" w="100"/>
+                <W oi="1" vi="426" w="100"/>
+                <W oi="1" vi="427" w="100"/>
+                <W oi="1" vi="428" w="100"/>
+                <W oi="1" vi="429" w="100"/>
+                <W oi="1" vi="430" w="100"/>
+                <W oi="1" vi="431" w="100"/>
+                <W oi="1" vi="440" w="100"/>
+                <W oi="1" vi="441" w="100"/>
+                <W oi="1" vi="442" w="100"/>
+                <W oi="1" vi="443" w="100"/>
+                <W oi="1" vi="444" w="100"/>
+                <W oi="1" vi="445" w="100"/>
+                <W oi="1" vi="446" w="100"/>
+                <W oi="1" vi="447" w="100"/>
+                <W oi="1" vi="450" w="19.246161"/>
+                <W oi="1" vi="451" w="100"/>
+            </Bone>
+            <Bone id="18" rtX="7.9102545" rtY="15.384399" rtZ="-0.76161504" tpX="8.5479908" tpY="15.166779" tpZ="0.15832686" rotB="0.0000000" rotH="-0.00000171" rotP="0.00000085" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="1.3287683" wScRootY="1.3287683" wScRootZ="1.3287683" wScTipX="1.3287683" wScTipY="1.3287683" wScTipZ="1.3287683" wStRoot="50.000000" wStTip="50.000000" wWid="5.3150730" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftThumb_Dummy" tip_name="LeftThumb_Dummy_end" ik_name="LeftThumb_Dummy_IK" ik_tip_name="LeftThumb_Dummy_IK_end" tip_id="19" upVec="0.0000000" col="ffd1379f" group="0">
+                <P id="17"/>
+                <C id="19"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="348" w="100"/>
+                <W oi="1" vi="349" w="94.508057"/>
+                <W oi="1" vi="350" w="100"/>
+                <W oi="1" vi="362" w="100"/>
+                <W oi="1" vi="363" w="100"/>
+                <W oi="1" vi="367" w="100"/>
+                <W oi="1" vi="369" w="100"/>
+                <W oi="1" vi="374" w="100"/>
+                <W oi="1" vi="375" w="100"/>
+                <W oi="1" vi="449" w="100"/>
+            </Bone>
+            <Bone id="19" rtX="8.5479908" rtY="15.166779" rtZ="0.15832686" tpX="8.9101725" tpY="15.137503" tpZ="0.36528754" rotB="-0.0000000" rotH="-0.00000854" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="0.62500000" wScRootY="0.62500000" wScRootZ="0.62500000" wScTipX="0.62500000" wScTipY="0.62500000" wScTipZ="0.62500000" wStRoot="50.000000" wStTip="50.000000" wWid="2.5000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftThumbProximal" tip_name="LeftThumbProximal_end" ik_name="LeftThumbProximal_IK" ik_tip_name="LeftThumbProximal_IK_end" tip_id="20" upVec="0.0000000" col="ffc15f8a" group="0">
+                <P id="18"/>
+                <C id="20"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="349" w="5.4919405"/>
+                <W oi="1" vi="371" w="100"/>
+                <W oi="1" vi="406" w="100"/>
+                <W oi="1" vi="407" w="61.116108"/>
+                <W oi="1" vi="408" w="100"/>
+                <W oi="1" vi="409" w="100"/>
+                <W oi="1" vi="448" w="100"/>
+            </Bone>
+            <Bone id="20" rtX="8.9101725" rtY="15.137503" rtZ="0.36528754" tpX="9.3240938" tpY="15.148512" tpZ="0.48170292" rotB="-0.0000000" rotH="-0.00000256" rotP="-0.00000171" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="0.55901700" wScRootY="0.55901700" wScRootZ="0.55901700" wScTipX="0.55901700" wScTipY="0.55901700" wScTipZ="0.55901700" wStRoot="50.000000" wStTip="50.000000" wWid="2.2360680" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftThumbIntermediate" tip_name="LeftThumbIntermediate_end" ik_name="LeftThumbIntermediate_IK" ik_tip_name="LeftThumbIntermediate_IK_end" tip_id="0" upVec="0.0000000" col="fff5931b" group="0">
+                <P id="19"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="378" w="100"/>
+                <W oi="1" vi="379" w="100"/>
+                <W oi="1" vi="380" w="100"/>
+                <W oi="1" vi="381" w="100"/>
+                <W oi="1" vi="407" w="38.883892"/>
+                <W oi="1" vi="418" w="100"/>
+                <W oi="1" vi="419" w="100"/>
+                <W oi="1" vi="420" w="100"/>
+                <W oi="1" vi="421" w="100"/>
+                <W oi="1" vi="422" w="100"/>
+            </Bone>
+            <Bone id="22" rtX="7.9102545" rtY="15.384399" rtZ="-0.76161504" tpX="9.3240938" tpY="15.380491" tpZ="-0.21678925" rotB="-0.0000000" rotH="0.00000342" rotP="0.00000171" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="2.5225234" wScRootY="2.5225234" wScRootZ="2.5225234" wScTipX="2.5225234" wScTipY="2.5225234" wScTipZ="2.5225234" wStRoot="50.000000" wStTip="50.000000" wWid="10.090094" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftIndex_Dummy" tip_name="LeftIndex_Dummy_end" ik_name="LeftIndex_Dummy_IK" ik_tip_name="LeftIndex_Dummy_IK_end" tip_id="23" upVec="0.0000000" col="ff795def" group="0">
+                <P id="17"/>
+                <C id="23"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="347" w="100"/>
+                <W oi="1" vi="355" w="4.5075488"/>
+                <W oi="1" vi="356" w="50.963512"/>
+                <W oi="1" vi="359" w="100"/>
+                <W oi="1" vi="360" w="44.633469"/>
+                <W oi="1" vi="361" w="100"/>
+                <W oi="1" vi="368" w="100"/>
+                <W oi="1" vi="372" w="100"/>
+            </Bone>
+            <Bone id="23" rtX="9.3240938" rtY="15.380491" rtZ="-0.21678925" tpX="9.8285599" tpY="15.394724" tpZ="-0.21678925" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="1.1261106" wScRootY="1.1261106" wScRootZ="1.1261106" wScTipX="1.1261106" wScTipY="1.1261106" wScTipZ="1.1261106" wStRoot="50.000000" wStTip="50.000000" wWid="4.5044422" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftIndexProximal" tip_name="LeftIndexProximal_end" ik_name="LeftIndexProximal_IK" ik_tip_name="LeftIndexProximal_IK_end" tip_id="24" upVec="0.0000000" col="ffaa3e6f" group="0">
+                <P id="22"/>
+                <C id="24"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="355" w="95.492455"/>
+                <W oi="1" vi="356" w="49.036488"/>
+                <W oi="1" vi="360" w="55.366531"/>
+                <W oi="1" vi="382" w="100"/>
+                <W oi="1" vi="383" w="100"/>
+                <W oi="1" vi="384" w="100"/>
+                <W oi="1" vi="385" w="100"/>
+            </Bone>
+            <Bone id="24" rtX="9.8285599" rtY="15.394724" rtZ="-0.21678925" tpX="10.268352" tpY="15.334799" tpZ="-0.24265933" rotB="0.0000000" rotH="0.00000043" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="0.62549978" wScRootY="0.62549978" wScRootZ="0.62549978" wScTipX="0.62549978" wScTipY="0.62549978" wScTipZ="0.62549978" wStRoot="50.000000" wStTip="50.000000" wWid="2.5019991" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftIndexIntermediate" tip_name="LeftIndexIntermediate_end" ik_name="LeftIndexIntermediate_IK" ik_tip_name="LeftIndexIntermediate_IK_end" tip_id="0" upVec="0.0000000" col="ff9913c3" group="0">
+                <P id="23"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="398" w="100"/>
+                <W oi="1" vi="399" w="100"/>
+                <W oi="1" vi="400" w="100"/>
+                <W oi="1" vi="401" w="100"/>
+                <W oi="1" vi="410" w="100"/>
+                <W oi="1" vi="411" w="100"/>
+                <W oi="1" vi="412" w="100"/>
+                <W oi="1" vi="413" w="100"/>
+                <W oi="1" vi="423" w="100"/>
+            </Bone>
+            <Bone id="26" rtX="7.9102545" rtY="15.384399" rtZ="-0.76161504" tpX="9.3240938" tpY="15.347584" tpZ="-0.55310023" rotB="0.0000000" rotH="0.0000000" rotP="0.00000085" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="2.3971338" wScRootY="2.3971338" wScRootZ="2.3971338" wScTipX="2.3971338" wScTipY="2.3971338" wScTipZ="2.3971338" wStRoot="50.000000" wStTip="50.000000" wWid="9.5885353" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftMiddle_Dummy" tip_name="LeftMiddle_Dummy_end" ik_name="LeftMiddle_Dummy_IK" ik_tip_name="LeftMiddle_Dummy_IK_end" tip_id="27" upVec="0.0000000" col="ffa53b13" group="0">
+                <P id="17"/>
+                <C id="27"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+            </Bone>
+            <Bone id="27" rtX="9.3240938" rtY="15.347584" rtZ="-0.55310023" tpX="9.8026905" tpY="15.387878" tpZ="-0.57897031" rotB="-0.0000000" rotH="0.00000043" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="1.2500000" wScRootY="1.2500000" wScRootZ="1.2500000" wScTipX="1.2500000" wScTipY="1.2500000" wScTipZ="1.2500000" wStRoot="50.000000" wStTip="50.000000" wWid="5.0000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftMiddleProximal" tip_name="LeftMiddleProximal_end" ik_name="LeftMiddleProximal_IK" ik_tip_name="LeftMiddleProximal_IK_end" tip_id="28" upVec="0.0000000" col="ffe2f862" group="0">
+                <P id="26"/>
+                <C id="28"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+            </Bone>
+            <Bone id="28" rtX="9.8026905" rtY="15.387878" rtZ="-0.57897031" tpX="10.307157" tpY="15.391918" tpZ="-0.68245059" rotB="0.0000000" rotH="0.00000085" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="0.62500000" wScRootY="0.62500000" wScRootZ="0.62500000" wScTipX="0.62500000" wScTipY="0.62500000" wScTipZ="0.62500000" wStRoot="50.000000" wStTip="50.000000" wWid="2.5000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftMiddleIntermediate" tip_name="LeftMiddleIntermediate_end" ik_name="LeftMiddleIntermediate_IK" ik_tip_name="LeftMiddleIntermediate_IK_end" tip_id="0" upVec="0.0000000" col="ff842420" group="0">
+                <P id="27"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="386" w="100"/>
+                <W oi="1" vi="387" w="100"/>
+                <W oi="1" vi="388" w="100"/>
+                <W oi="1" vi="389" w="100"/>
+                <W oi="1" vi="402" w="100"/>
+                <W oi="1" vi="403" w="100"/>
+                <W oi="1" vi="404" w="100"/>
+                <W oi="1" vi="405" w="100"/>
+                <W oi="1" vi="414" w="100"/>
+                <W oi="1" vi="415" w="100"/>
+                <W oi="1" vi="416" w="100"/>
+                <W oi="1" vi="417" w="100"/>
+                <W oi="1" vi="424" w="100"/>
+            </Bone>
+            <Bone id="30" rtX="7.9102545" rtY="15.384399" rtZ="-0.76161504" tpX="9.1818085" tpY="15.294611" tpZ="-0.86354113" rotB="0.0000000" rotH="0.00000085" rotP="-0.00000085" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="2.3834062" wScRootY="2.3834062" wScRootZ="2.3834062" wScTipX="2.3834062" wScTipY="2.3834062" wScTipZ="2.3834062" wStRoot="50.000000" wStTip="50.000000" wWid="9.5336246" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftRing_Dummy" tip_name="LeftRing_Dummy_end" ik_name="LeftRing_Dummy_IK" ik_tip_name="LeftRing_Dummy_IK_end" tip_id="31" upVec="0.0000000" col="ff4769c2" group="0">
+                <P id="17"/>
+                <C id="31"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+            </Bone>
+            <Bone id="31" rtX="9.1818085" rtY="15.294611" rtZ="-0.86354113" tpX="9.6215992" tpY="15.315477" tpZ="-0.90234625" rotB="0.0000000" rotH="0.0000000" rotP="-0.00000043" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="1.1250000" wScRootY="1.1250000" wScRootZ="1.1250000" wScTipX="1.1250000" wScTipY="1.1250000" wScTipZ="1.1250000" wStRoot="50.000000" wStTip="50.000000" wWid="4.5000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftRingProximal" tip_name="LeftRingProximal_end" ik_name="LeftRingProximal_IK" ik_tip_name="LeftRingProximal_IK_end" tip_id="32" upVec="0.0000000" col="ffedcf70" group="0">
+                <P id="30"/>
+                <C id="32"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="357" w="100"/>
+                <W oi="1" vi="358" w="100"/>
+                <W oi="1" vi="365" w="100"/>
+                <W oi="1" vi="366" w="100"/>
+                <W oi="1" vi="390" w="100"/>
+                <W oi="1" vi="391" w="100"/>
+                <W oi="1" vi="392" w="100"/>
+                <W oi="1" vi="393" w="100"/>
+            </Bone>
+            <Bone id="32" rtX="9.6215992" rtY="15.315477" rtZ="-0.90234625" tpX="10.139001" tpY="15.271742" tpZ="-0.95408642" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="0.62500000" wScRootY="0.62500000" wScRootZ="0.62500000" wScTipX="0.62500000" wScTipY="0.62500000" wScTipZ="0.62500000" wStRoot="50.000000" wStTip="50.000000" wWid="2.5000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftRingIntermediate" tip_name="LeftRingIntermediate_end" ik_name="LeftRingIntermediate_IK" ik_tip_name="LeftRingIntermediate_IK_end" tip_id="0" upVec="0.0000000" col="ff34cc60" group="0">
+                <P id="31"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="452" w="100"/>
+                <W oi="1" vi="453" w="100"/>
+                <W oi="1" vi="454" w="100"/>
+                <W oi="1" vi="455" w="100"/>
+                <W oi="1" vi="456" w="100"/>
+                <W oi="1" vi="457" w="100"/>
+                <W oi="1" vi="458" w="100"/>
+                <W oi="1" vi="459" w="100"/>
+                <W oi="1" vi="460" w="100"/>
+            </Bone>
+            <Bone id="34" rtX="7.9102545" rtY="15.384399" rtZ="-0.76161504" tpX="9.0653934" tpY="15.219818" tpZ="-1.1481121" rotB="-0.0000000" rotH="0.00000342" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="2.4558604" wScRootY="2.4558604" wScRootZ="2.4558604" wScTipX="2.4558604" wScTipY="2.4558604" wScTipZ="2.4558604" wStRoot="50.000000" wStTip="50.000000" wWid="9.8234415" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftLittle_Dummy" tip_name="LeftLittle_Dummy_end" ik_name="LeftLittle_Dummy_IK" ik_tip_name="LeftLittle_Dummy_IK_end" tip_id="35" upVec="0.0000000" col="ffcdeb45" group="0">
+                <P id="17"/>
+                <C id="35"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="351" w="100"/>
+                <W oi="1" vi="352" w="100"/>
+                <W oi="1" vi="364" w="100"/>
+                <W oi="1" vi="370" w="100"/>
+                <W oi="1" vi="373" w="100"/>
+                <W oi="1" vi="376" w="100"/>
+                <W oi="1" vi="377" w="100"/>
+            </Bone>
+            <Bone id="35" rtX="9.0653934" rtY="15.219818" rtZ="-1.1481121" tpX="9.5698595" tpY="15.122393" tpZ="-1.2257222" rotB="-0.0000000" rotH="0.00000171" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="0.75000000" wScRootY="0.75000000" wScRootZ="0.75000000" wScTipX="0.75000000" wScTipY="0.75000000" wScTipZ="0.75000000" wStRoot="50.000000" wStTip="50.000000" wWid="3.0000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftLittleProximal" tip_name="LeftLittleProximal_end" ik_name="LeftLittleProximal_IK" ik_tip_name="LeftLittleProximal_IK_end" tip_id="36" upVec="0.0000000" col="ff449e25" group="0">
+                <P id="34"/>
+                <C id="36"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="353" w="100"/>
+                <W oi="1" vi="354" w="100"/>
+                <W oi="1" vi="394" w="11.130527"/>
+                <W oi="1" vi="395" w="13.147949"/>
+                <W oi="1" vi="397" w="3.3118567"/>
+            </Bone>
+            <Bone id="36" rtX="9.5698595" rtY="15.122393" rtZ="-1.2257222" tpX="9.9061699" tpY="15.161570" tpZ="-1.2386572" rotB="-0.0000000" rotH="0.00000021" rotP="0.00000021" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="0.50000000" wScRootY="0.50000000" wScRootZ="0.50000000" wScTipX="0.50000000" wScTipY="0.50000000" wScTipZ="0.50000000" wStRoot="50.000000" wStTip="50.000000" wWid="2.0000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="LeftLittleIntermediate" tip_name="LeftLittleIntermediate_end" ik_name="LeftLittleIntermediate_IK" ik_tip_name="LeftLittleIntermediate_IK_end" tip_id="0" upVec="0.0000000" col="ff5e3784" group="0">
+                <P id="35"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="394" w="88.869476"/>
+                <W oi="1" vi="395" w="86.852051"/>
+                <W oi="1" vi="396" w="100"/>
+                <W oi="1" vi="397" w="96.688141"/>
+                <W oi="1" vi="461" w="100"/>
+                <W oi="1" vi="462" w="100"/>
+                <W oi="1" vi="463" w="100"/>
+                <W oi="1" vi="464" w="100"/>
+                <W oi="1" vi="465" w="100"/>
+                <W oi="1" vi="466" w="100"/>
+                <W oi="1" vi="467" w="100"/>
+                <W oi="1" vi="468" w="100"/>
+                <W oi="1" vi="469" w="100"/>
+            </Bone>
+            <Bone id="38" rtX="0.0000000" rtY="14.270285" rtZ="-0.76161504" tpX="-0.77988398" tpY="15.384399" tpZ="-1.0306640" rotB="-0.0000000" rotH="-0.00000043" rotP="-0.00000085" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="3.0516388" wScRootY="3.0516388" wScRootZ="3.0516388" wScTipX="3.0516388" wScTipY="3.0516388" wScTipZ="3.0516388" wStRoot="50.000000" wStTip="50.000000" wWid="12.206555" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightShoulder_Dummy" tip_name="RightShoulder_Dummy_end" ik_name="RightShoulder_Dummy_IK" ik_tip_name="RightShoulder_Dummy_IK_end" tip_id="39" upVec="0.0000000" col="ff10fb16" group="0">
+                <P id="13"/>
+                <C id="39"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+            </Bone>
+            <Bone id="39" rtX="-0.77988398" rtY="15.384399" rtZ="-1.0306640" tpX="-1.8940066" tpY="15.384399" tpZ="-1.2298636" rotB="-0.0000000" rotH="0.0000000" rotP="-0.00000085" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="2.5000000" wScRootY="2.5000000" wScRootZ="2.5000000" wScTipX="2.5000000" wScTipY="2.5000000" wScTipZ="2.5000000" wStRoot="50.000000" wStTip="50.000000" wWid="10.000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightShoulder" tip_name="RightShoulder_end" ik_name="RightShoulder_IK" ik_tip_name="RightShoulder_IK_end" tip_id="40" upVec="0.0000000" col="ff412985" group="0">
+                <P id="38"/>
+                <C id="40"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="767" w="100"/>
+                <W oi="1" vi="768" w="100"/>
+                <W oi="1" vi="769" w="92.425087"/>
+                <W oi="1" vi="770" w="100"/>
+                <W oi="1" vi="777" w="100"/>
+                <W oi="1" vi="780" w="100"/>
+                <W oi="1" vi="785" w="100"/>
+                <W oi="1" vi="786" w="100"/>
+                <W oi="1" vi="803" w="100"/>
+                <W oi="1" vi="806" w="98.119324"/>
+                <W oi="1" vi="808" w="100"/>
+            </Bone>
+            <Bone id="40" rtX="-1.8940066" rtY="15.384399" rtZ="-1.2298636" tpX="-5.0135407" tpY="15.384399" tpZ="-0.92718339" rotB="-0.0000000" rotH="0.00000043" rotP="0.00000085" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="7.0000000" wScRootY="7.0000000" wScRootZ="7.0000000" wScTipX="7.0000000" wScTipY="7.0000000" wScTipZ="7.0000000" wStRoot="50.000000" wStTip="50.000000" wWid="28.000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightUpperArm" tip_name="RightUpperArm_end" ik_name="RightUpperArm_IK" ik_tip_name="RightUpperArm_IK_end" tip_id="41" upVec="0.0000000" col="ff338935" group="0">
+                <P id="39"/>
+                <C id="41"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="309" w="100"/>
+                <W oi="1" vi="310" w="100"/>
+                <W oi="1" vi="311" w="100"/>
+                <W oi="1" vi="312" w="100"/>
+                <W oi="1" vi="313" w="100"/>
+                <W oi="1" vi="314" w="100"/>
+                <W oi="1" vi="315" w="100"/>
+                <W oi="1" vi="316" w="100"/>
+                <W oi="1" vi="327" w="80.753838"/>
+                <W oi="1" vi="769" w="7.5749111"/>
+                <W oi="1" vi="787" w="100"/>
+                <W oi="1" vi="788" w="100"/>
+                <W oi="1" vi="789" w="100"/>
+                <W oi="1" vi="790" w="100"/>
+                <W oi="1" vi="791" w="100"/>
+                <W oi="1" vi="792" w="100"/>
+                <W oi="1" vi="793" w="100"/>
+                <W oi="1" vi="794" w="100"/>
+                <W oi="1" vi="795" w="100"/>
+                <W oi="1" vi="796" w="100"/>
+                <W oi="1" vi="797" w="100"/>
+                <W oi="1" vi="798" w="100"/>
+                <W oi="1" vi="799" w="100"/>
+                <W oi="1" vi="800" w="100"/>
+                <W oi="1" vi="801" w="100"/>
+                <W oi="1" vi="802" w="100"/>
+                <W oi="1" vi="806" w="1.8806741"/>
+            </Bone>
+            <Bone id="41" rtX="-5.0135407" rtY="15.384399" rtZ="-0.92718339" tpX="-7.9102545" tpY="15.384399" tpZ="-0.76161504" rotB="-0.0000000" rotH="0.00000021" rotP="0.00000021" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="6.5000000" wScRootY="6.5000000" wScRootZ="6.5000000" wScTipX="6.5000000" wScTipY="6.5000000" wScTipZ="6.5000000" wStRoot="50.000000" wStTip="50.000000" wWid="26.000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightLowerArm" tip_name="RightHand" ik_name="RightLowerArm_IK" ik_tip_name="RightLowerArm_IK_end" tip_id="42" upVec="0.0000000" col="ffbe3110" group="0">
+                <P id="40"/>
+                <C id="42"/>
+                <C id="46"/>
+                <C id="50"/>
+                <C id="54"/>
+                <C id="58"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="302" w="100"/>
+                <W oi="1" vi="303" w="100"/>
+                <W oi="1" vi="304" w="100"/>
+                <W oi="1" vi="305" w="100"/>
+                <W oi="1" vi="306" w="100"/>
+                <W oi="1" vi="307" w="100"/>
+                <W oi="1" vi="308" w="100"/>
+                <W oi="1" vi="317" w="100"/>
+                <W oi="1" vi="318" w="100"/>
+                <W oi="1" vi="319" w="100"/>
+                <W oi="1" vi="320" w="100"/>
+                <W oi="1" vi="321" w="100"/>
+                <W oi="1" vi="322" w="100"/>
+                <W oi="1" vi="323" w="100"/>
+                <W oi="1" vi="324" w="100"/>
+                <W oi="1" vi="327" w="19.246161"/>
+                <W oi="1" vi="328" w="100"/>
+            </Bone>
+            <Bone id="42" rtX="-7.9102545" rtY="15.384399" rtZ="-0.76161504" tpX="-8.5479908" tpY="15.166779" tpZ="0.15832686" rotB="-0.0000000" rotH="0.00000171" rotP="0.00000085" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="1.3287683" wScRootY="1.3287683" wScRootZ="1.3287683" wScTipX="1.3287683" wScTipY="1.3287683" wScTipZ="1.3287683" wStRoot="50.000000" wStTip="50.000000" wWid="5.3150730" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightThumb_Dummy" tip_name="RightThumb_Dummy_end" ik_name="RightThumb_Dummy_IK" ik_tip_name="RightThumb_Dummy_IK_end" tip_id="43" upVec="0.0000000" col="ff04e9ae" group="0">
+                <P id="41"/>
+                <C id="43"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="225" w="100"/>
+                <W oi="1" vi="226" w="94.508057"/>
+                <W oi="1" vi="227" w="100"/>
+                <W oi="1" vi="239" w="100"/>
+                <W oi="1" vi="240" w="100"/>
+                <W oi="1" vi="244" w="100"/>
+                <W oi="1" vi="246" w="100"/>
+                <W oi="1" vi="251" w="100"/>
+                <W oi="1" vi="252" w="100"/>
+                <W oi="1" vi="326" w="100"/>
+            </Bone>
+            <Bone id="43" rtX="-8.5479908" rtY="15.166779" rtZ="0.15832686" tpX="-8.9101725" tpY="15.137503" tpZ="0.36528754" rotB="0.0000000" rotH="0.00000854" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="0.62500000" wScRootY="0.62500000" wScRootZ="0.62500000" wScTipX="0.62500000" wScTipY="0.62500000" wScTipZ="0.62500000" wStRoot="50.000000" wStTip="50.000000" wWid="2.5000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightThumbProximal" tip_name="RightThumbProximal_end" ik_name="RightThumbProximal_IK" ik_tip_name="RightThumbProximal_IK_end" tip_id="44" upVec="0.0000000" col="ffb34d2e" group="0">
+                <P id="42"/>
+                <C id="44"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="226" w="5.4919405"/>
+                <W oi="1" vi="248" w="100"/>
+                <W oi="1" vi="283" w="100"/>
+                <W oi="1" vi="284" w="61.116108"/>
+                <W oi="1" vi="285" w="100"/>
+                <W oi="1" vi="286" w="100"/>
+                <W oi="1" vi="325" w="100"/>
+            </Bone>
+            <Bone id="44" rtX="-8.9101725" rtY="15.137503" rtZ="0.36528754" tpX="-9.3240938" tpY="15.148512" tpZ="0.48170292" rotB="0.0000000" rotH="0.00000256" rotP="-0.00000171" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="0.55901700" wScRootY="0.55901700" wScRootZ="0.55901700" wScTipX="0.55901700" wScTipY="0.55901700" wScTipZ="0.55901700" wStRoot="50.000000" wStTip="50.000000" wWid="2.2360680" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightThumbIntermediate" tip_name="RightThumbIntermediate_end" ik_name="RightThumbIntermediate_IK" ik_tip_name="RightThumbIntermediate_IK_end" tip_id="0" upVec="0.0000000" col="ffc72d8a" group="0">
+                <P id="43"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="255" w="100"/>
+                <W oi="1" vi="256" w="100"/>
+                <W oi="1" vi="257" w="100"/>
+                <W oi="1" vi="258" w="100"/>
+                <W oi="1" vi="284" w="38.883892"/>
+                <W oi="1" vi="295" w="100"/>
+                <W oi="1" vi="296" w="100"/>
+                <W oi="1" vi="297" w="100"/>
+                <W oi="1" vi="298" w="100"/>
+                <W oi="1" vi="299" w="100"/>
+            </Bone>
+            <Bone id="46" rtX="-7.9102545" rtY="15.384399" rtZ="-0.76161504" tpX="-9.3240938" tpY="15.380491" tpZ="-0.21678925" rotB="0.0000000" rotH="-0.00000342" rotP="0.00000171" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="2.5225234" wScRootY="2.5225234" wScRootZ="2.5225234" wScTipX="2.5225234" wScTipY="2.5225234" wScTipZ="2.5225234" wStRoot="50.000000" wStTip="50.000000" wWid="10.090094" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightIndex_Dummy" tip_name="RightIndex_Dummy_end" ik_name="RightIndex_Dummy_IK" ik_tip_name="RightIndex_Dummy_IK_end" tip_id="47" upVec="0.0000000" col="ff49bcbd" group="0">
+                <P id="41"/>
+                <C id="47"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="224" w="100"/>
+                <W oi="1" vi="232" w="4.5075488"/>
+                <W oi="1" vi="233" w="50.963512"/>
+                <W oi="1" vi="236" w="100"/>
+                <W oi="1" vi="237" w="44.633469"/>
+                <W oi="1" vi="238" w="100"/>
+                <W oi="1" vi="245" w="100"/>
+                <W oi="1" vi="249" w="100"/>
+            </Bone>
+            <Bone id="47" rtX="-9.3240938" rtY="15.380491" rtZ="-0.21678925" tpX="-9.8285599" tpY="15.394724" tpZ="-0.21678925" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="1.1261106" wScRootY="1.1261106" wScRootZ="1.1261106" wScTipX="1.1261106" wScTipY="1.1261106" wScTipZ="1.1261106" wStRoot="50.000000" wStTip="50.000000" wWid="4.5044422" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightIndexProximal" tip_name="RightIndexProximal_end" ik_name="RightIndexProximal_IK" ik_tip_name="RightIndexProximal_IK_end" tip_id="48" upVec="0.0000000" col="ff9c1593" group="0">
+                <P id="46"/>
+                <C id="48"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="232" w="95.492455"/>
+                <W oi="1" vi="233" w="49.036488"/>
+                <W oi="1" vi="237" w="55.366531"/>
+                <W oi="1" vi="259" w="100"/>
+                <W oi="1" vi="260" w="100"/>
+                <W oi="1" vi="261" w="100"/>
+                <W oi="1" vi="262" w="100"/>
+            </Bone>
+            <Bone id="48" rtX="-9.8285599" rtY="15.394724" rtZ="-0.21678925" tpX="-10.268352" tpY="15.334799" tpZ="-0.24265933" rotB="-0.0000000" rotH="-0.00000043" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="0.62549978" wScRootY="0.62549978" wScRootZ="0.62549978" wScTipX="0.62549978" wScTipY="0.62549978" wScTipZ="0.62549978" wStRoot="50.000000" wStTip="50.000000" wWid="2.5019991" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightIndexIntermediate" tip_name="RightIndexIntermediate_end" ik_name="RightIndexIntermediate_IK" ik_tip_name="RightIndexIntermediate_IK_end" tip_id="0" upVec="0.0000000" col="ff41f4b6" group="0">
+                <P id="47"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="275" w="100"/>
+                <W oi="1" vi="276" w="100"/>
+                <W oi="1" vi="277" w="100"/>
+                <W oi="1" vi="278" w="100"/>
+                <W oi="1" vi="287" w="100"/>
+                <W oi="1" vi="288" w="100"/>
+                <W oi="1" vi="289" w="100"/>
+                <W oi="1" vi="290" w="100"/>
+                <W oi="1" vi="300" w="100"/>
+            </Bone>
+            <Bone id="50" rtX="-7.9102545" rtY="15.384399" rtZ="-0.76161504" tpX="-9.3240938" tpY="15.347584" tpZ="-0.55310023" rotB="-0.0000000" rotH="0.0000000" rotP="0.00000085" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="2.3971338" wScRootY="2.3971338" wScRootZ="2.3971338" wScTipX="2.3971338" wScTipY="2.3971338" wScTipZ="2.3971338" wStRoot="50.000000" wStTip="50.000000" wWid="9.5885353" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightMiddle_Dummy" tip_name="RightMiddle_Dummy_end" ik_name="RightMiddle_Dummy_IK" ik_tip_name="RightMiddle_Dummy_IK_end" tip_id="51" upVec="0.0000000" col="ffbc5aba" group="0">
+                <P id="41"/>
+                <C id="51"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+            </Bone>
+            <Bone id="51" rtX="-9.3240938" rtY="15.347584" rtZ="-0.55310023" tpX="-9.8026905" tpY="15.387878" tpZ="-0.57897031" rotB="0.0000000" rotH="-0.00000043" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="1.2500000" wScRootY="1.2500000" wScRootZ="1.2500000" wScTipX="1.2500000" wScTipY="1.2500000" wScTipZ="1.2500000" wStRoot="50.000000" wStTip="50.000000" wWid="5.0000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightMiddleProximal" tip_name="RightMiddleProximal_end" ik_name="RightMiddleProximal_IK" ik_tip_name="RightMiddleProximal_IK_end" tip_id="52" upVec="0.0000000" col="ffe48061" group="0">
+                <P id="50"/>
+                <C id="52"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+            </Bone>
+            <Bone id="52" rtX="-9.8026905" rtY="15.387878" rtZ="-0.57897031" tpX="-10.307157" tpY="15.391918" tpZ="-0.68245059" rotB="0.0000000" rotH="-0.00000085" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="0.62500000" wScRootY="0.62500000" wScRootZ="0.62500000" wScTipX="0.62500000" wScTipY="0.62500000" wScTipZ="0.62500000" wStRoot="50.000000" wStTip="50.000000" wWid="2.5000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightMiddleIntermediate" tip_name="RightMiddleIntermediate_end" ik_name="RightMiddleIntermediate_IK" ik_tip_name="RightMiddleIntermediate_IK_end" tip_id="0" upVec="0.0000000" col="ffb01893" group="0">
+                <P id="51"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="263" w="100"/>
+                <W oi="1" vi="264" w="100"/>
+                <W oi="1" vi="265" w="100"/>
+                <W oi="1" vi="266" w="100"/>
+                <W oi="1" vi="279" w="100"/>
+                <W oi="1" vi="280" w="100"/>
+                <W oi="1" vi="281" w="100"/>
+                <W oi="1" vi="282" w="100"/>
+                <W oi="1" vi="291" w="100"/>
+                <W oi="1" vi="292" w="100"/>
+                <W oi="1" vi="293" w="100"/>
+                <W oi="1" vi="294" w="100"/>
+                <W oi="1" vi="301" w="100"/>
+            </Bone>
+            <Bone id="54" rtX="-7.9102545" rtY="15.384399" rtZ="-0.76161504" tpX="-9.1818085" tpY="15.294611" tpZ="-0.86354113" rotB="-0.0000000" rotH="-0.00000085" rotP="-0.00000085" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="2.3834062" wScRootY="2.3834062" wScRootZ="2.3834062" wScTipX="2.3834062" wScTipY="2.3834062" wScTipZ="2.3834062" wStRoot="50.000000" wStTip="50.000000" wWid="9.5336246" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightRing_Dummy" tip_name="RightRing_Dummy_end" ik_name="RightRing_Dummy_IK" ik_tip_name="RightRing_Dummy_IK_end" tip_id="55" upVec="0.0000000" col="ff6e9fe0" group="0">
+                <P id="41"/>
+                <C id="55"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+            </Bone>
+            <Bone id="55" rtX="-9.1818085" rtY="15.294611" rtZ="-0.86354113" tpX="-9.6215992" tpY="15.315477" tpZ="-0.90234625" rotB="-0.0000000" rotH="0.0000000" rotP="-0.00000043" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="1.1250000" wScRootY="1.1250000" wScRootZ="1.1250000" wScTipX="1.1250000" wScTipY="1.1250000" wScTipZ="1.1250000" wStRoot="50.000000" wStTip="50.000000" wWid="4.5000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightRingProximal" tip_name="RightRingProximal_end" ik_name="RightRingProximal_IK" ik_tip_name="RightRingProximal_IK_end" tip_id="56" upVec="0.0000000" col="ff524fbf" group="0">
+                <P id="54"/>
+                <C id="56"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="234" w="100"/>
+                <W oi="1" vi="235" w="100"/>
+                <W oi="1" vi="242" w="100"/>
+                <W oi="1" vi="243" w="100"/>
+                <W oi="1" vi="267" w="100"/>
+                <W oi="1" vi="268" w="100"/>
+                <W oi="1" vi="269" w="100"/>
+                <W oi="1" vi="270" w="100"/>
+            </Bone>
+            <Bone id="56" rtX="-9.6215992" rtY="15.315477" rtZ="-0.90234625" tpX="-10.139001" tpY="15.271742" tpZ="-0.95408642" rotB="-0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="0.62500000" wScRootY="0.62500000" wScRootZ="0.62500000" wScTipX="0.62500000" wScTipY="0.62500000" wScTipZ="0.62500000" wStRoot="50.000000" wStTip="50.000000" wWid="2.5000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightRingIntermediate" tip_name="RightRingIntermediate_end" ik_name="RightRingIntermediate_IK" ik_tip_name="RightRingIntermediate_IK_end" tip_id="0" upVec="0.0000000" col="ff40d278" group="0">
+                <P id="55"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="329" w="100"/>
+                <W oi="1" vi="330" w="100"/>
+                <W oi="1" vi="331" w="100"/>
+                <W oi="1" vi="332" w="100"/>
+                <W oi="1" vi="333" w="100"/>
+                <W oi="1" vi="334" w="100"/>
+                <W oi="1" vi="335" w="100"/>
+                <W oi="1" vi="336" w="100"/>
+                <W oi="1" vi="337" w="100"/>
+            </Bone>
+            <Bone id="58" rtX="-7.9102545" rtY="15.384399" rtZ="-0.76161504" tpX="-9.0653934" tpY="15.219818" tpZ="-1.1481121" rotB="0.0000000" rotH="-0.00000342" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="2.4558604" wScRootY="2.4558604" wScRootZ="2.4558604" wScTipX="2.4558604" wScTipY="2.4558604" wScTipZ="2.4558604" wStRoot="50.000000" wStTip="50.000000" wWid="9.8234415" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightLittle_Dummy" tip_name="RightLittle_Dummy_end" ik_name="RightLittle_Dummy_IK" ik_tip_name="RightLittle_Dummy_IK_end" tip_id="59" upVec="0.0000000" col="ffa3c911" group="0">
+                <P id="41"/>
+                <C id="59"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="228" w="100"/>
+                <W oi="1" vi="229" w="100"/>
+                <W oi="1" vi="241" w="100"/>
+                <W oi="1" vi="247" w="100"/>
+                <W oi="1" vi="250" w="100"/>
+                <W oi="1" vi="253" w="100"/>
+                <W oi="1" vi="254" w="100"/>
+            </Bone>
+            <Bone id="59" rtX="-9.0653934" rtY="15.219818" rtZ="-1.1481121" tpX="-9.5698595" tpY="15.122393" tpZ="-1.2257222" rotB="0.0000000" rotH="-0.00000171" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="0.75000000" wScRootY="0.75000000" wScRootZ="0.75000000" wScTipX="0.75000000" wScTipY="0.75000000" wScTipZ="0.75000000" wStRoot="50.000000" wStTip="50.000000" wWid="3.0000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightLittleProximal" tip_name="RightLittleProximal_end" ik_name="RightLittleProximal_IK" ik_tip_name="RightLittleProximal_IK_end" tip_id="60" upVec="0.0000000" col="ff68f05b" group="0">
+                <P id="58"/>
+                <C id="60"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="230" w="100"/>
+                <W oi="1" vi="231" w="100"/>
+                <W oi="1" vi="271" w="11.130527"/>
+                <W oi="1" vi="272" w="13.147949"/>
+                <W oi="1" vi="274" w="3.3118567"/>
+            </Bone>
+            <Bone id="60" rtX="-9.5698595" rtY="15.122393" rtZ="-1.2257222" tpX="-9.9061699" tpY="15.161570" tpZ="-1.2386572" rotB="0.0000000" rotH="-0.00000021" rotP="0.00000021" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="0.50000000" wScRootY="0.50000000" wScRootZ="0.50000000" wScTipX="0.50000000" wScTipY="0.50000000" wScTipZ="0.50000000" wStRoot="50.000000" wStTip="50.000000" wWid="2.0000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="RightLittleIntermediate" tip_name="RightLittleIntermediate_end" ik_name="RightLittleIntermediate_IK" ik_tip_name="RightLittleIntermediate_IK_end" tip_id="0" upVec="0.0000000" col="ff9bc436" group="0">
+                <P id="59"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="271" w="88.869476"/>
+                <W oi="1" vi="272" w="86.852051"/>
+                <W oi="1" vi="273" w="100"/>
+                <W oi="1" vi="274" w="96.688141"/>
+                <W oi="1" vi="338" w="100"/>
+                <W oi="1" vi="339" w="100"/>
+                <W oi="1" vi="340" w="100"/>
+                <W oi="1" vi="341" w="100"/>
+                <W oi="1" vi="342" w="100"/>
+                <W oi="1" vi="343" w="100"/>
+                <W oi="1" vi="344" w="100"/>
+                <W oi="1" vi="345" w="100"/>
+                <W oi="1" vi="346" w="100"/>
+            </Bone>
+            <Bone id="62" rtX="0.0000000" rtY="14.270285" rtZ="-0.76161504" tpX="0.0000000" tpY="15.384399" tpZ="-0.76161504" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="2.5000000" wScRootY="2.5000000" wScRootZ="2.5000000" wScTipX="2.5000000" wScTipY="2.5000000" wScTipZ="2.5000000" wStRoot="50.000000" wStTip="50.000000" wWid="10.000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="Chest1" tip_name="Chest1_end" ik_name="Chest1_IK" ik_tip_name="Chest1_IK_end" tip_id="63" upVec="0.0000000" col="ff51a94e" group="0">
+                <P id="13"/>
+                <C id="63"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+            </Bone>
+            <Bone id="63" rtX="0.0000000" rtY="15.384399" rtZ="-0.76161504" tpX="0.0000000" tpY="16.498516" tpZ="-0.76161504" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="2.5000000" wScRootY="2.5000000" wScRootZ="2.5000000" wScTipX="2.5000000" wScTipY="2.5000000" wScTipZ="2.5000000" wStRoot="50.000000" wStTip="50.000000" wWid="10.000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="Neck" tip_name="Neck_end" ik_name="Neck_IK" ik_tip_name="Neck_IK_end" tip_id="64" upVec="0.0000000" col="ff4bd168" group="0">
+                <P id="62"/>
+                <C id="64"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="729" w="100"/>
+                <W oi="1" vi="730" w="100"/>
+                <W oi="1" vi="731" w="100"/>
+                <W oi="1" vi="732" w="100"/>
+                <W oi="1" vi="733" w="100"/>
+                <W oi="1" vi="740" w="100"/>
+                <W oi="1" vi="772" w="100"/>
+                <W oi="1" vi="779" w="100"/>
+            </Bone>
+            <Bone id="64" rtX="0.0000000" rtY="16.498516" rtZ="-0.76161504" tpX="0.0000000" tpY="17.612652" tpZ="-0.76161504" rotB="0.0000000" rotH="0.0000000" rotP="-0.0000000" mvX="0.0000000" mvY="0.0000000" mvZ="0.0000000" scX="1.0000000" scY="1.0000000" scZ="1.0000000" wMvX="0.0000000" wMvY="0.0000000" wMvZ="0.0000000" wRotB="0.0000000" wRotH="0.0000000" wRotP="-0.0000000" wScRootX="2.5000000" wScRootY="2.5000000" wScRootZ="2.5000000" wScTipX="2.5000000" wScTipY="2.5000000" wScTipZ="2.5000000" wStRoot="50.000000" wStTip="50.000000" wWid="10.000000" maxAngB="180.00000" maxAngH="180.00000" maxAngP="180.00000" minAngB="-180.00000" minAngH="-180.00000" minAngP="-180.00000" IKChain="0" isIK="0" IKParent="0" IKParentIsIK="0" isDummy="0" isLock="0" isHide="0" isMirror="0" isMovable="1" isNoSize="0" name="Head" tip_name="Head_end" ik_name="Head_IK" ik_tip_name="Head_IK_end" tip_id="0" upVec="0.0000000" col="ffa54c72" group="0">
+                <P id="63"/>
+                <L m="100.00000" s="100.00000" r="100.00000"/>
+                <W oi="1" vi="1" w="100"/>
+                <W oi="1" vi="2" w="100"/>
+                <W oi="1" vi="3" w="100"/>
+                <W oi="1" vi="4" w="100"/>
+                <W oi="1" vi="10" w="100"/>
+                <W oi="1" vi="11" w="100"/>
+                <W oi="1" vi="12" w="100"/>
+                <W oi="1" vi="33" w="100"/>
+                <W oi="1" vi="39" w="100"/>
+                <W oi="1" vi="48" w="100"/>
+                <W oi="1" vi="49" w="100"/>
+                <W oi="1" vi="50" w="100"/>
+                <W oi="1" vi="51" w="100"/>
+                <W oi="1" vi="52" w="100"/>
+                <W oi="1" vi="53" w="100"/>
+                <W oi="1" vi="54" w="100"/>
+                <W oi="1" vi="55" w="100"/>
+                <W oi="1" vi="56" w="100"/>
+                <W oi="1" vi="57" w="100"/>
+                <W oi="1" vi="58" w="100"/>
+                <W oi="1" vi="59" w="100"/>
+                <W oi="1" vi="60" w="100"/>
+                <W oi="1" vi="61" w="100"/>
+                <W oi="1" vi="62" w="100"/>
+                <W oi="1" vi="63" w="100"/>
+                <W oi="1" vi="64" w="100"/>
+                <W oi="1" vi="65" w="100"/>
+                <W oi="1" vi="66" w="100"/>
+                <W oi="1" vi="67" w="100"/>
+                <W oi="1" vi="68" w="100"/>
+                <W oi="1" vi="69" w="100"/>
+                <W oi="1" vi="70" w="100"/>
+                <W oi="1" vi="71" w="100"/>
+                <W oi="1" vi="72" w="100"/>
+                <W oi="1" vi="73" w="100"/>
+                <W oi="1" vi="74" w="100"/>
+                <W oi="1" vi="75" w="100"/>
+                <W oi="1" vi="76" w="100"/>
+                <W oi="1" vi="77" w="100"/>
+                <W oi="1" vi="78" w="100"/>
+                <W oi="1" vi="79" w="100"/>
+                <W oi="1" vi="80" w="100"/>
+                <W oi="1" vi="81" w="100"/>
+                <W oi="1" vi="82" w="100"/>
+                <W oi="1" vi="83" w="100"/>
+                <W oi="1" vi="84" w="100"/>
+                <W oi="1" vi="85" w="100"/>
+                <W oi="1" vi="86" w="100"/>
+                <W oi="1" vi="87" w="100"/>
+                <W oi="1" vi="88" w="100"/>
+                <W oi="1" vi="89" w="100"/>
+                <W oi="1" vi="90" w="100"/>
+                <W oi="1" vi="91" w="100"/>
+                <W oi="1" vi="92" w="100"/>
+                <W oi="1" vi="93" w="100"/>
+                <W oi="1" vi="94" w="100"/>
+                <W oi="1" vi="95" w="100"/>
+                <W oi="1" vi="96" w="100"/>
+                <W oi="1" vi="97" w="100"/>
+                <W oi="1" vi="98" w="100"/>
+                <W oi="1" vi="99" w="100"/>
+                <W oi="1" vi="100" w="100"/>
+                <W oi="1" vi="101" w="100"/>
+                <W oi="1" vi="102" w="100"/>
+                <W oi="1" vi="103" w="100"/>
+                <W oi="1" vi="104" w="100"/>
+                <W oi="1" vi="105" w="100"/>
+                <W oi="1" vi="106" w="100"/>
+                <W oi="1" vi="107" w="100"/>
+                <W oi="1" vi="108" w="100"/>
+                <W oi="1" vi="109" w="100"/>
+                <W oi="1" vi="110" w="100"/>
+                <W oi="1" vi="111" w="100"/>
+                <W oi="1" vi="112" w="100"/>
+                <W oi="1" vi="113" w="100"/>
+                <W oi="1" vi="114" w="100"/>
+                <W oi="1" vi="115" w="100"/>
+                <W oi="1" vi="116" w="100"/>
+                <W oi="1" vi="117" w="100"/>
+                <W oi="1" vi="118" w="100"/>
+                <W oi="1" vi="119" w="100"/>
+                <W oi="1" vi="120" w="100"/>
+                <W oi="1" vi="121" w="100"/>
+                <W oi="1" vi="122" w="100"/>
+                <W oi="1" vi="123" w="100"/>
+                <W oi="1" vi="124" w="100"/>
+                <W oi="1" vi="125" w="100"/>
+                <W oi="1" vi="126" w="100"/>
+                <W oi="1" vi="127" w="100"/>
+                <W oi="1" vi="128" w="100"/>
+                <W oi="1" vi="129" w="100"/>
+                <W oi="1" vi="130" w="100"/>
+                <W oi="1" vi="131" w="100"/>
+                <W oi="1" vi="132" w="100"/>
+                <W oi="1" vi="133" w="100"/>
+                <W oi="1" vi="134" w="100"/>
+                <W oi="1" vi="135" w="100"/>
+                <W oi="1" vi="136" w="100"/>
+                <W oi="1" vi="137" w="100"/>
+                <W oi="1" vi="138" w="100"/>
+                <W oi="1" vi="139" w="100"/>
+                <W oi="1" vi="140" w="100"/>
+                <W oi="1" vi="141" w="100"/>
+                <W oi="1" vi="142" w="100"/>
+                <W oi="1" vi="143" w="100"/>
+                <W oi="1" vi="144" w="100"/>
+                <W oi="1" vi="145" w="100"/>
+                <W oi="1" vi="146" w="100"/>
+                <W oi="1" vi="147" w="100"/>
+                <W oi="1" vi="148" w="100"/>
+                <W oi="1" vi="149" w="100"/>
+                <W oi="1" vi="150" w="100"/>
+                <W oi="1" vi="151" w="100"/>
+                <W oi="1" vi="152" w="100"/>
+                <W oi="1" vi="153" w="100"/>
+                <W oi="1" vi="154" w="100"/>
+                <W oi="1" vi="155" w="100"/>
+                <W oi="1" vi="156" w="100"/>
+                <W oi="1" vi="157" w="100"/>
+                <W oi="1" vi="158" w="100"/>
+                <W oi="1" vi="159" w="100"/>
+                <W oi="1" vi="160" w="100"/>
+                <W oi="1" vi="161" w="100"/>
+                <W oi="1" vi="162" w="100"/>
+                <W oi="1" vi="163" w="100"/>
+                <W oi="1" vi="164" w="100"/>
+                <W oi="1" vi="165" w="100"/>
+                <W oi="1" vi="166" w="100"/>
+                <W oi="1" vi="167" w="100"/>
+                <W oi="1" vi="168" w="100"/>
+                <W oi="1" vi="169" w="100"/>
+                <W oi="1" vi="170" w="100"/>
+                <W oi="1" vi="171" w="100"/>
+                <W oi="1" vi="172" w="100"/>
+                <W oi="1" vi="173" w="100"/>
+                <W oi="1" vi="174" w="100"/>
+                <W oi="1" vi="175" w="100"/>
+                <W oi="1" vi="176" w="100"/>
+                <W oi="1" vi="177" w="100"/>
+                <W oi="1" vi="178" w="100"/>
+                <W oi="1" vi="179" w="100"/>
+                <W oi="1" vi="180" w="100"/>
+                <W oi="1" vi="181" w="100"/>
+                <W oi="1" vi="182" w="100"/>
+                <W oi="1" vi="183" w="100"/>
+                <W oi="1" vi="184" w="100"/>
+                <W oi="1" vi="185" w="100"/>
+                <W oi="1" vi="186" w="100"/>
+                <W oi="1" vi="187" w="100"/>
+                <W oi="1" vi="188" w="100"/>
+                <W oi="1" vi="189" w="100"/>
+                <W oi="1" vi="190" w="100"/>
+                <W oi="1" vi="191" w="100"/>
+                <W oi="1" vi="192" w="100"/>
+                <W oi="1" vi="193" w="100"/>
+                <W oi="1" vi="194" w="100"/>
+                <W oi="1" vi="195" w="100"/>
+                <W oi="1" vi="196" w="100"/>
+                <W oi="1" vi="197" w="100"/>
+                <W oi="1" vi="198" w="100"/>
+                <W oi="1" vi="199" w="100"/>
+                <W oi="1" vi="200" w="100"/>
+                <W oi="1" vi="201" w="100"/>
+                <W oi="1" vi="202" w="100"/>
+                <W oi="1" vi="203" w="100"/>
+                <W oi="1" vi="204" w="100"/>
+                <W oi="1" vi="205" w="100"/>
+                <W oi="1" vi="206" w="100"/>
+                <W oi="1" vi="207" w="100"/>
+                <W oi="1" vi="208" w="100"/>
+                <W oi="1" vi="209" w="100"/>
+                <W oi="1" vi="210" w="100"/>
+                <W oi="1" vi="211" w="100"/>
+                <W oi="1" vi="212" w="100"/>
+                <W oi="1" vi="213" w="100"/>
+                <W oi="1" vi="214" w="100"/>
+                <W oi="1" vi="215" w="100"/>
+                <W oi="1" vi="216" w="100"/>
+                <W oi="1" vi="217" w="100"/>
+                <W oi="1" vi="218" w="100"/>
+                <W oi="1" vi="219" w="100"/>
+                <W oi="1" vi="220" w="100"/>
+                <W oi="1" vi="221" w="100"/>
+                <W oi="1" vi="222" w="100"/>
+                <W oi="1" vi="223" w="100"/>
+                <W oi="1" vi="925" w="100"/>
+                <W oi="1" vi="926" w="100"/>
+                <W oi="1" vi="927" w="100"/>
+                <W oi="1" vi="928" w="100"/>
+                <W oi="1" vi="929" w="100"/>
+                <W oi="1" vi="930" w="100"/>
+                <W oi="1" vi="931" w="100"/>
+                <W oi="1" vi="932" w="100"/>
+                <W oi="1" vi="933" w="100"/>
+                <W oi="1" vi="934" w="100"/>
+                <W oi="1" vi="935" w="100"/>
+                <W oi="1" vi="936" w="100"/>
+                <W oi="1" vi="937" w="100"/>
+                <W oi="1" vi="938" w="100"/>
+                <W oi="1" vi="939" w="100"/>
+                <W oi="1" vi="940" w="100"/>
+                <W oi="1" vi="941" w="100"/>
+                <W oi="1" vi="942" w="100"/>
+                <W oi="1" vi="943" w="100"/>
+                <W oi="1" vi="944" w="100"/>
+                <W oi="1" vi="945" w="100"/>
+                <W oi="1" vi="946" w="100"/>
+                <W oi="1" vi="947" w="100"/>
+                <W oi="1" vi="948" w="100"/>
+                <W oi="1" vi="949" w="100"/>
+                <W oi="1" vi="950" w="100"/>
+                <W oi="1" vi="951" w="100"/>
+                <W oi="1" vi="952" w="100"/>
+                <W oi="1" vi="953" w="100"/>
+                <W oi="1" vi="954" w="100"/>
+                <W oi="1" vi="955" w="100"/>
+                <W oi="1" vi="956" w="100"/>
+                <W oi="1" vi="957" w="100"/>
+                <W oi="1" vi="958" w="100"/>
+                <W oi="1" vi="959" w="100"/>
+                <W oi="1" vi="960" w="100"/>
+                <W oi="1" vi="961" w="100"/>
+                <W oi="1" vi="962" w="100"/>
+                <W oi="1" vi="963" w="100"/>
+                <W oi="1" vi="964" w="100"/>
+                <W oi="1" vi="965" w="100"/>
+                <W oi="1" vi="966" w="100"/>
+                <W oi="1" vi="967" w="100"/>
+                <W oi="1" vi="968" w="100"/>
+                <W oi="1" vi="969" w="100"/>
+                <W oi="1" vi="970" w="100"/>
+                <W oi="1" vi="971" w="100"/>
+                <W oi="1" vi="972" w="100"/>
+                <W oi="1" vi="973" w="100"/>
+                <W oi="1" vi="974" w="100"/>
+                <W oi="1" vi="975" w="100"/>
+                <W oi="1" vi="976" w="100"/>
+                <W oi="1" vi="977" w="100"/>
+                <W oi="1" vi="978" w="100"/>
+                <W oi="1" vi="979" w="100"/>
+                <W oi="1" vi="980" w="100"/>
+                <W oi="1" vi="981" w="100"/>
+                <W oi="1" vi="982" w="100"/>
+                <W oi="1" vi="983" w="100"/>
+                <W oi="1" vi="984" w="100"/>
+                <W oi="1" vi="985" w="100"/>
+                <W oi="1" vi="986" w="100"/>
+                <W oi="1" vi="987" w="100"/>
+                <W oi="1" vi="988" w="100"/>
+                <W oi="1" vi="989" w="100"/>
+                <W oi="1" vi="990" w="100"/>
+                <W oi="1" vi="991" w="100"/>
+                <W oi="1" vi="992" w="100"/>
+                <W oi="1" vi="993" w="100"/>
+                <W oi="1" vi="994" w="100"/>
+                <W oi="1" vi="995" w="100"/>
+                <W oi="1" vi="996" w="100"/>
+                <W oi="1" vi="997" w="100"/>
+                <W oi="1" vi="998" w="100"/>
+                <W oi="1" vi="999" w="100"/>
+                <W oi="1" vi="1000" w="100"/>
+                <W oi="1" vi="1001" w="100"/>
+                <W oi="1" vi="1002" w="100"/>
+                <W oi="1" vi="1003" w="100"/>
+                <W oi="1" vi="1004" w="100"/>
+                <W oi="1" vi="1005" w="100"/>
+                <W oi="1" vi="1006" w="100"/>
+                <W oi="1" vi="1007" w="100"/>
+                <W oi="1" vi="1008" w="100"/>
+                <W oi="1" vi="1009" w="100"/>
+                <W oi="1" vi="1010" w="100"/>
+                <W oi="1" vi="1011" w="100"/>
+                <W oi="1" vi="1012" w="100"/>
+                <W oi="1" vi="1013" w="100"/>
+                <W oi="1" vi="1014" w="100"/>
+                <W oi="1" vi="1015" w="100"/>
+                <W oi="1" vi="1016" w="100"/>
+                <W oi="1" vi="1017" w="100"/>
+                <W oi="1" vi="1018" w="100"/>
+                <W oi="1" vi="1019" w="100"/>
+                <W oi="1" vi="1020" w="100"/>
+                <W oi="1" vi="1021" w="100"/>
+                <W oi="1" vi="1022" w="100"/>
+                <W oi="1" vi="1023" w="100"/>
+                <W oi="1" vi="1024" w="100"/>
+                <W oi="1" vi="1025" w="100"/>
+                <W oi="1" vi="1026" w="100"/>
+                <W oi="1" vi="1027" w="100"/>
+                <W oi="1" vi="1028" w="100"/>
+                <W oi="1" vi="1029" w="100"/>
+                <W oi="1" vi="1030" w="100"/>
+                <W oi="1" vi="1031" w="100"/>
+                <W oi="1" vi="1032" w="100"/>
+                <W oi="1" vi="1033" w="100"/>
+                <W oi="1" vi="1034" w="100"/>
+                <W oi="1" vi="1035" w="100"/>
+                <W oi="1" vi="1036" w="100"/>
+                <W oi="1" vi="1037" w="100"/>
+                <W oi="1" vi="1038" w="100"/>
+                <W oi="1" vi="1039" w="100"/>
+                <W oi="1" vi="1040" w="100"/>
+                <W oi="1" vi="1041" w="100"/>
+                <W oi="1" vi="1042" w="100"/>
+                <W oi="1" vi="1043" w="100"/>
+                <W oi="1" vi="1044" w="100"/>
+                <W oi="1" vi="1045" w="100"/>
+                <W oi="1" vi="1046" w="100"/>
+                <W oi="1" vi="1047" w="100"/>
+                <W oi="1" vi="1048" w="100"/>
+                <W oi="1" vi="1049" w="100"/>
+                <W oi="1" vi="1050" w="100"/>
+                <W oi="1" vi="1051" w="100"/>
+                <W oi="1" vi="1052" w="100"/>
+                <W oi="1" vi="1053" w="100"/>
+                <W oi="1" vi="1054" w="100"/>
+                <W oi="1" vi="1055" w="100"/>
+                <W oi="1" vi="1056" w="100"/>
+                <W oi="1" vi="1057" w="100"/>
+                <W oi="1" vi="1058" w="100"/>
+                <W oi="1" vi="1059" w="100"/>
+                <W oi="1" vi="1060" w="100"/>
+                <W oi="1" vi="1061" w="100"/>
+                <W oi="1" vi="1062" w="100"/>
+                <W oi="1" vi="1063" w="100"/>
+                <W oi="1" vi="1064" w="100"/>
+                <W oi="1" vi="1065" w="100"/>
+                <W oi="1" vi="1066" w="100"/>
+                <W oi="1" vi="1067" w="100"/>
+                <W oi="1" vi="1068" w="100"/>
+                <W oi="1" vi="1069" w="100"/>
+                <W oi="1" vi="1070" w="100"/>
+                <W oi="1" vi="1071" w="100"/>
+                <W oi="1" vi="1072" w="100"/>
+                <W oi="1" vi="1073" w="100"/>
+                <W oi="1" vi="1074" w="100"/>
+                <W oi="1" vi="1075" w="100"/>
+                <W oi="1" vi="1076" w="100"/>
+                <W oi="1" vi="1077" w="100"/>
+                <W oi="1" vi="1078" w="100"/>
+                <W oi="1" vi="1079" w="100"/>
+                <W oi="1" vi="1080" w="100"/>
+                <W oi="1" vi="1081" w="100"/>
+                <W oi="1" vi="1082" w="100"/>
+                <W oi="1" vi="1083" w="100"/>
+                <W oi="1" vi="1084" w="100"/>
+                <W oi="1" vi="1085" w="100"/>
+                <W oi="1" vi="1086" w="100"/>
+                <W oi="1" vi="1087" w="100"/>
+                <W oi="1" vi="1088" w="100"/>
+                <W oi="1" vi="1089" w="100"/>
+                <W oi="1" vi="1090" w="100"/>
+                <W oi="1" vi="1091" w="100"/>
+                <W oi="1" vi="1092" w="100"/>
+                <W oi="1" vi="1093" w="100"/>
+                <W oi="1" vi="1094" w="100"/>
+                <W oi="1" vi="1095" w="100"/>
+                <W oi="1" vi="1096" w="100"/>
+                <W oi="1" vi="1097" w="100"/>
+                <W oi="1" vi="1098" w="100"/>
+                <W oi="1" vi="1099" w="100"/>
+                <W oi="1" vi="1100" w="100"/>
+                <W oi="1" vi="1101" w="100"/>
+                <W oi="1" vi="1102" w="100"/>
+                <W oi="1" vi="1103" w="100"/>
+                <W oi="1" vi="1104" w="100"/>
+                <W oi="1" vi="1105" w="100"/>
+                <W oi="1" vi="1106" w="100"/>
+                <W oi="1" vi="1107" w="100"/>
+                <W oi="1" vi="1108" w="100"/>
+                <W oi="1" vi="1109" w="100"/>
+                <W oi="1" vi="1110" w="100"/>
+                <W oi="1" vi="1111" w="100"/>
+                <W oi="1" vi="1112" w="100"/>
+                <W oi="1" vi="1113" w="100"/>
+                <W oi="1" vi="1114" w="100"/>
+                <W oi="1" vi="1115" w="100"/>
+                <W oi="1" vi="1116" w="100"/>
+                <W oi="1" vi="1117" w="100"/>
+                <W oi="1" vi="1118" w="100"/>
+                <W oi="1" vi="1119" w="100"/>
+                <W oi="1" vi="1120" w="100"/>
+                <W oi="1" vi="1121" w="100"/>
+                <W oi="1" vi="1122" w="100"/>
+                <W oi="1" vi="1123" w="100"/>
+                <W oi="1" vi="1124" w="100"/>
+                <W oi="1" vi="1125" w="100"/>
+                <W oi="1" vi="1126" w="100"/>
+                <W oi="1" vi="1127" w="100"/>
+                <W oi="1" vi="1128" w="100"/>
+                <W oi="1" vi="1129" w="100"/>
+                <W oi="1" vi="1130" w="100"/>
+                <W oi="1" vi="1131" w="100"/>
+                <W oi="1" vi="1132" w="100"/>
+                <W oi="1" vi="1133" w="100"/>
+                <W oi="1" vi="1134" w="100"/>
+                <W oi="1" vi="1135" w="100"/>
+                <W oi="1" vi="1136" w="100"/>
+                <W oi="1" vi="1137" w="100"/>
+                <W oi="1" vi="1138" w="100"/>
+                <W oi="1" vi="1139" w="100"/>
+                <W oi="1" vi="1140" w="100"/>
+                <W oi="1" vi="1141" w="100"/>
+                <W oi="1" vi="1142" w="100"/>
+                <W oi="1" vi="1143" w="100"/>
+                <W oi="1" vi="1144" w="100"/>
+                <W oi="1" vi="1145" w="100"/>
+                <W oi="1" vi="1146" w="100"/>
+                <W oi="1" vi="1147" w="100"/>
+                <W oi="1" vi="1148" w="100"/>
+                <W oi="1" vi="1149" w="100"/>
+                <W oi="1" vi="1150" w="100"/>
+                <W oi="1" vi="1151" w="100"/>
+                <W oi="1" vi="1152" w="100"/>
+                <W oi="1" vi="1153" w="100"/>
+                <W oi="1" vi="1154" w="100"/>
+                <W oi="1" vi="1155" w="100"/>
+                <W oi="1" vi="1156" w="100"/>
+                <W oi="1" vi="1157" w="100"/>
+                <W oi="1" vi="1158" w="100"/>
+                <W oi="1" vi="1159" w="100"/>
+                <W oi="1" vi="1160" w="100"/>
+                <W oi="1" vi="1161" w="100"/>
+                <W oi="1" vi="1162" w="100"/>
+                <W oi="1" vi="1163" w="100"/>
+                <W oi="1" vi="1164" w="100"/>
+                <W oi="1" vi="1165" w="100"/>
+                <W oi="1" vi="1166" w="100"/>
+                <W oi="1" vi="1167" w="100"/>
+                <W oi="1" vi="1168" w="100"/>
+                <W oi="1" vi="1169" w="100"/>
+                <W oi="1" vi="1170" w="100"/>
+                <W oi="1" vi="1171" w="100"/>
+                <W oi="1" vi="1172" w="100"/>
+                <W oi="1" vi="1173" w="100"/>
+                <W oi="1" vi="1174" w="100"/>
+                <W oi="1" vi="1175" w="100"/>
+                <W oi="1" vi="1176" w="100"/>
+                <W oi="1" vi="1177" w="100"/>
+                <W oi="1" vi="1178" w="100"/>
+                <W oi="1" vi="1179" w="100"/>
+                <W oi="1" vi="1180" w="100"/>
+                <W oi="1" vi="1181" w="100"/>
+                <W oi="1" vi="1182" w="100"/>
+                <W oi="1" vi="1183" w="100"/>
+                <W oi="1" vi="1184" w="100"/>
+                <W oi="1" vi="1185" w="100"/>
+                <W oi="1" vi="1186" w="100"/>
+                <W oi="1" vi="1187" w="100"/>
+                <W oi="1" vi="1188" w="100"/>
+                <W oi="1" vi="1189" w="100"/>
+                <W oi="1" vi="1190" w="100"/>
+                <W oi="1" vi="1191" w="100"/>
+                <W oi="1" vi="1192" w="100"/>
+                <W oi="1" vi="1193" w="100"/>
+                <W oi="1" vi="1194" w="100"/>
+                <W oi="1" vi="1195" w="100"/>
+                <W oi="1" vi="1196" w="100"/>
+                <W oi="1" vi="1197" w="100"/>
+                <W oi="1" vi="1198" w="100"/>
+                <W oi="1" vi="1199" w="100"/>
+                <W oi="1" vi="1200" w="100"/>
+                <W oi="1" vi="1201" w="100"/>
+                <W oi="1" vi="1202" w="100"/>
+                <W oi="1" vi="1203" w="100"/>
+                <W oi="1" vi="1204" w="100"/>
+                <W oi="1" vi="1205" w="100"/>
+                <W oi="1" vi="1206" w="100"/>
+            </Bone>
+        </BoneSet>
+        <Obj id="1"/>
+        <Poses isExist="0"/>
+        <Poses isExist="0"/>
+        <Poses isExist="0"/>
+    </Plugin.56A31D20.71F282AB>
+</MetasequoiaDocument>

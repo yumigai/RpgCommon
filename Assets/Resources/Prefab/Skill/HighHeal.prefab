@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1359472164348868}
+  m_IsPrefabParent: 1
+--- !u!1 &1359472164348868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4354868372875050}
+  - component: {fileID: 114129308940123920}
+  m_Layer: 0
+  m_Name: HighHeal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4354868372875050
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1359472164348868}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114129308940123920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1359472164348868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cb5a6b821b448b4c9a65858ebef1c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  User: {fileID: 0}
+  Damage: 0
+  MotionSpeed: 1
+  AttackSe: {fileID: 8300000, guid: 4efc934edaeb26a4aa0bd66a0a0223d1, type: 3}
+  HitSe: {fileID: 8300000, guid: 47796a84d51db3a49a4d3dab901636a0, type: 3}
+  HitEffect: {fileID: 0}
+  IsCounter: 0
+  IsDownAttack: 0
+  Bullet: {fileID: 1673884186031340, guid: 577b8cd8da5930547b2ecef6af562f0b, type: 2}
+  StingNum: 0
+  BulletSpeed: 0
+  Range: 3
+  IsRapid: 0
+  RandomWidth: 0
+  IsParentBullet: 0
+  FirePosi: {fileID: 0}
+  FireEffect: {fileID: 0}
