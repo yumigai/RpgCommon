@@ -88,7 +88,7 @@ public class ItemProcess
     /// <param name="num"></param>
     /// <returns></returns>
     public static bool addItem(int mast_id, int num = 1) {
-        ItemTran tran = getTranData(mast_id);
+        ItemTran tran = getTranFromMasterId(mast_id);
         return addItem(tran, num);
     }
 
@@ -142,7 +142,7 @@ public class ItemProcess
 
     }
 
-    public static ItemTran getTranData(int mast_id) {
+    public static ItemTran getTranFromMasterId(int mast_id) {
         ItemMast mst = ItemMast.getItem(mast_id);
         return new ItemTran(mst);
     }

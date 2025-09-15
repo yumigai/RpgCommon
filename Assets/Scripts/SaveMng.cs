@@ -138,7 +138,7 @@ public class SaveMng : CmnSaveProc
         SysDt = load<SystemTran>();
         AdvData = load<AdvStatusTran>();
 
-        // j   f [ ^ ` F b N   C  
+        //破損チェック
         repairBrokenData(ref UnitData);
         repairBrokenData(ref ItemData);
         repairBrokenData(ref Status);
@@ -156,7 +156,7 @@ public class SaveMng : CmnSaveProc
         Status.reset(slot);
         Quest.reset(slot);
         SysDt.reset(slot);
-        loadAll(); //       f [ ^   t @ C   f [ ^ ōX V
+        loadAll();
     }
 
 
@@ -169,7 +169,7 @@ public class SaveMng : CmnSaveProc
     }
 
     /// <summary>
-    ///  S ۑ 
+    /// スロットセーブ
     /// </summary>
     /// <param name="slot"></param>
     public static void saveAll(int slot = 0) {
@@ -179,7 +179,7 @@ public class SaveMng : CmnSaveProc
         ItemData.save(slot);
         Status.save(slot);
         Quest.save(slot);
-        SysDt.saveSaveDate();// Z [ u     X V
+        SysDt.saveSaveDate();
         SysDt.save(slot);
 
     }

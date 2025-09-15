@@ -238,7 +238,7 @@ public class ItemBoardMng : PowerBoardMng
     virtual public void pushList(MultiUseListMng mng) {
 
         if (Mode != MODE.BUY) {
-            var tran = ItemProcess.getTranData(mng.Id);
+            var tran = SaveMng.ItemData.getData(mng.Id);
             SelectedPower = tran.Mst;
         }
 
