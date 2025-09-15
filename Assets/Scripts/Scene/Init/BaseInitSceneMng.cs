@@ -12,7 +12,7 @@ public class BaseInitSceneMng : MonoBehaviour {
 
     // Use this for initialization
     protected void Start () {
-        StartCoroutine(waitCommonProcess());
+        //StartCoroutine(waitCommonProcess());
     }
 
     /// <summary>
@@ -21,25 +21,25 @@ public class BaseInitSceneMng : MonoBehaviour {
     /// 行わないのは各画面でのデバッグをやりやすくするため
     /// </summary>
     /// <returns></returns>
-    IEnumerator waitCommonProcess() {
-        while (!CommonProcess.InitFinish) {
-            yield return new WaitForSeconds(0.1f);
-        }
+    //IEnumerator waitCommonProcess() {
+    //    //while (!CommonProcess.InitFinish) {
+    //    //    yield return new WaitForSeconds(0.1f);
+    //    //}
 
-        if (!SaveMng.Status.IsFinishInitSetting) {
-            initSetting();
-        }
+    //    //if (!SaveMng.Status.IsFinishInitSetting) {
+    //    //    initSetting();
+    //    //}
 
-        SceneManagerWrap.LoadScene(CmnConst.SCENE.TitleScene, false);
+    //    SceneManagerWrap.LoadScene(CmnConst.SCENE.TitleScene, false);
 
-        //if (SaveMng.Status.IsFinishOpening) {
-        //    SceneManagerWrap.LoadScene(CmnConst.SCENE.TitleScene, false);
-        //} else {
-        //    SceneManagerWrap.LoadScene(CmnConst.SCENE.OpeningScene, false);
-        //}
-    }
+    //    //if (SaveMng.Status.IsFinishOpening) {
+    //    //    SceneManagerWrap.LoadScene(CmnConst.SCENE.TitleScene, false);
+    //    //} else {
+    //    //    SceneManagerWrap.LoadScene(CmnConst.SCENE.OpeningScene, false);
+    //    //}
+    //}
 
-    void initSetting() {
+    public void initSetting() {
         statusSetting();
         setKeyCode();
         addInitUnit();

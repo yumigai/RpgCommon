@@ -30,18 +30,16 @@ public class BaseTitleSceneMng : MonoBehaviour {
 
     }
 
-    public void pushStart()
-    {
-        CommonProcess.playClickSe();
+    //public void pushStart()
+    //{
+    //    CommonProcess.playClickSe();
 
-        if (SaveMng.Status.IsFinishOpening) {
-            SceneManagerWrap.LoadScene(CmnConst.SCENE.HomeScene, false);
-        } else {
-            SceneManagerWrap.LoadScene(CmnConst.SCENE.OpeningScene, false);
-        }
-        //SceneManagerWrap.LoadScene(CmnConst.SCENE.InitScene, false);
-        //SceneManagerWrap.LoadScene(CmnConst.SCENE.HomeScene, false);
-    }
+    //    if (SaveMng.Status.IsFinishOpening) {
+    //        SceneManagerWrap.LoadScene(CmnConst.SCENE.HomeScene, false);
+    //    } else {
+    //        SceneManagerWrap.LoadScene(CmnConst.SCENE.OpeningScene, false);
+    //    }
+    //}
 
 
 }
