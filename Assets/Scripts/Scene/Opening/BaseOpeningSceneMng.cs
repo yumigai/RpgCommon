@@ -57,6 +57,8 @@ public class BaseOpeningSceneMng : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         //ステータス更新
+        SaveMng.SysDt.saveSaveDate();
+        SaveMng.Status.save();
         SaveMng.Status.IsFinishOpening = true;
         StoryListMast.StoryOrder("Opening");
 

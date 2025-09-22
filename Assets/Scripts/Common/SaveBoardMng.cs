@@ -77,7 +77,7 @@ public class SaveBoardMng : MonoBehaviour
     private void loadExec(int slot) {
         SaveMng.loadAll(slot);
         SceneManagerWrap.clearBefore();
-        SceneManagerWrap.LoadScene(CmnConst.SCENE.TitleScene, false);
+        SceneManagerWrap.LoadScene(CmnConst.SCENE.HomeScene, false);
     }
 
     public void closeWindow() {
