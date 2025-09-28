@@ -234,6 +234,22 @@ public class FieldUIMng : MonoBehaviour
         }
     }
 
+    protected void initStageInfo() {
+        switch (SaveMng.Quest.Stage.Rule) {
+            case StageMast.GAME_RULE.GET_KEY_AND_GOAL:
+            case StageMast.GAME_RULE.GET_TREASURE:
+            ToClearNum.text = "0";
+            ToClearMax.text = SaveMng.Quest.Stage.NeedKeyNum.ToString();
+            break;
+            case StageMast.GAME_RULE.DESTROY_ALL:
+            ToClearMax.text = SaveMng.Quest.Stage.EnemyNum.ToString();
+            break;
+            default:
+            break;
+
+        }
+    }
+
     ///// <summary>
     ///// マップタイル更新
     ///// </summary>

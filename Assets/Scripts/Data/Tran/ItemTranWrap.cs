@@ -42,7 +42,7 @@ public class ItemTranWrap : SaveMng.SaveClass
     /// <returns></returns>
     public bool addItem(ItemTran itm, int num = 1) {
 
-        if (SaveMng.Items.Count >= GameConst.MAX_ITEM_KIND_NUM) {
+        if (ItemTran.checkItemKindNum()) {
             return false;
         }
 

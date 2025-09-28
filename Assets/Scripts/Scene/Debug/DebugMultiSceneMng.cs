@@ -2,12 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 public class DebugMultiSceneMng : MonoBehaviour
 {
+    public Text Param1;
+
+    public Text Param2;
+
+    public Text Param3;
+
     public void pushAddMoney() {
         SaveMng.Status.addMoney(10000);
         SaveMng.Status.save();
+    }
+
+    public void setFriendShip() {
+        var unit = SaveMng.Units.Find(it => it.MasterId == int.Parse(Param1.text));
+        unit.FriendShip = int.Parse(Param2.text);
+        SaveMng.saveUnit();
     }
 
     public void pushAddAllItem() {
@@ -54,6 +67,10 @@ public class DebugMultiSceneMng : MonoBehaviour
 
     public void pushResetData() {
         SaveMng.resetSave();
+    }
+
+    public void pushFilterScene() {
+        SceneManagerWrap.LoadScene("CameraFilterTest");
     }
 
     public void pushBack() {

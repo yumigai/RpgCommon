@@ -100,7 +100,7 @@ public class ItemProcess
     /// <returns></returns>
     public static bool addItem(ItemTran itm, int num = 1) {
 
-        if (SaveMng.Items.Count >= GameConst.MAX_ITEM_KIND_NUM) {
+        if (ItemTran.checkItemKindNum()) {
             return false;
         }
 

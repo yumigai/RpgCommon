@@ -410,6 +410,8 @@ public class ItemBoardMng : PowerBoardMng
                 }
             }
             showShopItems();
+        } else if (Mode == MODE.EQUIP) {
+            //何もしない
         } else {
             switch (Mode) {
                 case MODE.USE:

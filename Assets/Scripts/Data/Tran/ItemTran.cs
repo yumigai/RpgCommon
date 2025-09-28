@@ -145,6 +145,14 @@ public class ItemTran {
         return (int)val;
     }
 
+    /// <summary>
+    /// アイテム種ごとの制限チェック
+    /// </summary>
+    /// <returns></returns>
+    public bool checkItemOverNum(int add = 1) {
+        return Num + add > GameConst.MAX_ITEM_NUM;
+    }
+
     public static ItemTran getRandomItem(int maxlv, bool addRune = true) {
         var category = UtilToolLib.getRateRandom(GameConst.DROP_CATEGORY_PERCENT);
         return getRandomItem(maxlv, category, addRune);
@@ -199,5 +207,21 @@ public class ItemTran {
             }
         }
         return tran;
+    }
+
+    /// <summary>
+    /// アイテム所持数制限チェック
+    /// </summary>
+    /// <returns></returns>
+    public static bool checkItemKindNum(int add = 1) {
+        return ItemTran.checkItemKindNum();
+    }
+
+    /// <summary>
+    /// アイテム所持数制限わずかのチェック
+    /// </summary>
+    /// <returns></returns>
+    public static bool checkItemKindMaxNear() {
+        return checkItemKindNum(GameConst.MAX_ITEM_KIND_NUM / 10);
     }
 }
