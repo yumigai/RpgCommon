@@ -36,6 +36,9 @@ public class DebugMultiSceneMng : MonoBehaviour
     }
 
     public void pushLevelUp() {
+        if (Param1.text == string.Empty) {
+            Param1.text = "1";
+        }
         int add = int.Parse(Param1.text);
         foreach (UnitStatusTran unit in SaveMng.Units) {
             unit.addExp(LevelMast.List[unit.Lv+add].Exp);
