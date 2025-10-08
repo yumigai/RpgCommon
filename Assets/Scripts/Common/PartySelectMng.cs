@@ -26,7 +26,7 @@ public class PartySelectMng : MonoBehaviour
     [System.NonSerialized]
     public System.Action CallbackCancel;
 
-    private int ChangeIndex = -1;
+    //private int ChangeIndex = -1;
 
     private void Start() {
         if (ChangeUnitList != null) {
@@ -70,6 +70,7 @@ public class PartySelectMng : MonoBehaviour
         }
     }
 
+    /*
     /// <summary>
     /// チーム編成へ遷移
     /// （既にチーム編成画面なら何もしないので問題なし）
@@ -94,6 +95,7 @@ public class PartySelectMng : MonoBehaviour
             CallbackCancel();
         }
     }
+    */
 
     /// <summary>
     /// メンバーチェンジ開始
@@ -102,9 +104,10 @@ public class PartySelectMng : MonoBehaviour
     public void pushMemberChange(UnitDetailMng unit) {
         CommonProcess.playClickSe();
 
-        ChangeIndex = System.Array.IndexOf(PartyUnits,unit);
+        //ChangeIndex = System.Array.IndexOf(PartyUnits,unit);
 
         if (ChangeUnitList != null) {
+            ChangeUnitList.pushMemberChange( unit.UnitTranId );
             ChangeUnitList.gameObject.SetActive(true);
         }
 
@@ -122,13 +125,13 @@ public class PartySelectMng : MonoBehaviour
     /// <param name="mng"></param>
     public void pushChangeExec(CharaImgGaugeMng unit) {
 
-        var before_index = System.Array.IndexOf(SaveMng.Status.ActiveMember, unit.UnitTranId);
-        if (before_index >= 0) {
-            SaveMng.Status.ActiveMember[before_index] = SaveMng.Status.ActiveMember[ChangeIndex];
-        }
+        //var before_index = System.Array.IndexOf(SaveMng.Status.ActiveMember, unit.UnitTranId);
+        //if (before_index >= 0) {
+        //    SaveMng.Status.ActiveMember[before_index] = SaveMng.Status.ActiveMember[ChangeIndex];
+        //}
 
-        SaveMng.Status.ActiveMember[ChangeIndex] = unit.UnitTranId;
-        SaveMng.Status.save();
+        //SaveMng.Status.ActiveMember[ChangeIndex] = unit.UnitTranId;
+        //SaveMng.Status.save();
 
         ChangeUnitList?.gameObject?.SetActive(false);
 

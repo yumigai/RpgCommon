@@ -51,7 +51,7 @@ public class PlayerStatusTran : CmnSaveProc.SaveClass
 
     public bool isAllClear {
         get {
-            return ClearStage.Count >= StageMast.List.Length;
+            return ClearStage.Count >= StageMast.List.Count();
         }
     }
 

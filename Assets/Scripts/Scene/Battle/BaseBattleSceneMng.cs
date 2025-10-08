@@ -954,8 +954,18 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     /// </summary>
     public void endToBattle() {
         BattleEndProcess();
-        SceneBase.SetActive(false);
-        StageFieldSceneMng.Singleton.SceneBase.SetActive(true);
+        if(Quest.Stage.Kind == StageMast.KIND.BOSS){
+            if (Quest.Stage.Feature.Contains(StageMast.FEATURE.LAST_STAGE)){
+                BaseStorySceneMng.Order(this, Quest.Stage.AfterStory, CmnConst.SCENE.EndingScene);
+            }else{
+                BaseStorySceneMng.Order(this, Quest.Stage.AfterStory, CmnConst.SCENE.HomeScene);
+            }
+        }
+        else
+        {
+            SceneBase.SetActive(false);
+            StageFieldSceneMng.Singleton.SceneBase.SetActive(true);
+        }
     }
 
     /// <summary>

@@ -75,6 +75,7 @@ public class SaveMng : CmnSaveProc
     public static UnitWrap UnitData;
     public static QuestTran Quest;
     public static ItemTranWrap ItemData;
+    public static CollectionTran Collection;
 
     public static AdvStatusTran AdvData;
 
@@ -137,6 +138,7 @@ public class SaveMng : CmnSaveProc
         Quest = load<QuestTran>();
         SysDt = load<SystemTran>();
         AdvData = load<AdvStatusTran>();
+        Collection = load<CollectionTran>();
 
         //破損チェック
         repairBrokenData(ref UnitData);
@@ -145,6 +147,7 @@ public class SaveMng : CmnSaveProc
         repairBrokenData(ref Quest);
         repairBrokenData(ref SysDt);
         repairBrokenData(ref AdvData);
+        repairBrokenData(ref Collection);
     }
 
     new public static void resetSlotAll(int slot = -1) {

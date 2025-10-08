@@ -24,6 +24,7 @@ public class EventActionMast : MasterCmn
         ALL_UNIT,
         PARTY_UNIT,
         DISCOVERY_STAGE,
+        CLEAR_STAGE,
     }
 
     public int Id;

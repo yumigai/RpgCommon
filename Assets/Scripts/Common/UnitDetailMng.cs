@@ -85,6 +85,8 @@ public class UnitDetailMng : MonoBehaviour
 
     private ItemBoardMng _InstanceItemBoard;
 
+    public int UnitTranId { get { return Chara.UnitTranId; } }
+
 
     public void setParams( UnitStatusTran unit, bool recive_update = false ) {
         Chara.UnitTranId = unit.Id;

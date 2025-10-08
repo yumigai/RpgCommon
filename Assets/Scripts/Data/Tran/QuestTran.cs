@@ -9,7 +9,7 @@ public class QuestTran : CmnSaveProc.SaveClass {
 		public int ActionRound;
 	}
 	
-	public int						StageIndex;
+	//public int						StageId;
 	public List<UnitStatusTran>		ActiveParty = new List<UnitStatusTran>();
 	public List<UnitStatusTran> 	Enemys = new List<UnitStatusTran>();
     public List<UnitStatusTran>     Battlers = new List<UnitStatusTran>();
@@ -21,8 +21,12 @@ public class QuestTran : CmnSaveProc.SaveClass {
 	public int NowFloorNum = 0;
 
 	public BattleTran Battle;
-	
-	public StageMast Stage{ get{ return StageMast.List[StageIndex];}}
+
+	public int StageId;
+
+	private StageMast _StageData;
+
+	public StageMast Stage { get { return (_StageData == null) ? _StageData = StageMast.List.FindById(StageId) : _StageData; } }
 
 	public bool IsBattle{ get { return (Enemys != null && Enemys.Count > 0); } }
 
@@ -38,19 +42,22 @@ public class QuestTran : CmnSaveProc.SaveClass {
 	//	ActiveParty = party;
 	//}
 
-	public int Init(int stageId, List<UnitStatusTran> party) {
-		StageIndex = System.Array.FindIndex(StageMast.List, it => it.Id == stageId);
+	public void Init(int stageId, List<UnitStatusTran> party) {
+		//StageIndex = System.Array.FindIndex(StageMast.List, it => it.Id == stageId);
+		//Stage = StageMast.List.FindById(stageId);
+		StageId = stageId;
 		ActiveParty = party;
 		CarryBag = new List<ItemTran>();
 		NowFloorNum = 0;
-		return StageIndex;
+		//return StageIndex;
 	}
 
-	public int Continue(int stageId) {
-		StageIndex = StageMast.getStageIndex(stageId);// System.Array.FindIndex(StageMast.List, it => it.Id == stageId);
-
+	public void Continue(int stageId) {
+		//StageIndex = StageMast.getStageIndex(stageId);// System.Array.FindIndex(StageMast.List, it => it.Id == stageId);
+		//Stage = StageMast.List.FindById(stageId);
+		StageId = stageId;
 		NowFloorNum = 0;
-		return StageIndex;
+		//return StageIndex;
 	}
 
 	public List<UnitStatusTran> getTarget( UnitMast.TARGET target ){

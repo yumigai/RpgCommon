@@ -48,17 +48,18 @@ public class EnemyMast : UnitMast
     //}
 
     public static UnitStatusTran getEnemy(int id) {
-
         EnemyMast ene = List.First(it => it.Id == id);
-        UnitStatusTran tran = getEnemy(ene, ene.BaseLv);
+        return getEnemy(ene, ene.BaseLv);
+    }
 
-        return tran;
+    public static UnitStatusTran getEnemy(string tag){
+        EnemyMast ene = List.First(it => it.Tag == tag);
+        return getEnemy(ene, ene.BaseLv);
     }
 
     public new static UnitStatusTran getUnit(int id) {
         return getEnemy(id);
     }
-
 
     public static UnitStatusTran getEnemy(EnemyMast ene, int lv) {
 
@@ -84,6 +85,29 @@ public class EnemyMast : UnitMast
         tran.Type = TYPE.ENEMY;
 
         return tran;
+    }
+
+    /// <summary>
+    /// free encount 
+    /// </summary>
+    /// <param name="lv"></param>
+    /// <param name="max_num"></param>
+    public static List<UnitStatusTran> freeEncount( int lv, int field_size) {
+
+        var max_lv = List.Where(it => it.BaseLv <= lv).Max(it => it.BaseLv);
+        var enemys = List.Where(it => it.BaseLv == max_lv).ToList();
+
+        var units = new List<UnitStatusTran>();
+
+        int fill = 0;
+
+        for ( int i = 0; i < field_size && fill < field_size; i++){
+            var index = UnityEngine.Random.Range(0, enemys.Count());
+            var tran = EnemyMast.getEnemy(enemys[index], lv);
+            units.Add(tran);
+            fill += enemys[index].Size;
+        }
+        return units;
     }
 
     /// <summary>

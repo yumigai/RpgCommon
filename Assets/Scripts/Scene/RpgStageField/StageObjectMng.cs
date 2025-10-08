@@ -14,12 +14,9 @@ public class StageObjectMng : BreakObstractMng
     public enum TYPE
     {
         OBSTACLES,
-        TRAP,
+        //TRAP,
         TREASURE,
     }
-
-    [SerializeField]
-    public BreakObstractMng[] childObjects;
 
     [SerializeField]
     public TYPE Type;
@@ -29,11 +26,6 @@ public class StageObjectMng : BreakObstractMng
 
     new protected void Start() {
         base.Start();
-        if (childObjects != null && childObjects.Length > 0) {
-            int index = UnityEngine.Random.Range(0, childObjects.Length);
-            childObjects[index] = null;
-            System.Array.ForEach(childObjects, it => Destroy(it?.gameObject));
-        }
         if (EffectPosi == null) {
             EffectPosi = this.transform;
         }
@@ -45,15 +37,11 @@ public class StageObjectMng : BreakObstractMng
     /// <returns></returns>
     public override bool breakObject() {
         if (base.breakObject()) {
-            //if (Jem != null) {
-            //    switch (Jem.Type) {
-            //        case JemMng.TYPE.MONEY:
-            //            Jem.DirectValue = MainProcess.StageData.TreasureCoin;
-            //            break;
-            //    }
+            switch (Type) {
+                case TYPE.TREASURE:
+                break;
 
-            //    JemMng.jemSplash(Jem, EffectPosi.transform.position, MinJem, MaxJem);
-            //}
+            }
             return true;
         }
         return false;
@@ -61,18 +49,18 @@ public class StageObjectMng : BreakObstractMng
 
     protected void hitPlayer() {
         switch (Type) {
-            case TYPE.TRAP:
-            hitTrap();
-            break;
+            //case TYPE.TRAP:
+            //hitTrap();
+            //break;
             case TYPE.TREASURE:
             break;
         }
     }
 
-    protected void hitTrap() {
-        int damage = Rarity > GameConst.RARITY.N ? (int)Rarity * TRAP_DAMAGE : 1;
-        FieldPlayerMng.hero().fieldDamage(damage);
-    }
+    //protected void hitTrap() {
+    //    int damage = Rarity > GameConst.RARITY.N ? (int)Rarity * TRAP_DAMAGE : 1;
+    //    FieldPlayerMng.hero().fieldDamage(damage);
+    //}
 
     void OnCollisionEnter(Collision collision) {
         if (collision.gameObject == FieldPlayerMng.Hero) {

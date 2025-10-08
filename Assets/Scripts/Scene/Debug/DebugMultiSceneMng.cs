@@ -17,12 +17,6 @@ public class DebugMultiSceneMng : MonoBehaviour
         SaveMng.Status.save();
     }
 
-    public void setFriendShip() {
-        var unit = SaveMng.Units.Find(it => it.MasterId == int.Parse(Param1.text));
-        unit.FriendShip = int.Parse(Param2.text);
-        SaveMng.saveUnit();
-    }
-
     public void pushAddAllItem() {
         SaveMng.Items.Clear();
 
@@ -42,9 +36,10 @@ public class DebugMultiSceneMng : MonoBehaviour
     }
 
     public void pushLevelUp() {
+        int add = int.Parse(Param1.text);
         foreach (UnitStatusTran unit in SaveMng.Units) {
-            unit.addExp(LevelMast.List[unit.Lv].Exp);
-            //unit.lvUp();
+            unit.addExp(LevelMast.List[unit.Lv+add].Exp);
+            Debug.Log(unit.Name + ": Lv"+unit.LvNum);
         }
         SaveMng.UnitData.save();
     }
@@ -60,17 +55,26 @@ public class DebugMultiSceneMng : MonoBehaviour
     public void clearAllStage() {
         SaveMng.Status.DiscoveryStage.Clear();
         SaveMng.Status.ClearStage.Clear();
-        System.Array.ForEach(StageMast.List, it => SaveMng.Status.DiscoveryStage.Add(it.Id));
-        System.Array.ForEach(StageMast.List, it => SaveMng.Status.ClearStage.Add(it.Id));
+        //System.Array.ForEach(StageMast.List, it => SaveMng.Status.DiscoveryStage.Add(it.Id));
+        //System.Array.ForEach(StageMast.List, it => SaveMng.Status.ClearStage.Add(it.Id));
+        for( int i = 0; i < StageMast.List.Count(); i++)
+        {
+            SaveMng.Status.DiscoveryStage.Add(StageMast.List[i].Id);
+            SaveMng.Status.ClearStage.Add(StageMast.List[i].Id);
+
+        }
         SaveMng.Status.save();
+    }
+
+    public void setFriendShip()
+    {
+        var unit = SaveMng.Units.Find(it => it.MasterId == int.Parse(Param1.text));
+        unit.FriendShip = int.Parse(Param2.text);
+        SaveMng.saveUnit();
     }
 
     public void pushResetData() {
         SaveMng.resetSave();
-    }
-
-    public void pushFilterScene() {
-        SceneManagerWrap.LoadScene("CameraFilterTest");
     }
 
     public void pushBack() {

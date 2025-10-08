@@ -31,6 +31,7 @@ public class StageMast : MulitiUseListMast
     {
         NON,//基本的に使用しない
         INIT_STAGE, //初期解放ステージ
+        LAST_STAGE,
     }
 
     public int ChapterId;
@@ -46,12 +47,15 @@ public class StageMast : MulitiUseListMast
     public string Story;
     public string AfterStory;
     public int FieldSize; //バトル時のモンスター出現数
+    public int StageLv;
     public int EnemyNum;
-    public int EncountMapId;
+    public int FoeNum; // tuujou ha 1
+    public string EncountMapTag;
+    public string FoeTag; // foe no enemy mast id
     public FEATURE[] Feature = new FEATURE[0]; //特徴
     public int[] NextIds;
 
-    public static StageMast[] List;
+    public static IReadOnlyList<StageMast> List;
 
     /// <summary>
     /// NextIdsが一つの場合のみ使用（分岐など、複数オープンしない）
@@ -63,10 +67,6 @@ public class StageMast : MulitiUseListMast
     }
 
     public ChapterMast Chapter => ChapterMast.List.FirstOrDefault(it => it.Id == ChapterId);
-
-    public static int getStageIndex(int id) {
-        return System.Array.FindIndex(List, it => it.Id == id);
-    }
 
     public static void load() {
         List = load<StageMast>();

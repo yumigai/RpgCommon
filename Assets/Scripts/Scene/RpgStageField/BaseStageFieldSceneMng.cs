@@ -105,7 +105,7 @@ public class BaseStageFieldSceneMng : MonoBehaviour
     [System.NonSerialized]
     public bool IsBattle; //コマンドバトル式でのみ使用
 
-    private CharacterMng EncountEnemy;
+    private FieldEnemyMng EncountEnemy;
 
     /// <summary>
     /// ステージ開始時刻
@@ -122,7 +122,7 @@ public class BaseStageFieldSceneMng : MonoBehaviour
     ///// </summary>
     //private float HoldKeyTime = 0f;
 
-    public static int SelectedStage = 0;
+    //public static int SelectedStageId = 0;
 
     public static BaseStageFieldSceneMng Singleton;
 
@@ -132,10 +132,17 @@ public class BaseStageFieldSceneMng : MonoBehaviour
         }
     }
 
-    public static StageMast StageData {
-        get {
-            return StageMast.List == null ? null : StageMast.List[SelectedStage];
-        }
+    //public static StageMast StageData
+    //{
+    //    get
+    //    {
+    //        return StageMast.List == null ? null : StageMast.List[SelectedStage];
+    //    }
+    //}
+
+    public static StageMast StageData
+    {
+        get { return Quest.Stage; }
     }
 
     private static QuestTran Quest {
@@ -310,6 +317,10 @@ public class BaseStageFieldSceneMng : MonoBehaviour
         putEnemy(StageArea.EnemyPrefab, StageData.EnemyNum);
     }
 
+    protected void putFoe(){
+        putEnemy(StageArea.EnemyPrefab, StageData.FoeNum);
+    }
+
     protected void putEnemy(GameObject enemy_prefab, int num) {
 
         Vector3[] posis = RespawnMng.getMiddleToLongPosis();
@@ -405,7 +416,7 @@ public class BaseStageFieldSceneMng : MonoBehaviour
 
         bool player_adv = attacker.name == FieldPlayerMng.hero().name;
 
-        EncountEnemy = player_adv ? defender : attacker;
+        EncountEnemy = (FieldEnemyMng)(player_adv ? defender : attacker);
 
         BaseBattleSceneMng.Advance = player_adv ? BaseBattleSceneMng.ADVANCED.PLAYER : BaseBattleSceneMng.ADVANCED.ENEMY;
 
@@ -413,23 +424,39 @@ public class BaseStageFieldSceneMng : MonoBehaviour
 
         Quest.Enemys = new List<UnitStatusTran>();
 
-        int field_size = StageData.FieldSize;
+        //int field_size = StageData.FieldSize;
 
-        var encounts = EnemyEncountMast.List.Where(it => it.MapId == StageData.EncountMapId);
-        var enc_per = encounts.Select(it => it.Percent).ToArray();
-        var enc_arr = encounts.ToArray();
+        switch (EncountEnemy.EnemyType)
+        {
+            case FieldEnemyMng.ENEMY_TYPE.FOE:
+                var foe = EnemyMast.getEnemy(StageData.FoeTag);
+                Quest.Enemys.Add( foe );
+                break;
+            default:
+                Quest.Enemys = EnemyEncountMast.encount(StageData.EncountMapTag, StageData.FieldSize);
+                if(Quest.Enemys.Count() == 0)
+                {
+                    Quest.Enemys = EnemyMast.freeEncount(StageData.StageLv, StageData.FieldSize);
+                }
+                break;
 
-        for (int i = field_size; i > 0; i--) {
-            int index = UtilToolLib.getRateRandom(enc_per);
-            var enc = enc_arr[index];
-
-            UnitStatusTran tran = EnemyMast.getEnemy(enc.EnemyId);
-            if (enc.Lv > 0) {
-                tran.setLevel(enc.Lv);
-            }
-
-            Quest.Enemys.Add(tran);
         }
+
+        //var encounts = EnemyEncountMast.List.Where(it => it.MapId == StageData.EncountMapId);
+        //var enc_per = encounts.Select(it => it.Percent).ToArray();
+        //var enc_arr = encounts.ToArray();
+
+        //for (int i = field_size; i > 0; i--) {
+        //    int index = UtilToolLib.getRateRandom(enc_per);
+        //    var enc = enc_arr[index];
+
+        //    UnitStatusTran tran = EnemyMast.getEnemy(enc.EnemyId);
+        //    if (enc.Lv > 0) {
+        //        tran.setLevel(enc.Lv);
+        //    }
+
+        //    Quest.Enemys.Add(tran);
+        //}
 
         StartCoroutine(changeBattleScene());
 
@@ -567,5 +594,13 @@ public class BaseStageFieldSceneMng : MonoBehaviour
 
     public void resetStageClear() {
         MainUI.StageClearGuid.gameObject.SetActive(false);
+    }
+
+    public static bool foeChaseMode(){
+        var foe = Singleton.Enemys.Find(it => it.EnemyType == FieldEnemyMng.ENEMY_TYPE.FOE);
+        if (foe != null){
+            foe.MoveType = FieldEnemyMng.MOVE_TYPE.EVER_CHASE;
+        }
+        return foe != null;
     }
 }

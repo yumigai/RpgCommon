@@ -15,7 +15,7 @@ public class DebugBattleSceneMng : MonoBehaviour
 
     public string EnemyIds = "";
 
-    public int MapId = 0;
+    public string MapTag = "";
 
     public int FieldSize = 6;
 
@@ -59,8 +59,8 @@ public class DebugBattleSceneMng : MonoBehaviour
     }
 
     private void Setting() {
-        if (MapId > 0) {
-            Enemys = EnemyEncountMast.encount(MapId, FieldSize);
+        if (MapTag.Length > 0) {
+            Enemys = EnemyEncountMast.encount(MapTag, FieldSize);
             EnemyIds = "";
             foreach (var ene in Enemys) {
                 EnemyIds += ene.Mst.Id.ToString() + ",";

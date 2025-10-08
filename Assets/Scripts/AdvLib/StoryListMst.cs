@@ -10,10 +10,18 @@ public class StoryListMast : MulitiUseListMast {
         STORY,
     }
 
-	public string Tag;
-	public int Need;
+    public enum CATEGORY{
+        NORMAL,
+        EVENT,
+        OPENING,
+        ENDING,
+    }
+
     public KIND Kind;
-    public int[] ItemIds;
+
+    public CATEGORY Category;
+
+    public string UnitTag;
 
     public static StoryListMast[] List;
 

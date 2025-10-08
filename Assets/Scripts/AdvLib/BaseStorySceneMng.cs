@@ -591,4 +591,10 @@ public class BaseStorySceneMng : FaceMessageMng
 		}
 	}
 
+	public static void Order( MonoBehaviour mono, string story, CmnConst.SCENE returnScene ){
+		StoryListMast.StoryOrder(story);
+		ReturnSceneOrder = returnScene.ToString();
+		SceneManagerWrap.LoadAndFadeOut(mono, CmnConst.SCENE.StoryScene, false);
+	}
+
 }

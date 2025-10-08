@@ -128,22 +128,27 @@ public class BaseHomeSceneMng : Base2DSceneMng
     }
 
     public void pushQuest() {
-        if (ItemTran.checkItemKindNum()) {
+        if (ItemTran.checkItemKindNum())
+        {
             string txt = LanguageStaticTextMng.getLangText("？", " ?");
-            CommonProcess.showConfirm(txt, delegate {
-                pushShop();
-            });
-        } else {
-            if (ItemTran.checkItemKindMaxNear()) {
+            CommonProcess.showConfirmVoid(txt,  pushShop);
+        }
+        else
+        {
+            if (ItemTran.checkItemKindMaxNear())
+            {
                 string txt = LanguageStaticTextMng.getLangText("？", " ?");
                 CommonProcess.showConfirm(txt, GotoAreaSelect);
-            } else {
+            }
+            else
+            {
                 GotoAreaSelect(null);
             }
         }
     }
 
-    public void GotoAreaSelect(object obj) {
+    public void GotoAreaSelect(object obj)
+    {
         pushMenuButton(CmnConst.SCENE.AreaSelectScene);
     }
 

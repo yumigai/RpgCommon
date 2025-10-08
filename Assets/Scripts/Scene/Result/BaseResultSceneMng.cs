@@ -77,9 +77,10 @@ public class BaseResultSceneMng : MonoBehaviour
 
         if (StageData.NextIds.Length == 1 ) {
             //次のステージが一つのみ
-            var index = StageMast.getStageIndex(StageData.NextId);
-            if(index > 0) {
-                StageMast.KIND next_kind = StageMast.List[index].Kind;
+            // var index = StageMast.getStageIndex(StageData.NextId);
+            var next = MulitiUseListMast.FindById(StageMast.List,StageData.NextId);
+            if(next != null) {
+                StageMast.KIND next_kind = next.Kind;
                 if (StageData.Kind == next_kind 
                     && ( next_kind == StageMast.KIND.MAIN_MISSION || next_kind == StageMast.KIND.SUB_MISSION )) {
                     isNext = true;
@@ -98,7 +99,8 @@ public class BaseResultSceneMng : MonoBehaviour
 
     public void toNextStage(object ob) {
 
-        StageFieldSceneMng.SelectedStage = SaveMng.Quest.Continue(StageData.NextId); // StageMast.getStageIndex(StageData.NextId);
+        //StageFieldSceneMng.SelectedStageId = StageData.NextId;
+        SaveMng.Quest.Continue(StageData.NextId); // StageMast.getStageIndex(StageData.NextId);
         SceneManagerWrap.LoadAndNowLoading(CmnConst.SCENE.QuestScene);
     }
 

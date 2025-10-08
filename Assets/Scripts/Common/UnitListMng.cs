@@ -19,9 +19,10 @@ public class UnitListMng : MonoBehaviour
 
     public System.Action<CharaImgGaugeMng> PushUnitCallback;
 
-    public System.Action PushCanselCallback;
+    public System.Action CloseCallback;
+    //public System.Action PushCanselCallback;
 
-    //private SkillBoardMng SkillBoard;
+    private int ChangeIndex = -1;
 
     private void Start() {
         //ListItems.CreateGroup(SaveMng.Units);
@@ -59,7 +60,39 @@ public class UnitListMng : MonoBehaviour
 
     }
 
-    public void pushCansel() {
-        PushCanselCallback();
+    //public void pushCansel() {
+    //    PushCanselCallback();
+    //}
+
+    /// <summary>
+    /// メンバーチェンジ開始
+    /// </summary>
+    /// <param name="index"></param>
+    public void pushMemberChange(int unitTranId)
+    {
+        CommonProcess.playClickSe();
+        ChangeIndex = ListItems.Members.FindIndex(it => it.UnitTranId == unitTranId);
+    }
+
+    /// <summary>
+    /// メンバーチェンジ実行
+    /// </summary>
+    /// <param name="mng"></param>
+    public void pushChangeExec(CharaImgGaugeMng unit)
+    {
+        var before_index = System.Array.IndexOf(SaveMng.Status.ActiveMember, unit.UnitTranId);
+        if (before_index >= 0)
+        {
+            SaveMng.Status.ActiveMember[before_index] = SaveMng.Status.ActiveMember[ChangeIndex];
+        }
+
+        SaveMng.Status.ActiveMember[ChangeIndex] = unit.UnitTranId;
+        SaveMng.Status.save();
+
+        if(CloseCallback == null){
+            StartCoroutine(initListProcess());
+        }else{
+            CloseCallback();
+        }
     }
 }

@@ -7,19 +7,19 @@ public class EnemyEncountMast : MasterCmn
 {
 
     public int Id;
-    public int MapId;
-    public int EnemyId;
+    public string MapTag;
+    public string EnemyTag;
     public int Percent;
     public int MaxNum;
     public int Lv;
 
     public static IReadOnlyList<EnemyEncountMast> List;
 
-    public static List<UnitStatusTran> encount(int map_id, int field_size) {
+    public static List<UnitStatusTran> encount(string map_tag, int field_size) {
 
         List<UnitStatusTran> enemys = new List<UnitStatusTran>();
 
-        var encounts = List.Where(it => it.MapId == map_id);
+        var encounts = List.Where(it => it.MapTag == map_tag);
         if (encounts == null || encounts.Count() <= 0) {
             return enemys;
         }
@@ -31,7 +31,7 @@ public class EnemyEncountMast : MasterCmn
 
             var enc = encounts.ElementAt(index);
 
-            var mst = EnemyMast.List.First(it => it.Id == enc.EnemyId);
+            var mst = EnemyMast.List.First(it => it.Tag == enc.EnemyTag);
 
             int lv = enc.Lv == 0 ? mst.BaseLv : enc.Lv;
 

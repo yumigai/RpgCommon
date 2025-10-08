@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ItemBoardMng : PowerBoardMng
@@ -255,7 +256,31 @@ public class ItemBoardMng : PowerBoardMng
             readyUseTarget();
             break;
         }
+    }
 
+    public void disposeItem(){
+        switch (Mode)
+        {
+            case MODE.VIEW:
+            case MODE.USE:
+            case MODE.EQUIP:
+                var mng = MultiUseListMng.GetNowListItem();
+                if (mng != null){
+                    string txt = LanguageStaticTextMng.getLangText( "{0}を捨てます。\nよろしいですか？", "Can I throw away {0}?");
+                    txt = string.Format(txt, mng.Name.text);
+                    CommonProcess.showConfirm(txt, disposeItemExec, mng.Id);
+                }
+                break;
+        }
+    }
+
+    public void disposeItemExec(object obj){
+        int tranId = (int)obj;
+        ItemTran item = SaveMng.Items.Find(it => it.Id == tranId);
+        SaveMng.ItemData.lostItem(item);
+        SaveMng.ItemData.save();
+        reload();
+        updateInfo();
     }
 
     public void showConfirm(MultiUseListMng mng) {
@@ -410,8 +435,8 @@ public class ItemBoardMng : PowerBoardMng
                 }
             }
             showShopItems();
-        } else if (Mode == MODE.EQUIP) {
-            //何もしない
+        }else if( Mode == MODE.EQUIP) {
+            // nani mo shinai
         } else {
             switch (Mode) {
                 case MODE.USE:

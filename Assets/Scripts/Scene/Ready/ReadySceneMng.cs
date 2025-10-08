@@ -27,8 +27,8 @@ public class ReadySceneMng : MonoBehaviour
     }
 
     public void pushStage(MultiUseListMng mng) {
-        CommonProcess.showConfirm(mng.Name.text, pushJumpStageScene);
-        StageFieldSceneMng.SelectedStage = System.Array.FindIndex(StageMast.List, it => it.Id == mng.Id);
+        CommonProcess.showConfirm(mng.Name.text, pushJumpStageScene, mng.Id);
+        //StageFieldSceneMng.SelectedStageId = mng.Id;// System.Array.FindIndex(StageMast.List, it => it.Id == mng.Id);
     }
 
     public void pushChangeParty() {
@@ -40,7 +40,8 @@ public class ReadySceneMng : MonoBehaviour
 
     public void pushJumpStageScene(object obj) {
 
-        SaveMng.Quest.Init(StageFieldSceneMng.SelectedStage, SaveMng.Status.getActiveMembers());
+        int stageId = (int)obj;
+        SaveMng.Quest.Init(stageId, SaveMng.Status.getActiveMembers());
 
         switch (StageFieldSceneMng.StageData.Kind) {
             case StageMast.KIND.MAIN_MISSION:

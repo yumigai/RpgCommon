@@ -23,6 +23,12 @@ public class FieldEnemyMng : CharacterMng
         PATROL,
     }
 
+    public enum ENEMY_TYPE
+    {
+        NORMAL,
+        FOE,
+    }
+
     private const float SMASH = 30f;
     private const float CHASE_TIME = 3f;
     private const float MAX_RANDOM_TIME = 6f;
@@ -46,6 +52,9 @@ public class FieldEnemyMng : CharacterMng
 
     [SerializeField]
     public MOVE_TYPE MoveType;
+
+    [SerializeField]
+    public ENEMY_TYPE EnemyType;
 
     [System.NonSerialized]
     protected UnityEngine.AI.NavMeshAgent Navi;
@@ -133,7 +142,7 @@ public class FieldEnemyMng : CharacterMng
     protected void moveAction() {
         checkHerosRange();
 
-        //StateInfo no use itÅfs heavy
+        //StateInfo no use it?fs heavy
         if (Anime.GetBool(TRIGERS.Moving.ToString())) {
             move();
         } else {
