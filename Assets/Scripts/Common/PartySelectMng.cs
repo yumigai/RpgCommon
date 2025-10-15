@@ -70,7 +70,7 @@ public class PartySelectMng : MonoBehaviour
         }
     }
 
-    /*
+    /* 汎用prefabに画面遷移を入れるのは危険なので削除
     /// <summary>
     /// チーム編成へ遷移
     /// （既にチーム編成画面なら何もしないので問題なし）
@@ -107,7 +107,7 @@ public class PartySelectMng : MonoBehaviour
         //ChangeIndex = System.Array.IndexOf(PartyUnits,unit);
 
         if (ChangeUnitList != null) {
-            ChangeUnitList.pushMemberChange( unit.UnitData.Id );
+            ChangeUnitList.pushMemberChange( unit.transform.GetSiblingIndex() );
             ChangeUnitList.gameObject.SetActive(true);
         }
 

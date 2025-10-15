@@ -38,6 +38,7 @@ public class BaseTeamEditSceneMng : Base2DSceneMng
         if (ChangeUnitList != null) {
             //ChangeUnitList.PushUnitCallback = pushSelectUnit;
             //ChangeUnitList.PushCanselCallback = pushClose;
+            ChangeUnitList.PushUnitCallback = ChangeUnitList.pushChangeExec;
             ChangeUnitList.gameObject.SetActive(false);
         }
         init();

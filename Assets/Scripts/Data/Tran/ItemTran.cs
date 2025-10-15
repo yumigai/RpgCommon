@@ -213,8 +213,8 @@ public class ItemTran {
     /// アイテム所持数制限チェック
     /// </summary>
     /// <returns></returns>
-    public static bool checkItemKindNum(int add = 1) {
-        return ItemTran.checkItemKindNum();
+    public static bool checkItemKindNum(int add = 0) {
+        return SaveMng.Items.Count() + add >= GameConst.MAX_ITEM_KIND_NUM;
     }
 
     /// <summary>

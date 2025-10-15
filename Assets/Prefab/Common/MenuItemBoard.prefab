@@ -91,6 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IconDirectory: 
   ListItem: {fileID: 4747975851542683850}
+  Recive: {fileID: 0}
 --- !u!1 &1763156582
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,6 +1171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IconDirectory: 
   ListItem: {fileID: 4747975853197911956}
+  Recive: {fileID: 0}
 --- !u!1 &4747975851722208770
 GameObject:
   m_ObjectHideFlags: 0
@@ -1889,6 +1891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IconDirectory: 
   ListItem: {fileID: 4747975852303179239}
+  Recive: {fileID: 4747975852135064470}
 --- !u!1 &4747975852141314849
 GameObject:
   m_ObjectHideFlags: 0
@@ -2131,6 +2134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IconDirectory: 
   ListItem: {fileID: 4747975853197911956}
+  Recive: {fileID: 0}
 --- !u!1 &4747975852215907045
 GameObject:
   m_ObjectHideFlags: 0
@@ -3348,14 +3352,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a65d533e3370a48aff9e9aa437f028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitGroup: {fileID: 4747975851542683854}
   TargetGroup: {fileID: 4747975851542683854}
   Scroll: {fileID: 4747975852135064475}
+  DetailName: {fileID: 0}
+  DetailInfo: {fileID: 0}
   GuidInfo: {fileID: 4747975853259702841}
-  Recive: {fileID: 4747975852135064470}
-  UnitGroup: {fileID: 4747975851542683854}
-  ItemDetailName: {fileID: 4747975851722208775}
-  ItemDetailInfo: {fileID: 4747975851413246530}
   ItemDetailSpecs: {fileID: 4747975851556431876}
   EquipBoard: {fileID: 4747975852141314849}
   HaveItemNum: {fileID: 4747975851883130159}
@@ -4147,6 +4148,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1558414328}
     m_Modifications:
+    - target: {fileID: 1971288579003365791, guid: 398a083d36afe3443b85c36153f6fca4,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971288579003365791, guid: 398a083d36afe3443b85c36153f6fca4,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971288579003365791, guid: 398a083d36afe3443b85c36153f6fca4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971288579003365791, guid: 398a083d36afe3443b85c36153f6fca4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5035659652037022051, guid: 398a083d36afe3443b85c36153f6fca4,
         type: 3}
       propertyPath: m_AnchorMax.x

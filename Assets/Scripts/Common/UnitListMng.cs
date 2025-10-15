@@ -68,10 +68,10 @@ public class UnitListMng : MonoBehaviour
     /// メンバーチェンジ開始
     /// </summary>
     /// <param name="index"></param>
-    public void pushMemberChange(int unitTranId)
+    public void pushMemberChange(int index)
     {
         CommonProcess.playClickSe();
-        ChangeIndex = ListItems.Members.FindIndex(it => it.UnitTranId == unitTranId);
+        ChangeIndex = index;
     }
 
     /// <summary>

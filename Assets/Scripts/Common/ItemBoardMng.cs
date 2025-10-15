@@ -184,7 +184,7 @@ public class ItemBoardMng : PowerBoardMng
             }
         }
 
-        Scroll.Rcv.initSetupWithFrameEnd(true);
+        Scroll.Recive.initSetupWithFrameEnd(true);
     }
 
     /// <summary>
@@ -220,7 +220,7 @@ public class ItemBoardMng : PowerBoardMng
             }
         }
 
-        Scroll.Rcv.initSetupWithFrameEnd(true);
+        Scroll.Recive.initSetupWithFrameEnd(true);
 
     }
 

@@ -69,7 +69,7 @@ public class SkillBoardMng : PowerBoardMng
         
         Scroll.makeList(skills);
 
-        Scroll.Rcv.initSetupWithFrameEnd(true);
+        Scroll.Recive.initSetupWithFrameEnd(true);
 
     }
 
