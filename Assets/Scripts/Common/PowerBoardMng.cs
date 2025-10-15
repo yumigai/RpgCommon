@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerBoardMng : MonoBehaviour
 {
@@ -10,6 +11,12 @@ public class PowerBoardMng : MonoBehaviour
 
     [SerializeField]
     protected MultiUseScrollMng Scroll;
+
+    [SerializeField]
+    public Text DetailName;
+
+    [SerializeField]
+    public Text DetailInfo;
 
     [System.NonSerialized]
     public PowerMast SelectedPower;
@@ -43,6 +50,16 @@ public class PowerBoardMng : MonoBehaviour
         TargetGroup.GroupBase.SetActive(false);
     }
 
+    public PowerBoardMng Init(Transform parent, PowerBoardMng bd) {
+        if (bd == null) {
+            bd = Instantiate(this);
+            bd.transform.SetParent(parent);
+            bd.transform.localPosition = Vector3.zero;
+        }
+        bd.gameObject.SetActive(true);
+        return bd;
+    }
+
     public void readyUseTarget() {
         TargetGroup.GroupBase.SetActive(true);
         TargetGroup.gameObject.SetActive(true);
@@ -64,6 +81,17 @@ public class PowerBoardMng : MonoBehaviour
         PowerProcess.execPower(SelectedPower, TargetUnits);
 
         StartCoroutine(showEffects(SelectedPower.Effect));
+    }
+
+    public void showDetail(PowerMast mst) {
+        string name = mst == null ? "" : mst.Name;
+        string info = mst == null ? "" : mst.Detail;
+        if (DetailName != null) {
+            DetailName.text = name;
+        }
+        if (DetailInfo != null) {
+            DetailInfo.text = info;
+        }
     }
 
     protected IEnumerator showEffects(string effect) {

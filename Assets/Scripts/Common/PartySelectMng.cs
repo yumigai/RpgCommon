@@ -107,7 +107,7 @@ public class PartySelectMng : MonoBehaviour
         //ChangeIndex = System.Array.IndexOf(PartyUnits,unit);
 
         if (ChangeUnitList != null) {
-            ChangeUnitList.pushMemberChange( unit.UnitTranId );
+            ChangeUnitList.pushMemberChange( unit.UnitData.Id );
             ChangeUnitList.gameObject.SetActive(true);
         }
 

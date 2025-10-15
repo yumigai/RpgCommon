@@ -28,10 +28,10 @@ public class EventSenserMng : MonoBehaviour
     //[SerializeField]
     //protected JemMng SymbolJem;
 
-    [SerializeField]
+    [SerializeField,Header("イベント開始時に表示するオブジェクト")]
     protected GameObject ShowObject;
 
-    [SerializeField]
+    [SerializeField,Header("イベント開始時に非表示にするオブジェクト")]
     protected GameObject HideObject;
 
     [SerializeField]

@@ -22,10 +22,12 @@ public class MenuMng : MonoBehaviour
     private CharaImgGroupMng UnitGroup;
 
     [SerializeField]
-    private SkillBoardMng SkillPanel;
+    private SkillBoardMng skillPanelPrefab;
+    //private SkillBoardMng SkillPanel;
 
     [SerializeField]
-    private ItemBoardMng ItemPanel;
+    private ItemBoardMng ItemPanelPrefab;
+    //private ItemBoardMng ItemPanel;
 
     [SerializeField]
     private UnitDetailMng StatusPanel;
@@ -35,8 +37,6 @@ public class MenuMng : MonoBehaviour
 
     private GamePadListRecivMng MenuRecive;
 
-    private ItemTran SelectedItem;
-    private SkillMast SelectedSkill;
     private List<UnitStatusTran> SelectedUnits = new List<UnitStatusTran>();
     private GameObject CopyMap;
     public static MODE Mode;
@@ -62,12 +62,17 @@ public class MenuMng : MonoBehaviour
         }
     }
     protected void showPanel(GameObject panel) {
-        UnitGroup.CreateGroup();
-        //MenuPanel.gameObject.SetActive(false);
-        //UnitGroup.GroupBase.SetActive(false);
-        SkillPanel.gameObject.SetActive(false);
-        ItemPanel.gameObject.SetActive(false);
-        StatusPanel.gameObject.SetActive(false);
+
+        //if (SkillPanel != null) {
+        //    SkillPanel.gameObject.SetActive(false);
+        //}
+        //if(ItemPanel != null) {
+        //    ItemPanel.gameObject.SetActive(false);
+        //}
+        //if(StatusPanel != null) {
+        //    StatusPanel.gameObject.SetActive(false);
+        //}
+
         if (panel == MenuPanel) {
         } else if (panel == UnitGroup.gameObject) {
             showUnitGroup();
@@ -77,13 +82,16 @@ public class MenuMng : MonoBehaviour
     }
     public void pushSkill() {
         Mode = MODE.SKILL;
-        showUnitGroup();
+        
+        skillPanelPrefab.init(this.transform);
+        //showPanel(SkillPanel.gameObject);
     }
     public void pushItem() {
         Mode = MODE.ITEM;
         ItemBoardMng.OrderMode = ItemBoardMng.MODE.USE;
         ItemBoardMng.OrderCategory = ItemMast.CATEGORY.CONSUMABLE;
-        showPanel(ItemPanel.gameObject);
+        //showPanel(ItemPanel.gameObject);
+        ItemPanelPrefab.init(this.transform);
     }
     public void pushStatus() {
         Mode = MODE.STATUS;
@@ -109,8 +117,8 @@ public class MenuMng : MonoBehaviour
 
         switch (Mode) {
             case MODE.SKILL:
-            showPanel(SkillPanel.gameObject);
-            SkillPanel.changeUnit(chara.getStatus());
+            //showPanel(SkillPanel.gameObject);
+            //SkillPanel.changeUnit(chara.getStatus());
             break;
             case MODE.STATUS:
             showPanel(StatusPanel.gameObject);
@@ -142,14 +150,14 @@ public class MenuMng : MonoBehaviour
             case MODE.MENU:
             return true;
             case MODE.ITEM:
-            if (ItemPanel.closeWindow()) {
+            //if (ItemPanel.closeWindow()) {
                 ShowMenu();
-            }
+            //}
             break;
             case MODE.SKILL:
-            if (SkillPanel.closeWindow()) {
+            //if (SkillPanel.closeWindow()) {
                 ShowMenu();
-            }
+            //}
             break;
             case MODE.STATUS:
             if (switchPanel(new GameObject[] { StatusPanel.gameObject, UnitGroup.GroupBase })) {

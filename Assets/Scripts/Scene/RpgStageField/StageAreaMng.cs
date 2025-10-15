@@ -50,17 +50,34 @@ public class StageAreaMng : MonoBehaviour
     [SerializeField]
     public GameObject EnemyPrefab;
 
+    [SerializeField]
+    public GameObject FoePrefab;
+
     [SerializeField, Header("部屋をランダム回転させるか")]
     public bool isRandomRotate = true;
 
-    [SerializeField, Header("nullでも可")]
+    [Header("Stageの個性, nullでも可")]
+    [SerializeField]
     public GameObject KeyPrefab; //nullの場合、共通の値を使用
 
-    [SerializeField, Header("nullでも可")]
+    [SerializeField]
     public GameObject GatePrefab; //nullの場合、共通の値を使用
 
-    [SerializeField, Header("nullでも可")]
+    [SerializeField]
     public Sprite MapConnectImage;
+
+    [Header("GimmickRoomの個性, nullでも可")]
+    [SerializeField]
+    public Material RoomFloorTexture;
+
+    [SerializeField]
+    public Material RoomWallTexture;
+
+    [SerializeField]
+    public Material RoomGateTexture;
+
+    [SerializeField]
+    public Material RoomGimmickFloorTexture;
 
     [System.NonSerialized]
     public List<StageRoomMng> Rooms = new List<StageRoomMng>();
@@ -135,6 +152,10 @@ public class StageAreaMng : MonoBehaviour
         StageRoomMng mng = obj.GetComponent<StageRoomMng>();
         mng.RoomName = RoomPrefabs[index].name;
         mng.Section = this;
+
+        if(mng.RoomType == StageRoomMng.TYPE.COMMON) {
+            mng.ChangeTileMaterial(RoomFloorTexture, RoomWallTexture, null, RoomGateTexture, RoomGimmickFloorTexture);
+        }
 
         return mng;
     }

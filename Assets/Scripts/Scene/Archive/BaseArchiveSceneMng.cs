@@ -84,10 +84,10 @@ public class BaseArchiveSceneMng : Base2DSceneMng
         for (int i = 0; i < StoryListMast.List.Length; i++) {
             if (StoryListMast.List[i].Kind == kind) {
                 int id = StoryListMast.List[i].Id;
-                if (SaveMng.Status.Archives.IndexOf(id) >= 0) {
+                if (SaveMng.Collection.Archives.IndexOf(id) >= 0) {
                     MultiUseListMng listitem = ArchiveList.makeListItemMasterId(i, StoryListMast.List[i], button_txt);
 
-                    if (SaveMng.Status.Readed.IndexOf(id) >= 0) {
+                    if (SaveMng.Collection.Readed.IndexOf(id) >= 0) {
                         // Newアイコン
                         listitem.TagLabel.gameObject.SetActive(false);
                     }
@@ -122,18 +122,18 @@ public class BaseArchiveSceneMng : Base2DSceneMng
     }
 
     void jumpStory(MultiUseListMng mng) {
-        if (SaveMng.Status.Archives.IndexOf(mng.Id) < 0) {
+        if (SaveMng.Collection.Archives.IndexOf(mng.Id) < 0) {
             return;
         }
 
         CommonProcess.playClickSe();
-        SaveMng.Status.Readed.Add(mng.Id);
+        SaveMng.Collection.Readed.Add(mng.Id);
         BaseStorySceneMng.StoryOrder(StoryListMast.List[mng.Index].Tag, SceneManagerWrap.NowScene);
     }
 
     void showDocument(MultiUseListMng mng) {
 
-        if (SaveMng.Status.Archives.IndexOf(mng.Id) < 0) {
+        if (SaveMng.Collection.Archives.IndexOf(mng.Id) < 0) {
             return;
         }
 
@@ -144,7 +144,7 @@ public class BaseArchiveSceneMng : Base2DSceneMng
         txt = txt.Replace("@player@", SaveMng.Conf.PlayerName);
         ConfirmWindowCmn wnd = CommonProcess.showMessage(mng.Name.text, txt);
         mng.TagLabel.gameObject.SetActive(false);
-        SaveMng.Status.Readed.Add(mng.Id);
+        SaveMng.Collection.Readed.Add(mng.Id);
 
 
     }
@@ -156,7 +156,7 @@ public class BaseArchiveSceneMng : Base2DSceneMng
         var stageClear =ArchiveList.makeListItem();
         var archives = ArchiveList.makeListItem();
         stageClear.Name.text = "クリアステージ数:" + SaveMng.Status.ClearStage.Count.ToString();
-        archives.Name.text = "アーカイブ数:" + SaveMng.Status.Archives.Count.ToString();
+        archives.Name.text = "アーカイブ数:" + SaveMng.Collection.Archives.Count.ToString();
 
         ArchiveList.ListItem.SetActive(false);
     }

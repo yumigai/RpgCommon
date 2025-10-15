@@ -33,10 +33,12 @@ public class AdvStatusTran : CmnSaveProc.SaveClass
 
 	public void addFlag(string key, int val) {
 		Flags[key] += val;
+		save();
 	}
 
 	public void setFlag(string key, int val) {
 		Flags[key] = val;
+		save();
 	}
 
 	public int getFlag(string key) {

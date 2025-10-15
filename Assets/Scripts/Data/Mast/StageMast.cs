@@ -46,12 +46,17 @@ public class StageMast : MulitiUseListMast
     public string Bgm;
     public string Story;
     public string AfterStory;
+    public string SpecialEventTag;
+    public string SpecialStory;
+    public string SpecialAfterStory;
     public int FieldSize; //バトル時のモンスター出現数
     public int StageLv;
     public int EnemyNum;
     public int FoeNum; // tuujou ha 1
     public string EncountMapTag;
     public string FoeTag; // foe no enemy mast id
+    public string UnitTag; // dare ni kannren suru stage ka. kore ga settei sarete iruto, party ni inai to archive ha ochinai
+    public string ArchiveTag; // drop suru archive tag
     public FEATURE[] Feature = new FEATURE[0]; //特徴
     public int[] NextIds;
 
@@ -67,6 +72,21 @@ public class StageMast : MulitiUseListMast
     }
 
     public ChapterMast Chapter => ChapterMast.List.FirstOrDefault(it => it.Id == ChapterId);
+
+    public string GetStory() {
+        if (EventActionMast.judgeEvent(SpecialEventTag)) {
+            return SpecialStory;
+        }
+        return Story;
+    }
+
+    public string GetAfterStory() {
+        if (EventActionMast.judgeEvent(SpecialEventTag)) {
+            return SpecialAfterStory;
+        }
+        return AfterStory;
+    }
+
 
     public static void load() {
         List = load<StageMast>();

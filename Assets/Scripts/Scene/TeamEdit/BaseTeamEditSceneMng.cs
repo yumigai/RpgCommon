@@ -64,6 +64,7 @@ public class BaseTeamEditSceneMng : Base2DSceneMng
     /// </summary>
     /// <param name="index"></param>
     public void removeMember(int index) {
+        //TODO nanaru kaijo fuka
         SaveMng.Status.ActiveMember[index] = -1;
         SaveMng.Status.save();
         refleshParty();

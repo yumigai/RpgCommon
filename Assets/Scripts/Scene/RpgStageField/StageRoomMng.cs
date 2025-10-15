@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class StageRoomMng : MonoBehaviour
 {
+    public enum TYPE {
+        ORIGIN, // senyou room
+        COMMON, // hoka no stage demo shiyou suru hanyou stage
+    }
 
     /// <summary>
     /// 門のゲームオブジェクトの親
@@ -39,6 +43,9 @@ public class StageRoomMng : MonoBehaviour
 
     [SerializeField]
     public Sprite MapImage;
+
+    [SerializeField]
+    public TYPE RoomType;
 
     [System.NonSerialized]
     public StageAreaMng Section;
@@ -83,11 +90,26 @@ public class StageRoomMng : MonoBehaviour
     //    }
     //}
     public Transform GetGate(int index) {
-        return ConnectionPosis[index].Find(StageRoomMng.GATE_BASE);
+        return ConnectionPosis[index].Find(GATE_BASE);
     }
 
     public Transform GetWall(int index) {
-        return ConnectionPosis[index].Find(StageRoomMng.WALL_BASE);
+        return ConnectionPosis[index].Find(WALL_BASE);
+    }
+
+    /// <summary>
+    /// タイルのマテリアル（テクスチャ）変更 
+    /// </summary>
+    /// <param name="floor"></param>
+    /// <param name="wall"></param>
+    /// <param name="roof"></param>
+    /// <param name="gate"></param>
+    /// <param name="gimmick"></param>
+    public void ChangeTileMaterial(Material floor, Material wall, Material roof, Material gate, Material gimmick) {
+        var tiles = GetComponentsInChildren<TileMng>();
+        for(int i = 0; i < tiles.Length; i++) {
+            tiles[i].SetMaterial(floor, wall, roof, gate, gimmick);
+        }
     }
 
     /// <summary>

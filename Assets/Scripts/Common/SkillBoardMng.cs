@@ -5,19 +5,20 @@ using UnityEngine;
 
 public class SkillBoardMng : PowerBoardMng
 {
+
     [SerializeField]
-    GamePadListRecivMng Recive;
+    protected CharaImgGroupMng UserGroup;
 
     [System.NonSerialized]
     public SkillMast SelectedSkill;
 
-    public static SkillBoardMng BoardInstance;
+    public static SkillBoardMng Board;
 
     public enum MODE
     {
         VIEW,
         USE,
-        BATTLE,//現状未使用
+        //BATTLE,
         ALL
 
     }
@@ -26,7 +27,6 @@ public class SkillBoardMng : PowerBoardMng
 
     new private void Awake() {
         base.Awake();
-        
     }
 
     new private void Start() {
@@ -35,16 +35,18 @@ public class SkillBoardMng : PowerBoardMng
 
     new protected void OnEnable() {
         base.OnEnable();
+        UserGroup.CreateGroup();
     }
 
     public SkillBoardMng init(Transform parent) {
-        if (BoardInstance == null) {
-            BoardInstance = Instantiate(this);
-            BoardInstance.transform.SetParent(parent);
-            BoardInstance.transform.localPosition = Vector3.zero;
-        }
-        BoardInstance.gameObject.SetActive(true);
-        return BoardInstance;
+        //if (Board == null) {
+        //    Board = Instantiate(this);
+        //    Board.transform.SetParent(parent);
+        //    Board.transform.localPosition = Vector3.zero;
+        //}
+        //Board.gameObject.SetActive(true);
+        //return Board;
+        return (SkillBoardMng)base.Init(parent, Board);
     }
 
     /// <summary>
@@ -53,10 +55,28 @@ public class SkillBoardMng : PowerBoardMng
     /// <param name="unit"></param>
     public void changeUnit(UnitStatusTran unit) {
 
-        Scroll.makeList(unit.Skills);
+        SkillMast[] skills = null;
 
-        Recive.initSetupWithFrameEnd(true);
+        if(Mode == MODE.USE){
+            if (SaveMng.Quest.IsBattle){
+                skills = unit.Skills.Where(it => it.UseTiming == PowerMast.USE_TIMING.DUAL || it.UseTiming == PowerMast.USE_TIMING.BATTLE).ToArray();
+            }else{
+                skills = unit.Skills.Where(it=>it.UseTiming == PowerMast.USE_TIMING.DUAL || it.UseTiming == PowerMast.USE_TIMING.FIELD).ToArray();
+            }
+        }else{
+            skills = unit.Skills;
+        }
+        
+        Scroll.makeList(skills);
 
+        Scroll.Rcv.initSetupWithFrameEnd(true);
+
+    }
+
+    public void changeSelect(MultiUseListMng list) {
+
+        var mast = SkillMast.List.Where(it => it.Id == list.Id).FirstOrDefault();
+        showDetail(mast);
     }
 
     public void selectSkill(MultiUseListMng skill) {

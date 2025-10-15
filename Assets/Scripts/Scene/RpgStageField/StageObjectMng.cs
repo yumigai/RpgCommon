@@ -6,11 +6,6 @@ using UnityEngine;
 
 public class StageObjectMng : BreakObstractMng
 {
-
-    private const int DROP_ITEM_PERCENT = 5;
-
-    private const int TRAP_DAMAGE = 5;
-
     public enum TYPE
     {
         OBSTACLES,

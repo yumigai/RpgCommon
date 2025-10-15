@@ -13,11 +13,11 @@ public class StoryListMng : MultiUseScrollMng {
             if (StoryListMast.List[i].Kind == kind)
             {
                 int id = StoryListMast.List[i].Id;
-                if (SaveMng.Status.Archives.IndexOf(id) >= 0)
+                if (SaveMng.Collection.Archives.IndexOf(id) >= 0)
                 {
                     MultiUseListMng listitem = makeListItemMasterId(i, StoryListMast.List[i], button_txt);
 
-                    if (SaveMng.Status.Readed.IndexOf(id) >= 0)
+                    if (SaveMng.Collection.Readed.IndexOf(id) >= 0)
                     {
                         // Newアイコン
                         listitem.TagLabel.gameObject.SetActive(false);
@@ -40,13 +40,13 @@ public class StoryListMng : MultiUseScrollMng {
 
 	override public void pushList( MultiUseListMng mng ){
 
-        if (SaveMng.Status.Archives.IndexOf( mng.Id) < 0)
+        if (SaveMng.Collection.Archives.IndexOf( mng.Id) < 0)
         {
             return;
         }
 
         CommonProcess.playClickSe ();
-        SaveMng.Status.Readed.Add(mng.Id);
+        SaveMng.Collection.Readed.Add(mng.Id);
         BaseStorySceneMng.StoryOrder( StoryListMast.List[mng.Index].Tag, SceneManagerWrap.NowScene );
 	}
 

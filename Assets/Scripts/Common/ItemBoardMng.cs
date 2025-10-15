@@ -41,14 +41,11 @@ public class ItemBoardMng : PowerBoardMng
     [SerializeField]
     public Text GuidInfo;
 
-    [SerializeField]
-    protected GamePadListRecivMng Recive;
+    //[SerializeField]
+    //protected Text ItemDetailName;
 
-    [SerializeField]
-    protected Text ItemDetailName;
-
-    [SerializeField]
-    protected Text ItemDetailInfo;
+    //[SerializeField]
+    //protected Text ItemDetailInfo;
 
     [SerializeField]
     protected MultiUseScrollMng ItemDetailSpecs;
@@ -95,6 +92,8 @@ public class ItemBoardMng : PowerBoardMng
 
     public static int ShopId = 0;
 
+    public static ItemBoardMng Board;
+
     //public bool ActiveBase{ get{ return this.gameObject.activeSelf;} set{ this.gameObject.SetActive(value); } }
 
     protected new void Awake() {
@@ -124,6 +123,10 @@ public class ItemBoardMng : PowerBoardMng
         CategoryName.text = ItemMast.GetCategoryName(ItemCategory);
         showDetailClear();
         updateInfo();
+    }
+
+    public ItemBoardMng init(Transform parent) {
+        return (ItemBoardMng)base.Init(parent, Board);
     }
 
     public void setShowItemList() {
@@ -181,7 +184,7 @@ public class ItemBoardMng : PowerBoardMng
             }
         }
 
-        Recive.initSetupWithFrameEnd(true);
+        Scroll.Rcv.initSetupWithFrameEnd(true);
     }
 
     /// <summary>
@@ -198,7 +201,6 @@ public class ItemBoardMng : PowerBoardMng
         var shop_items = GetShopItemList().Where(
             it => ItemCategory == ItemMast.CATEGORY.ANY
             || ItemCategory == it.ItmMst.Category).ToList();
-
 
         for (int i = 0; i < shop_items.Count; i++) {
 
@@ -218,7 +220,7 @@ public class ItemBoardMng : PowerBoardMng
             }
         }
 
-        Recive.initSetupWithFrameEnd(true);
+        Scroll.Rcv.initSetupWithFrameEnd(true);
 
     }
 
@@ -498,8 +500,9 @@ public class ItemBoardMng : PowerBoardMng
 
         if (mst != null) {
 
-            ItemDetailName.text = mst.Name;
-            ItemDetailInfo.text = mst.Detail;
+            showDetail(mst);
+            //ItemDetailName.text = mst.Name;
+            //ItemDetailInfo.text = mst.Detail;
 
             EquipBoard.SetActive(mst.isEquip);
 
@@ -526,8 +529,9 @@ public class ItemBoardMng : PowerBoardMng
 
     private void showDetailClear() {
         ItemDetailSpecs.clear();
-        ItemDetailName.text = "";
-        ItemDetailInfo.text = "";
+        //ItemDetailName.text = "";
+        //ItemDetailInfo.text = "";
+        showDetail(null);
         EquipBoard.SetActive(false);
     }
 

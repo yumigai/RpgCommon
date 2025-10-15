@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UnitDetailMng : MonoBehaviour
-{
+public class UnitDetailMng : MonoBehaviour {
     [SerializeField]
     CharaImgGaugeMng Chara;
 
@@ -78,17 +77,24 @@ public class UnitDetailMng : MonoBehaviour
     private MultiUseListMng Accessory2;
 
     [SerializeField]
-    private GamePadListRecivMng Reciv;
+    private GamePadListRecivMng EquipReciv;
 
     [SerializeField]
-    private ItemBoardMng ItemBoardPrefab;
+    private GameObject EquipPanel;
+
+    [SerializeField]
+    private ItemBoardMng ItemBoardPrefab; //detail haika ni okuto kanri ga mendou ni naru node prefab ka.
+
+    [SerializeField]
+    private SkillBoardMng SkillBoardPrefab;
 
     private ItemBoardMng _InstanceItemBoard;
 
-    public int UnitTranId { get { return Chara.UnitTranId; } }
+    public UnitStatusTran UnitData;
 
 
     public void setParams( UnitStatusTran unit, bool recive_update = false ) {
+        UnitData = unit;
         Chara.UnitTranId = unit.Id;
         Chara.Name.text = unit.Name;
         Chara.setImage(unit.Img);
@@ -117,9 +123,14 @@ public class UnitDetailMng : MonoBehaviour
         setItem(Accessory1, unit.EquipAccessory1);
         setItem(Accessory2, unit.EquipAccessory2);
 
+        if (EquipPanel != null)
+        {
+            EquipPanel.SetActive(false);
+        }
+        
         ItemBoardMng.EquipUnit = unit;
 
-        Reciv?.initSetupWithFrameEnd();
+        //Reciv?.initSetupWithFrameEnd();
     }
 
     private void setParam( Text txt, int num) {
@@ -133,6 +144,7 @@ public class UnitDetailMng : MonoBehaviour
     }
 
     public void setClear() {
+        UnitData = null;
         Chara.UnitTranId = 0;
         Chara.Name.text = "";
         Chara.setImage("");
@@ -163,7 +175,7 @@ public class UnitDetailMng : MonoBehaviour
 
         ItemBoardMng.EquipUnit = null;
 
-        Reciv?.initSetupWithFrameEnd();
+        //Reciv?.initSetupWithFrameEnd();
     }
 
     private void setGauge( GaugeBarMng gauge, int max, int val ) {
@@ -182,6 +194,29 @@ public class UnitDetailMng : MonoBehaviour
 
     public void closeWindow() {
         this.gameObject.SetActive(false);
+    }
+
+    public void changeEquip(){
+        EquipPanel.SetActive(true);
+        EquipReciv?.initSetupWithFrameEnd();
+    }
+
+    public void pushChangeEquip() {
+        SwitchEquipBoard();
+    }
+
+    public void pushSkill() {
+
+        //if (_InstanceSkillBoard == null) {
+        //    _InstanceSkillBoard = SkillBoardPrefab.init(this.transform);
+        //}
+        //_InstanceSkillBoard.gameObject.SetActive(true);
+        ////_InstanceSkillBoard.setShowItemList();
+        //_InstanceSkillBoard.changeUnit(UnitData);
+        SkillBoardPrefab.init(this.transform);
+
+        SkillBoardMng.Board.changeUnit(UnitData);
+
     }
 
     public void pushEquipWepon() {
@@ -249,5 +284,26 @@ public class UnitDetailMng : MonoBehaviour
         }
 
         return is_open;
+    }
+
+    public bool SwitchEquipBoard(){
+        return ShowEquipBoard(!EquipPanel.activeSelf);
+    }
+    public bool ShowEquipBoard(bool isShow) {
+        if(EquipPanel != null) {
+            bool before = EquipPanel.activeSelf;
+            EquipPanel.SetActive(isShow);
+            return before;
+        }
+        return false;
+    }
+
+    public bool closePanels() {
+        bool is_opened = false;
+
+        is_opened = ShowEquipBoard(false);
+        is_opened = is_opened ? true : CloseItemBoard();
+
+        return is_opened;
     }
 }

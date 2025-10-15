@@ -32,8 +32,8 @@ public class PlayerStatusTran : CmnSaveProc.SaveClass
     public List<int> Tutorial = new List<int>();
     public List<int> DiscoveryStage = new List<int>();
     public List<int> ClearStage = new List<int>();
-    public List<int> Archives = new List<int>();
-    public List<int> Readed = new List<int>();
+    //public List<int> Archives = new List<int>();
+    //public List<int> Readed = new List<int>();
     //public Dictionary<string,int> Flags = new Dictionary<string, int>();
 
     //public List<UnitStatusTran> ActiveParty {
@@ -98,23 +98,23 @@ public class PlayerStatusTran : CmnSaveProc.SaveClass
         return STAGE_STATE.UNKNOWN;
     }
 
-    /// <summary>
-    /// アーカイブ取得
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    public bool addArchive(int id) {
-        return UtilToolLib.addId(id, ref Archives);
-    }
+    ///// <summary>
+    ///// アーカイブ取得
+    ///// </summary>
+    ///// <param name="id"></param>
+    ///// <returns></returns>
+    //public bool addArchive(int id) {
+    //    return UtilToolLib.addId(id, ref Archives);
+    //}
 
-    /// <summary>
-    /// アーカイブ閲覧済み
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    public bool addReaded(int id) {
-        return UtilToolLib.addId(id, ref Readed);
-    }
+    ///// <summary>
+    ///// アーカイブ閲覧済み
+    ///// </summary>
+    ///// <param name="id"></param>
+    ///// <returns></returns>
+    //public bool addReaded(int id) {
+    //    return UtilToolLib.addId(id, ref Readed);
+    //}
 
 
 

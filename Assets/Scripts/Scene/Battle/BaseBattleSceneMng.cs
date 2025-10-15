@@ -956,9 +956,9 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         BattleEndProcess();
         if(Quest.Stage.Kind == StageMast.KIND.BOSS){
             if (Quest.Stage.Feature.Contains(StageMast.FEATURE.LAST_STAGE)){
-                BaseStorySceneMng.Order(this, Quest.Stage.AfterStory, CmnConst.SCENE.EndingScene);
+                BaseStorySceneMng.Order(this, Quest.Stage.GetAfterStory(), CmnConst.SCENE.EndingScene);
             }else{
-                BaseStorySceneMng.Order(this, Quest.Stage.AfterStory, CmnConst.SCENE.HomeScene);
+                BaseStorySceneMng.Order(this, Quest.Stage.GetAfterStory(), CmnConst.SCENE.HomeScene);
             }
         }
         else

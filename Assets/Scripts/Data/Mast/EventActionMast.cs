@@ -25,6 +25,7 @@ public class EventActionMast : MasterCmn
         PARTY_UNIT,
         DISCOVERY_STAGE,
         CLEAR_STAGE,
+        READED,
     }
 
     public int Id;
@@ -46,16 +47,8 @@ public class EventActionMast : MasterCmn
     }
 
     public static bool execEvents(string tag, bool is_and = true) {
-        bool result = is_and;
-        var judge = List.Where(it => it.Tag == tag && it.Act == ACTION.JUDGE);
-        foreach (var eve in judge) {
-            bool rtn = eve.judgeEvent();
-            if (is_and) {
-                result = result ? rtn : false;
-            } else {
-                result = result ? true : rtn;
-            }
-        }
+
+        bool result = judgeEvent(tag, is_and);
 
         if (result) {
 
@@ -70,6 +63,26 @@ public class EventActionMast : MasterCmn
                 }
             } else {
                 result = eventAction(tag);
+            }
+        }
+        return result;
+    }
+
+    public static bool judgeEvent( string tag, bool is_and = true) {
+
+        bool result = is_and;
+
+        var judge = List.Where(it => it.Tag == tag && it.Act == ACTION.JUDGE);
+
+        foreach (var eve in judge) {
+            bool rtn = eve.judgeEvent();
+            if (is_and) {
+                result = result ? rtn : false;
+                if (!result) {
+                    break;
+                }
+            } else {
+                result = result ? true : rtn;
             }
         }
         return result;
@@ -102,17 +115,20 @@ public class EventActionMast : MasterCmn
     public bool judgeEvent() {
         switch (Type) {
             case TYPE.FLAG:
-            return SaveMng.AdvData.getFlag(TargetTag) >= Value;
+                return SaveMng.AdvData.getFlag(TargetTag) >= Value;
             case TYPE.FRIEND_SHIP:
-            return UnitProcess.getFriendShip(TargetTag) >= Value;
+                return UnitProcess.getFriendShip(TargetTag) >= Value;
             case TYPE.ITEM:
-            return ItemProcess.getTranData(TargetTag).Num >= Value;
+                return ItemProcess.getTranData(TargetTag).Num >= Value;
             case TYPE.ALL_UNIT:
-            return UnitProcess.getAllyMember(TargetTag) != null;
+                return UnitProcess.getAllyMember(TargetTag) != null;
             case TYPE.PARTY_UNIT:
-            return UnitProcess.getPartyMember(TargetTag) != null;
+                return UnitProcess.getPartyMember(TargetTag) != null;
             case TYPE.DISCOVERY_STAGE:
-            return SaveMng.Status.DiscoveryStage.Exists(it => it.ToString() == TargetTag);
+                return SaveMng.Status.DiscoveryStage.Exists(it => it.ToString() == TargetTag);
+            case TYPE.READED:
+                var story = StoryListMast.List.FindByTag(TargetTag);
+                return SaveMng.Collection.Readed.Exists(it => it == story.Id);
         }
 
         return false;

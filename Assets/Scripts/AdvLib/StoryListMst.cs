@@ -11,8 +11,8 @@ public class StoryListMast : MulitiUseListMast {
     }
 
     public enum CATEGORY{
-        NORMAL,
-        EVENT,
+        NORMAL, // drop ari
+        EVENT, // tokusyu. drop shinai
         OPENING,
         ENDING,
     }
@@ -20,8 +20,6 @@ public class StoryListMast : MulitiUseListMast {
     public KIND Kind;
 
     public CATEGORY Category;
-
-    public string UnitTag;
 
     public static StoryListMast[] List;
 
@@ -36,9 +34,9 @@ public class StoryListMast : MulitiUseListMast {
             return false;
         }
         BaseStorySceneMng.StoryNameOrder = list.Tag;
-        SaveMng.Status.addArchive(list.Id);
-        SaveMng.Status.addReaded(list.Id);
-        SaveMng.Status.save();
+        SaveMng.Collection.addArchive(list.Id);
+        SaveMng.Collection.addReaded(list.Id);
+        SaveMng.Collection.save();
 
         return true;
     }

@@ -48,11 +48,11 @@ public class DebugMultiSceneMng : MonoBehaviour
     }
 
     public void addAllArchive() {
-        SaveMng.Status.Archives.Clear();
+        SaveMng.Collection.Archives.Clear();
         foreach (var story in StoryListMast.List) {
-            SaveMng.Status.addArchive(story.Id);
+            SaveMng.Collection.addArchive(story.Id);
         }
-        SaveMng.Status.save();
+        SaveMng.Collection.save();
     }
 
     public void clearAllStage() {

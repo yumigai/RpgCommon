@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class TileMng : MonoBehaviour {
 
+    public enum TAG {
+        FLOOR,
+        WALL,
+        ROOF,
+        GATE,
+        GIMMICK_FLOOR
+    }
+
+    [SerializeField]
+    public TAG Tag;
+
     [SerializeField]
     public GameObject[] Obstracts;
 
@@ -24,11 +35,35 @@ public class TileMng : MonoBehaviour {
         putObject();
     }
 
-        public void setMaterial( string path )
-    {
-        if (!string.IsNullOrEmpty(path) && Rend != null)
-        {
-            Rend.material = Resources.Load<Material>(GameConst.MAP_MATERIAL_PATH + path);
+    public void SetMaterial(Material material) {
+        if (Rend != null && material != null) {
+            Rend.material = material;
+        }
+    }
+
+    public void SetMaterial( string path ){
+        if (!string.IsNullOrEmpty(path)){
+            SetMaterial( Resources.Load<Material>(GameConst.MAP_MATERIAL_PATH + path));
+        }
+    }
+
+    public void SetMaterial( Material floor, Material wall, Material roof, Material gate, Material gimmick) {
+        switch (Tag) {
+            case TAG.FLOOR:
+                SetMaterial(floor);
+                break;
+            case TAG.WALL:
+                SetMaterial(wall);
+                break;
+            case TAG.ROOF:
+                SetMaterial(roof);
+                break;
+            case TAG.GATE:
+                SetMaterial(gate);
+                break;
+            case TAG.GIMMICK_FLOOR:
+                SetMaterial(gimmick);
+                break;
         }
     }
 

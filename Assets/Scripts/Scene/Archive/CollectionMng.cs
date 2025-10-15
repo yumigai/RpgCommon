@@ -8,7 +8,7 @@ public class CollectionMng : StoryListMng
 
     override public void pushList(MultiUseListMng mng)
     {
-        if (SaveMng.Status.Archives.IndexOf(mng.Id) < 0){
+        if (SaveMng.Collection.Archives.IndexOf(mng.Id) < 0){
             return;
         }
 
@@ -19,7 +19,7 @@ public class CollectionMng : StoryListMng
         txt = txt.Replace("@player@", SaveMng.Conf.PlayerName);
         ConfirmWindowCmn wnd = CommonProcess.showMessage(mng.Name.text, txt);
         mng.TagLabel.gameObject.SetActive(false);
-        SaveMng.Status.Readed.Add(mng.Id);
+        SaveMng.Collection.Readed.Add(mng.Id);
     }
 
 
