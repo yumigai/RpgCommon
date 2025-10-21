@@ -46,7 +46,7 @@ public class SkillBoardMng : PowerBoardMng
         //}
         //Board.gameObject.SetActive(true);
         //return Board;
-        return (SkillBoardMng)base.Init(parent, Board);
+        return Board = (SkillBoardMng)base.Init(parent);
     }
 
     /// <summary>

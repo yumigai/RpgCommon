@@ -6506,7 +6506,8 @@ MonoBehaviour:
   EquipPanel: {fileID: 5457363002824202938}
   ItemBoardPrefab: {fileID: 4747975852936464852, guid: a7cf8f9fd09c6ea4b9483cc1a5e09fd2,
     type: 3}
-  SkillBoardPrefab: {fileID: 0}
+  SkillBoardPrefab: {fileID: 860148047651575881, guid: d2ddd1bf4858bc242b5792b45aeac3b3,
+    type: 3}
   UnitData:
     Id: 0
     MasterId: 0

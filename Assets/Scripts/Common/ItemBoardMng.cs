@@ -126,7 +126,7 @@ public class ItemBoardMng : PowerBoardMng
     }
 
     public ItemBoardMng init(Transform parent) {
-        return (ItemBoardMng)base.Init(parent, Board);
+        return Board = (ItemBoardMng)base.Init(parent);
     }
 
     public void setShowItemList() {

@@ -47,15 +47,16 @@ public class PowerBoardMng : MonoBehaviour
     }
 
     protected void OnEnable() {
-        TargetGroup.GroupBase.SetActive(false);
+        if (TargetGroup.GroupBase != null) {
+            TargetGroup.GroupBase.SetActive(false);
+        }
     }
 
-    public PowerBoardMng Init(Transform parent, PowerBoardMng bd) {
-        if (bd == null) {
-            bd = Instantiate(this);
-            bd.transform.SetParent(parent);
-            bd.transform.localPosition = Vector3.zero;
-        }
+    public PowerBoardMng Init(Transform parent) {
+
+        var bd = Instantiate(this);
+        bd.transform.SetParent(parent);
+        bd.transform.localPosition = Vector3.zero;
         bd.gameObject.SetActive(true);
         return bd;
     }
