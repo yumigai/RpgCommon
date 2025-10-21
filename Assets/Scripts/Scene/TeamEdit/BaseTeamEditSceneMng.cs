@@ -38,7 +38,7 @@ public class BaseTeamEditSceneMng : Base2DSceneMng
         if (ChangeUnitList != null) {
             //ChangeUnitList.PushUnitCallback = pushSelectUnit;
             //ChangeUnitList.PushCanselCallback = pushClose;
-            ChangeUnitList.PushUnitCallback = ChangeUnitList.pushChangeExec;
+            ChangeUnitList.PushUnitCallback = PartySelect.pushChangeExec;
             ChangeUnitList.gameObject.SetActive(false);
         }
         init();
@@ -58,17 +58,6 @@ public class BaseTeamEditSceneMng : Base2DSceneMng
         //        new string[] { "member change", "return", "select", "party switching", "" },
         //        new string[] { "メンバー入替", "戻る", "選択", "パーティ切替", "" }
         //);
-    }
-
-    /// <summary>
-    /// メンバー解除
-    /// </summary>
-    /// <param name="index"></param>
-    public void removeMember(int index) {
-        //TODO nanaru kaijo fuka
-        SaveMng.Status.ActiveMember[index] = -1;
-        SaveMng.Status.save();
-        refleshParty();
     }
 
     public void pushClose() {

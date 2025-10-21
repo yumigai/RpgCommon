@@ -22,7 +22,7 @@ public class UnitListMng : MonoBehaviour
     public System.Action CloseCallback;
     //public System.Action PushCanselCallback;
 
-    private int ChangeIndex = -1;
+    //private int ChangeIndex = -1;
 
     private void Start() {
         //ListItems.CreateGroup(SaveMng.Units);
@@ -64,35 +64,35 @@ public class UnitListMng : MonoBehaviour
     //    PushCanselCallback();
     //}
 
-    /// <summary>
-    /// メンバーチェンジ開始
-    /// </summary>
-    /// <param name="index"></param>
-    public void pushMemberChange(int index)
-    {
-        CommonProcess.playClickSe();
-        ChangeIndex = index;
-    }
+    ///// <summary>
+    ///// メンバーチェンジ開始
+    ///// </summary>
+    ///// <param name="index"></param>
+    //public void pushMemberChange(int index)
+    //{
+    //    CommonProcess.playClickSe();
+    //    ChangeIndex = index;
+    //}
 
     /// <summary>
     /// メンバーチェンジ実行
     /// </summary>
     /// <param name="mng"></param>
-    public void pushChangeExec(CharaImgGaugeMng unit)
-    {
-        var before_index = System.Array.IndexOf(SaveMng.Status.ActiveMember, unit.UnitTranId);
-        if (before_index >= 0)
-        {
-            SaveMng.Status.ActiveMember[before_index] = SaveMng.Status.ActiveMember[ChangeIndex];
-        }
+    //public void pushChangeExec(CharaImgGaugeMng unit)
+    //{
+    //    var before_index = System.Array.IndexOf(SaveMng.Status.ActiveMember, unit.UnitTranId);
+    //    if (before_index >= 0)
+    //    {
+    //        SaveMng.Status.ActiveMember[before_index] = SaveMng.Status.ActiveMember[ChangeIndex];
+    //    }
 
-        SaveMng.Status.ActiveMember[ChangeIndex] = unit.UnitTranId;
-        SaveMng.Status.save();
+    //    SaveMng.Status.ActiveMember[ChangeIndex] = unit.UnitTranId;
+    //    SaveMng.Status.save();
 
-        if(CloseCallback == null){
-            StartCoroutine(initListProcess());
-        }else{
-            CloseCallback();
-        }
-    }
+    //    if(CloseCallback == null){
+    //        StartCoroutine(initListProcess());
+    //    }else{
+    //        CloseCallback();
+    //    }
+    //}
 }

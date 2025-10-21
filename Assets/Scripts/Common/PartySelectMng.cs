@@ -26,7 +26,7 @@ public class PartySelectMng : MonoBehaviour
     [System.NonSerialized]
     public System.Action CallbackCancel;
 
-    //private int ChangeIndex = -1;
+    private int ChangeIndex = -1;
 
     private void Start() {
         if (ChangeUnitList != null) {
@@ -107,7 +107,8 @@ public class PartySelectMng : MonoBehaviour
         //ChangeIndex = System.Array.IndexOf(PartyUnits,unit);
 
         if (ChangeUnitList != null) {
-            ChangeUnitList.pushMemberChange( unit.transform.GetSiblingIndex() );
+            CommonProcess.playClickSe();
+            ChangeIndex = unit.transform.GetSiblingIndex();
             ChangeUnitList.gameObject.SetActive(true);
         }
 
@@ -125,17 +126,50 @@ public class PartySelectMng : MonoBehaviour
     /// <param name="mng"></param>
     public void pushChangeExec(CharaImgGaugeMng unit) {
 
-        //var before_index = System.Array.IndexOf(SaveMng.Status.ActiveMember, unit.UnitTranId);
-        //if (before_index >= 0) {
-        //    SaveMng.Status.ActiveMember[before_index] = SaveMng.Status.ActiveMember[ChangeIndex];
-        //}
+        var before_index = System.Array.IndexOf(SaveMng.Status.ActiveMember, unit.UnitTranId);
+        if (before_index >= 0) {
+            SaveMng.Status.ActiveMember[before_index] = SaveMng.Status.ActiveMember[ChangeIndex];
+        }else{
+            if (checkHero(ChangeIndex)) {
+                return;
+            }
+        }
 
-        //SaveMng.Status.ActiveMember[ChangeIndex] = unit.UnitTranId;
-        //SaveMng.Status.save();
+        SaveMng.Status.ActiveMember[ChangeIndex] = unit.UnitTranId;
+        SaveMng.Status.save();
 
         ChangeUnitList?.gameObject?.SetActive(false);
 
         setupUnits();
+    }
+
+    /// <summary>
+    /// メンバー解除
+    /// </summary>
+    /// <param name="index"></param>
+    public void removeMember(int index) {
+        if (checkHero(ChangeIndex)) {
+            return;
+        }
+        SaveMng.Status.ActiveMember[index] = -1;
+        SaveMng.Status.save();
+        setupUnits();
+    }
+
+    /// <summary>
+    ///  主人公解除不可チェック
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
+    private bool checkHero(int index) {
+        var change_to = SaveMng.Status.getActiveMember(index);
+        if (change_to != null && change_to.getMast().CheckFeature(UnitMast.FEATURE.HERO)) {
+            //HEROを外そうとした場合
+            var message = LanguageStaticTextMng.getLangText("{0}はメンバーから外すことはできません", "You cannot remove {0} from the group");
+            CommonProcess.showMessage(string.Format(message, change_to.Name));
+            return true;
+        }
+        return false;
     }
 
 }

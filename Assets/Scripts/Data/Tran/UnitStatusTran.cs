@@ -10,6 +10,8 @@ public class UnitStatusTran
 
     public const int MAX_ACCESSORY = 2;
 
+    public const int MAX_CRASH = 10;
+
     public enum EQUIP
     {
         WEAPON,
@@ -71,7 +73,10 @@ public class UnitStatusTran
 	public List<BuffTran> Buff = new List<BuffTran>();
 
     [System.NonSerialized]
-    public int CrashPower = 10;
+    public int CrashPower = MAX_CRASH;
+
+    [System.NonSerialized]
+    public int SpecialCount = 0;
 
     //現在の戦闘行動
     [System.NonSerialized]
@@ -102,6 +107,9 @@ public class UnitStatusTran
     public bool IsAlive { get { return Hp > 0; } }
     public bool IsGuard { get { return ActionPlan == AiProc.ACTION.GUARD; } }
 
+    public float HpPercent { get { return (float)Hp / MaxHp * 100; } }
+    public float MpPercent { get { return (float)Mp / MaxMp * 100; } }
+
     public void setLevel() {
         setLevel(Lv);
     }
@@ -125,6 +133,8 @@ public class UnitStatusTran
 
     public void endBattle() {
         Buff.RemoveAll(b => b.FieldType == BuffTran.FIELD_TYPE.BATTLE);
+        CrashPower = MAX_CRASH;
+        SpecialCount = 0;
     }
 
     public bool battleTurn() {
@@ -257,6 +267,42 @@ public class UnitStatusTran
         }
 
         return null;
+    }
+
+    /// <summary>
+    /// todo naosu
+    /// </summary>
+    /// <returns></returns>
+    public SkillMast[] getEnemyBattleSkill() {
+        EnemyMast mast = getEnemyMast();
+        
+        if (mast == null) {
+            return new SkillMast[] { };
+        }
+        if(HpPercent <= mast.MajiMode && mast.SpecialSkills.Count() > 0) {
+            //HPが本気モード以下、かつ特殊スキルが設定されていれば
+            if (mast.SpecialCounts.Count() == 0) {
+                //カウントが設定されていない場合、全てのスキルを使用する
+                return Skills;
+            } else {
+                if(mast.MaxSpecialCount > 0) {
+                    int count = SpecialCount / mast.MaxSpecialCount;
+                    var index = Array.IndexOf(mast.SpecialCounts, count);
+                    if( index < mast.SpecialSkills.Count()) {
+                        //カウントが設定済み、かつカウントに該当するスキルがあればそれ（特殊）を使用
+                        return Skills.Where(it => it.Tag == mast.SpecialSkills[index]).ToArray();
+                    } else {
+                        //カウントが設定済み、かつカウントに該当するスキルが無ければ通常スキルを使用
+                        return Skills.Where(it => it.Type == SkillMast.TYPE.NORMAL).ToArray();
+                    }
+                } else {
+                    //特殊スキル設定済み、かつ、カウントが０として設定されていれば、それのみを使用する
+                    return Skills.Where(it => it.Type == SkillMast.TYPE.SPECIAL).ToArray();
+                }
+            } 
+        } else {
+            return Skills.Where(it => it.Type == SkillMast.TYPE.NORMAL).ToArray();
+        }
     }
 
     //public string getIconPath() {

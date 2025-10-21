@@ -89,6 +89,15 @@ public class UnitMast : MasterCmn {
         List = load<UnitMast>();
     }
 
+	/// <summary>
+    ///  特徴チェック
+    /// </summary>
+    /// <param name="f"></param>
+    /// <returns></returns>
+	public bool CheckFeature(FEATURE f) {
+		return Feature.Any(it => it == f);
+    }
+
     public static StatusMast makeStatus( int lv, JOB job, GameConst.RARITY[] potentials ){
 
 		int param_index = lv > LevelMast.MAX_LV ? LevelMast.MAX_LV - 1 : lv-1;

@@ -17,7 +17,14 @@ public class EnemyMast : UnitMast
     public float ExpBonus;
     public float MoneyBonus;
 
+    public float MajiMode = 0f;
+    public string HenshinImg;
+    public string[] SpecialSkills = new string[] { };
+    public int[] SpecialCounts = new int[] { };
+
     new public static IReadOnlyList<EnemyMast> List;
+
+    public int MaxSpecialCount { get { return SpecialCounts.Max(); } }
 
     new public static void load() {
         List = load<EnemyMast>();
@@ -68,7 +75,12 @@ public class EnemyMast : UnitMast
         //敵のユニットIDはデフォルトでランダム・念のためプレイヤーと被らないように+10000
         tran.Id = UnityEngine.Random.Range(10000, int.MaxValue);
 
-        tran.addSkill();
+        if( ene.SpecialSkills != null) {
+            for( int i = 0; i < ene.SpecialSkills.Length; i++) {
+                tran.addSkill(ene.SpecialSkills[i]);
+            }
+        }
+
         //tran.Status.Lif = (int)((float)tran.Status.Lif  * ene.HpBonus);
         //      tran.Status.Hp = tran.Status.MaxHp;
         tran.Exp = ene.getExp(lv);

@@ -141,7 +141,9 @@ public class AiProc
 				break;
 			}
 		} else {
-			use_skill = fullPowerSkill(USE_SKILL_DEFAULT);
+			// 敵、または他勢力ユニット
+			//use_skill = fullPowerSkillRandom(USE_SKILL_DEFAULT);
+			use_skill = EnemySkill();
 		}
 
         if (!use_skill || ActionTargets == null) {
@@ -333,19 +335,46 @@ public class AiProc
 	}
 
 	/// <summary>
-	/// 温存なし攻撃（主に敵）
+	/// 温存なし攻撃 (対象範囲と対象残りユニットは考慮/主にプレイヤー用）
 	/// </summary>
 	/// <param name="use_per">使用確率</param>
 	/// <param name="is_random">対象ランダムか</param>
 	/// <returns></returns>
-	private bool fullPowerSkill(float use_per = 100f, bool is_random = true) {
-
+	private bool fullPowerSkillRange(float use_per = 100f, bool is_random = true) {
         SkillMast[] skills = getRangeSkill(Targets.Count, PowerMast.SPEC.ATTACK);
+		return fullPowerSkill(skills, use_per, is_random);
+    }
+
+	/// <summary>
+	/// 温存なし攻撃 (完全ランダム）
+	/// </summary>
+	/// <param name="use_per">使用確率</param>
+	/// <param name="is_random">対象ランダムか</param>
+	/// <returns></returns>
+	private bool fullPowerSkillRandom(float use_per = 100f, bool is_random = true) {
+		return fullPowerSkill(_Unit.Skills, use_per, is_random);
+	}
+
+	private bool EnemySkill() {
+		var skills = _Unit.getEnemyBattleSkill();
+		//Special Skillが入っている場合、100%
+		var use_per = skills.Any(it => it.Type == SkillMast.TYPE.SPECIAL) ? USE_FULL_POWER : USE_SKILL_DEFAULT;
+		return fullPowerSkill(skills, use_per);
+    }
+
+	/// <summary>
+	/// 温存なしスキル
+	/// </summary>
+	/// <param name="use_per">使用確率</param>
+	/// <param name="is_random">対象ランダムか</param>
+	/// <returns></returns>
+	private bool fullPowerSkill(SkillMast[] skills, float use_per = 100f, bool is_random = true) {
+
 		List<UnitStatusTran> list = Targets.FindAll(it => it.Hp > 0);
 
 		float judge = Random.Range(0f, 100f);
 
-		if (skills.Length > 0 && list.Count > 0  && judge <= use_per) {
+		if (skills.Length > 0 && list.Count > 0 && judge <= use_per) {
 
 			int index = 0;
 			if (is_random) {
@@ -354,17 +383,18 @@ public class AiProc
 				System.Array.Sort(skills, (ite1, ite2) => (int)ite2.AvrPow - (int)ite1.AvrPow);
 			}
 			UseSkill = skills[index];
-            JudgeAction = ACTION.SKILL;
+			JudgeAction = ACTION.SKILL;
 			if (UseSkill.Target == PowerMast.TARGET.ANYTHING) {
 				ActionTargets = list;
 			} else {
 				int tage = Random.Range(0, list.Count);
 				ActionTargets = new List<UnitStatusTran>() { list[tage] };
 			}
-            return true;
-        }
-        return false;
-    }
+			return true;
+		}
+		return false;
+	}
+
 
 	private SkillMast[] getRangeSkill( int count, SkillMast.SPEC kind ){
 
