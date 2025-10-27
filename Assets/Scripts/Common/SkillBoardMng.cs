@@ -18,9 +18,7 @@ public class SkillBoardMng : PowerBoardMng
     {
         VIEW,
         USE,
-        //BATTLE,
         ALL
-
     }
 
     public MODE Mode = MODE.VIEW;
@@ -39,14 +37,19 @@ public class SkillBoardMng : PowerBoardMng
     }
 
     public SkillBoardMng init(Transform parent) {
-        //if (Board == null) {
-        //    Board = Instantiate(this);
-        //    Board.transform.SetParent(parent);
-        //    Board.transform.localPosition = Vector3.zero;
-        //}
-        //Board.gameObject.SetActive(true);
-        //return Board;
-        return Board = (SkillBoardMng)base.Init(parent);
+        if (SaveMng.Quest.IsQuest) {
+            Mode = MODE.USE;
+        } else {
+            Mode = MODE.VIEW;
+            TargetGroup.GroupBase.SetActive(false);
+            UserGroup.GroupBase.SetActive(false);
+        }
+        if (Board == null) {
+            Board = (SkillBoardMng)base.Init(parent);
+        } else {
+            Board.gameObject.SetActive(true);
+        }
+        return Board;
     }
 
     /// <summary>

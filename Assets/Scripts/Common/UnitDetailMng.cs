@@ -88,7 +88,7 @@ public class UnitDetailMng : MonoBehaviour {
     [SerializeField]
     private SkillBoardMng SkillBoardPrefab;
 
-    private ItemBoardMng _InstanceItemBoard;
+    //private ItemBoardMng _InstanceItemBoard;
 
     public UnitStatusTran UnitData;
 
@@ -242,14 +242,13 @@ public class UnitDetailMng : MonoBehaviour {
     public void pushEquip(ItemMast.CATEGORY category) {
         ItemBoardMng.OrderCategory = category;
         ItemBoardMng.OrderMode = ItemBoardMng.MODE.EQUIP;
-        if (_InstanceItemBoard == null) {
-            _InstanceItemBoard = Instantiate(ItemBoardPrefab.gameObject).GetComponent<ItemBoardMng>();
-            _InstanceItemBoard.transform.SetParent(this.transform, false);
-            _InstanceItemBoard.CallbackClose = backFromEquip;
+        if (ItemBoardMng.Board == null) {
+            ItemBoardPrefab.init(this.transform);
+            ItemBoardMng.Board.CallbackClose = backFromEquip;
         } else {
-            _InstanceItemBoard.gameObject.SetActive(true);
+            ItemBoardMng.Board.gameObject.SetActive(true);
         }
-        _InstanceItemBoard.setShowItemList();
+        ItemBoardMng.Board.setShowItemList();
     }
 
     public void backFromEquip() {
@@ -278,9 +277,20 @@ public class UnitDetailMng : MonoBehaviour {
 
         bool is_open = false;
 
-        if (_InstanceItemBoard != null) {
-            is_open = _InstanceItemBoard.gameObject.activeSelf;
-            _InstanceItemBoard.gameObject.SetActive(false);
+        if (ItemBoardMng.Board != null) {
+            is_open = ItemBoardMng.Board.gameObject.activeSelf;
+            ItemBoardMng.Board.gameObject.SetActive(false);
+        }
+
+        return is_open;
+    }
+
+    public bool CloseSkillBoard() {
+        bool is_open = false;
+
+        if (SkillBoardMng.Board != null) {
+            is_open = SkillBoardMng.Board.gameObject.activeSelf;
+            SkillBoardMng.Board.gameObject.SetActive(false);
         }
 
         return is_open;
@@ -293,17 +303,24 @@ public class UnitDetailMng : MonoBehaviour {
         if(EquipPanel != null) {
             bool before = EquipPanel.activeSelf;
             EquipPanel.SetActive(isShow);
+
+            if (isShow) {
+                var test = EquipPanel.GetComponentInChildren<GamePadListRecivMng>();
+                test.setSelectedButton();
+            }
+
             return before;
         }
         return false;
     }
 
     public bool closePanels() {
-        bool is_opened = false;
+        bool is_closed = CloseItemBoard() || CloseSkillBoard();
 
-        is_opened = ShowEquipBoard(false);
-        is_opened = is_opened ? true : CloseItemBoard();
-
-        return is_opened;
+        if (!is_closed && this.gameObject.activeSelf) {
+            this.gameObject.SetActive(false);
+            return false;
+        }
+        return !is_closed;
     }
 }
