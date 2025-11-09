@@ -85,9 +85,10 @@ public class EventSenserMng : MonoBehaviour
                 dropItemArea();
                 break;
             case TYPE.GIMMICK_ENTER:
+                EventAnime.AnimeStart();
                 break;
             case TYPE.GIMMICK_SWITCH:
-
+                EventAnime.AnimeSwitch();
                 break;
         }
 
@@ -109,15 +110,17 @@ public class EventSenserMng : MonoBehaviour
     }
 
     protected virtual void outArea() {
-            switch (Type) {
-                case TYPE.GATE:
+        switch (Type) {
+            case TYPE.GATE:
                 gateAreaOut();
                 break;
-                case TYPE.KEY:
+            case TYPE.KEY:
                 break;
-                case TYPE.DROP_ITEM:
+            case TYPE.DROP_ITEM:
                 break;
-            }
+            case TYPE.GIMMICK_STAY:
+                break;
+        }
     }
 
     private void keyArea() {

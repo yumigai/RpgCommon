@@ -199,6 +199,7 @@ public class UnitDetailMng : MonoBehaviour {
     public void changeEquip(){
         EquipPanel.SetActive(true);
         EquipReciv?.initSetupWithFrameEnd();
+        EquipReciv.setActive();
     }
 
     public void pushChangeEquip() {
