@@ -76,9 +76,14 @@ public class SkillBoardMng : PowerBoardMng
 
     }
 
-    public void changeSelect(MultiUseListMng list) {
+    public void changeSelectInfo(MultiUseListMng list) {
+        var mast = SkillMast.List.FindById(list.Id);
+        Scroll.Recive.setGuidMessage(mast.Detail);
+    }
 
-        var mast = SkillMast.List.Where(it => it.Id == list.Id).FirstOrDefault();
+
+    public void changeSelectDetail(MultiUseListMng list) {
+        var mast = SkillMast.List.FindById(list.Id);
         showDetail(mast);
     }
 

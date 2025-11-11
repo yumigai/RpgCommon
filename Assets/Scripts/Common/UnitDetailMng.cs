@@ -199,7 +199,7 @@ public class UnitDetailMng : MonoBehaviour {
     public void changeEquip(){
         EquipPanel.SetActive(true);
         EquipReciv?.initSetupWithFrameEnd();
-        EquipReciv.setActive();
+        EquipReciv.active();
     }
 
     public void pushChangeEquip() {
@@ -306,8 +306,7 @@ public class UnitDetailMng : MonoBehaviour {
             EquipPanel.SetActive(isShow);
 
             if (isShow) {
-                var test = EquipPanel.GetComponentInChildren<GamePadListRecivMng>();
-                test.setSelectedButton();
+                EquipReciv?.setSelectedButton();
             }
 
             return before;
