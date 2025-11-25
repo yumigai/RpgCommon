@@ -241,7 +241,7 @@ public class FieldUIMng : MonoBehaviour
             ToClearNum.text = "0";
             ToClearMax.text = SaveMng.Quest.Stage.NeedKeyNum.ToString();
             break;
-            case StageMast.GAME_RULE.DESTROY_ALL:
+            case StageMast.GAME_RULE.DESTROY_ENEMY:
             ToClearMax.text = SaveMng.Quest.Stage.EnemyNum.ToString();
             break;
             default:

@@ -501,7 +501,7 @@ public class BaseStageFieldSceneMng : MonoBehaviour
     /// ゲームルール：全滅
     /// </summary>
     public void destroyEnemy() {
-        if (StageData.Rule == StageMast.GAME_RULE.DESTROY_ALL && Enemys.Count() == 0) {
+        if (StageData.Rule == StageMast.GAME_RULE.DESTROY_ENEMY && StageData.EnemyNum - Enemys.Count() >= StageData.NeedKeyNum) {
             gameClear();
         }
     }

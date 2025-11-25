@@ -11,7 +11,7 @@ public class StageMast : MulitiUseListMast
         GOAL,
         DESTROY_BOSS,
         GET_KEY_AND_GOAL,
-        DESTROY_ALL,
+        DESTROY_ENEMY,
         GET_TREASURE,
         LIVED,
         GURD,
@@ -20,11 +20,10 @@ public class StageMast : MulitiUseListMast
 
     public enum KIND
     {
-        SUB_MISSION,
         MAIN_MISSION,
         STORY,
-
-        BOSS
+        BOSS,
+        SUB_MISSION,
     }
 
     public enum FEATURE //特徴

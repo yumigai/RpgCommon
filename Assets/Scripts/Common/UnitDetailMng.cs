@@ -207,17 +207,10 @@ public class UnitDetailMng : MonoBehaviour {
     }
 
     public void pushSkill() {
-
-        //if (_InstanceSkillBoard == null) {
-        //    _InstanceSkillBoard = SkillBoardPrefab.init(this.transform);
-        //}
-        //_InstanceSkillBoard.gameObject.SetActive(true);
-        ////_InstanceSkillBoard.setShowItemList();
-        //_InstanceSkillBoard.changeUnit(UnitData);
-        SkillBoardPrefab.init(this.transform);
-
-        SkillBoardMng.Board.changeUnit(UnitData);
-
+        if (SkillBoardMng.Board == null || !SkillBoardMng.Board.ActiveBase) {
+            SkillBoardPrefab.init(this.transform);
+            SkillBoardMng.Board.changeUnit(UnitData);
+        }
     }
 
     public void pushEquipWepon() {
@@ -301,7 +294,7 @@ public class UnitDetailMng : MonoBehaviour {
         return ShowEquipBoard(!EquipPanel.activeSelf);
     }
     public bool ShowEquipBoard(bool isShow) {
-        if(EquipPanel != null) {
+        if(EquipPanel != null && ( ItemBoardMng.Board == null || !ItemBoardMng.Board.ActiveBase)) {
             bool before = EquipPanel.activeSelf;
             EquipPanel.SetActive(isShow);
 
