@@ -26,7 +26,9 @@ public class CommonUIMng : MonoBehaviour
     }
 
     public static void setVisibles( bool close ) {
-        CmmonUiSingleton.CloseButton.gameObject.SetActive(close);
+        if(CmmonUiSingleton.CloseButton != null){
+            CmmonUiSingleton.CloseButton.gameObject.SetActive(close);
+        }
     }
 
     /// <summary>

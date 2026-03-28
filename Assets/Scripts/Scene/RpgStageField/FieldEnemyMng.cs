@@ -143,7 +143,7 @@ public class FieldEnemyMng : CharacterMng
         checkHerosRange();
 
         //StateInfo no use it?fs heavy
-        if (Anime!=null && Anime.GetBool(TRIGERS.Moving.ToString())) {
+        if (Anime!=null && Anime.GetBool(TRIGERS.Run.ToString())) {
             move();
         } else {
             if (Navi != null && !Navi.isStopped) {
