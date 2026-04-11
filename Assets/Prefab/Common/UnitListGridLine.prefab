@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3785504979398363851}
   - component: {fileID: 2582465883921640794}
   - component: {fileID: 3436824468931073950}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Filter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 5111303432315124868}
   - component: {fileID: 5111303432315124986}
   - component: {fileID: 5111303432315124987}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: FaceFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 5111303432546425509}
   - component: {fileID: 5111303432546425499}
   - component: {fileID: 5111303432546425508}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 5111303432584158161}
   - component: {fileID: 5111303432584158162}
   - component: {fileID: 5111303432584158163}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Scrollbar Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 5111303432598751475}
   - component: {fileID: 5111303432598751473}
   - component: {fileID: 5111303432598751474}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 5111303432627425813}
   - component: {fileID: 5111303432627425814}
   - component: {fileID: 5111303432627425815}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 5111303432640002112}
   - component: {fileID: 5111303432640002113}
   - component: {fileID: 5111303432640002114}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 5111303432650447193}
   - component: {fileID: 5111303432650447194}
   - component: {fileID: 5111303432650447195}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -709,7 +709,7 @@ GameObject:
   - component: {fileID: 5111303432725570443}
   - component: {fileID: 5111303432725570441}
   - component: {fileID: 5111303432725570442}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -783,7 +783,7 @@ GameObject:
   - component: {fileID: 5111303432762988650}
   - component: {fileID: 5111303432762988648}
   - component: {fileID: 5111303432762988654}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: UnitListGridLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -797,7 +797,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5111303432762988651}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -862,7 +862,7 @@ GameObject:
   - component: {fileID: 5111303432847523168}
   - component: {fileID: 5111303432847523169}
   - component: {fileID: 5111303432847523170}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: MP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -956,8 +956,7 @@ GameObject:
   - component: {fileID: 5111303433073465919}
   - component: {fileID: 5111303433073465912}
   - component: {fileID: 5111303433073465913}
-  - component: {fileID: 5111303433073465918}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: UnitStatus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1011,6 +1010,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20981ffd2f6fd794eb2e5c26513a1c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Id: 0
+  Index: 0
+  CheckMark: {fileID: 0}
   Name: {fileID: 5111303432640002113}
   UnitType: 0
   ImgType: 0
@@ -1066,7 +1068,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_MethodName: pushSelectUnit
+        m_MethodName: selectDoUnit
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 5111303433073465912}
@@ -1084,35 +1086,10 @@ MonoBehaviour:
   IsHold: 0
   HoldGauge: {fileID: 0}
   FinishHoldTime: 0
+  IsNonActiveHide: 0
   ListIndex: 0
---- !u!114 &5111303433073465918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5111303433073465915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 9
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: changeUnitSelect
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 5111303433073465912}
-            m_ObjectArgumentAssemblyTypeName: CharaImgGaugeMng, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  raycaster: {fileID: 0}
+  eventSystem: {fileID: 0}
 --- !u!1 &5111303433113189360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,7 +1101,7 @@ GameObject:
   - component: {fileID: 5111303433113189367}
   - component: {fileID: 5111303433113189365}
   - component: {fileID: 5111303433113189366}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: CheckMark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1199,7 +1176,7 @@ GameObject:
   - component: {fileID: 5111303433153840260}
   - component: {fileID: 5111303433153840261}
   - component: {fileID: 5111303433153840262}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Num
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1293,7 +1270,7 @@ GameObject:
   - component: {fileID: 5111303433196616934}
   - component: {fileID: 5111303433196616935}
   - component: {fileID: 5111303433196616928}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Num
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1386,7 +1363,7 @@ GameObject:
   - component: {fileID: 5111303433616512035}
   - component: {fileID: 5111303433616512033}
   - component: {fileID: 5111303433616512034}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1458,7 +1435,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5111303433753195196}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1497,7 +1474,7 @@ GameObject:
   - component: {fileID: 5111303434078047884}
   - component: {fileID: 5111303434078047885}
   - component: {fileID: 5111303434078047886}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1589,7 +1566,7 @@ GameObject:
   - component: {fileID: 5111303434130920800}
   - component: {fileID: 5111303434130920806}
   - component: {fileID: 5111303434130920805}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: List
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1613,7 +1590,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 23, y: 0.000014107}
+  m_AnchoredPosition: {x: 23, y: 0.000012397766}
   m_SizeDelta: {x: 480.7337, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &5111303434130920804
@@ -1655,7 +1632,7 @@ MonoBehaviour:
   Type: 2
   Loop: 0
   PageController: {fileID: 0}
-  StartAndInit: 1
+  StartAndInit: 0
 --- !u!114 &5111303434130920800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1693,6 +1670,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UnitPrefab: {fileID: 5111303433073465912}
+  InputReciv: {fileID: 5111303434130920801}
+  GroupBase: {fileID: 5111303432762988651}
 --- !u!114 &5111303434130920805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1719,7 +1698,7 @@ GameObject:
   - component: {fileID: 5111303434184688080}
   - component: {fileID: 5111303434184688086}
   - component: {fileID: 5111303434184688087}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Filter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1794,7 +1773,7 @@ GameObject:
   - component: {fileID: 5111303434210598001}
   - component: {fileID: 5111303434210598002}
   - component: {fileID: 5111303434210598003}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HpGauge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1890,7 +1869,7 @@ GameObject:
   - component: {fileID: 5111303434210622933}
   - component: {fileID: 5111303434210622934}
   - component: {fileID: 5111303434210622935}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MpGauge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1985,7 +1964,7 @@ GameObject:
   - component: {fileID: 4772843215154491190}
   - component: {fileID: 2954598746821670323}
   - component: {fileID: 8836989561703006214}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -52,6 +52,10 @@ public class SkillBoardMng : PowerBoardMng
         return Board;
     }
 
+    public void setUnitSelectRecv() {
+        UserGroup.setInputReciv(true);
+    }
+
     /// <summary>
     /// スキルリスト更新
     /// </summary>

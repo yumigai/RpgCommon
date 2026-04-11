@@ -22,12 +22,12 @@ public class MenuMng : MonoBehaviour
     private CharaImgGroupMng UnitGroup;
 
     [SerializeField]
-    private SkillBoardMng skillPanelPrefab;
-    //private SkillBoardMng SkillPanel;
+    //private SkillBoardMng skillPanelPrefab;
+    private SkillBoardMng SkillPanel;
 
     [SerializeField]
-    private ItemBoardMng ItemPanelPrefab;
-    //private ItemBoardMng ItemPanel;
+    //private ItemBoardMng ItemPanelPrefab;
+    private ItemBoardMng ItemPanel;
 
     [SerializeField]
     private UnitDetailMng StatusPanel;
@@ -54,6 +54,7 @@ public class MenuMng : MonoBehaviour
         SelectedUnits.Clear();
         showPanel(MenuPanel);
         MenuRecive.active();
+        showUnitGroup(false);
     }
     private void showMap() {
         Destroy(CopyMap);
@@ -63,39 +64,40 @@ public class MenuMng : MonoBehaviour
     }
     protected void showPanel(GameObject panel) {
 
-        //if (SkillPanel != null) {
-        //    SkillPanel.gameObject.SetActive(false);
-        //}
-        //if(ItemPanel != null) {
-        //    ItemPanel.gameObject.SetActive(false);
-        //}
-        //if(StatusPanel != null) {
-        //    StatusPanel.gameObject.SetActive(false);
-        //}
+        if (SkillPanel != null) {
+            SkillPanel.gameObject.SetActive(false);
+        }
+        if (ItemPanel != null) {
+            ItemPanel.gameObject.SetActive(false);
+        }
+        if (StatusPanel != null) {
+            StatusPanel.gameObject.SetActive(false);
+        }
 
         if (panel == MenuPanel) {
-        } else if (panel == UnitGroup.gameObject) {
-            showUnitGroup();
         } else {
             panel.SetActive(true);
         }
     }
     public void pushSkill() {
         Mode = MODE.SKILL;
-        
-        skillPanelPrefab.init(this.transform);
-        //showPanel(SkillPanel.gameObject);
+
+        //UnitGroup.setInputReciv(true);
+
+        //skillPanelPrefab.init(this.transform);
+        showPanel(SkillPanel.gameObject);
+        SkillPanel.setUnitSelectRecv();
     }
     public void pushItem() {
         Mode = MODE.ITEM;
         ItemBoardMng.OrderMode = ItemBoardMng.MODE.USE;
         ItemBoardMng.OrderCategory = ItemMast.CATEGORY.CONSUMABLE;
-        //showPanel(ItemPanel.gameObject);
-        ItemPanelPrefab.init(this.transform);
+        showPanel(ItemPanel.gameObject);
+        //ItemPanelPrefab.init(this.transform);
     }
     public void pushStatus() {
         Mode = MODE.STATUS;
-        showUnitGroup();
+        showUnitGroup(true);
     }
     public void pushMap() {
         Mode = MODE.MAP;
@@ -108,17 +110,15 @@ public class MenuMng : MonoBehaviour
         string txt = LanguageStaticTextMng.getLangText("", "");
         CommonProcess.showConfirm(txt, _ => { Retire(); });
     }
-    private void showUnitGroup() {
+    private void showUnitGroup(bool isInput) {
         UnitGroup.GroupBase.SetActive(true);
-        UnitGroup.CreateGroup(true);
+        UnitGroup.CreateGroup(isInput);
     }
 
     public void selectDoUnit(CharaImgGaugeMng chara) {
 
         switch (Mode) {
             case MODE.SKILL:
-            //showPanel(SkillPanel.gameObject);
-            //SkillPanel.changeUnit(chara.getStatus());
             break;
             case MODE.STATUS:
             showPanel(StatusPanel.gameObject);

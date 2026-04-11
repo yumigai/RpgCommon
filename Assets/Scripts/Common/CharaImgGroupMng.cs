@@ -76,11 +76,19 @@ public class CharaImgGroupMng : MonoBehaviour
 
         Members.ForEach(it => it.setPlayerEnemyFrame());
 
+        setInputReciv(input);
+
+        //UnitPrefab.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// 入力受付（ユニット選択）
+    /// </summary>
+    /// <param name="input"></param>
+    public void setInputReciv(bool input) {
         if (input && InputReciv != null) {
             InputReciv.initSetupWithFrameEnd(true);
         }
-
-        //UnitPrefab.gameObject.SetActive(false);
     }
 
     /// <summary>
