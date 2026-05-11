@@ -155,9 +155,9 @@ public class MenuMng : MonoBehaviour
             //}
             break;
             case MODE.SKILL:
-            //if (SkillPanel.closeWindow()) {
+            if (SkillPanel.closeWindow()) {
                 ShowMenu();
-            //}
+            }
             break;
             case MODE.STATUS:
             if (switchPanel(new GameObject[] { StatusPanel.gameObject, UnitGroup.GroupBase })) {

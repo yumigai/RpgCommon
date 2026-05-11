@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class CharaImgGroupMng : MonoBehaviour
 {
@@ -79,6 +81,41 @@ public class CharaImgGroupMng : MonoBehaviour
         setInputReciv(input);
 
         //UnitPrefab.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// ボタン付きの場合の設定
+    /// </summary>
+    /// <param name="callback"></param>
+    public void SettingButtonInvoke( UnityAction callback ) {
+        SettingButtonCmn((btn, unit) => { btn?.SetButtonInvoke(callback); });
+    }
+
+    public void SettingButtonInvoke(UnityAction<int> callback) {
+        SettingButtonCmn((btn,unit) => { btn?.SetButtonInvoke(callback, unit.UnitTranId); }); 
+    }
+
+    /// <summary>
+    /// セレクトイベントの設定
+    /// </summary>
+    /// <param name="callback"></param>
+    public void SettingSelectInvoke(UnityAction callback) {
+        SettingButtonCmn((btn, unit) => { btn?.SetButtonSelectInvoke(callback); });
+    }
+
+    public void SettingSelectInvoke(UnityAction<int> callback) {
+        SettingButtonCmn((btn, unit) => { btn?.SetButtonSelectInvoke(callback, unit.UnitTranId); });
+    }
+
+    private void SettingButtonCmn(System.Action<GamePadButtonMng, CharaImgGaugeMng> action) {
+        foreach (var unit in Members) {
+            if (unit != null) {
+                var btn = unit.transform.GetComponent<GamePadButtonMng>();
+                if (btn != null) {
+                    action(btn, unit);
+                }
+            }
+        }
     }
 
     /// <summary>

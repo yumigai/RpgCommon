@@ -33,7 +33,13 @@ public class SkillBoardMng : PowerBoardMng
 
     new protected void OnEnable() {
         base.OnEnable();
+        unitSetting();
+    }
+
+    void unitSetting() {
         UserGroup.CreateGroup();
+        UserGroup.SettingButtonInvoke(selectOnUnit);
+        UserGroup.SettingSelectInvoke(updateSkillList);
     }
 
     public SkillBoardMng init(Transform parent) {
@@ -56,28 +62,39 @@ public class SkillBoardMng : PowerBoardMng
         UserGroup.setInputReciv(true);
     }
 
+    public void updateSkillList(int unitTranId) {
+        var unit = SaveMng.Units.Where(it => it.Id == unitTranId).FirstOrDefault();
+        updateSkillList(unit);
+    }
+
     /// <summary>
     /// スキルリスト更新
     /// </summary>
     /// <param name="unit"></param>
     public void changeUnit(UnitStatusTran unit) {
+        updateSkillList(unit);
+        Scroll.Recive.initSetupWithFrameEnd(true);
+    }
+
+    private void updateSkillList(UnitStatusTran unit) {
 
         SkillMast[] skills = null;
 
-        if(Mode == MODE.USE){
-            if (SaveMng.Quest.IsBattle){
+        if (Mode == MODE.USE) {
+            if (SaveMng.Quest.IsBattle) {
                 skills = unit.Skills.Where(it => it.UseTiming == PowerMast.USE_TIMING.DUAL || it.UseTiming == PowerMast.USE_TIMING.BATTLE).ToArray();
-            }else{
-                skills = unit.Skills.Where(it=>it.UseTiming == PowerMast.USE_TIMING.DUAL || it.UseTiming == PowerMast.USE_TIMING.FIELD).ToArray();
+            } else {
+                skills = unit.Skills.Where(it => it.UseTiming == PowerMast.USE_TIMING.DUAL || it.UseTiming == PowerMast.USE_TIMING.FIELD).ToArray();
             }
-        }else{
+        } else {
             skills = unit.Skills;
         }
-        
+
         Scroll.makeList(skills);
+    }
 
+    public void selectOnUnit() {
         Scroll.Recive.initSetupWithFrameEnd(true);
-
     }
 
     public void changeSelectInfo(MultiUseListMng list) {
@@ -109,6 +126,18 @@ public class SkillBoardMng : PowerBoardMng
     }
 
     public override bool closeWindow() {
-        return base.closeWindow();
+
+        if (ActiveBase) {
+            if (TargetGroup.closeWindow()) {
+                if (Scroll.Recive.IsActive) {
+                    UserGroup.InputReciv.initSetupWithFrameEnd();
+                } else {
+                    ActiveBase = false;
+                    return true;
+                }
+                return false;
+            }
+        }
+        return true;
     }
 }

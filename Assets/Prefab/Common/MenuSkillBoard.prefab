@@ -1123,8 +1123,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -54.9, y: -0.27000046}
-  m_SizeDelta: {x: 90.95007, y: 40.216377}
+  m_AnchoredPosition: {x: -43.35, y: -0.27000046}
+  m_SizeDelta: {x: 67.849976, y: 40.216377}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3552374170911239704
 CanvasRenderer:
@@ -1220,8 +1220,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 228.5, y: -0.0000039339066}
-  m_SizeDelta: {x: 436.74786, y: 0}
+  m_AnchoredPosition: {x: 197, y: -0.0000039339066}
+  m_SizeDelta: {x: 380, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &3552374171087062965
 CanvasRenderer:
@@ -1322,7 +1322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3552374171254634955
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1733,8 +1733,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -20.300003, y: -0.27000046}
-  m_SizeDelta: {x: 263.5233, y: 44.31131}
+  m_AnchoredPosition: {x: -14.64, y: -0.27000046}
+  m_SizeDelta: {x: 243.19803, y: 44.31131}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3552374172143017109
 CanvasRenderer:
@@ -1979,6 +1979,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5035659652282127246, guid: 398a083d36afe3443b85c36153f6fca4,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035659652282127246, guid: 398a083d36afe3443b85c36153f6fca4,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035659652282127246, guid: 398a083d36afe3443b85c36153f6fca4,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5035659652520633725, guid: 398a083d36afe3443b85c36153f6fca4,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -2093,6 +2108,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SelectUnit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035659654073029214, guid: 398a083d36afe3443b85c36153f6fca4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 398a083d36afe3443b85c36153f6fca4, type: 3}
@@ -2280,6 +2300,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: User
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035659654073029214, guid: 398a083d36afe3443b85c36153f6fca4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 398a083d36afe3443b85c36153f6fca4, type: 3}
