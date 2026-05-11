@@ -63,7 +63,7 @@ public class EventTrapMng : EventSenserMng
         //ensyutsu
         IsFinished = true;
         ShowObject.SetActive(true);
-        TimeInvokeMng.TimerAction(this.gameObject, () => { HideObject.SetActive(false); }, 3f);
+        TimeInvokeMng.TimerAction( () => { HideObject.SetActive(false); }, 3f, this.gameObject);
         StageFieldSceneMng.foeChaseMode();
     }
 }

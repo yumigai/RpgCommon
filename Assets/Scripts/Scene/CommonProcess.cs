@@ -91,6 +91,10 @@ public class CommonProcess : CmnBaseProcessMng
         base.Update();
     }
 
+    public static GameObject getCommonObject() {
+        return Singleton.gameObject;
+    }
+
     public static GameConst.ELEMENT getRandomElement() {
         GameConst.ELEMENT ele = (GameConst.ELEMENT)UnityEngine.Random.Range(1, (int)GameConst.ELEMENT.All);
         return ele;

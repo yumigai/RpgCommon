@@ -188,7 +188,7 @@ public class CharaPlateMng : MonoBehaviour {
     public void setDamageNum(int val, bool critical = false) {
         DamageNum.text = val.ToString();
         DamageNum.gameObject.SetActive(true);
-        TimeInvokeMng.TimerHide(DamageNum.gameObject, DAMEGE_SHOW_TIME); //秒後非表示
+        TimeInvokeMng.TimerHide(DAMEGE_SHOW_TIME, DamageNum.gameObject); //秒後非表示
     }
 
     public void action()
