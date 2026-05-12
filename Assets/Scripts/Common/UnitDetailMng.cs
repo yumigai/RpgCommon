@@ -82,8 +82,8 @@ public class UnitDetailMng : MonoBehaviour {
     [SerializeField]
     private GameObject EquipPanel;
 
-    [SerializeField]
-    private ItemBoardMng ItemBoardPrefab; //detail haika ni okuto kanri ga mendou ni naru node prefab ka.
+    //[SerializeField]
+    //private ItemBoardMng ItemBoardPrefab; //detail haika ni okuto kanri ga mendou ni naru node prefab ka.
 
     //[SerializeField]
     //private SkillBoardMng SkillBoardPrefab;
@@ -203,10 +203,13 @@ public class UnitDetailMng : MonoBehaviour {
     }
 
     public void pushChangeEquip() {
+        CloseSkillBoard();
         SwitchEquipBoard();
     }
 
     public void pushSkill() {
+        CloseItemBoard();
+        ShowEquipBoard(false);
         if (SkillBoardMng.Board.ActiveBase) {
             CloseSkillBoard();
         } else {
@@ -237,15 +240,9 @@ public class UnitDetailMng : MonoBehaviour {
     }
 
     public void pushEquip(ItemMast.CATEGORY category) {
-        ItemBoardMng.OrderCategory = category;
-        ItemBoardMng.OrderMode = ItemBoardMng.MODE.EQUIP;
-        if (ItemBoardMng.Board == null) {
-            ItemBoardPrefab.init(this.transform);
-            ItemBoardMng.Board.CallbackClose = backFromEquip;
-        } else {
-            ItemBoardMng.Board.gameObject.SetActive(true);
-        }
-        ItemBoardMng.Board.setShowItemList();
+
+        ItemBoardMng.showEquipMode(this.transform, category, backFromEquip );
+
     }
 
     public void backFromEquip() {
@@ -302,8 +299,6 @@ public class UnitDetailMng : MonoBehaviour {
             EquipPanel.SetActive(isShow);
 
             if (isShow) {
-                //EquipReciv?.setSelectedButton();
-
                 EquipReciv?.initSetupWithFrameEnd();
             }
 

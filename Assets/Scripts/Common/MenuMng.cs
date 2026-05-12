@@ -165,9 +165,9 @@ public class MenuMng : MonoBehaviour
                         UnitGroup.InputReciv.initSetupWithFrameEnd();
                     break;
                     case CmnConst.BOARD_STATUS.CLOSED:
-                        if (switchPanel(new GameObject[] { StatusPanel.gameObject, UnitGroup.GroupBase })) {
+                        //if (switchPanel(new GameObject[] { StatusPanel.gameObject, UnitGroup.GroupBase })) {
                         ShowMenu();
-                    }
+                    //}
                     break;
                 }
                 break;

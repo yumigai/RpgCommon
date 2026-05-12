@@ -106,6 +106,14 @@ public class PowerBoardMng : MonoBehaviour
         TargetGroup.closeWindow();
     }
 
+    protected void updateSibiling( Transform source) {
+        if (source != null
+                && this.transform.parent == source.parent
+                && this.transform.GetSiblingIndex() < source.GetSiblingIndex()) {
+            this.transform.SetSiblingIndex(source.GetSiblingIndex() + 1);
+        }
+    }
+
     public virtual bool closeWindow() {
         if (ActiveBase) {
             if (TargetGroup.closeWindow()) {

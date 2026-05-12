@@ -98,6 +98,7 @@ public class ItemBoardMng : PowerBoardMng
 
     protected new void Awake() {
         base.Awake();
+        Board = this;
     }
 
     new protected void OnEnable() {
@@ -324,6 +325,22 @@ public class ItemBoardMng : PowerBoardMng
             default:
             break;
         }
+    }
+
+    public static void showEquipMode( Transform source, ItemMast.CATEGORY category, System.Action backFromEquip ) {
+
+        OrderCategory = category;
+        OrderMode = ItemBoardMng.MODE.EQUIP;
+
+        Board.gameObject.SetActive(true);
+
+        Board.CallbackClose = backFromEquip;
+
+        Board.updateSibiling(source);
+
+        Board.setShowItemList();
+
+        
     }
 
     public void equip(int Id) {

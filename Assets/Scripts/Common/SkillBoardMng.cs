@@ -64,11 +64,7 @@ public class SkillBoardMng : PowerBoardMng
         }
         Board.showViewMode();
 
-        if (source != null 
-            && Board.transform.parent == source.parent 
-            && Board.transform.GetSiblingIndex() < source.GetSiblingIndex()) {
-            Board.transform.SetSiblingIndex(source.GetSiblingIndex() + 1);
-        }
+        Board.updateSibiling(source);
 
         return true;
     }
