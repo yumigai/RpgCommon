@@ -155,15 +155,22 @@ public class MenuMng : MonoBehaviour
             //}
             break;
             case MODE.SKILL:
-            if (SkillPanel.closeWindow()) {
-                ShowMenu();
-            }
-            break;
+                if (SkillPanel.closeWindow()) {
+                    ShowMenu();
+                }
+                break;
             case MODE.STATUS:
-            if (switchPanel(new GameObject[] { StatusPanel.gameObject, UnitGroup.GroupBase })) {
-                ShowMenu();
-            }
-            break;
+                switch (StatusPanel.closePanels()) {
+                    case CmnConst.BOARD_STATUS.CLOSING:
+                        UnitGroup.InputReciv.initSetupWithFrameEnd();
+                    break;
+                    case CmnConst.BOARD_STATUS.CLOSED:
+                        if (switchPanel(new GameObject[] { StatusPanel.gameObject, UnitGroup.GroupBase })) {
+                        ShowMenu();
+                    }
+                    break;
+                }
+                break;
             case MODE.SORT:
             ShowMenu();
             break;
@@ -189,6 +196,7 @@ public class MenuMng : MonoBehaviour
                     if (i + 1 < panels.Length) {
                         if (panels[i + 1] == UnitGroup.GroupBase) {
                             UnitGroup.CreateGroup(true);
+                            UnitGroup.InputReciv.initSetupWithFrameEnd();
                         } else {
                             panels[i + 1].SetActive(true);
                         }

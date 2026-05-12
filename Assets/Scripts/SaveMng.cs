@@ -10,7 +10,8 @@ public class SaveMng : CmnSaveProc
     {
         public List<UnitStatusTran> DataList;
         public UnitStatusTran getData(int id) {
-            return DataList.Find(d => d.Id == id);
+            //return DataList.Find(d => d.Id == id);
+            return DataList.Where(it => it.Id == id).FirstOrDefault();
         }
 
         public void refleshAll() {

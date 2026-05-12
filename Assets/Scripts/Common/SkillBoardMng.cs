@@ -25,6 +25,7 @@ public class SkillBoardMng : PowerBoardMng
 
     new private void Awake() {
         base.Awake();
+        Board = this;
     }
 
     new private void Start() {
@@ -37,6 +38,7 @@ public class SkillBoardMng : PowerBoardMng
     }
 
     void unitSetting() {
+        UserGroup.GroupBase.SetActive(true);
         UserGroup.CreateGroup();
         UserGroup.SettingButtonInvoke(selectOnUnit);
         UserGroup.SettingSelectInvoke(updateSkillList);
@@ -46,9 +48,7 @@ public class SkillBoardMng : PowerBoardMng
         if (SaveMng.Quest.IsQuest) {
             Mode = MODE.USE;
         } else {
-            Mode = MODE.VIEW;
-            TargetGroup.GroupBase.SetActive(false);
-            UserGroup.GroupBase.SetActive(false);
+            showViewMode();
         }
         if (Board == null) {
             Board = (SkillBoardMng)base.Init(parent);
@@ -58,12 +58,34 @@ public class SkillBoardMng : PowerBoardMng
         return Board;
     }
 
+    public static bool showViewMode(Transform source = null) {
+        if (Board == null) {
+            return false;
+        }
+        Board.showViewMode();
+
+        if (source != null 
+            && Board.transform.parent == source.parent 
+            && Board.transform.GetSiblingIndex() < source.GetSiblingIndex()) {
+            Board.transform.SetSiblingIndex(source.GetSiblingIndex() + 1);
+        }
+
+        return true;
+    }
+
+    public void showViewMode() {
+        Mode = MODE.VIEW;
+        gameObject.SetActive(true);
+        TargetGroup.GroupBase.SetActive(false);
+        UserGroup.GroupBase.SetActive(false);
+    }
+
     public void setUnitSelectRecv() {
         UserGroup.setInputReciv(true);
     }
 
     public void updateSkillList(int unitTranId) {
-        var unit = SaveMng.Units.Where(it => it.Id == unitTranId).FirstOrDefault();
+        var unit = SaveMng.UnitData.getData(unitTranId);
         updateSkillList(unit);
     }
 
@@ -73,11 +95,12 @@ public class SkillBoardMng : PowerBoardMng
     /// <param name="unit"></param>
     public void changeUnit(UnitStatusTran unit) {
         updateSkillList(unit);
+        UserGroup.SetCheckMark(unit.Id, true);
         Scroll.Recive.initSetupWithFrameEnd(true);
     }
 
     private void updateSkillList(UnitStatusTran unit) {
-
+        
         SkillMast[] skills = null;
 
         if (Mode == MODE.USE) {
@@ -93,8 +116,9 @@ public class SkillBoardMng : PowerBoardMng
         Scroll.makeList(skills);
     }
 
-    public void selectOnUnit() {
-        Scroll.Recive.initSetupWithFrameEnd(true);
+    public void selectOnUnit(int unitTranId) {
+        var unit = SaveMng.UnitData.getData(unitTranId);
+        changeUnit(unit);
     }
 
     public void changeSelectInfo(MultiUseListMng list) {
@@ -130,6 +154,7 @@ public class SkillBoardMng : PowerBoardMng
         if (ActiveBase) {
             if (TargetGroup.closeWindow()) {
                 if (Scroll.Recive.IsActive) {
+                    UserGroup.SetCheckMark(false);
                     UserGroup.InputReciv.initSetupWithFrameEnd();
                 } else {
                     ActiveBase = false;

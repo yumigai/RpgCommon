@@ -85,8 +85,8 @@ public class UnitDetailMng : MonoBehaviour {
     [SerializeField]
     private ItemBoardMng ItemBoardPrefab; //detail haika ni okuto kanri ga mendou ni naru node prefab ka.
 
-    [SerializeField]
-    private SkillBoardMng SkillBoardPrefab;
+    //[SerializeField]
+    //private SkillBoardMng SkillBoardPrefab;
 
     //private ItemBoardMng _InstanceItemBoard;
 
@@ -207,9 +207,12 @@ public class UnitDetailMng : MonoBehaviour {
     }
 
     public void pushSkill() {
-        if (SkillBoardMng.Board == null || !SkillBoardMng.Board.ActiveBase) {
-            SkillBoardPrefab.init(this.transform);
-            SkillBoardMng.Board.changeUnit(UnitData);
+        if (SkillBoardMng.Board.ActiveBase) {
+            CloseSkillBoard();
+        } else {
+            if (SkillBoardMng.showViewMode(this.transform)) {
+                SkillBoardMng.Board.changeUnit(UnitData);
+            }
         }
     }
 
@@ -299,7 +302,9 @@ public class UnitDetailMng : MonoBehaviour {
             EquipPanel.SetActive(isShow);
 
             if (isShow) {
-                EquipReciv?.setSelectedButton();
+                //EquipReciv?.setSelectedButton();
+
+                EquipReciv?.initSetupWithFrameEnd();
             }
 
             return before;
@@ -307,13 +312,13 @@ public class UnitDetailMng : MonoBehaviour {
         return false;
     }
 
-    public bool closePanels() {
-        bool is_closed = CloseItemBoard() || CloseSkillBoard();
-
-        if (!is_closed && this.gameObject.activeSelf) {
+    public CmnConst.BOARD_STATUS closePanels() {
+        bool is_open_board = CloseItemBoard() || CloseSkillBoard();
+        
+        if (!is_open_board && this.gameObject.activeSelf) {
             this.gameObject.SetActive(false);
-            return false;
+            return CmnConst.BOARD_STATUS.CLOSING;
         }
-        return !is_closed;
+        return is_open_board ? CmnConst.BOARD_STATUS.OPEN : CmnConst.BOARD_STATUS.CLOSED;
     }
 }

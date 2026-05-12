@@ -24,6 +24,8 @@ public class CharaImgGroupMng : MonoBehaviour
             return GroupBase != null && GroupBase.activeSelf;
         }
     }
+
+    
     public static CharaImgGroupMng Singleton {get; private set;}
 
 
@@ -49,7 +51,9 @@ public class CharaImgGroupMng : MonoBehaviour
     //     Members.ForEach(it=>it.check(val));
     // }
 
-
+    public CharaImgGaugeMng GetMember(int unitTranId) {
+        return Members.Find(it => it.UnitTranId == unitTranId);
+    }
 
     /// <summary>
     /// ユニットアイコングループ作成
@@ -207,7 +211,21 @@ public class CharaImgGroupMng : MonoBehaviour
 
         }
     }
-    
+
+    /// <summary>
+    /// 選択チェックマークON・OFF
+    /// </summary>
+    /// <param name="unitTranId"></param>
+    /// <param name="show"></param>
+    public void SetCheckMark(int unitTranId, bool show) {
+        GetMember(unitTranId).check(show);
+    }
+    public void SetCheckMark(bool show) {
+        foreach (var member in Members) {
+            member.check(show);
+        }
+    }
+
     public bool closeWindow() {
         if (IsActive) {
             GroupBase.SetActive(false);
