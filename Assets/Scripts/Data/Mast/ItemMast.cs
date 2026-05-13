@@ -178,9 +178,19 @@ public class ItemMast : PowerMast
                 return "魔法防御力";
             }
             case SPEC.HEAL:
-            //if (Skill != null) {
-            //    return Skill.getEffectName();
-            //}
+                if (BaseValue > 0 && SubValue > 0) {
+                    return "HP/MP回復";
+                } else if (BaseValue > 0) {
+                    return "HP回復";
+                } else if (SubValue > 0) {
+                    return "MP回復";
+                }
+            break;
+            
+            default:
+                if (Skill != null) {
+                    return Skill.getEffectName();
+                }
             break;
         }
         return "";

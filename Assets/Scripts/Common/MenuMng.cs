@@ -150,9 +150,9 @@ public class MenuMng : MonoBehaviour
             case MODE.MENU:
             return true;
             case MODE.ITEM:
-            //if (ItemPanel.closeWindow()) {
+            if (ItemPanel.closeWindow()) {
                 ShowMenu();
-            //}
+            }
             break;
             case MODE.SKILL:
                 if (SkillPanel.closeWindow()) {

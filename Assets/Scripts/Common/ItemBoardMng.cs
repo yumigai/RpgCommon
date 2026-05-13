@@ -461,9 +461,9 @@ public class ItemBoardMng : PowerBoardMng
             // nani mo shinai
         } else {
             switch (Mode) {
-                case MODE.USE:
-                ItemCategory = ItemMast.CATEGORY.CONSUMABLE;
-                break;
+                //case MODE.USE:
+                //ItemCategory = ItemMast.CATEGORY.CONSUMABLE;
+                //break;
                 default:
                 ItemCategory = (ItemMast.CATEGORY)Mathf.Repeat((int)ItemCategory + add, (int)ItemMast.CATEGORY.ALL);
                 break;
@@ -471,20 +471,28 @@ public class ItemBoardMng : PowerBoardMng
             setShowItemList();
         }
 
+        
+
         CategoryName.text = ItemMast.GetCategoryName(ItemCategory);
 
     }
 
     public override bool closeWindow() {
-        var result = base.closeWindow();
-        if (result) {
+
+        if (TargetGroup.GroupBase.activeSelf) {
+            TargetGroup.GroupBase.SetActive(false);
+            return false;
+        }
+
+        var is_close = base.closeWindow();
+        if (is_close) {
             if (SceneManagerWrap.NowScheneIs(CmnConst.SCENE.ItemScene)) {
                 SceneManagerWrap.loadBefore();
             } else {
                 ActiveBase = false;
             }
         }
-        return result;
+        return is_close;
     }
 
     public void changeSelect(MultiUseListMng list) {
@@ -530,7 +538,8 @@ public class ItemBoardMng : PowerBoardMng
                 case ItemMast.CATEGORY.WEAPON:
                 case ItemMast.CATEGORY.ARMOR:
                 case ItemMast.CATEGORY.ACCESSORY:
-                case ItemMast.CATEGORY.CONSUMABLE: {
+                //case ItemMast.CATEGORY.CONSUMABLE: 
+                    {
                         if (mainValue > 0) {
                             var main_param = ItemDetailSpecs.makeListItem();
                             main_param.Name.text = mst.getEffectName(true);

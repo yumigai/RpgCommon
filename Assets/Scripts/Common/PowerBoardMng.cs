@@ -62,11 +62,13 @@ public class PowerBoardMng : MonoBehaviour
     }
 
     public void readyUseTarget() {
-        TargetGroup.GroupBase.SetActive(true);
-        TargetGroup.gameObject.SetActive(true);
-        bool check = SelectedPower.Target == PowerMast.TARGET.ANYTHING;
-        TargetGroup.CreateGroup(check);
-        TargetGroup.InputReciv.initSetupWithFrameEnd(true);
+        if (SelectedPower.canUse()) {
+            TargetGroup.GroupBase.SetActive(true);
+            TargetGroup.gameObject.SetActive(true);
+            bool check = SelectedPower.Target == PowerMast.TARGET.ANYTHING;
+            TargetGroup.CreateGroup(check);
+            TargetGroup.InputReciv.initSetupWithFrameEnd(true);
+        }
     }
     public void selectUnit(CharaImgGaugeMng chara) {
         if (SelectedPower.Target == PowerMast.TARGET.ANYTHING) {

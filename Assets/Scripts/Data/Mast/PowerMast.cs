@@ -9,6 +9,7 @@ abstract public class PowerMast : MulitiUseListMast
 {
 	public enum SPEC
 	{
+		NON, //効果なし
 		ATTACK,
 		DEFENCE,
 		HEAL,
@@ -38,6 +39,7 @@ abstract public class PowerMast : MulitiUseListMast
 
 	public enum USE_TIMING
 	{
+		NON, //使用不可
 		BATTLE,
 		FIELD,
 		DUAL,
@@ -144,7 +146,7 @@ abstract public class PowerMast : MulitiUseListMast
 	/// 効力発揮
 	/// </summary>
 	public void usePower(USE_TIMING timing) {
-		if (UseTiming == USE_TIMING.DUAL || UseTiming == timing) {
+		if (canUse(timing)) {
 			switch (Spec) {
 				case SPEC.HEAL:
 				break;
@@ -157,5 +159,14 @@ abstract public class PowerMast : MulitiUseListMast
 			}
 		}
     }
+
+	public bool canUse() {
+		return SaveMng.Quest.IsBattle ? canUse(USE_TIMING.BATTLE) : canUse(USE_TIMING.FIELD);
+	}
+
+	public bool canUse(USE_TIMING timing) {
+		return (UseTiming == USE_TIMING.DUAL || UseTiming == timing) && Spec != SPEC.NON;
+	}
+
 
 }

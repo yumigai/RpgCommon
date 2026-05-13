@@ -269,14 +269,15 @@ public class UnitDetailMng : MonoBehaviour {
     /// <returns></returns>
     public bool CloseItemBoard() {
 
-        bool is_open = false;
+        ItemBoardMng.Board.closeWindow();
+
+        bool is_close = false;
 
         if (ItemBoardMng.Board != null) {
-            is_open = ItemBoardMng.Board.gameObject.activeSelf;
-            ItemBoardMng.Board.gameObject.SetActive(false);
+            is_close = ItemBoardMng.Board.closeWindow();
         }
 
-        return is_open;
+        return is_close;
     }
 
     public bool CloseSkillBoard() {
