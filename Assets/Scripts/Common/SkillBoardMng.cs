@@ -145,7 +145,7 @@ public class SkillBoardMng : PowerBoardMng
         }
     }
 
-    public override bool closeWindow() {
+    public override CmnConst.BOARD_STATUS closeWindow() {
 
         if (ActiveBase) {
             if (TargetGroup.closeWindow()) {
@@ -154,11 +154,11 @@ public class SkillBoardMng : PowerBoardMng
                     UserGroup.InputReciv.initSetupWithFrameEnd();
                 } else {
                     ActiveBase = false;
-                    return true;
+                    return CmnConst.BOARD_STATUS.CLOSING;
                 }
-                return false;
+                return CmnConst.BOARD_STATUS.OPEN;
             }
         }
-        return true;
+        return CmnConst.BOARD_STATUS.CLOSED;;
     }
 }

@@ -267,28 +267,26 @@ public class UnitDetailMng : MonoBehaviour {
     /// アイテムボードを閉じる
     /// </summary>
     /// <returns></returns>
-    public bool CloseItemBoard() {
+    public CmnConst.BOARD_STATUS CloseItemBoard() {
 
-        ItemBoardMng.Board.closeWindow();
-
-        bool is_close = false;
+        CmnConst.BOARD_STATUS status = CmnConst.BOARD_STATUS.OPEN;
 
         if (ItemBoardMng.Board != null) {
-            is_close = ItemBoardMng.Board.closeWindow();
+            status = ItemBoardMng.Board.closeWindow();
         }
 
-        return is_close;
+        return status;
     }
 
-    public bool CloseSkillBoard() {
-        bool is_open = false;
+    public CmnConst.BOARD_STATUS CloseSkillBoard() {
 
         if (SkillBoardMng.Board != null) {
-            is_open = SkillBoardMng.Board.gameObject.activeSelf;
-            SkillBoardMng.Board.gameObject.SetActive(false);
+            if (SkillBoardMng.Board.gameObject.activeSelf) {
+                SkillBoardMng.Board.gameObject.SetActive(false);
+                return CmnConst.BOARD_STATUS.CLOSING;
+            }
         }
-
-        return is_open;
+        return CmnConst.BOARD_STATUS.CLOSED;
     }
 
     public bool SwitchEquipBoard(){
@@ -309,12 +307,12 @@ public class UnitDetailMng : MonoBehaviour {
     }
 
     public CmnConst.BOARD_STATUS closePanels() {
-        bool is_open_board = CloseItemBoard() || CloseSkillBoard();
+        bool isClosed = CloseItemBoard() == CmnConst.BOARD_STATUS.CLOSED && CloseSkillBoard() == CmnConst.BOARD_STATUS.CLOSED;
         
-        if (!is_open_board && this.gameObject.activeSelf) {
+        if (isClosed && this.gameObject.activeSelf) {
             this.gameObject.SetActive(false);
             return CmnConst.BOARD_STATUS.CLOSING;
         }
-        return is_open_board ? CmnConst.BOARD_STATUS.OPEN : CmnConst.BOARD_STATUS.CLOSED;
+        return isClosed ? CmnConst.BOARD_STATUS.CLOSED : CmnConst.BOARD_STATUS.OPEN;
     }
 }

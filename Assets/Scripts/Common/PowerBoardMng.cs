@@ -116,16 +116,17 @@ public class PowerBoardMng : MonoBehaviour
         }
     }
 
-    public virtual bool closeWindow() {
+    public virtual CmnConst.BOARD_STATUS closeWindow() {
         if (ActiveBase) {
             if (TargetGroup.closeWindow()) {
                 if (CallbackClose != null) {
                     CallbackClose();
                 }
                 ActiveBase = false;
+                return CmnConst.BOARD_STATUS.CLOSING;
             }
-            return false;
+            return CmnConst.BOARD_STATUS.OPEN;
         }
-        return true;
+        return CmnConst.BOARD_STATUS.CLOSED;
     }
 }

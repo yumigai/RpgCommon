@@ -146,16 +146,20 @@ public class MenuMng : MonoBehaviour
 
     public bool menuClose() {
 
+        var panel_status = CmnConst.BOARD_STATUS.OPEN;
+
         switch (Mode) {
             case MODE.MENU:
             return true;
             case MODE.ITEM:
-            if (ItemPanel.closeWindow()) {
-                ShowMenu();
-            }
+                panel_status = ItemPanel.closeWindow();
+                if (panel_status == CmnConst.BOARD_STATUS.CLOSED || panel_status == CmnConst.BOARD_STATUS.CLOSING) {
+                    ShowMenu();
+                }
             break;
             case MODE.SKILL:
-                if (SkillPanel.closeWindow()) {
+                panel_status = SkillPanel.closeWindow();
+                if (panel_status == CmnConst.BOARD_STATUS.CLOSED || panel_status == CmnConst.BOARD_STATUS.CLOSING) {
                     ShowMenu();
                 }
                 break;

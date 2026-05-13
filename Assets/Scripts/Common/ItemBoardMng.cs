@@ -141,6 +141,7 @@ public class ItemBoardMng : PowerBoardMng
         } else {
             switch (Mode) {
                 case MODE.VIEW:
+                case MODE.USE:
                 ShowItems = SaveMng.Items.FindAll(it => (ItemCategory == ItemMast.CATEGORY.ANY || ItemCategory == it.Mst.Category));
                 break;
                 case MODE.EQUIP:
@@ -149,9 +150,6 @@ public class ItemBoardMng : PowerBoardMng
                 break;
                 case MODE.SELL:
                 ShowItems = SaveMng.Items.FindAll(it => (ItemCategory == ItemMast.CATEGORY.ANY || ItemCategory == it.Mst.Category) && it.Mst.Cost > 0);
-                break;
-                case MODE.USE:
-                ShowItems = SaveMng.Items.FindAll(it => (ItemCategory == it.Mst.Category));
                 break;
                 case MODE.POWER_UP:
                 ShowItems = SaveMng.Items.FindAll(it => (ItemCategory == ItemMast.CATEGORY.ANY || ItemCategory == it.Mst.Category) && (ItemMast.CATEGORY.WEAPON == it.Mst.Category || ItemMast.CATEGORY.ARMOR == it.Mst.Category || ItemMast.CATEGORY.ACCESSORY == it.Mst.Category));
@@ -245,9 +243,9 @@ public class ItemBoardMng : PowerBoardMng
     virtual public void pushList(MultiUseListMng mng) {
 
         if (Mode != MODE.BUY) {
-            var tran = SaveMng.ItemData.getData(mng.Id);
-            SelectedPower = tran.Mst;
-        }
+            SelectedItem = SaveMng.ItemData.getData(mng.Id);
+            SelectedPower = SelectedItem.Mst;
+        } 
 
         switch (Mode) {
             case MODE.EQUIP:
@@ -260,6 +258,7 @@ public class ItemBoardMng : PowerBoardMng
             break;
             case MODE.USE:
             readyUseTarget();
+            TargetGroup.SettingButtonInvoke(useConfirm);
             break;
         }
     }
@@ -305,26 +304,37 @@ public class ItemBoardMng : PowerBoardMng
 
         switch (Mode) {
             case MODE.SELL:
-            info = string.Format("{0}\nを売却しますか？\n価格 : {1}{2}\n所持金：{3}{4}", item.Name, GameConst.MONEY_CURRENCY, item.Mst.Cost, GameConst.MONEY_CURRENCY, SaveMng.Status.Money);
-            CommonProcess.showConfirm(info, sellItem, item);
-            break;
+                info = string.Format("{0}\nを売却しますか？\n価格 : {1}{2}\n所持金：{3}{4}", item.Name, GameConst.MONEY_CURRENCY, item.Mst.Cost, GameConst.MONEY_CURRENCY, SaveMng.Status.Money);
+                CommonProcess.showConfirm(info, sellItem, item);
+                break;
             case MODE.POWER_UP:
-            info = PowerUpPrice + getPowerUpCost().ToString() + GameConst.MONEY_CURRENCY;
-            break;
+                info = PowerUpPrice + getPowerUpCost().ToString() + GameConst.MONEY_CURRENCY;
+                break;
             case MODE.BUY:
-            var shopItem = ShopItemMast.List.FirstOrDefault(it => it.Id == mng.Id);
-            itemName = shopItem.ItmMst.checkOverRideNum() ? string.Format("{0}x{1}", shopItem.ItmMst.Name, SelectItemNum) : shopItem.ItmMst.Name;
-            price = shopItem.SellPrice * SelectItemNum;
-            info = string.Format("{0}\nを購入しますか？\n価格 : {1}{2}\n所持金：{3}{4}", itemName, GameConst.MONEY_CURRENCY, price, GameConst.MONEY_CURRENCY, SaveMng.Status.Money);
-            CommonProcess.showConfirm(info, buyItem, shopItem);
-            break;
+                var shopItem = ShopItemMast.List.FirstOrDefault(it => it.Id == mng.Id);
+                itemName = shopItem.ItmMst.checkOverRideNum() ? string.Format("{0}x{1}", shopItem.ItmMst.Name, SelectItemNum) : shopItem.ItmMst.Name;
+                price = shopItem.SellPrice * SelectItemNum;
+                info = string.Format("{0}\nを購入しますか？\n価格 : {1}{2}\n所持金：{3}{4}", itemName, GameConst.MONEY_CURRENCY, price, GameConst.MONEY_CURRENCY, SaveMng.Status.Money);
+                CommonProcess.showConfirm(info, buyItem, shopItem);
+                break;
             case MODE.USE:
-            info = string.Format("{0}\nを使用しますか？", item.Name);
-            CommonProcess.showConfirm(info, useItem, item);
-            break;
+                //useConfirm();
+                //info = string.Format("{0}\nを使用しますか？", item.Name);
+                //CommonProcess.showConfirm(info, useItem, item);
+                break;
             default:
             break;
         }
+    }
+
+    public void useConfirm(int unitTranId) {
+        string info = string.Format("{0}\nを使用しますか？", SelectedItem.Name);
+        TargetUnits = new List<UnitStatusTran>();
+        var target = SaveMng.UnitData.getData(unitTranId);
+        if (target != null) {
+            TargetUnits.Add(target);
+        }
+        CommonProcess.showConfirm(info, useItem, SelectedItem);
     }
 
     public static void showEquipMode( Transform source, ItemMast.CATEGORY category, System.Action backFromEquip ) {
@@ -477,22 +487,20 @@ public class ItemBoardMng : PowerBoardMng
 
     }
 
-    public override bool closeWindow() {
+    public override CmnConst.BOARD_STATUS closeWindow() {
 
-        if (TargetGroup.GroupBase.activeSelf) {
-            TargetGroup.GroupBase.SetActive(false);
-            return false;
-        }
+        //if (TargetGroup.GroupBase.activeSelf) {
+        //    TargetGroup.GroupBase.SetActive(false);
+        //    return CmnConst.BOARD_STATUS.OPEN;
+        //}
 
-        var is_close = base.closeWindow();
-        if (is_close) {
+        var status = base.closeWindow();
+        if (status == CmnConst.BOARD_STATUS.CLOSED || status == CmnConst.BOARD_STATUS.CLOSING) {
             if (SceneManagerWrap.NowScheneIs(CmnConst.SCENE.ItemScene)) {
                 SceneManagerWrap.loadBefore();
-            } else {
-                ActiveBase = false;
             }
         }
-        return is_close;
+        return status;
     }
 
     public void changeSelect(MultiUseListMng list) {
