@@ -75,16 +75,18 @@ public class ItemMast : PowerMast
     public int MaxEnhance;
     public float BaseValue {
         get {
-            return Values[0];
+            return PhysicsPower;
+            //return Values[0];
         }
     }
     public float SubValue {
         get {
-            return Values[1];
+            return MagicPower;
+            //return Values[1];
         }
     }
-    public float[] Values; //基本的に直接使用しない方向で
-    public int Cost;
+    //public float[] Values; //基本的に直接使用しない方向で
+
     public CATEGORY Category;
 
     public UnitMast.JOB[] EquipJob; // 装備・使用可能ジョブ

@@ -8,6 +8,7 @@ public class UnitMast : MasterCmn {
 	public int Id;
     public string Tag;
     public string Name;
+	public string NameEn; //英字名
     public int BaseLv;
     public int MaxLv;
     public string Img;
@@ -140,6 +141,7 @@ public class UnitMast : MasterCmn {
         tran.MasterId = uni.Id;
         tran.Type = type;
         tran.Name = uni.Name;
+		tran.NameEn = uni.NameEn;
         tran.Exp = 0;
         tran.Lv = lv;
         tran.CrashPower = uni.MaxCrash;

@@ -87,6 +87,7 @@ public class EnemyMast : UnitMast
         tran.Money = ene.getMoney(lv);
 
         tran.Name = ene.Name;
+        tran.NameEn = ene.NameEn;
 
         //if( lv >= (ene.BaseLv + ene.EvoLv) && !UtilToolLib.IsNullOrEmpty(ene.EvoNames) && ene.EvoLv > 0) {
         //    int add_index = (lv - ene.BaseLv) / ene.EvoLv;

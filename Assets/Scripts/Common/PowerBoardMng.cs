@@ -61,8 +61,9 @@ public class PowerBoardMng : MonoBehaviour
         return bd;
     }
 
-    public void readyUseTarget() {
+    public void readyUseTarget(MultiUseListMng mng) {
         if (SelectedPower.canUse()) {
+            mng.check(true);
             TargetGroup.GroupBase.SetActive(true);
             TargetGroup.gameObject.SetActive(true);
             bool check = SelectedPower.Target == PowerMast.TARGET.ANYTHING;
@@ -116,6 +117,16 @@ public class PowerBoardMng : MonoBehaviour
         }
     }
 
+    protected void execPower(PowerMast pow, List<UnitStatusTran> trans) {
+        foreach (var tran in trans ) {
+            PowerProcess.execPower(pow, TargetUnits);
+            var unit = TargetGroup.Members.Find(it => it.UnitTranId == tran.Id);
+            unit.updateStatus();
+            unit.effect(EffectMng.Key.Heal);
+        }
+        
+    }
+
     public virtual CmnConst.BOARD_STATUS closeWindow() {
         if (ActiveBase) {
             if (TargetGroup.closeWindow()) {
@@ -129,4 +140,5 @@ public class PowerBoardMng : MonoBehaviour
         }
         return CmnConst.BOARD_STATUS.CLOSED;
     }
+
 }

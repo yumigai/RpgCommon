@@ -66,15 +66,15 @@ abstract public class PowerMast : MulitiUseListMast
 		ALL,
 	}
 
-	public int PhysicsPower;
+	public int PhysicsPower; //物理（Physicsとすると予約語と被るから注意）
 
-	public int MagicPower;
+	public int MagicPower; //魔法
 
 	public float PowerRandom;
 
 	public float Inhibit;
 
-	public int UseCost;
+	public int Cost; //消費MPや価格など
 
 	public USE_TIMING UseTiming;
 

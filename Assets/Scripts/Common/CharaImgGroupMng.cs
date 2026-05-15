@@ -72,7 +72,7 @@ public class CharaImgGroupMng : MonoBehaviour
             mng.setMax(units[i].MaxMp, units[i].Mp, 1);
 
             if (mng.Name != null) {
-                mng.Name.text = units[i].Name;
+                mng.Name.text = string.IsNullOrEmpty( units[i].NameEn ) ? units[i].Name : units[i].NameEn;
             }
             mng.UnitType = units[i].Type;
             mng.check(check);

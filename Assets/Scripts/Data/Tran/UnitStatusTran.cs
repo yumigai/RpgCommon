@@ -34,6 +34,8 @@ public class UnitStatusTran
     public int Lv;
 
     public string Name;
+
+    public string NameEn;
     public string Img { get { return Mst.Img; } }
     public UnitMast.JOB Job { get { return Mst.Job; } }
     public AiProc.TACTICS Tactics;

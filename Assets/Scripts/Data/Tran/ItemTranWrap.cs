@@ -84,10 +84,7 @@ public class ItemTranWrap : SaveMng.SaveClass
         if (itm != null) {
             if (itm.Mst.Category == ItemMast.CATEGORY.CONSUMABLE) {
                 //現状は消耗品のみ
-
-                lostItem(itm, 1);
-
-                return true;
+                return lostItem(itm, 1);
             }
         }
         return false;

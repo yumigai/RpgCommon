@@ -139,7 +139,7 @@ public class SkillBoardMng : PowerBoardMng
                 CommonProcess.showMessage(mast.Name, mast.Info);
                 break;
                 case MODE.USE:
-                readyUseTarget();
+                readyUseTarget(skill);
                 break;
             }
         }

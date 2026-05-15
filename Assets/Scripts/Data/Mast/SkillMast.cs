@@ -38,8 +38,6 @@ public class SkillMast : PowerMast {
 
 	public float PowMax;
 
-	public int Cost; //消費MP
-
 	//public int CastTime;
 
 	//public int HitTime;

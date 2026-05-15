@@ -80,6 +80,9 @@ public class ItemBoardMng : PowerBoardMng
 
     private List<ItemMast.CATEGORY> ShopCategoryList = new List<ItemMast.CATEGORY>();
 
+    //アイテム使用などでリスト更新が必要な場合（数量０をリストから削除）
+    private bool updateListOrder = false;
+
     //Order　まだインスタンスが存在しない場合に指定
     public static MODE OrderMode = MODE.ALL; //何も設定されていない値としてALLを使用
 
@@ -181,12 +184,16 @@ public class ItemBoardMng : PowerBoardMng
                 if (mst.isEquip) {
                     list.Value.text = "";
                 } else {
-                    list.Value.text = string.Format("{0}/{1}", ShowItems[i].Num, GameConst.MAX_ITEM_NUM);
+                    //list.Value.text = string.Format("{0}/{1}", ShowItems[i].Num, GameConst.MAX_ITEM_NUM);
+                    list.Value.text = getItemNumString(ShowItems[i].Num, GameConst.MAX_ITEM_NUM);
                 }
             }
         }
 
-        Scroll.Recive.initSetupWithFrameEnd(true);
+        updateListOrder = false;
+
+        Scroll.ReadyInputGamePad(true);
+        //Scroll.Recive.initSetupWithFrameEnd(true);
     }
 
     /// <summary>
@@ -221,8 +228,8 @@ public class ItemBoardMng : PowerBoardMng
                 list.Value.text = string.Format("{0}/{1} {2}{3}", num, GameConst.MAX_ITEM_NUM, GameConst.MONEY_CURRENCY, shop_items[i].SellPrice);
             }
         }
-
-        Scroll.Recive.initSetupWithFrameEnd(true);
+        Scroll.ReadyInputGamePad(true);
+        //Scroll.Recive.initSetupWithFrameEnd(true);
 
     }
 
@@ -249,16 +256,16 @@ public class ItemBoardMng : PowerBoardMng
 
         switch (Mode) {
             case MODE.EQUIP:
-            equip(mng.Id);
-            closeWindow();
+                equip(mng.Id);
+                closeWindow();
             break;
             case MODE.BUY:
             case MODE.SELL:
-            showConfirm(mng);
+                showConfirm(mng);
             break;
             case MODE.USE:
-            readyUseTarget();
-            TargetGroup.SettingButtonInvoke(useConfirm);
+                readyUseTarget(mng);
+                TargetGroup.SettingButtonInvoke(useConfirm);
             break;
         }
     }
@@ -423,13 +430,18 @@ public class ItemBoardMng : PowerBoardMng
     public void useItem(object obj) {
         if (SaveMng.ItemData.useItem(SelectedItem)) {
 
-            PowerProcess.execPower(SelectedItem.Mst, TargetUnits);
+            //PowerProcess.execPower(SelectedItem.Mst, TargetUnits);
+
+            execPower(SelectedItem.Mst, TargetUnits);
 
             SaveMng.ItemData.save();
             SaveMng.Status.save();
-        }
 
-        closeWindow();
+            SelectedItem.Num -= 1;
+            updateBoard(SelectedItem);
+        }
+        
+        //closeWindow();
     }
 
     public void reload() {
@@ -439,6 +451,13 @@ public class ItemBoardMng : PowerBoardMng
         if (Mode != MODE.BUY) {
             setShowItemList();
         }
+    }
+
+    public void updateBoard(ItemTran tran) {
+        var list = Scroll.getListItem(tran.Id);
+        list.Value.text = getItemNumString(tran.Num, GameConst.MAX_ITEM_NUM);
+        updateListOrder = true;
+        //string.Format("{0}/{1}", tran.Num, GameConst.MAX_ITEM_NUM);
     }
 
     /// <summary>
@@ -495,6 +514,13 @@ public class ItemBoardMng : PowerBoardMng
         //}
 
         var status = base.closeWindow();
+        if (status == CmnConst.BOARD_STATUS.OPEN) {
+            if (updateListOrder) {
+                setShowItemList();
+            } else {
+                Scroll.ReadyInputGamePad();
+            }
+        }
         if (status == CmnConst.BOARD_STATUS.CLOSED || status == CmnConst.BOARD_STATUS.CLOSING) {
             if (SceneManagerWrap.NowScheneIs(CmnConst.SCENE.ItemScene)) {
                 SceneManagerWrap.loadBefore();
@@ -578,16 +604,21 @@ public class ItemBoardMng : PowerBoardMng
             StartCoroutine(delayUpdateInfo());
         } else {
             MoneyNum.text = SaveMng.Status?.Money.ToString();
-            HaveItemNum.text = string.Format("{0}/{1}", SaveMng.Items?.Count, GameConst.MAX_ITEM_KIND_NUM);
+            HaveItemNum.text = getItemNumString(SaveMng.Items?.Count, GameConst.MAX_ITEM_KIND_NUM);//string.Format("{0}/{1}", SaveMng.Items?.Count, GameConst.MAX_ITEM_KIND_NUM);
         }
     }
 
     private IEnumerator delayUpdateInfo() {
         yield return new WaitForEndOfFrame();
         MoneyNum.text = SaveMng.Status?.Money.ToString();
-        HaveItemNum.text = string.Format("{0}/{1}", SaveMng.Items?.Count, GameConst.MAX_ITEM_KIND_NUM);
+        HaveItemNum.text = getItemNumString(SaveMng.Items?.Count, GameConst.MAX_ITEM_KIND_NUM);// string.Format("{0}/{1}", SaveMng.Items?.Count, GameConst.MAX_ITEM_KIND_NUM);
     }
 
-
+    private string getItemNumString( int? num = 0, int max = 0 ) {
+        if (max == 0) {
+            return num.ToString();
+        }
+        return string.Format("{0}/{1}", num, max);
+    }
 
 }
