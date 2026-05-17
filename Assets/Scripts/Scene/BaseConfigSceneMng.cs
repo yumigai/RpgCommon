@@ -46,14 +46,20 @@ public class BaseConfigSceneMng : CmnConfigMng {
     }
 
     public void updateBgm() {
-        float add = GamePadButtonMng.GetAxisFloat( GamePadButtonMng.AnalogRawType.DUAL, GamePadButtonMng.AxisType.Horizontal);
-        sliderBgm.value += VolumeChangeUnit * add;
+        GameObject pushBtn = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
+        if (pushBtn.name == "Bgm") {
+            float add = GamePadButtonMng.GetAxisFloat(GamePadButtonMng.AnalogRawType.DUAL, GamePadButtonMng.AxisType.Horizontal);
+            sliderBgm.value += VolumeChangeUnit * add;
+        }
     }
 
     public void updateSe() {
-        float add = Input.GetAxisRaw("Horizontal");
-        sliderSe.value += VolumeChangeUnit * add;
-        ReadySeCheck = true;
+        GameObject pushBtn = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
+        if (pushBtn.name == "Se") {
+            float add = Input.GetAxisRaw("Horizontal");
+            sliderSe.value += VolumeChangeUnit * add;
+            ReadySeCheck = true;
+        }
     
     }
 

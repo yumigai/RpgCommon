@@ -1024,6 +1024,7 @@ MonoBehaviour:
   Params: []
   DeadColor: {r: 0, g: 0, b: 0, a: 0}
   UnitFrames: []
+  Effects: []
 --- !u!114 &5111303433073465913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1078,7 +1079,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  DealButton: 5
+  DealButton: 0
   HoldFinishEvent:
     m_PersistentCalls:
       m_Calls: []

@@ -721,7 +721,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2816154145655209355}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -897,7 +897,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 80.29, y: -18.395}
-  m_SizeDelta: {x: 160.58, y: 35.21}
+  m_SizeDelta: {x: 107.4, y: 35.21}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6770203527501656609
 CanvasRenderer:
@@ -920,8 +920,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DealButton: 14
-  ButtonImage: {fileID: 0}
-  ButtonText: {fileID: 0}
+  ButtonImage: {fileID: 4158124494623886155}
+  ButtonText: {fileID: 5173759114638009759}
   TextJp: "\u9805\u76EE\u9078\u629E"
   TextEn: Select
 --- !u!1 &3213445590834640592
@@ -1144,7 +1144,7 @@ MonoBehaviour:
   DealButton: 15
   ButtonImage: {fileID: 6325742953688857864}
   ButtonText: {fileID: 350723184358103660}
-  TextJp: "\u9805\u76EE\u9078\u629E"
+  TextJp: "\u9078\u629E"
   TextEn: Select
 --- !u!1 &4559728191259569596
 GameObject:
@@ -1888,7 +1888,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e37fca57c08824646bcd9f9fbb659a67, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 362db38ccbeda2943905e5f1464f2b77, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2170,8 +2170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DealButton: 2
-  ButtonImage: {fileID: 0}
-  ButtonText: {fileID: 0}
+  ButtonImage: {fileID: 8448503223282324985}
+  ButtonText: {fileID: 723111366585248921}
   TextJp: 
   TextEn: 
 --- !u!1 &7844549387393751966

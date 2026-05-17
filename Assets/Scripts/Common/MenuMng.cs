@@ -104,9 +104,15 @@ public class MenuMng : MonoBehaviour
         showMap();
     }
     public void pushConfig() {
-        UnitGroup.GroupBase.SetActive(false);
+        loadScene(CmnConst.SCENE.SystemScene);
     }
-    public void pushQuit() {
+
+    private void loadScene( CmnConst.SCENE scene ) {
+        MenuSceneMng.Singleton.hideMenu();
+        SceneManagerWrap.LoadSceneAdditional(scene);
+    }
+
+    public void pureRetire() {
         string txt = LanguageStaticTextMng.getLangText("", "");
         CommonProcess.showConfirm(txt, _ => { Retire(); });
     }
