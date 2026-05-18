@@ -1436,7 +1436,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8686003204712109409}
-        m_MethodName: pushStatus
+        m_MethodName: pushEquip
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6814,6 +6814,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000823381292845986, guid: a7cf8f9fd09c6ea4b9483cc1a5e09fd2,
+        type: 3}
+      propertyPath: m_Value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000823381421006717, guid: a7cf8f9fd09c6ea4b9483cc1a5e09fd2,
         type: 3}

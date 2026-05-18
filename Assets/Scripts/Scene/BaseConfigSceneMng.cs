@@ -9,10 +9,18 @@ public class BaseConfigSceneMng : CmnConfigMng {
     public InputNameMng InputNameObj;
 
     [SerializeField]
+    public LangageSelectMng LangSelect;
+
+    [SerializeField]
     public SaveBoardMng SaveBoard;
 
     [SerializeField]
     public Transform Parent;
+
+    private void Awake() {
+        InputNameObj?.gameObject.SetActive(false);
+        LangSelect?.gameObject.SetActive(false);
+    }
 
     protected new void Start() {
         base.Start();
@@ -78,6 +86,11 @@ public class BaseConfigSceneMng : CmnConfigMng {
 
     public void pushKeyConfig() {
         SceneManagerWrap.LoadScene(CmnConst.SCENE.KeyConfigScene);
+    }
+
+    public void pushLanguageSelect() {
+        LangSelect.show();
+        //LangageSelectMng.show(LangSelectObj.gameObject, this.Parent);
     }
 
     /// <summary>

@@ -92,11 +92,18 @@ public class MenuMng : MonoBehaviour
         Mode = MODE.ITEM;
         ItemBoardMng.OrderMode = ItemBoardMng.MODE.USE;
         ItemBoardMng.OrderCategory = ItemMast.CATEGORY.CONSUMABLE;
+        //loadScene(CmnConst.SCENE.ItemScene);
+
         showPanel(ItemPanel.gameObject);
-        //ItemPanelPrefab.init(this.transform);
     }
     public void pushStatus() {
         Mode = MODE.STATUS;
+        UnitDetailMng.OrderMode = UnitDetailMng.MODE.STATUS;
+        showUnitGroup(true);
+    }
+    public void pushEquip() {
+        Mode = MODE.STATUS;
+        UnitDetailMng.OrderMode = UnitDetailMng.MODE.EQUIP;
         showUnitGroup(true);
     }
     public void pushMap() {
@@ -108,8 +115,10 @@ public class MenuMng : MonoBehaviour
     }
 
     private void loadScene( CmnConst.SCENE scene ) {
-        MenuSceneMng.Singleton.hideMenu();
+
         SceneManagerWrap.LoadSceneAdditional(scene);
+        TimeInvokeMng.FrameEndAction(()=>{ MenuSceneMng.Singleton.hideMenu(); });
+        //MenuSceneMng.Singleton.hideMenu();
     }
 
     public void pureRetire() {

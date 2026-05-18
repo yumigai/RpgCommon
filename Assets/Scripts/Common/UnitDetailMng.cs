@@ -4,6 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UnitDetailMng : MonoBehaviour {
+
+    public enum MODE
+    {
+        STATUS,
+        EQUIP,
+    }
+
     [SerializeField]
     CharaImgGaugeMng Chara;
 
@@ -92,8 +99,10 @@ public class UnitDetailMng : MonoBehaviour {
 
     public UnitStatusTran UnitData;
 
+    public static MODE OrderMode;
 
-    public void setParams( UnitStatusTran unit, bool recive_update = false ) {
+
+    public void setParams( UnitStatusTran unit ) {
         UnitData = unit;
         Chara.UnitTranId = unit.Id;
         Chara.Name.text = unit.Name;
@@ -123,9 +132,10 @@ public class UnitDetailMng : MonoBehaviour {
         setItem(Accessory1, unit.EquipAccessory1);
         setItem(Accessory2, unit.EquipAccessory2);
 
-        if (EquipPanel != null)
-        {
-            EquipPanel.SetActive(false);
+        ShowEquipBoard(OrderMode == MODE.EQUIP);
+
+        if (OrderMode == MODE.EQUIP){
+            OrderMode = MODE.STATUS;
         }
         
         ItemBoardMng.EquipUnit = unit;
@@ -289,6 +299,10 @@ public class UnitDetailMng : MonoBehaviour {
         return CmnConst.BOARD_STATUS.CLOSED;
     }
 
+    /// <summary>
+    /// 装備ボード表示切り替え
+    /// </summary>
+    /// <returns></returns>
     public bool SwitchEquipBoard(){
         return ShowEquipBoard(!EquipPanel.activeSelf);
     }

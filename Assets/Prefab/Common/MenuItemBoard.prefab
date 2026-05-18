@@ -3195,7 +3195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a65d533e3370a48aff9e9aa437f028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetGroup: {fileID: 0}
+  TargetGroup: {fileID: 1000823381526342025}
   Scroll: {fileID: 4747975852135064475}
   DetailName: {fileID: 4747975851722208775}
   DetailInfo: {fileID: 4747975851413246530}
@@ -4095,6 +4095,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5035659652152919889, guid: 398a083d36afe3443b85c36153f6fca4,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5035659652282127246, guid: 398a083d36afe3443b85c36153f6fca4,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -4233,3 +4238,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5188677104778743027}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1000823381526342025 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5035659652520633722, guid: 398a083d36afe3443b85c36153f6fca4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5188677104778743027}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb73d2417ce03c4a9e4a7e0fe2014d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
