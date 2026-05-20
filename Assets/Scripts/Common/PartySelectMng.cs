@@ -98,6 +98,17 @@ public class PartySelectMng : MonoBehaviour
     */
 
     /// <summary>
+    /// チーム編成へ遷移
+    /// （既にチーム編成画面なら何もしないので問題なし）
+    /// </summary>
+    public void pushJumpPartyEdit() {
+        CommonProcess.playClickSe();
+        if (!SaveMng.Quest.IsQuest) { //クエスト中にはチームエディットに遷移しない
+            SceneManagerWrap.loadScene(CmnConst.SCENE.TeamEditScene);
+        }
+    }
+
+    /// <summary>
     /// メンバーチェンジ開始
     /// </summary>
     /// <param name="index"></param>

@@ -128,7 +128,7 @@ public class EventSenserMng : MonoBehaviour
         BaseStageFieldSceneMng.Singleton.getKey();
         IsFinished = true;
         eventAnimation();
-        Destroy(this.gameObject, 5f);
+        Destroy(this.gameObject);
     }
     //public void getKey() {
     //    //BaseStageFieldSceneMng.Singleton.getKey();
@@ -158,7 +158,7 @@ public class EventSenserMng : MonoBehaviour
     /// </summary>
     private void eventAnimation() {
         System.Array.ForEach(Particles, it => { it.Stop(); });
-        EventAnime.AnimeStart();
+        EventAnime?.AnimeStart();
     }
 
     private void damageArea(){

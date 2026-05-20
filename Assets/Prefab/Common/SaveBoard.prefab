@@ -789,7 +789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5606617175808258170
 RectTransform:
   m_ObjectHideFlags: 0
@@ -882,7 +882,10 @@ MonoBehaviour:
   IsHold: 0
   HoldGauge: {fileID: 0}
   FinishHoldTime: 0
+  IsNonActiveHide: 0
   ListIndex: 0
+  raycaster: {fileID: 0}
+  eventSystem: {fileID: 0}
 --- !u!1 &3195591801562437380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1933,7 +1936,10 @@ MonoBehaviour:
   IsHold: 0
   HoldGauge: {fileID: 0}
   FinishHoldTime: 0
+  IsNonActiveHide: 0
   ListIndex: 0
+  raycaster: {fileID: 0}
+  eventSystem: {fileID: 0}
 --- !u!1 &6422530146750501511
 GameObject:
   m_ObjectHideFlags: 0
@@ -2213,7 +2219,10 @@ MonoBehaviour:
   IsHold: 0
   HoldGauge: {fileID: 0}
   FinishHoldTime: 0
+  IsNonActiveHide: 0
   ListIndex: 0
+  raycaster: {fileID: 0}
+  eventSystem: {fileID: 0}
 --- !u!1 &6540369706708904094
 GameObject:
   m_ObjectHideFlags: 0
@@ -2325,7 +2334,10 @@ MonoBehaviour:
   IsHold: 0
   HoldGauge: {fileID: 0}
   FinishHoldTime: 0
+  IsNonActiveHide: 0
   ListIndex: 0
+  raycaster: {fileID: 0}
+  eventSystem: {fileID: 0}
 --- !u!1 &6741078062486750237
 GameObject:
   m_ObjectHideFlags: 0

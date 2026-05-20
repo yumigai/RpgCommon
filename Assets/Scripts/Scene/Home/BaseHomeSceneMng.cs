@@ -21,6 +21,9 @@ public class BaseHomeSceneMng : Base2DSceneMng
     [SerializeField]
     private Transform StandBase;
 
+    //[SerializeField]
+    //public SaveBoardMng SaveBoard;
+
     private HomeMessageMast NowMessage;
 
     private int MessageIndex;
@@ -172,9 +175,10 @@ public class BaseHomeSceneMng : Base2DSceneMng
     }
     public void pushSave() {
         pushMenuButton(CmnConst.SCENE.SaveScene);
+        //SaveBoard.showSaveBoard(Parent);
     }
     public void pushTeamEdit() {
-        pushMenuButton(CmnConst.SCENE.CharaMenuScene);
+        pushMenuButton(CmnConst.SCENE.TeamEditScene);
     }
 
     private void pushMenuButton(CmnConst.SCENE scene) {
