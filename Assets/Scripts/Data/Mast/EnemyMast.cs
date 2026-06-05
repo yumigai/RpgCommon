@@ -14,6 +14,7 @@ public class EnemyMast : UnitMast
     //public int DropTableId; //撃破時のアイテムドロップテーブル
     public float DropPercent; //アイテムドロップ自体の確率
 
+    public float HpBonus;
     public float ExpBonus;
     public float MoneyBonus;
 
@@ -79,6 +80,11 @@ public class EnemyMast : UnitMast
             for( int i = 0; i < ene.SpecialSkills.Length; i++) {
                 tran.addSkill(ene.SpecialSkills[i]);
             }
+        }
+
+        if (ene.HpBonus > 0) {
+            tran.Status.MaxHp = (int)(tran.Status.MaxHp * ene.HpBonus);
+            tran.Status.Hp = tran.Status.MaxHp;
         }
 
         //tran.Status.Lif = (int)((float)tran.Status.Lif  * ene.HpBonus);

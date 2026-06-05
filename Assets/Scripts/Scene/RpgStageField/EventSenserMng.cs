@@ -14,6 +14,7 @@ public class EventSenserMng : MonoBehaviour
         GIMMICK_ENTER,
         GIMMICK_STAY,
         GIMMICK_SWITCH,
+        EXIT,
     }
 
     [SerializeField]
@@ -90,6 +91,9 @@ public class EventSenserMng : MonoBehaviour
             case TYPE.GIMMICK_SWITCH:
                 EventAnime.AnimeSwitch();
                 break;
+            case TYPE.EXIT:
+                exitAreaIn();
+                break;
         }
 
             if(Effect != null) {
@@ -120,6 +124,9 @@ public class EventSenserMng : MonoBehaviour
                 break;
             case TYPE.GIMMICK_STAY:
                 break;
+            case TYPE.EXIT:
+                exitAreaOut();
+                break;
         }
     }
 
@@ -143,10 +150,24 @@ public class EventSenserMng : MonoBehaviour
     }
 
     /// <summary>
+    /// 脱出口接触
+    /// </summary>
+    private void exitAreaIn() {
+        BaseStageFieldSceneMng.Singleton.readyStageExit();
+    }
+
+    /// <summary>
     /// ゴール離れ
     /// </summary>
     private void gateAreaOut() {
         BaseStageFieldSceneMng.Singleton.resetStageClear();
+    }
+
+    /// <summary>
+    /// 脱出口離れ
+    /// </summary>
+    private void exitAreaOut() {
+        BaseStageFieldSceneMng.Singleton.resetStageExit();
     }
 
     private void dropItemArea() {

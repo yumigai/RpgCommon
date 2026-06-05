@@ -73,20 +73,20 @@ public class BaseResultSceneMng : MonoBehaviour
             return;
         }
 
-        bool isNext = false;
+        bool isNext = StageData.IsNextStage();
 
-        if (StageData.NextIds.Length == 1 ) {
-            //次のステージが一つのみ
-            // var index = StageMast.getStageIndex(StageData.NextId);
-            var next = MulitiUseListMast.FindById(StageMast.List,StageData.NextId);
-            if(next != null) {
-                StageMast.KIND next_kind = next.Kind;
-                if (StageData.Kind == next_kind 
-                    && ( next_kind == StageMast.KIND.MAIN_MISSION || next_kind == StageMast.KIND.SUB_MISSION )) {
-                    isNext = true;
-                }
-            }
-        }
+        //if (StageData.NextIds.Length == 1 ) {
+        //    //次のステージが一つのみ
+        //    // var index = StageMast.getStageIndex(StageData.NextId);
+        //    var next = MulitiUseListMast.FindById(StageMast.List,StageData.NextId);
+        //    if(next != null) {
+        //        StageMast.KIND next_kind = next.Kind;
+        //        if (StageData.Kind == next_kind 
+        //            && ( next_kind == StageMast.KIND.MAIN_MISSION || next_kind == StageMast.KIND.SUB_MISSION )) {
+        //            isNext = true;
+        //        }
+        //    }
+        //}
 
         if (isNext) {
             string txt = SaveMng.IsJp ? CONFIRM_NEXT_JP : CONFIRM_NEXT_EN;

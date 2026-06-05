@@ -79,11 +79,34 @@ public class StageMast : MulitiUseListMast
         return Story;
     }
 
+    /// <summary>
+    /// ステージ終了後ストーリー取得
+    /// </summary>
+    /// <returns></returns>
     public string GetAfterStory() {
         if (EventActionMast.judgeEvent(SpecialEventTag)) {
             return SpecialAfterStory;
         }
         return AfterStory;
+    }
+
+    public bool IsNextStage() {
+        bool isNext = false;
+
+        if (NextIds.Length == 1) {
+            //次のステージが一つのみ
+            var next = MulitiUseListMast.FindById(StageMast.List, NextId);
+            if (next != null && ChapterId == next.ChapterId) {
+                //同じチャプターの場合のみ
+                StageMast.KIND next_kind = next.Kind;
+                if (Kind == next_kind
+                    && (next_kind == StageMast.KIND.MAIN_MISSION || next_kind == StageMast.KIND.SUB_MISSION)) {
+                    isNext = true;
+                }
+            }
+        }
+
+        return isNext;
     }
 
 

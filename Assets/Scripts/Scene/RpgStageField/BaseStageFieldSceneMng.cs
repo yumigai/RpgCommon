@@ -55,6 +55,9 @@ public class BaseStageFieldSceneMng : MonoBehaviour
     [SerializeField]
     public GameObject GatePrefab;
 
+    [SerializeField]
+    public GameObject ExitPrefab;
+
     //[SerializeField]
     //public JemMng[] DefaultJems;
 
@@ -82,7 +85,16 @@ public class BaseStageFieldSceneMng : MonoBehaviour
     private Effct3DtoUIMng EventCountEffect;
 
     [SerializeField]
+    private HoleMaskMng HoleMask;
+
+    //[SerializeField]
+    //private CameraFilterPack_TV_WideScreenHV CameraFilter_HV;
+
+    [SerializeField]
     private MenuSceneMng MenuScene;
+
+    [SerializeField]
+    private GameObject DebugUI;
 
     //[SerializeField]
     //private Image EncountScreen;
@@ -124,6 +136,10 @@ public class BaseStageFieldSceneMng : MonoBehaviour
 
     //public static int SelectedStageId = 0;
 
+    private GameObject GateObject;
+
+    public static bool IsDebug = false;
+
     public static BaseStageFieldSceneMng Singleton;
 
     public Image EncountScreen {
@@ -162,6 +178,7 @@ public class BaseStageFieldSceneMng : MonoBehaviour
         Resume();
         IsReady = true;
 
+        DebugUI.SetActive(IsDebug);
     }
 
     private void OnEnable() {
@@ -186,15 +203,21 @@ public class BaseStageFieldSceneMng : MonoBehaviour
         makeStage();
 
         setRespawn();
-        //int res_index = UnityEngine.Random.Range(0, RespawnMng.Posis.Count());
-        FieldPlayerMng.hero().transform.position = RespawnMng.getRandom();// RespawnMng.Posis[res_index];
+        
+        FieldPlayerMng.hero().transform.position = RespawnMng.getRandom();
         CameraMng.Singleton.setLookTarget(FieldPlayerMng.Hero.transform);
         putEnemy();
+        pusExitObject();
         putGateObject();
         putKeyObject();
 
+        //CameraFilter_HV.Smooth = 0f;
+        //CameraFilter_HV.Size = 0f;
 
         MainUI.makeMiniMap(StageArea);
+
+        //マスク非表示
+        HoleMask.show(false, false);
 
         BaseBattleSceneMng.BattleBgm = StageData.Chapter.BattleBgm;
         BaseBattleSceneMng.BossBgm = StageData.Chapter.BossBgm;
@@ -377,12 +400,25 @@ public class BaseStageFieldSceneMng : MonoBehaviour
         if (StageData.Rule == StageMast.GAME_RULE.GOAL || StageData.Rule == StageMast.GAME_RULE.GET_KEY_AND_GOAL) {
             Vector3 posi = RespawnMng.getMiddleToLongPosiRandom();
             GameObject prefab = StageArea.KeyPrefab == null ? GatePrefab : StageArea.GatePrefab;
-            GameObject obj = Instantiate(prefab) as GameObject;
-            obj.transform.SetParent(SceneBase.transform);
-            obj.transform.position = posi;
-            MainUI.StageClearGuid.setClient(obj);
+            GateObject = Instantiate(prefab) as GameObject;
+            GateObject.transform.SetParent(SceneBase.transform);
+            GateObject.transform.position = posi;
+            
+            if (StageData.Rule == StageMast.GAME_RULE.GET_KEY_AND_GOAL) {
+                GateObject.SetActive(false);
+            }
+            MainUI.StageClearGuid.setClient(GateObject);
             MainUI.StageClearGuid.gameObject.SetActive(false);
         }
+    }
+
+    protected void pusExitObject() {
+        Vector3 posi = RespawnMng.getMiddleToLongPosiRandom();
+        GameObject obj = Instantiate(ExitPrefab) as GameObject;
+        obj.transform.SetParent(SceneBase.transform);
+        obj.transform.position = posi;
+        MainUI.StageExitGuid.setClient(obj);
+        MainUI.StageExitGuid.gameObject.SetActive(false);
     }
 
     public void pushMelee() {
@@ -488,13 +524,20 @@ public class BaseStageFieldSceneMng : MonoBehaviour
         switch (StageData.Rule) {
             case StageMast.GAME_RULE.GET_KEY_AND_GOAL:
             if (GetKey >= StageData.NeedKeyNum) {
-                gameClear();
+                stageClear();
             }
             break;
             case StageMast.GAME_RULE.GOAL:
-            gameClear();
+            stageClear();
             break;
         }
+    }
+
+    /// <summary>
+    /// ステージ脱出
+    /// </summary>
+    public void reachExitStage() {
+        stageExit();
     }
 
     /// <summary>
@@ -502,7 +545,7 @@ public class BaseStageFieldSceneMng : MonoBehaviour
     /// </summary>
     public void destroyEnemy() {
         if (StageData.Rule == StageMast.GAME_RULE.DESTROY_ENEMY && StageData.EnemyNum - Enemys.Count() >= StageData.NeedKeyNum) {
-            gameClear();
+            stageClear();
         }
     }
 
@@ -511,18 +554,24 @@ public class BaseStageFieldSceneMng : MonoBehaviour
     /// </summary>
     public void getKey() {
         GetKey++;
-        if (StageData.Rule == StageMast.GAME_RULE.GET_TREASURE && GetKey >= StageData.NeedKeyNum) {
-
-            clearEnemys();
-
-            gameClear();
+        if (GetKey >= StageData.NeedKeyNum) {
+            //必要な収集数を獲得
+            switch (StageData.Rule) {
+                case StageMast.GAME_RULE.GET_TREASURE:
+                    
+                    stageClear();
+                break;
+                case StageMast.GAME_RULE.GET_KEY_AND_GOAL:
+                    GateObject.SetActive(true);//ゴールゲートを表示
+                break;
+            }
         }
     }
 
     /// <summary>
     /// 敵キャラ全部削除
     /// </summary>
-    private void clearEnemys() {
+    public void clearEnemys() {
         for (int i = 0; i < Enemys.Count; i++) {
             EffectMng.showEffect(Enemys[i].HitEffectPoint.position, Enemys[i].transform.localRotation, DestroyEffect.EffectPrefab);
             Destroy(Enemys[i].gameObject);
@@ -530,7 +579,7 @@ public class BaseStageFieldSceneMng : MonoBehaviour
         Enemys.Clear();
     }
 
-    public void gameClear() {
+    public void stageClear() {
         if (IsFinished) {
             return;
         }
@@ -540,60 +589,70 @@ public class BaseStageFieldSceneMng : MonoBehaviour
         SoundMng.Instance.playSE(GameClearSe);
 
         if (SaveMng.Quest.NowFloorNum >= StageData.FloorNum) {
-            BaseResultSceneMng.IsSuccsess = true;
+            //BaseResultSceneMng.IsSuccsess = true;
             SaveMng.Status.ClearAndNext(StageData);
             SaveMng.Status.save();
-            gameFinishProcess();
+            //gameFinishProcess();
+        } 
+        //else {
+        //    SceneManagerWrap.LoadAndNowLoading(CmnConst.SCENE.QuestScene);
+        //}
+        
+
+        var isNext = StageData.IsNextStage();
+
+        if (isNext) {
+            stageFinishProccess();
+            TimeInvokeMng.TimerAction(() => { SceneManagerWrap.LoadAndNowLoading(CmnConst.SCENE.QuestScene); }, 2f, this.gameObject);
         } else {
-            SceneManagerWrap.LoadAndNowLoading(CmnConst.SCENE.QuestScene);
+            stageExit();
         }
+        
     }
 
-    public void stageClearAction() {
-        if (!CmnBaseProcessMng.IsPause && !IsFinished) {
-            gameClear();
-        }
-    }
-
-    ///// <summary>
-    ///// EventTrriger.PointerUpで使用
-    ///// </summary>
-    //public void stageClearActionCansel() {
-
-    //    MainUI.StageClearGuid.updGauge(0f);
+    //public void stageClearAction() {
+    //    if (!CmnBaseProcessMng.IsPause && !IsFinished) {
+    //        gameClear();
+    //    }
     //}
 
-    private void gameFinishProcess() {
-
-        //CameraScreenShotMng.callRandomShot();
-        //ScreenCapture.CaptureScreenshot(CameraScreenShotMng.SCREEN_NAME);
-        StartCoroutine(waitResultScene());
+    /// <summary>
+    /// ステージ終了
+    /// </summary>
+    private void stageExit() {
+        BaseResultSceneMng.IsSuccsess = true;
+        stageFinishProccess();
+        //StartCoroutine(waitResultScene());
+        TimeInvokeMng.TimerAction(() => { SceneManagerWrap.LoadScene(CmnConst.SCENE.ResultScene); }, 2f, this.gameObject);
     }
 
-    public IEnumerator waitResultScene() {
-        yield return new WaitForSeconds(5);
-
-        //SaveMng.GameData.TotalDestroy += NowDestroy;
-
-        //SaveMng.GameData.save();
-
-        //SaveMng.Player.NowMaxHp = PlayerMng.hero().MaxLife;
-        //SaveMng.Player.save();
-
-        //ResultSceneMng.GetCoin = GetNowGameCoin;
-        //ResultSceneMng.DestroyEnemy = NowDestroy;
-        //ResultSceneMng.FinishTime = Time.fixedTime - StartTime;
-
-        SceneManagerWrap.LoadScene(CmnConst.SCENE.ResultScene);
+    private void stageFinishProccess() {
+        Pauser.Pause();
+        clearEnemys();
+        HoleMask.show(true, false);
     }
+
+    //public IEnumerator waitResultScene() {
+    //    yield return new WaitForSeconds(2);
+    //    SceneManagerWrap.LoadScene(CmnConst.SCENE.ResultScene);
+    //}
 
     public void readyStageClear() {
         MainUI.StageClearGuid.gameObject.SetActive(true);
         MainUI.StageClearGuid.setPosition();
     }
 
+    public void readyStageExit() {
+        MainUI.StageExitGuid.gameObject.SetActive(true);
+        MainUI.StageExitGuid.setPosition();
+    }
+
     public void resetStageClear() {
         MainUI.StageClearGuid.gameObject.SetActive(false);
+    }
+
+    public void resetStageExit() {
+        MainUI.StageExitGuid.gameObject.SetActive(false);
     }
 
     public static bool foeChaseMode(){

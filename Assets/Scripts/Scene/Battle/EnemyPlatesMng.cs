@@ -27,7 +27,7 @@ public class EnemyPlatesMng : PartyPlatesMng
         }
     }
 
-    public new void initPlate() {
+    public void initPlate() {
         Members.ForEach(it => Destroy(it.gameObject));
         Members.Clear();
 
@@ -62,6 +62,7 @@ public class EnemyPlatesMng : PartyPlatesMng
 
             plate.Index = index;
             index++;
+            plate.name = u.Mst.Tag;
 
             plate.gameObject.SetActive(true);
             Members.Add(plate);
@@ -69,7 +70,7 @@ public class EnemyPlatesMng : PartyPlatesMng
 
         UnitPrefab.gameObject.SetActive(false);
 
-        Layout.Arrange();
+        //Layout.Arrange();
     }
 
 }

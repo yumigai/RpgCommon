@@ -47,8 +47,11 @@ public class StatusMast
 	public int Hp{ get{ return Param[(int)TYPE.HP]; } set{ Param[(int)TYPE.HP] = value; } }
 	public int Mp{ get{ return Param[(int)TYPE.MP]; } set{ Param[(int)TYPE.MP] = value; } }
 
-	public int MaxHp{ get{ return Lif * MAX_HP_CULC; } }
-	public int MaxMp{ get { return Men * MAX_MP_CULC; } }
+	private int _MaxHp = 0;
+	public int MaxHp{ get{ return _MaxHp > 0 ? _MaxHp : Lif * MAX_HP_CULC; } set{ _MaxHp = value;} }
+
+	private int _MaxMp = 0;
+	public int MaxMp{ get { return _MaxMp > 0 ? _MaxMp : Men * MAX_MP_CULC; } set{ _MaxMp = value; } }
 
 	public StatusMast(){
 		Param = new int[(int)TYPE.ALL];

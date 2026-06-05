@@ -84,13 +84,17 @@ public class RespawnMng : MonoBehaviour
         posiLongSort(hero_posi);
     }
 
+    public static int GetRandomIndex() {
+        return Random.Range(0, PosiCount);
+    }
+
     public static Vector3 getRandom() {
-        int index = Random.Range(0, PosiCount);
+        int index = GetRandomIndex();
         return Posis.ElementAt(index);
     }
 
     public static Vector3 getAirRandom() {
-        Vector3 air = getAirRandom();
+        Vector3 air = getRandom();
         air.y += AIR_HIGH;
         return air;
     }

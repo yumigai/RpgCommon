@@ -393,11 +393,13 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
             } else {
                 var sikills = BattleProc.ActionUnit.Skills;
                 foreach (var skill in sikills) {
-                    ChoiceList.makeListItem(skill.Id, skill.Name, GameConst.Path.ICON_ITEM_PATH + skill.Icon, "", "", choiceListItem);
+                    ChoiceList.makeListItem(skill.Id, skill.Name, GameConst.Path.ICON_SKILL_PATH + skill.Icon, "", "", choiceListItem);
                 }
             }
 
             ChoicePanel.SetActive(true);
+
+            ChoiceList.ReadyInputGamePad(true);
 
             Sequence = SEQUENCE.INPUT_WAIT;
         } else {
@@ -563,9 +565,9 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         attackEffectSet(posi);
 
         if (Log.Atk.Type == def.Type) {
-            //ターゲットが味方陣営
+            //ターゲットが自陣営
         } else {
-            //ターゲットが敵陣営
+            //ターゲットが相手陣営
             if (Log.IsHit[i]) {
 
                 damageReaction(tgt, Log.Dmg[i], posi);
@@ -881,38 +883,83 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     /// </summary>
     public void ChangeNextTarget() {
 
-        if (SelectSide == SELECT_SIDE.PARTY) {
+        var members = SelectSide == SELECT_SIDE.PARTY ? PlayerParty.Members : EnemyParty.Members;
 
-            if (PlayerParty.Members.Count < 2) {
-                return;
-            }
+        if (members.Count < 2) {
+            return;
+        }
 
-            var index = PlayerParty.Members.IndexOf(SelectedUnit);
-            index = Mathf.Clamp(index += GamePadButtonMng.AxisHorizontal, 0, PlayerParty.Members.Count - 1);
+        //var index = SelectSide == SELECT_SIDE.PARTY ? members.IndexOf(SelectedUnit) : EnemyParty.Layout.GetIndex(SelectedUnit.transform);
+        var index = members.IndexOf(SelectedUnit);
 
-            changeTarget(PlayerParty.Members[index]);
+        index = Mathf.Clamp(index += GamePadButtonMng.AxisHorizontal, 0, members.Count - 1);
 
-        } else {
-            //敵パーティの場合は選択対象の並び替え
-            if (EnemyParty.Members.Count == 0) {
-                return;
-            }
-
-            //SiblingIndexの関係上、Membersの並びは画面上の見た目と一致しないのでシンプルにindexをAxisHorizontalで加算（減算）しない
-            IEnumerable<CharaPlateMng> selection = Enumerable.Empty<CharaPlateMng>();
-
-            if (GamePadButtonMng.AxisHorizontal > 0) {
-                selection = EnemyParty.Members.Where(it => SelectedUnit.transform.localPosition.x < it.transform.localPosition.x);
-            } else {
-                selection = EnemyParty.Members.Where(it => SelectedUnit.transform.localPosition.x > it.transform.localPosition.x);
-            }
-
-            if (selection != null && selection.Count() > 0) {
-                var units = selection.OrderBy(it => it.transform.localPosition.x);
-                var unit = GamePadButtonMng.AxisHorizontal > 0 ? units.First() : units.Last();
-                changeTarget(unit);
+        if (SelectSide == SELECT_SIDE.ENEMY) {
+            for (var i = 0; i < members.Count; i++) {
+                if (members[index] != null && members[index].gameObject.activeSelf) {
+                    break;
+                } else {
+                    index = Mathf.Clamp(index += GamePadButtonMng.AxisHorizontal, 0, members.Count - 1);
+                    index = EnemyParty.Layout.GetIndex(index);
+                }
             }
         }
+
+
+        //if (SelectSide == SELECT_SIDE.ENEMY) {
+        //    if (members[index] == null || !members[index].gameObject.activeSelf) {
+        //        index = Mathf.Clamp(index += GamePadButtonMng.AxisHorizontal, 0, members.Count - 1);
+        //        if (members[index] == null || !members[index].gameObject.activeSelf) {
+        //            index = Mathf.Clamp(index += GamePadButtonMng.AxisHorizontal, 0, members.Count - 1);
+
+        //        }
+        //    }
+        //}
+
+        
+
+        //if (SelectSide == SELECT_SIDE.ENEMY) {
+        //    index = EnemyParty.Layout.GetIndex(index);
+        //}
+
+        changeTarget(members[index]);
+
+
+        //if (SelectSide == SELECT_SIDE.PARTY) {
+
+        //    if (PlayerParty.Members.Count < 2) {
+        //        return;
+        //    }
+
+        //    var index = PlayerParty.Members.IndexOf(SelectedUnit);
+        //    index = Mathf.Clamp(index += GamePadButtonMng.AxisHorizontal, 0, PlayerParty.Members.Count - 1);
+
+        //    changeTarget(PlayerParty.Members[index]);
+
+        //} else {
+        //    //敵パーティの場合は選択対象の並び替え
+        //    if (EnemyParty.Members.Count == 0) {
+        //        return;
+        //    }
+
+        //    var index = EnemyParty.Members.IndexOf(SelectedUnit);
+
+        //    //SiblingIndexの関係上、Membersの並びは画面上の見た目と一致しないのでシンプルにindexをAxisHorizontalで加算（減算）しない
+        //    IEnumerable<CharaPlateMng> selection = Enumerable.Empty<CharaPlateMng>();
+
+        //    if (GamePadButtonMng.AxisHorizontal > 0) {
+        //        selection = EnemyParty.Members.Where(it => SelectedUnit.transform.localPosition.x < it.transform.localPosition.x);
+        //    } else {
+        //        selection = EnemyParty.Members.Where(it => SelectedUnit.transform.localPosition.x > it.transform.localPosition.x);
+        //    }
+
+
+        //    if (selection != null && selection.Count() > 0) {
+        //        var units = selection.OrderBy(it => it.transform.localPosition.x);
+        //        var unit = GamePadButtonMng.AxisHorizontal > 0 ? units.First() : units.Last();
+        //        changeTarget(unit);
+        //    }
+        //}
 
     }
 

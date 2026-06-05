@@ -54,6 +54,9 @@ public class FieldUIMng : MonoBehaviour
     [SerializeField]
     public FieldObjectInfoMng StageClearGuid;
 
+    [SerializeField]
+    public FieldObjectInfoMng StageExitGuid;
+
     [System.NonSerialized]
     private int[] NowNums;
 
