@@ -43,13 +43,10 @@ public class QuestTran : CmnSaveProc.SaveClass {
 	//}
 
 	public void Init(int stageId, List<UnitStatusTran> party) {
-		//StageIndex = System.Array.FindIndex(StageMast.List, it => it.Id == stageId);
-		//Stage = StageMast.List.FindById(stageId);
 		StageId = stageId;
 		ActiveParty = party;
 		CarryBag = new List<ItemTran>();
 		NowFloorNum = 0;
-		//return StageIndex;
 	}
 
 	public void Continue(int stageId) {

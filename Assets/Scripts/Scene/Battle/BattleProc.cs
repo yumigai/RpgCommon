@@ -45,7 +45,7 @@ public class BattleProc
         public AiProc.ACTION Action;
         public UnitStatusTran Atk;
         public List<UnitStatusTran> Def = new List<UnitStatusTran>();
-        public List<int> Dmg = new List<int>();
+        public List<int> Values = new List<int>();
         public List<bool> IsHit = new List<bool>();
         public SkillMast Skill;
         public ItemTran Item;
@@ -420,28 +420,28 @@ public class BattleProc
     /// <summary>
     /// 直接攻撃（対象ランダム）
     /// </summary>
-    /// <param name="val"></param>
-	private static void weaponAttack(UnitStatusTran val) {
+    /// <param name="user"></param>
+	private static void weaponAttack(UnitStatusTran user) {
 
         //int target_index;
         List<UnitStatusTran> targets;
 
-        if (val.Status.Hp > 0) {
+        if (user.Status.Hp > 0) {
 
-            if (val.Type == UnitMast.TYPE.PLAYER) {
+            if (user.Type == UnitMast.TYPE.PLAYER) {
                 targets = Quest.Enemys;//.Cast<UnitStatusTran>().ToList();
-            } else if (val.Type == UnitMast.TYPE.ENEMY) {
+            } else if (user.Type == UnitMast.TYPE.ENEMY) {
                 targets = Quest.ActiveParty;
             } else {
                 targets = new List<UnitStatusTran>();
             }
 
-            int target_index = getTarget(val, targets.Count);
+            int target_index = getTarget(user, targets.Count);
             if (target_index < 0) {
                 return;
             }
             BattleAction.Def.Add(targets[target_index]);
-            weaponAttack(val, targets[target_index]);
+            weaponAttack(user, targets[target_index]);
 
         }
     }
@@ -449,46 +449,54 @@ public class BattleProc
     /// <summary>
     /// 武器攻撃
     /// </summary>
-    /// <param name="val"></param>
+    /// <param name="user"></param>
     /// <param name="targets"></param>
-    private static void weaponAttack(UnitStatusTran val, List<UnitStatusTran> targets) {
+    private static void weaponAttack(UnitStatusTran user, List<UnitStatusTran> targets) {
         foreach (var tar in targets) {
-            weaponAttack(val, tar);
+            weaponAttack(user, tar);
         }
     }
 
     /// <summary>
     /// 武器攻撃
     /// </summary>
-    /// <param name="val"></param>
+    /// <param name="user"></param>
     /// <param name="target"></param>
-    private static void weaponAttack(UnitStatusTran val, UnitStatusTran target) {
+    private static void weaponAttack(UnitStatusTran user, UnitStatusTran target) {
         bool is_hit = false;
-        int damage_val = physicalDamage(val, target, ref is_hit);
+        int damage_val = physicalDamage(user, target, ref is_hit);
 
-        BattleAction.Dmg.Add(damage_val);
+        BattleAction.Values.Add(damage_val);
         BattleAction.IsHit.Add(is_hit);
 
-        isDead(target, val);
+        isDead(target, user);
     }
 
-    private static void useSkill(SkillMast skill, UnitStatusTran val, List<UnitStatusTran> targets) {
+    private static void useSkill(SkillMast skill, UnitStatusTran user, List<UnitStatusTran> targets) {
 
-        if (val.Status.Hp > 0 && skill != null) {
+        if (user.Status.Hp > 0 && skill != null) {
 
             switch (skill.Spec) {
                 case SkillMast.SPEC.ATTACK:
-                skillAttack(skill, val, targets);
+                skillAttack(skill, user, targets);
                 break;
                 default:
-                PowerProcess.execPower(skill, val, targets);
-
+                //PowerProcess.execPower(skill, val, targets);
+                //BattleAction.Values.Add(val);
+                skillEffect(skill, user, targets);
                 break;
 
             }
-            val.Status.Mp -= skill.Cost;
+            user.Status.Mp -= skill.Cost;
         }
 
+    }
+
+    private static void skillEffect(SkillMast skill, UnitStatusTran user, List<UnitStatusTran> targets) {
+        foreach (var tar in targets) {
+            var value = PowerProcess.execPower(skill, user, tar);
+            BattleAction.Values.Add(value);
+        }
     }
 
     /// <summary>
@@ -597,7 +605,7 @@ public class BattleProc
     /// <param name="defender"></param>
     /// <returns></returns>
     private static int magicDamage(SkillMast skill, UnitStatusTran attacker, UnitStatusTran defender) {
-        int rand_pow = (int)Random.Range(skill.PowMin, skill.PowMax);
+        int rand_pow = (int)Random.Range(skill.PhysicsPower, (int)(skill.PhysicsPower * 1.1f ));
         int base_pow = attacker.Status.getParam(skill.BaseParam) + attacker.Status.luckJudge();
         int power = base_pow + rand_pow + (int)attacker.EquipWeapon.SubValue;
 
@@ -652,7 +660,7 @@ public class BattleProc
         }
 
         //BattleAction.Def.Add(defender);
-        BattleAction.Dmg.Add(damage);
+        BattleAction.Values.Add(damage);
         BattleAction.IsHit.Add(true);
         //BattleAction.Skill = skill;
 
@@ -761,19 +769,19 @@ public class BattleProc
         return false;
     }
 
-    private static bool skillHeal(SkillMast skill, UnitStatusTran val, List<UnitStatusTran> targets) {
+    //private static bool skillHeal(SkillMast skill, UnitStatusTran val, List<UnitStatusTran> targets) {
 
-        if (skill.Target == SkillMast.TARGET.ANYTHING) {
-            for (int i = 0; i < targets.Count; i++) {
-                int rand = (int)Random.Range(skill.PowMin, skill.PowMax);
+    //    if (skill.Target == SkillMast.TARGET.ANYTHING) {
+    //        for (int i = 0; i < targets.Count; i++) {
+    //            int rand = (int)Random.Range(skill.PowMin, skill.PowMax);
 
-            }
-        } else {
+    //        }
+    //    } else {
 
-        }
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 
     private static bool isDead(UnitStatusTran val, UnitStatusTran atk, bool is_log = true) {
         if (val.Status.Hp <= 0) {

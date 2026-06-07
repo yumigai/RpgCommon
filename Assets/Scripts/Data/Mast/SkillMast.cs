@@ -34,9 +34,9 @@ public class SkillMast : PowerMast {
 
 	//public USE_TIMING UseTiming;
 
-	public float PowMin;
+	//public float PowMin;
 
-	public float PowMax;
+	//public float PowMax;
 
 	//public int CastTime;
 
@@ -48,7 +48,7 @@ public class SkillMast : PowerMast {
 
     public string Info;
 
-    public float AvrPow{ get { return (PowMax + PowMin) / 2f; } }
+    public float AvrPow { get { return PhysicsPower; } }//(PowMax + PowMin) / 2f; } }
 
 	public static SkillMast[] List;
 

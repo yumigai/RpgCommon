@@ -124,6 +124,9 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
 
     protected static SEQUENCE Sequence;
 
+    ////前シーケンス（キャンセルで戻る場合に使用）
+    //protected static SEQUENCE BeforeSequence;
+
     public static ADVANCED Advance;
 
     public static string BattleBgm;
@@ -140,6 +143,12 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     public BattleProc.ActionData Log {
         get {
             return BattleProc.BattleAction;
+        }
+    }
+
+    private List<CharaPlateMng> SelectSideMembers {
+        get {
+            return SelectSide == SELECT_SIDE.PARTY ? PlayerParty.Members : EnemyParty.Members;
         }
     }
 
@@ -247,22 +256,23 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
                 unitReady();
                 break;
                 case SEQUENCE.PROCESS:
-                if (BattleProc.ActionUnit.Hp > 0) {
-                    BattleResult = BattleProc.battle(CommandData);
-                    StartCoroutine(battleAction());
-                } else {
-                    BattleResult = BattleProc.endProcess();
-                    Sequence = SEQUENCE.UNIT_READY;
-                }
-                CommandData = null;
+                    if (BattleProc.ActionUnit.Hp > 0) {
 
-                break;
+                        BattleResult = BattleProc.battle(CommandData);
+                        StartCoroutine(battleAction());
+                    } else {
+                        BattleResult = BattleProc.endProcess();
+                        Sequence = SEQUENCE.UNIT_READY;
+                    }
+                    CommandData = null;
+
+                    break;
                 case SEQUENCE.COMMAND:
-                command();
-                break;
+                    command();
+                    break;
                 case SEQUENCE.CHOICE:
-                choice();
-                break;
+                    choice();
+                    break;
                 case SEQUENCE.ACTION:
                 break;
                 case SEQUENCE.SELECT_TARGET:
@@ -349,17 +359,10 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     /// </summary>
     private void command() {
 
-        //Debug.Log(BattleProc.BattleData.ActionRound);
-
         if (BattleProc.ActionUnit.IsAlive && BattleProc.ActionUnit.Tactics == AiProc.TACTICS.COMMAND) {
-            //CommandPanel.SetActive(true);
-            //Debug.Log(BattleProc.ActionUnit.Name);
             CommandUnit.Img.sprite = BattleProc.ActionUnit.getStandImage();
             CommandUnit.updImageSize();
             CommandUnit.gameObject.SetActive(true);
-            //CommandData = new BattleProc.ActionData();
-            //CommandData.Atk = BattleProc.ActionUnit;
-            //Sequence = SEQUENCE.INPUT_WAIT;
             readyCommand();
         } else {
             Sequence = SEQUENCE.PROCESS;
@@ -429,6 +432,7 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         SelectSide = power.Side == PowerMast.SIDE.TARGET ? SELECT_SIDE.ENEMY : SELECT_SIDE.PARTY;
         is_all = power.Target == PowerMast.TARGET.ANYTHING;
 
+        //BeforeSequence = Sequence;
         Sequence = SEQUENCE.SELECT_TARGET;
 
         CommandUnit.gameObject.SetActive(false);
@@ -456,6 +460,11 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         //var attacker = Log.Atk.Type == UnitMast.TYPE.PLAYER ? PlayerParty : EnemyParty;
         //CharaPlateMng chara = attacker.getMember(Log.Atk.Id);
         CharaPlateMng chara = getUnitPlate(Log.Atk);
+
+        if (chara == null) {
+            var b = BattleProc.Battlers;
+            Debug.Log(b.Count);
+        }
 
         if (Log.IsBurst || Log.IsStan) {
             var txt = "";
@@ -541,8 +550,8 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     private void changeTarget(CharaPlateMng plate) {
 
         if (SelectSide != SELECT_SIDE.NON || Sequence == SEQUENCE.SELECT_TARGET) {
-            PartyPlatesMng party = SelectSide == SELECT_SIDE.PARTY ? PlayerParty : EnemyParty;
-            party.Members.ForEach(it => it.Target.SetActive(false));
+            //PartyPlatesMng party = SelectSide == SELECT_SIDE.PARTY ? PlayerParty : EnemyParty;
+            SelectSideMembers.ForEach(it => it.Target.SetActive(false));
             plate.Target.SetActive(true);
             SelectedUnit = plate;
         }
@@ -566,11 +575,17 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
 
         if (Log.Atk.Type == def.Type) {
             //ターゲットが自陣営
+            switch (Log.Action) {
+                case AiProc.ACTION.ITEM:
+                case AiProc.ACTION.SKILL:
+                    healReaction(tgt, Log.Values[i]);
+                break;
+            }
         } else {
             //ターゲットが相手陣営
             if (Log.IsHit[i]) {
 
-                damageReaction(tgt, Log.Dmg[i], posi);
+                damageReaction(tgt, Log.Values[i], posi);
 
                 if (Log.addBuff) {
                     buffIconUpdate(tgt);
@@ -606,7 +621,8 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     /// <param name="ch"></param>
     /// <param name="val"></param>
     void healReaction(CharaPlateMng ch, int val) {
-        var uni = ch.Unit;
+        //var uni = ch.Unit;
+        
         ch.heal(val);
         ch.setData();
     }
@@ -779,7 +795,7 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
 
             } else {
                 var before_unit = SelectSide == SELECT_SIDE.ENEMY ? BeforeTargetEnemy : BeforeTargetPlayer;
-                var member = SelectSide == SELECT_SIDE.ENEMY ? EnemyParty.Members : PlayerParty.Members;
+                var member = SelectSideMembers; //SelectSide == SELECT_SIDE.ENEMY ? EnemyParty.Members : PlayerParty.Members;
 
                 if ((before_unit == null || !before_unit.gameObject.activeSelf) && member.Count > 0) {
                     int index = member.FindIndex(it => it.gameObject.activeSelf);
@@ -810,6 +826,21 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         }
 
         TargettPanel.SetActive(is_show);
+    }
+
+    /// <summary>
+    /// ターゲット選択状態から戻る
+    /// </summary>
+    public void closeTargetSelect() {
+        showTargetPanel(false);
+        //前の状態がスキルかアイテム選択なら選択シーケンスに戻す
+        if (CommandData.Action == AiProc.ACTION.SKILL || CommandData.Action == AiProc.ACTION.ITEM) {
+            CommandUnit.gameObject.SetActive(true);
+            Sequence = SEQUENCE.CHOICE;
+        } else {
+            Sequence = SEQUENCE.COMMAND;
+        }
+        
     }
 
     /// <summary>
@@ -883,7 +914,7 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     /// </summary>
     public void ChangeNextTarget() {
 
-        var members = SelectSide == SELECT_SIDE.PARTY ? PlayerParty.Members : EnemyParty.Members;
+        var members = SelectSideMembers;//SelectSide == SELECT_SIDE.PARTY ? PlayerParty.Members : EnemyParty.Members;
 
         if (members.Count < 2) {
             return;

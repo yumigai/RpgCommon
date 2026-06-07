@@ -300,7 +300,7 @@ public class AiProc
 			list.Sort((a, b) => b.Hp - a.Hp );
 			int max_hp = list[0].Hp;
 
-			SkillMast[] use_skills = System.Array.FindAll( skills, it=> (int)it.PowMin <= max_hp );
+			SkillMast[] use_skills = System.Array.FindAll( skills, it=> (int)it.PhysicsPower <= max_hp );
 			if( use_skills.Length > 0 ){
 				skills = use_skills;
 			}

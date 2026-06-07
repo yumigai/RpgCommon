@@ -16,12 +16,13 @@ public static class PowerProcess
 		}
 	}
 
-	public static void execPower(PowerMast pow, UnitStatusTran user, UnitStatusTran tran) {
+	public static int execPower(PowerMast pow, UnitStatusTran user, UnitStatusTran tran) {
+		int value = 0;
 		switch (pow.Spec) {
 			case PowerMast.SPEC.ATTACK:
 			break;
 			case PowerMast.SPEC.HEAL:
-			heal(pow, tran);
+			value = heal(pow, tran);
 			break;
 			case PowerMast.SPEC.CURE_POISON:
 			case PowerMast.SPEC.CURE_STAN:
@@ -31,20 +32,23 @@ public static class PowerProcess
 			break;
 			case PowerMast.SPEC.HEAL_CURE:
 			cure(pow, tran);
-			heal(pow, tran);
+			value = heal(pow, tran);
 			break;
 			case PowerMast.SPEC.RESURRECT:
 			tran.Status.Hp = 1;
-			heal(pow, tran);
+			value = heal(pow, tran);
 			break;
 		}
+		return value;
 	}
 
-	private static void heal(PowerMast pow, UnitStatusTran tran) {
+	private static int heal(PowerMast pow, UnitStatusTran tran) {
+		int value = pow.PhysicsPower;
 		if (tran.Hp > 0) {
-			tran.Status.heal(pow.PhysicsPower);
-			tran.Status.Mp += pow.MagicPower;
+			tran.Status.heal(value);
+			//tran.Status.Mp += pow.MagicPower; //特殊なmp回復アイテム（使用予定なし）
 		}
+		return value;
 	}
 
 	private static void cure(PowerMast pow, UnitStatusTran tran) {

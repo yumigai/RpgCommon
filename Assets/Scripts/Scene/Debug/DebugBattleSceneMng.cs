@@ -36,7 +36,7 @@ public class DebugBattleSceneMng : MonoBehaviour
     void Start() {
 
     }
-
+    /*
     public void pushStart() {
         WinCount = 0;
 
@@ -141,9 +141,9 @@ public class DebugBattleSceneMng : MonoBehaviour
             if (Action.Skill != null) {
                 Debug.Log(Action.Skill.Name);
             }
-            for (var i = 0; i < Action.Def.Count && i < Action.Dmg.Count; i++) {
+            for (var i = 0; i < Action.Def.Count && i < Action.Values.Count; i++) {
                 Debug.Log("at : " + Action.Atk.Name + " → "
-            + Action.Def[i].Name + " = " + Action.Dmg[i]);
+            + Action.Def[i].Name + " = " + Action.Values[i]);
             }
 
         } else {
@@ -162,4 +162,5 @@ public class DebugBattleSceneMng : MonoBehaviour
         }
         return false;
     }
+    */
 }
