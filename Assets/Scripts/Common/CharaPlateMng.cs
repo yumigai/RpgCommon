@@ -57,10 +57,10 @@ public class CharaPlateMng : MonoBehaviour {
     public FreeTransformMng Shaper;
 
     [SerializeField]
-    public GameObject[] BuffUps = new GameObject[(int)BuffTran.TYPE.ALL];
+    public GameObject[] BuffIcons = new GameObject[(int)BuffTran.TYPE.ALL];
 
-    [SerializeField]
-    public GameObject[] BuffDowns = new GameObject[(int)BuffTran.TYPE.ALL];
+    //[SerializeField]
+    //public GameObject[] BuffDowns = new GameObject[(int)BuffTran.TYPE.ALL];
 
     [System.NonSerialized]
     public UnitStatusTran Unit;
@@ -111,8 +111,8 @@ public class CharaPlateMng : MonoBehaviour {
         showWeak(false);
         showRegist(false);
         showBreak(false);
-        UtilToolLib.AllObjectActive(BuffUps, false);
-        UtilToolLib.AllObjectActive(BuffDowns, false);
+        UtilToolLib.AllObjectActive(BuffIcons, false);
+        //UtilToolLib.AllObjectActive(BuffDowns, false);
     }
 
     public void setUnit(UnitStatusTran unit) {

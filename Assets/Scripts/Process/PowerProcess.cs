@@ -18,27 +18,30 @@ public static class PowerProcess
 
 	public static int execPower(PowerMast pow, UnitStatusTran user, UnitStatusTran tran) {
 		int value = 0;
-		switch (pow.Spec) {
-			case PowerMast.SPEC.ATTACK:
-			break;
-			case PowerMast.SPEC.HEAL:
-			value = heal(pow, tran);
-			break;
-			case PowerMast.SPEC.CURE_POISON:
-			case PowerMast.SPEC.CURE_STAN:
-			case PowerMast.SPEC.CURE_BAD:
-			case PowerMast.SPEC.CURE_PANIC:
-			cure(pow, tran);
-			break;
-			case PowerMast.SPEC.HEAL_CURE:
-			cure(pow, tran);
-			value = heal(pow, tran);
-			break;
-			case PowerMast.SPEC.RESURRECT:
-			tran.Status.Hp = 1;
-			value = heal(pow, tran);
-			break;
+		if (pow.canUse()) {
+			switch (pow.Spec) {
+				case PowerMast.SPEC.ATTACK:
+				break;
+				case PowerMast.SPEC.HEAL:
+				value = heal(pow, tran);
+				break;
+				case PowerMast.SPEC.CURE_POISON:
+				case PowerMast.SPEC.CURE_STAN:
+				case PowerMast.SPEC.CURE_BAD:
+				case PowerMast.SPEC.CURE_PANIC:
+				cure(pow, tran);
+				break;
+				case PowerMast.SPEC.HEAL_CURE:
+				cure(pow, tran);
+				value = heal(pow, tran);
+				break;
+				case PowerMast.SPEC.RESURRECT:
+				tran.Status.Hp = 1;
+				value = heal(pow, tran);
+				break;
+			}
 		}
+
 		return value;
 	}
 

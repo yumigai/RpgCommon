@@ -54,6 +54,8 @@ public class BattleProc
         public bool IsBurst = false;
         public bool addBuff = false;
         public bool removeBuff = false;
+
+        public PowerMast Power { get { return Item != null ? (PowerMast)Item.Mst : (PowerMast)Skill;  } }
     }
 
     public class RewardData
@@ -347,7 +349,7 @@ public class BattleProc
         ai.think(ActionUnit);
 
         BattleAction.Action = ai.JudgeAction;
-        BattleAction.Def = ai.ActionTargets;
+        BattleAction.Def.AddRange(ai.ActionTargets);
         BattleAction.Skill = ai.UseSkill;
 
 
@@ -394,6 +396,9 @@ public class BattleProc
     /// <param name="unit"></param>
     /// <returns></returns>
     private static bool judgeSkipTurn(UnitStatusTran unit) {
+        if (!unit.IsAlive) {
+            return true;
+        }
         if (unit.IsCrash) {
             BattleAction.IsBurst = true;
             return true;
@@ -410,11 +415,17 @@ public class BattleProc
     }
 
     private static void slipDamage(UnitStatusTran unit) {
-        if (unit.isBuff(BuffTran.TYPE.HP_SLIP)) {
-            var bf = unit.getBuff(BuffTran.TYPE.HP_SLIP);
-            unit.damage(-(int)bf.Value);
-            BattleAction.SlipHp = (int)bf.Value;
+        int value = 0;
+        var sl = unit.getBuff(BuffTran.TYPE.HP_SLIP);
+        if (sl != null) {
+            value += unit.Status.heal((int)sl.Value);
         }
+
+        var po = unit.getBuff(BuffTran.TYPE.POISON);
+        if (po != null) {
+            value -= unit.damage((int)po.Value);
+        }
+        BattleAction.SlipHp = value;
     }
 
     /// <summary>
@@ -474,12 +485,18 @@ public class BattleProc
 
     private static void useSkill(SkillMast skill, UnitStatusTran user, List<UnitStatusTran> targets) {
 
-        if (user.Status.Hp > 0 && skill != null) {
+        if (user.Status.Hp > 0 && skill != null && skill.canUse( PowerMast.USE_TIMING.BATTLE)) {
 
             switch (skill.Spec) {
                 case SkillMast.SPEC.ATTACK:
                 skillAttack(skill, user, targets);
                 break;
+                //case PowerMast.SPEC.BAD:
+                //case PowerMast.SPEC.CURSE:
+                //case PowerMast.SPEC.PANIC:
+                //case PowerMast.SPEC.POISON:
+                //case PowerMast.SPEC.STAN:
+                //    break;
                 default:
                 //PowerProcess.execPower(skill, val, targets);
                 //BattleAction.Values.Add(val);
@@ -489,9 +506,14 @@ public class BattleProc
             }
             user.Status.Mp -= skill.Cost;
         }
-
     }
 
+    /// <summary>
+    /// 抵抗判定を必要としない効果
+    /// </summary>
+    /// <param name="skill"></param>
+    /// <param name="user"></param>
+    /// <param name="targets"></param>
     private static void skillEffect(SkillMast skill, UnitStatusTran user, List<UnitStatusTran> targets) {
         foreach (var tar in targets) {
             var value = PowerProcess.execPower(skill, user, tar);

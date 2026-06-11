@@ -384,7 +384,7 @@ public class AiProc
 			}
 			UseSkill = skills[index];
 			JudgeAction = ACTION.SKILL;
-			if (UseSkill.Target == PowerMast.TARGET.ANYTHING) {
+			if (UseSkill.isTargettAll) {
 				ActionTargets = list;
 			} else {
 				int tage = Random.Range(0, list.Count);

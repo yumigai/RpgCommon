@@ -262,7 +262,7 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
                         StartCoroutine(battleAction());
                     } else {
                         BattleResult = BattleProc.endProcess();
-                        Sequence = SEQUENCE.UNIT_READY;
+                        nextTurn();
                     }
                     CommandData = null;
 
@@ -415,8 +415,6 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     /// </summary>
     public void choiceListItem(int id) {
 
-        var is_all = false;
-
         PowerMast power;
 
         if (CommandData.Action == AiProc.ACTION.ITEM) {
@@ -430,7 +428,6 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         }
 
         SelectSide = power.Side == PowerMast.SIDE.TARGET ? SELECT_SIDE.ENEMY : SELECT_SIDE.PARTY;
-        is_all = power.Target == PowerMast.TARGET.ANYTHING;
 
         //BeforeSequence = Sequence;
         Sequence = SEQUENCE.SELECT_TARGET;
@@ -438,7 +435,7 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         CommandUnit.gameObject.SetActive(false);
         ChoicePanel.SetActive(false);
 
-        showTargetPanel(true, is_all);
+        showTargetPanel(true, power.isTargettAll);
     }
 
     /// <summary>
@@ -516,6 +513,13 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         ActionSortGroup.RemoveUnit(chara.Unit.Id);
         ActionSortGroup.UpdateGroup(BattleProc.Battlers);
 
+        nextTurn();
+    }
+
+    /// <summary>
+    /// ターン更新判定・実行
+    /// </summary>
+    private void nextTurn() {
         if (BattleProc.isTurnStart()) {
             Sequence = SEQUENCE.TURN_START;
         } else {
@@ -549,11 +553,13 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     /// <param name="plate"></param>
     private void changeTarget(CharaPlateMng plate) {
 
-        if (SelectSide != SELECT_SIDE.NON || Sequence == SEQUENCE.SELECT_TARGET) {
-            //PartyPlatesMng party = SelectSide == SELECT_SIDE.PARTY ? PlayerParty : EnemyParty;
-            SelectSideMembers.ForEach(it => it.Target.SetActive(false));
-            plate.Target.SetActive(true);
-            SelectedUnit = plate;
+        if ( SelectSide != SELECT_SIDE.NON || Sequence == SEQUENCE.SELECT_TARGET ) {
+            if (CommandData.Power == null || !CommandData.Power.isTargettAll) {
+                SelectSideMembers.ForEach(it => it.Target.SetActive(false));
+                plate.Target.SetActive(true);
+                SelectedUnit = plate;
+            }
+            
         }
     }
 
@@ -583,21 +589,22 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
             }
         } else {
             //ターゲットが相手陣営
-            if (Log.IsHit[i]) {
+            if (i < Log.IsHit.Count) {
+                if (Log.IsHit[i]) {
 
-                damageReaction(tgt, Log.Values[i], posi);
+                    damageReaction(tgt, Log.Values[i], posi);
 
-                if (Log.addBuff) {
-                    buffIconUpdate(tgt);
+                    if (Log.addBuff) {
+                        buffIconUpdate(tgt);
+                    }
+
+                    tgt.showBreak(tgt.Unit.IsCrash);
+
+                } else {
+                    tgt.miss();
                 }
-
-                tgt.showBreak(tgt.Unit.IsCrash);
-
-            } else {
-                tgt.miss();
             }
         }
-
     }
 
     /// <summary>
@@ -633,18 +640,12 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     /// <param name="plate"></param>
     void buffIconUpdate(CharaPlateMng plate) {
 
-        UtilToolLib.AllObjectActive(plate.BuffUps, false);
-        UtilToolLib.AllObjectActive(plate.BuffDowns, false);
+        UtilToolLib.AllObjectActive(plate.BuffIcons, false);
+        //UtilToolLib.AllObjectActive(plate.BuffDowns, false);
 
         foreach (var buf in plate.Unit.Buff) {
-            if (buf.Value > 0) {
-                if (plate.BuffUps[(int)buf.Type] != null) {
-                    plate.BuffUps[(int)buf.Type].SetActive(true);
-                }
-            } else {
-                if (plate.BuffDowns[(int)buf.Type] != null) {
-                    plate.BuffDowns[(int)buf.Type].SetActive(true);
-                }
+            if (buf.Value != 0 && plate.BuffIcons[(int)buf.Type] != null) {
+                plate.BuffIcons[(int)buf.Type].SetActive(true);
             }
         }
     }
@@ -656,10 +657,10 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     /// <param name="posi"></param>
     protected void attackEffectSet(Vector3 posi) {
 
-        if (Log.Skill != null) {
-            MainEffects[Log.Skill.Effect].effect(posi);
-        } else if (Log.Item != null) {
-            MainEffects[Log.Item.Mst.Effect.ToString()].effect(posi);
+        if (Log.Skill != null && MainEffects.ContainsKey(Log.Skill.Effect)) {
+            MainEffects[Log.Skill.Effect]?.effect(posi);
+        } else if (Log.Item != null && MainEffects.ContainsKey(Log.Item.Mst.Effect)) {
+            MainEffects[Log.Item.Mst.Effect]?.effect(posi);
         } else {
 
             var weapon = Log.Atk.EquipWeapon;
@@ -792,7 +793,9 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
 
         if (is_show) {
             if (is_all) {
-
+                foreach (var plate in SelectSideMembers) {
+                    plate.Target.SetActive(true);
+                }
             } else {
                 var before_unit = SelectSide == SELECT_SIDE.ENEMY ? BeforeTargetEnemy : BeforeTargetPlayer;
                 var member = SelectSideMembers; //SelectSide == SELECT_SIDE.ENEMY ? EnemyParty.Members : PlayerParty.Members;
@@ -803,22 +806,6 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
                 } else {
                     changeTarget(before_unit);
                 }
-
-                //if (SelectSide == SELECT_SIDE.ENEMY) {
-                //    if ((BeforeTargetEnemy == null || !BeforeTargetEnemy.gameObject.activeSelf ) && EnemyParty.Members.Count > 0) {
-                //        int index = EnemyParty.Members.FindIndex(it => it.gameObject.activeSelf);
-                //        changeTarget(EnemyParty.Members[index]);
-                //    } else {
-                //       changeTarget(BeforeTargetEnemy);
-                //    }
-                //} else {
-                //    if((BeforeTargetPlayer ==null || !BeforeTargetPlayer.gameObject.activeSelf) && PlayerParty.Members.Count > 0 ){
-                //        int index = PlayerParty.Members.FindIndex(it => it.gameObject.activeSelf);
-                //        changeTarget(PlayerParty.Members[index]);
-                //    } else {
-                //        changeTarget(BeforeTargetPlayer);
-                //    }
-                //}
             }
         } else {
             PlayerParty.Members.ForEach(it => it.Target.SetActive(false));
@@ -848,10 +835,8 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     /// </summary>
     /// <param name="plate"></param>
     private void selectPartyUnit(CharaPlateMng plate) {
-        SelectedUnit = plate;
         BeforeTargetPlayer = plate;
-        CommandData.Def.Add(plate.Unit);
-        CommandProcess();
+        selectUnit(plate);
     }
 
     /// <summary>
@@ -859,9 +844,18 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     /// </summary>
     /// <param name="plate"></param>
     private void selectEnemy(CharaPlateMng plate) {
-        SelectedUnit = plate;
         BeforeTargetEnemy = plate;
-        CommandData.Def.Add(plate.Unit);
+        selectUnit(plate);
+    }
+
+    private void selectUnit(CharaPlateMng plate) {
+        SelectedUnit = plate;
+        if (CommandData.Power != null && CommandData.Power.isTargettAll) {
+            CommandData.Def.AddRange( SelectSide == SELECT_SIDE.PARTY ? PlayerParty.Units : EnemyParty.Units);
+        } else {
+            CommandData.Def.Add(plate.Unit);
+        }
+
         CommandProcess();
     }
 

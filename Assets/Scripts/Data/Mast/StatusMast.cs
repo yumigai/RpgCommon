@@ -73,11 +73,21 @@ public class StatusMast
 		}
 	}
 
-	public int heal(int value)
-    {
-		return heal(value, MaxHp, TYPE.HP);
+	//回復
+	public int heal(int value){
+		if (Hp > 0) {
+			return heal(value, MaxHp, TYPE.HP);
+		}
+		return 0;
     }
+	
+	//蘇生
+	public int resurrect(int value) {
+		Hp = Hp <= 0 ? 1 : Hp;
+		return heal(value);
+	}
 
+	//ステータスダメージ回復（基本的に直接的には使用しない）
 	public int heal( int value, int max, TYPE type){
 		if (value > 0) {
             int before = Hp;

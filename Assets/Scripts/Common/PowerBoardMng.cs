@@ -66,13 +66,12 @@ public class PowerBoardMng : MonoBehaviour
             mng.check(true);
             TargetGroup.GroupBase.SetActive(true);
             TargetGroup.gameObject.SetActive(true);
-            bool check = SelectedPower.Target == PowerMast.TARGET.ANYTHING;
-            TargetGroup.CreateGroup(check);
+            TargetGroup.CreateGroup(SelectedPower.isTargettAll);
             TargetGroup.InputReciv.initSetupWithFrameEnd(true);
         }
     }
     public void selectUnit(CharaImgGaugeMng chara) {
-        if (SelectedPower.Target == PowerMast.TARGET.ANYTHING) {
+        if (SelectedPower.isTargettAll) {
             TargetUnits = SaveMng.Quest.ActiveParty;
         } else {
             TargetUnits = new List<UnitStatusTran>();

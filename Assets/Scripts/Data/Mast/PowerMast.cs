@@ -100,6 +100,8 @@ abstract public class PowerMast : MulitiUseListMast
 
 	public string Effect; //独自エフェクト（基本的に使わない）
 
+	public bool isTargettAll { get { return Target == PowerMast.TARGET.ANYTHING;} }
+
 	/// <summary>
 	/// 効果タイプ名取得
 	/// </summary>

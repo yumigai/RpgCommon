@@ -100,11 +100,12 @@ public class SkillBoardMng : PowerBoardMng
         SkillMast[] skills = null;
 
         if (Mode == MODE.USE) {
-            if (SaveMng.Quest.IsBattle) {
-                skills = unit.Skills.Where(it => it.UseTiming == PowerMast.USE_TIMING.DUAL || it.UseTiming == PowerMast.USE_TIMING.BATTLE).ToArray();
-            } else {
-                skills = unit.Skills.Where(it => it.UseTiming == PowerMast.USE_TIMING.DUAL || it.UseTiming == PowerMast.USE_TIMING.FIELD).ToArray();
-            }
+            skills = unit.Skills.Where(it => it.canUse()).ToArray();
+            //if (SaveMng.Quest.IsBattle) {
+            //    skills = unit.Skills.Where(it => it.canUse(PowerMast.USE_TIMING.BATTLE)).ToArray();
+            //} else {
+            //    skills = unit.Skills.Where(it => it.UseTiming == PowerMast.USE_TIMING.DUAL || it.UseTiming == PowerMast.USE_TIMING.FIELD).ToArray();
+            //}
         } else {
             skills = unit.Skills;
         }

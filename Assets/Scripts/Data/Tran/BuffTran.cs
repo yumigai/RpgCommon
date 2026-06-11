@@ -19,9 +19,9 @@ public class BuffTran
         DEF, //防御アップorダウン 
         MAG, //魔攻撃アップorダウン
         REG, //魔防御アップorダウン
-        HIT_ATK, //命中・攻撃アップorダウン
-        HIT_SWAY, //命中・回避アップorダウン
-        DEF_REG, //防御・抵抗アップorダウン
+        //HIT_ATK, //命中・攻撃アップorダウン
+        //HIT_SWAY, //命中・回避アップorダウン
+        //DEF_REG, //防御・抵抗アップorダウン
         POISON, //
         STAN, //スタン（通常攻撃が確率で失敗）
         PANIC, //混乱
