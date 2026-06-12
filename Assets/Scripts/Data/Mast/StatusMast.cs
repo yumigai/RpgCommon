@@ -7,6 +7,9 @@ public class StatusMast
 
     public const int MAX_STATUS = 9999;
 
+	//幸運判定補正
+	public const int LUCK_JUDGE_ADJ = 2;
+
 	public enum TYPE
 	{
 		STR,
@@ -108,7 +111,11 @@ public class StatusMast
 	}
 
 	public int luckJudge(){
-		return Random.Range (0, Luk);
+		return judgeParam(TYPE.LUK);
+	}
+
+	public int judgeParam(TYPE type) {
+		return Random.Range(0, Param[(int)type]) / LUCK_JUDGE_ADJ;
 	}
 
 	public int[] ParamCopy(){

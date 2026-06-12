@@ -14,13 +14,19 @@ public class BattleProc
     public const bool USE_ELEMENT = false;
 
     /// <summary>
-    /// 各ユニットが個別に弱点を持つ場合
+    /// 各ユニットが個別に弱点を持つ場合(trueの場合、USE_ELEMENTはfalseにする）
     /// </summary>
     public const bool USE_WEAK_SYSTEM = true;
 
     public const float ELEMENT_ADD_CULC = 1.5f;
 
     public const float ELEMENT_SUB_CULC = 0.75f;
+
+    //命中判定の際の防御側の補正
+    public const int SWAY_JUDGE_ADJ = 2;
+
+    //ダメージ判定の際の防御側の補正
+    public const int GUARD_JUDGE_ADJ = 2;
 
     /// <summary>
     /// クラッシュ時ダメージ補正
@@ -56,6 +62,37 @@ public class BattleProc
         public bool removeBuff = false;
 
         public PowerMast Power { get { return Item != null ? (PowerMast)Item.Mst : (PowerMast)Skill;  } }
+
+        /// <summary>
+        /// ターゲット追加
+        /// 本来はDefとValuesとisHitまとめたクラス作りたいけど影響大きいので苦肉の策
+        /// </summary>
+        /// <param name="def"></param>
+        public void AddDef(UnitStatusTran def ) {
+            Def.Add(def);
+            Values.Add(0);
+            IsHit.Add(false);
+        }
+
+        public void AddDef(List<UnitStatusTran> defs) {
+            foreach (var def in defs) {
+                AddDef(def);
+            }
+        }
+
+        /// <summary>
+        /// 命中・効果値更新
+        /// </summary>
+        /// <param name="def"></param>
+        /// <param name="hit"></param>
+        /// <param name="value"></param>
+        public void updateHitValue(UnitStatusTran def, bool hit, int value) {
+            var index = Def.IndexOf(def);
+            if (index >= 0 && index < IsHit.Count && index < Values.Count) {
+                IsHit[index] = hit;
+                Values[index] = value;
+            }
+        }
     }
 
     public class RewardData
@@ -167,8 +204,11 @@ public class BattleProc
         aiSet(true);
 
         foreach (UnitStatusTran val in Battlers) {
-            int luck_add = val.Status.Luk / 2;
-            val.speedDice = Random.Range(0, luck_add);
+            //int luck_add = val.Status.Luk / 2;
+            //val.speedDice = Random.Range(0, luck_add);
+
+            val.Status.luckJudge();
+
         }
 
         Battlers.Sort((a, b) => b.speedFacter - a.speedFacter);
@@ -349,7 +389,7 @@ public class BattleProc
         ai.think(ActionUnit);
 
         BattleAction.Action = ai.JudgeAction;
-        BattleAction.Def.AddRange(ai.ActionTargets);
+        BattleAction.AddDef(ai.ActionTargets);
         BattleAction.Skill = ai.UseSkill;
 
 
@@ -403,9 +443,9 @@ public class BattleProc
             BattleAction.IsBurst = true;
             return true;
         }
-        if (unit.isBuff(BuffTran.TYPE.STAN)) {
+        if (unit.isBuff(BuffTran.TYPE.PARALYZE)) {
             var rand = Random.Range(0, 100);
-            var buf = unit.getBuff(BuffTran.TYPE.STAN);
+            var buf = unit.getBuff(BuffTran.TYPE.PARALYZE);
             if (rand < buf.Value) {
                 BattleAction.IsStan = true;
                 return true;
@@ -451,7 +491,7 @@ public class BattleProc
             if (target_index < 0) {
                 return;
             }
-            BattleAction.Def.Add(targets[target_index]);
+            BattleAction.AddDef(targets[target_index]);
             weaponAttack(user, targets[target_index]);
 
         }
@@ -477,34 +517,61 @@ public class BattleProc
         bool is_hit = false;
         int damage_val = physicalDamage(user, target, ref is_hit);
 
-        BattleAction.Values.Add(damage_val);
-        BattleAction.IsHit.Add(is_hit);
+        //BattleAction.Values.Add(damage_val);
+        //BattleAction.IsHit.Add(is_hit);
+
+        BattleAction.updateHitValue(target, is_hit, damage_val);
 
         isDead(target, user);
     }
 
     private static void useSkill(SkillMast skill, UnitStatusTran user, List<UnitStatusTran> targets) {
+    /// <summary>
+    /// スキル攻撃
+    /// </summary>
+    /// <param name="skill"></param>
+    /// <param name="user"></param>
+    /// <param name="targets"></param>
 
-        if (user.Status.Hp > 0 && skill != null && skill.canUse( PowerMast.USE_TIMING.BATTLE)) {
+        if (user.Status.Hp > 0 && skill != null && skill.canUse( GameConst.TIME.BATTLE)) {
 
             switch (skill.Spec) {
                 case SkillMast.SPEC.ATTACK:
                 skillAttack(skill, user, targets);
                 break;
-                //case PowerMast.SPEC.BAD:
-                //case PowerMast.SPEC.CURSE:
-                //case PowerMast.SPEC.PANIC:
-                //case PowerMast.SPEC.POISON:
-                //case PowerMast.SPEC.STAN:
-                //    break;
+                case PowerMast.SPEC.BAD:
+                case PowerMast.SPEC.CURSE:
+                case PowerMast.SPEC.PANIC:
+                case PowerMast.SPEC.POISON:
+                case PowerMast.SPEC.PARALYZE:
+                PowerEffectRegist(skill, user, targets);
+                break;
                 default:
-                //PowerProcess.execPower(skill, val, targets);
-                //BattleAction.Values.Add(val);
                 skillEffect(skill, user, targets);
                 break;
 
             }
             user.Status.Mp -= skill.Cost;
+        }
+    }
+
+    private static void PowerEffectRegist( SkillMast pow, UnitStatusTran attacker, List<UnitStatusTran> defenders) {
+        foreach (var def in defenders) {
+            int hit = attacker.Status.getParam(pow.BaseParam) + (int)attacker.EquipWeapon.SubValue + attacker.Status.judgeParam(StatusMast.TYPE.MAG);
+            int dodge = (def.Status.Men + def.TotalRegister) / GUARD_JUDGE_ADJ + def.Status.luckJudge();
+            hit = calcBuffBonus(hit, attacker, BuffTran.TYPE.HIT);
+            dodge = def.IsCrash ? 0 : calcBuffBonus(dodge, def, BuffTran.TYPE.SWAY);
+
+            var value = 0;
+            var is_hit = hit >= dodge;
+
+            if (is_hit) {
+                value = PowerProcess.execPower(pow, attacker, def);
+                BattleAction.addBuff = true; //addBuff 消す（ややこしくなるから）
+
+            }
+            BattleAction.updateHitValue(def, is_hit, value);
+
         }
     }
 
@@ -517,7 +584,7 @@ public class BattleProc
     private static void skillEffect(SkillMast skill, UnitStatusTran user, List<UnitStatusTran> targets) {
         foreach (var tar in targets) {
             var value = PowerProcess.execPower(skill, user, tar);
-            BattleAction.Values.Add(value);
+            BattleAction.updateHitValue(tar, true, value);
         }
     }
 
@@ -546,22 +613,6 @@ public class BattleProc
     }
 
     /// <summary>
-    /// AIスキル攻撃
-    /// </summary>
-    /// <param name="skill"></param>
-    /// <param name="val"></param>
-    /// <param name="targets"></param>
-    //private static void aiSkillAttack(SkillMast skill, UnitStatusTran val, List<UnitStatusTran> targets) {
-
-    //    if (skill.Target == SkillMast.TARGET.ANYTHING) {
-    //        skillAttack(skill, val, targets);
-    //    } else {
-    //        int index = Random.Range(0, targets.Count);
-    //        skillAttack(skill, val, targets[index]);
-    //    }
-    //}
-
-    /// <summary>
     /// スキル攻撃・単体/複数
     /// </summary>
     /// <param name="skill"></param>
@@ -578,18 +629,6 @@ public class BattleProc
         }
     }
 
-    ///// <summary>
-    ///// スキル攻撃・単体
-    ///// </summary>
-    ///// <param name="skill"></param>
-    ///// <param name="val"></param>
-    ///// <param name="target"></param>
-    ///// <returns></returns>
-    //private static bool skillAttack(SkillMast skill, UnitStatusTran val, UnitStatusTran target) {
-    //    magicDamage(skill, val, target);
-    //    return isDead(target, val);
-    //}
-
     /// <summary>
     /// 通常攻撃
     /// </summary>
@@ -600,8 +639,8 @@ public class BattleProc
     //んー、迷ったけど、変更しない引数についてはrefは使わん。混乱するし。小サイズの配列ならパフォーマスの影響大きいのは分かるけども
     private static int physicalDamage(UnitStatusTran attacker, UnitStatusTran defender, ref bool is_hit) {
 
-        int hit = attacker.Status.Str + attacker.Status.luckJudge();
-        int dodge = defender.Status.Agi / 4 + defender.Status.luckJudge();
+        int hit = attacker.Status.Str + attacker.Status.judgeParam(StatusMast.TYPE.AGI);
+        int dodge = defender.Status.Agi + defender.Status.luckJudge();
 
         hit = calcBuffBonus(hit, attacker, BuffTran.TYPE.HIT);
 
@@ -612,7 +651,7 @@ public class BattleProc
         if (is_hit) {
             int power = hit + (int)attacker.EquipWeapon.Value;
 
-            int guard = defender.TotalDefence / 2 + defender.Status.luckJudge();
+            int guard = defender.TotalDefence / GUARD_JUDGE_ADJ + defender.Status.luckJudge();
             return damageCulc(power, guard, attacker, defender, GameConst.ELEMENT.Material, BuffTran.TYPE.ATK, BuffTran.TYPE.DEF);
         }
 
@@ -633,27 +672,6 @@ public class BattleProc
 
         return powerDamage(skill, power, attacker, defender);
 
-        //int guard = (int)(defender.Status.Men + defender.EquipArmor.SubValue) / 2 + defender.Status.luckJudge ();
-
-        //      int damage = damageCulc(power, guard, attacker, defender, skill.Element, BuffTran.TYPE.MATK_BUFF, BuffTran.TYPE.MDEF_BUFF);
-
-        //      if (damage > 0) {
-        //          //ダメージ量により0～50%のバフボーナス
-        //          var bonus = 50f;
-        //          if (defender.IsCrash) {
-        //              bonus = 100f;
-        //          } else if (guard > 0) {
-        //              bonus = Mathf.Clamp( bonus * ( (float)(power - guard) / guard), 0f, 50f);
-        //          }
-        //          addStatusEffect(skill, attacker, defender, true, (int)bonus);
-        //      }
-
-        //      BattleAction.Def.Add(defender);
-        //      BattleAction.Dmg.Add(damage);
-        //      BattleAction.IsHit.Add(true);
-        //      BattleAction.Skill = skill;
-
-        //      return damage;
     }
 
     /// <summary>
@@ -670,20 +688,21 @@ public class BattleProc
 
         int damage = damageCulc(val, guard, attacker, defender, mst.Element, BuffTran.TYPE.MAG, BuffTran.TYPE.REG);
 
-        if (damage > 0) {
-            //ダメージ量により0～50%のバフボーナス
-            var bonus = 50f;
-            if (defender.IsCrash) {
-                bonus = 100f;
-            } else if (guard > 0) {
-                bonus = Mathf.Clamp(bonus * ((float)(val - guard) / guard), 0f, 50f);
-            }
-            addStatusEffect(mst, attacker, defender, true, (int)bonus);
-        }
+        //if (damage > 0) {
+        //    //ダメージ量により0～50%のバフボーナス
+        //    var bonus = 50f;
+        //    if (defender.IsCrash) {
+        //        bonus = 100f;
+        //    } else if (guard > 0) {
+        //        bonus = Mathf.Clamp(bonus * ((float)(val - guard) / guard), 0f, 50f);
+        //    }
+        //    addStatusEffect(mst, attacker, defender, true, (int)bonus);
+        //}
 
+        BattleAction.updateHitValue(defender, true, damage);
         //BattleAction.Def.Add(defender);
-        BattleAction.Values.Add(damage);
-        BattleAction.IsHit.Add(true);
+        //BattleAction.Values.Add(damage);
+        //BattleAction.IsHit.Add(true);
         //BattleAction.Skill = skill;
 
         return damage;
@@ -750,46 +769,85 @@ public class BattleProc
     }
 
 
-    /// <summary>
-    /// バフ・デバフ付与
-    /// </summary>
-    /// <param name="pow"></param>
-    /// <param name="val"></param>
-    /// <param name="target"></param>
-    /// <param name="is_debuff">デバフ（相手に損害与える）か？</param>
-    /// <returns></returns>
-    private static bool addStatusEffect(PowerMast pow, UnitStatusTran val, UnitStatusTran target, bool is_debuff, int bonus = 0) {
+    ///// <summary>
+    ///// バフ・デバフ付与
+    ///// </summary>
+    ///// <param name="pow"></param>
+    ///// <param name="val"></param>
+    ///// <param name="target"></param>
+    ///// <param name="is_debuff">デバフ（相手に損害与える）か？</param>
+    ///// <returns></returns>
+    //private static bool addStatusEffect(PowerMast pow, UnitStatusTran val, UnitStatusTran target, bool is_debuff, int bonus = 0) {
 
-        if (is_debuff) {
-            //デバフの場合、判定に成功するか、相手がバーストブレイク状態の場合、効果を発揮
-            var rand = Random.Range(0, 100);
-            if (rand >= pow.BuffPercent + bonus && !target.IsCrash) {
-                return false;
-            }
-        }
+    //    if (is_debuff) {
+    //        //デバフの場合、判定に成功するか、相手がバーストブレイク状態の場合、効果を発揮
+    //        var rand = Random.Range(0, 100);
+    //        if (rand >= pow.BuffPercent + bonus && !target.IsCrash) {
+    //            return false;
+    //        }
+    //    }
 
-        if (pow.BuffType != BuffTran.TYPE.NON) {
-            if (target.Buff.Exists(it => it.Type == pow.BuffType)) {
+    //    if (pow.BuffType != BuffTran.TYPE.NON) {
+    //        if (target.Buff.Exists(it => it.Type == pow.BuffType)) {
 
-                var bf = target.Buff.Find(it => it.Type == pow.BuffType);
-                if (Mathf.Sign(bf.Value) != Mathf.Sign(pow.BuffPower)) {
-                    //対抗の場合削除
-                    target.Buff.Remove(bf);
-                } else if (bf.Value <= pow.BuffPower) {
-                    //既に同系統のバフ・デバフがかかっている場合、効果が上のものを適用
-                    target.Buff.Add(new BuffTran(pow.BuffType, BuffTran.FIELD_TYPE.BATTLE, pow.EffectTime, pow.BuffPower));
-                } else {
-                    return false;
-                }
-            } else {
-                target.Buff.Add(new BuffTran(pow.BuffType, BuffTran.FIELD_TYPE.BATTLE, pow.EffectTime, pow.BuffPower));
-                BattleAction.addBuff = true;
-            }
-            return true;
-        }
+    //            var bf = target.Buff.Find(it => it.Type == pow.BuffType);
+    //            if (Mathf.Sign(bf.Value) != Mathf.Sign(pow.BuffPower)) {
+    //                //対抗の場合削除
+    //                target.Buff.Remove(bf);
+    //            } else if (bf.Value <= pow.BuffPower) {
+    //                //既に同系統のバフ・デバフがかかっている場合、効果が上のものを適用
+    //                target.Buff.Add(new BuffTran(pow.BuffType, GameConst.TIME.BATTLE, pow.EffectTime, pow.BuffPower));
+    //            } else {
+    //                return false;
+    //            }
+    //        } else {
+    //            target.Buff.Add(new BuffTran(pow.BuffType, GameConst.TIME.BATTLE, pow.EffectTime, pow.BuffPower));
+    //            BattleAction.addBuff = true;
+    //        }
+    //        return true;
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}    ///// <summary>
+    ///// バフ・デバフ付与
+    ///// </summary>
+    ///// <param name="pow"></param>
+    ///// <param name="val"></param>
+    ///// <param name="target"></param>
+    ///// <param name="is_debuff">デバフ（相手に損害与える）か？</param>
+    ///// <returns></returns>
+    //private static bool addStatusEffect(PowerMast pow, UnitStatusTran val, UnitStatusTran target, bool is_debuff, int bonus = 0) {
+
+    //    if (is_debuff) {
+    //        //デバフの場合、判定に成功するか、相手がバーストブレイク状態の場合、効果を発揮
+    //        var rand = Random.Range(0, 100);
+    //        if (rand >= pow.BuffPercent + bonus && !target.IsCrash) {
+    //            return false;
+    //        }
+    //    }
+
+    //    if (pow.BuffType != BuffTran.TYPE.NON) {
+    //        if (target.Buff.Exists(it => it.Type == pow.BuffType)) {
+
+    //            var bf = target.Buff.Find(it => it.Type == pow.BuffType);
+    //            if (Mathf.Sign(bf.Value) != Mathf.Sign(pow.BuffPower)) {
+    //                //対抗の場合削除
+    //                target.Buff.Remove(bf);
+    //            } else if (bf.Value <= pow.BuffPower) {
+    //                //既に同系統のバフ・デバフがかかっている場合、効果が上のものを適用
+    //                target.Buff.Add(new BuffTran(pow.BuffType, GameConst.TIME.BATTLE, pow.EffectTime, pow.BuffPower));
+    //            } else {
+    //                return false;
+    //            }
+    //        } else {
+    //            target.Buff.Add(new BuffTran(pow.BuffType, GameConst.TIME.BATTLE, pow.EffectTime, pow.BuffPower));
+    //            BattleAction.addBuff = true;
+    //        }
+    //        return true;
+    //    }
+
+    //    return false;
+    //}
 
     //private static bool skillHeal(SkillMast skill, UnitStatusTran val, List<UnitStatusTran> targets) {
 
@@ -880,7 +938,7 @@ public class BattleProc
         //}
 
         if (defender.CrashPower <= 0 && !defender.IsCrash) {
-            defender.Buff.Add(new BuffTran(BuffTran.TYPE.CRASH_OUT, BuffTran.FIELD_TYPE.BATTLE, 1, 1f));
+            defender.Buff.Add(new BuffTran(BuffTran.TYPE.CRASH_OUT, GameConst.TIME.BATTLE, 1, 1f));
         }
 
         guard = calcBuffBonus(guard, defender, defBuff);

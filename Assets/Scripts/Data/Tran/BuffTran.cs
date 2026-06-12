@@ -23,26 +23,26 @@ public class BuffTran
         //HIT_SWAY, //命中・回避アップorダウン
         //DEF_REG, //防御・抵抗アップorダウン
         POISON, //
-        STAN, //スタン（通常攻撃が確率で失敗）
+        PARALYZE, //麻痺（通常攻撃が確率で失敗）
         PANIC, //混乱
         CURSE, //
         ALL
     };
 
-    public enum FIELD_TYPE
-    {
-        BATTLE,
-        DUNGEON,
-        DUAL,
-        ALL
-    };
+    //public enum FIELD_TYPE
+    //{
+    //    BATTLE,
+    //    DUNGEON,
+    //    DUAL,
+    //    ALL
+    //};
 
     public TYPE Type { get; set; }
-    public FIELD_TYPE FieldType { get; set; }
+    public GameConst.TIME FieldType { get; set; }
     public int Turn { get; set; }
     public float Value { get; set; }
 
-    public BuffTran(TYPE type, FIELD_TYPE field, int turn, float value)
+    public BuffTran(TYPE type, GameConst.TIME field, int turn, float value)
     {
         FieldType = field;
         Type = type;
@@ -55,7 +55,7 @@ public class BuffTran
     /// </summary>
     /// <param name=“field”></param>
     /// <returns></returns>
-    public int passTurn(FIELD_TYPE field)
+    public int passTurn(GameConst.TIME field)
     {
         if (FieldType == field)
         {

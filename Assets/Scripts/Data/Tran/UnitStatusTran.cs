@@ -124,9 +124,10 @@ public class UnitStatusTran
         addSkill();
     }
 
-    public void setBuff(BuffTran.TYPE type, BuffTran.FIELD_TYPE field_type, int turn, float value) {
+    public void setBuff(BuffTran.TYPE type, GameConst.TIME field_type, int turn, float value) {
         BuffTran buff = new BuffTran(type, field_type, turn, value);
-        Buff.Add(buff);
+        addBuff(buff);
+        //Buff.Add(buff);
     }
     //public void setDeBuff( BuffTran.TYPE type, BuffTran.FIELD_TYPE field_type, int turn, float value ){
     //	BuffTran buff = new BuffTran( type, field_type, turn, value );
@@ -134,20 +135,20 @@ public class UnitStatusTran
     //}
 
     public void endBattle() {
-        Buff.RemoveAll(b => b.FieldType == BuffTran.FIELD_TYPE.BATTLE);
+        Buff.RemoveAll(b => b.FieldType == GameConst.TIME.BATTLE);
         CrashPower = MAX_CRASH;
         SpecialCount = 0;
     }
 
     public bool battleTurn() {
-        return buffTurn(ref Buff, BuffTran.FIELD_TYPE.BATTLE);
+        return buffTurn(ref Buff, GameConst.TIME.BATTLE);
     }
 
     public bool dungeonTurn() {
-        return buffTurn(ref Buff, BuffTran.FIELD_TYPE.DUNGEON);
+        return buffTurn(ref Buff, GameConst.TIME.FIELD);
     }
 
-    private bool buffTurn(ref List<BuffTran> buf, BuffTran.FIELD_TYPE field_type) {
+    private bool buffTurn(ref List<BuffTran> buf, GameConst.TIME field_type) {
         var result = false;
         for (int i = buf.Count - 1; i >= 0; i--) {
             int rest_turn = buf[i].passTurn(field_type);
@@ -380,11 +381,13 @@ public class UnitStatusTran
         return Buff.Find(it => it.Type == type);
     }
 
-    public void addBuff(BuffTran buff)
+    private void addBuff(BuffTran buff)
     {
         var before = getBuff(buff.Type);
-        if(buff.Turn > before.Turn)
-        {
+
+        if (before == null) {
+            Buff.Add(buff);
+        }else if(buff.Turn > before.Turn){
             Buff.Remove(before);
             Buff.Add(buff);
         }

@@ -11,18 +11,18 @@ abstract public class PowerMast : MulitiUseListMast
 	{
 		NON, //効果なし
 		ATTACK,
-		DEFENCE,
+		DEFENCE, //未使用
 		HEAL,
 		RESURRECT,
-		FIND_TREASURE,
-		AVOID_TRAP,
-		AVOID_ENEMY,
-		STATUS_BUFF,
-		STATUS_DEBUFF,
+		FIND_TREASURE, //未使用
+		AVOID_TRAP, //未使用
+		AVOID_ENEMY, //未使用
+		STATUS_BUFF, //未使用
+		STATUS_DEBUFF, //未使用
 		BUFF_REMOVE,
 		DEBUFF_REMOVE,
-		ENCHANT_ELEMENT,
-		STAN,
+		ENCHANT_ELEMENT, //未使用
+		PARALYZE,
 		CURE_STAN,
 		POISON,
 		CURE_POISON,
@@ -70,13 +70,13 @@ abstract public class PowerMast : MulitiUseListMast
 
 	public int MagicPower; //魔法
 
-	public float PowerRandom;
+	//public float PowerRandom;
 
-	public float Inhibit;
+	//public float Inhibit;
 
 	public int Cost; //消費MPや価格など
 
-	public USE_TIMING UseTiming;
+	public GameConst.TIME UseTiming;
 
 	public SIDE Side;
 
@@ -89,8 +89,6 @@ abstract public class PowerMast : MulitiUseListMast
 	public RANGE Range;
 
 	public BuffTran.TYPE BuffType;
-
-	public int BuffPercent;
 
 	public int BuffPower;
 
@@ -130,7 +128,7 @@ abstract public class PowerMast : MulitiUseListMast
 			return "弱体消去";
 			case SPEC.ENCHANT_ELEMENT:
 			return "属性付与";
-			case SPEC.STAN:
+			case SPEC.PARALYZE:
 			return "麻痺攻撃";
 			case SPEC.CURE_STAN:
 			return "麻痺回復";
@@ -147,7 +145,7 @@ abstract public class PowerMast : MulitiUseListMast
 	/// <summary>
 	/// 効力発揮
 	/// </summary>
-	public void usePower(USE_TIMING timing) {
+	public void usePower(GameConst.TIME timing) {
 		if (canUse(timing)) {
 			switch (Spec) {
 				case SPEC.HEAL:
@@ -163,11 +161,11 @@ abstract public class PowerMast : MulitiUseListMast
     }
 
 	public bool canUse() {
-		return SaveMng.Quest.IsBattle ? canUse(USE_TIMING.BATTLE) : canUse(USE_TIMING.FIELD);
+		return SaveMng.Quest.IsBattle ? canUse(GameConst.TIME.BATTLE) : canUse(GameConst.TIME.FIELD);
 	}
 
-	public bool canUse(USE_TIMING timing) {
-		return (UseTiming == USE_TIMING.DUAL || UseTiming == timing) && Spec != SPEC.NON;
+	public bool canUse(GameConst.TIME timing) {
+		return (UseTiming == GameConst.TIME.DUAL || UseTiming == timing) && Spec != SPEC.NON;
 	}
 
 

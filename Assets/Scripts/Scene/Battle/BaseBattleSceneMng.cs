@@ -472,9 +472,10 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
             }
             txt = chara.Unit.Name + txt;
             ShowMessage(txt);
-            if (slipHpReaction(chara)) {
-                yield return new WaitForSeconds(0.4f);
-            }
+            yield return new WaitForSeconds(0.4f);
+            //if (slipHpReaction(chara)) {
+                
+            //}
         } else {
             if (Log.Action == AiProc.ACTION.GUARD) {
                 chara.guard();
@@ -594,7 +595,7 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
 
                     damageReaction(tgt, Log.Values[i], posi);
 
-                    if (Log.addBuff) {
+                    if (Log.Power != null && Log.Power.BuffType != BuffTran.TYPE.NON) {
                         buffIconUpdate(tgt);
                     }
 
@@ -641,10 +642,9 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     void buffIconUpdate(CharaPlateMng plate) {
 
         UtilToolLib.AllObjectActive(plate.BuffIcons, false);
-        //UtilToolLib.AllObjectActive(plate.BuffDowns, false);
 
         foreach (var buf in plate.Unit.Buff) {
-            if (buf.Value != 0 && plate.BuffIcons[(int)buf.Type] != null) {
+            if (buf.Turn > 0 && plate.BuffIcons[(int)buf.Type] != null) {
                 plate.BuffIcons[(int)buf.Type].SetActive(true);
             }
         }
@@ -851,9 +851,9 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     private void selectUnit(CharaPlateMng plate) {
         SelectedUnit = plate;
         if (CommandData.Power != null && CommandData.Power.isTargettAll) {
-            CommandData.Def.AddRange( SelectSide == SELECT_SIDE.PARTY ? PlayerParty.Units : EnemyParty.Units);
+            CommandData.AddDef( SelectSide == SELECT_SIDE.PARTY ? PlayerParty.Units : EnemyParty.Units);
         } else {
-            CommandData.Def.Add(plate.Unit);
+            CommandData.AddDef(plate.Unit);
         }
 
         CommandProcess();

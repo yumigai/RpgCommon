@@ -39,6 +39,16 @@ public static class PowerProcess
 				tran.Status.Hp = 1;
 				value = heal(pow, tran);
 				break;
+
+				case PowerMast.SPEC.BUFF:
+				case PowerMast.SPEC.DEBUFF:
+				case PowerMast.SPEC.POISON:
+				case PowerMast.SPEC.PARALYZE:
+				case PowerMast.SPEC.PANIC:
+				case PowerMast.SPEC.CURSE:
+				case PowerMast.SPEC.BAD:
+				tran.setBuff(pow.BuffType, GameConst.TIME.BATTLE, pow.EffectTime, pow.BuffPower); //poisonÇæÇØtime.dualÇ…Ç∑ÇÈâ¬î\ê´Ç†ÇË
+				break;
 			}
 		}
 
@@ -62,7 +72,7 @@ public static class PowerProcess
 				tran.removeBuff(BuffTran.TYPE.PANIC);
 				tran.removeBuff(BuffTran.TYPE.CURSE);
 				tran.removeBuff(BuffTran.TYPE.POISON);
-				tran.removeBuff(BuffTran.TYPE.STAN);
+				tran.removeBuff(BuffTran.TYPE.PARALYZE);
 				break;
 				case PowerMast.SPEC.CURE_PANIC:
 				tran.removeBuff(BuffTran.TYPE.PANIC);
@@ -74,7 +84,7 @@ public static class PowerProcess
 				tran.removeBuff(BuffTran.TYPE.POISON);
 				break;
 				case PowerMast.SPEC.CURE_STAN:
-				tran.removeBuff(BuffTran.TYPE.STAN);
+				tran.removeBuff(BuffTran.TYPE.PARALYZE);
 				break;
 			}
 		}
