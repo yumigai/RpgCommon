@@ -458,11 +458,6 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         //CharaPlateMng chara = attacker.getMember(Log.Atk.Id);
         CharaPlateMng chara = getUnitPlate(Log.Atk);
 
-        if (chara == null) {
-            var b = BattleProc.Battlers;
-            Debug.Log(b.Count);
-        }
-
         if (Log.IsBurst || Log.IsStan) {
             var txt = "";
             if (SaveMng.IsJp) {
@@ -472,10 +467,8 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
             }
             txt = chara.Unit.Name + txt;
             ShowMessage(txt);
-            yield return new WaitForSeconds(0.4f);
-            //if (slipHpReaction(chara)) {
-                
-            //}
+            yield return new WaitForSeconds(0.6f);
+
         } else {
             if (Log.Action == AiProc.ACTION.GUARD) {
                 chara.guard();
@@ -580,6 +573,12 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
 
         attackEffectSet(posi);
 
+        if (Log.Power != null) {
+            foreach (var buffType in Log.Power.BuffTypes) {
+                tgt.EffectBuff.EffectStart(buffType, Log.Power.BuffPower);
+            }
+        }
+
         if (Log.Atk.Type == def.Type) {
             //ターゲットが自陣営
             switch (Log.Action) {
@@ -595,7 +594,7 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
 
                     damageReaction(tgt, Log.Values[i], posi);
 
-                    if (Log.Power != null && Log.Power.BuffType != BuffTran.TYPE.NON) {
+                    if (Log.Power != null && Log.Power.BuffTypes.Length > 0 && Log.Power.BuffTypes[0] != BuffTran.TYPE.NON) {
                         buffIconUpdate(tgt);
                     }
 
@@ -657,10 +656,13 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     /// <param name="posi"></param>
     protected void attackEffectSet(Vector3 posi) {
 
-        if (Log.Skill != null && MainEffects.ContainsKey(Log.Skill.Effect)) {
-            MainEffects[Log.Skill.Effect]?.effect(posi);
-        } else if (Log.Item != null && MainEffects.ContainsKey(Log.Item.Mst.Effect)) {
-            MainEffects[Log.Item.Mst.Effect]?.effect(posi);
+        //if (Log.Skill != null && MainEffects.ContainsKey(Log.Skill.Effect)) {
+        //    MainEffects[Log.Skill.Effect]?.effect(posi);
+        //} else if (Log.Item != null && MainEffects.ContainsKey(Log.Item.Mst.Effect)) {
+        //    MainEffects[Log.Item.Mst.Effect]?.effect(posi);
+        if (Log.Power != null && MainEffects.ContainsKey(Log.Power.Effect)) {
+            MainEffects[Log.Power.Effect]?.effect(posi);
+
         } else {
 
             var weapon = Log.Atk.EquipWeapon;

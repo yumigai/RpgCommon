@@ -23,6 +23,8 @@ public class EnemyMast : UnitMast
     public string[] SpecialSkills = new string[] { };
     public int[] SpecialCounts = new int[] { };
 
+    public float UseSkillPercent;
+
     new public static IReadOnlyList<EnemyMast> List;
 
     public int MaxSpecialCount { get { return SpecialCounts.Max(); } }

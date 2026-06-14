@@ -14,7 +14,6 @@ public class BuffTran
         MP_SLIP, //スリップダメージor回復
         HIT, //命中アップorダウン
         SWAY, //回避アップorダウン
-        //HIT_SWAY_BUFF, //命中・回避アップorダウン
         ATK, //攻撃アップorダウン
         DEF, //防御アップorダウン 
         MAG, //魔攻撃アップorダウン

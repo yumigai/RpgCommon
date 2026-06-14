@@ -334,32 +334,32 @@ public class AiProc
 		return false;
 	}
 
-	/// <summary>
-	/// 温存なし攻撃 (対象範囲と対象残りユニットは考慮/主にプレイヤー用）
-	/// </summary>
-	/// <param name="use_per">使用確率</param>
-	/// <param name="is_random">対象ランダムか</param>
-	/// <returns></returns>
-	private bool fullPowerSkillRange(float use_per = 100f, bool is_random = true) {
-        SkillMast[] skills = getRangeSkill(Targets.Count, PowerMast.SPEC.ATTACK);
-		return fullPowerSkill(skills, use_per, is_random);
-    }
+	///// <summary>
+	///// 温存なし攻撃 (対象範囲と対象残りユニットは考慮/主にプレイヤー用）
+	///// </summary>
+	///// <param name="use_per">使用確率</param>
+	///// <param name="is_random">対象ランダムか</param>
+	///// <returns></returns>
+	//private bool fullPowerSkillRange(float use_per = 100f, bool is_random = true) {
+ //       SkillMast[] skills = getRangeSkill(Targets.Count, PowerMast.SPEC.ATTACK);
+	//	return fullPowerSkill(skills, use_per, is_random);
+ //   }
 
-	/// <summary>
-	/// 温存なし攻撃 (完全ランダム）
-	/// </summary>
-	/// <param name="use_per">使用確率</param>
-	/// <param name="is_random">対象ランダムか</param>
-	/// <returns></returns>
-	private bool fullPowerSkillRandom(float use_per = 100f, bool is_random = true) {
-		return fullPowerSkill(_Unit.Skills, use_per, is_random);
-	}
+	///// <summary>
+	///// 温存なし攻撃 (完全ランダム）
+	///// </summary>
+	///// <param name="use_per">使用確率</param>
+	///// <param name="is_random">対象ランダムか</param>
+	///// <returns></returns>
+	//private bool fullPowerSkillRandom(float use_per = 100f, bool is_random = true) {
+	//	return fullPowerSkill(_Unit.Skills, use_per, is_random);
+	//}
 
 	private bool EnemySkill() {
+		
 		var skills = _Unit.getEnemyBattleSkill();
 		//Special Skillが入っている場合、100%
-		var use_per = skills.Any(it => it.Type == SkillMast.TYPE.SPECIAL) ? USE_FULL_POWER : USE_SKILL_DEFAULT;
-		return fullPowerSkill(skills, use_per);
+		return fullPowerSkill(skills);
     }
 
 	/// <summary>
@@ -368,13 +368,11 @@ public class AiProc
 	/// <param name="use_per">使用確率</param>
 	/// <param name="is_random">対象ランダムか</param>
 	/// <returns></returns>
-	private bool fullPowerSkill(SkillMast[] skills, float use_per = 100f, bool is_random = true) {
+	private bool fullPowerSkill(SkillMast[] skills, bool is_random = true) {
 
-		List<UnitStatusTran> list = Targets.FindAll(it => it.Hp > 0);
+		//List<UnitStatusTran> list = Targets.FindAll(it => it.Hp > 0);
 
-		float judge = Random.Range(0f, 100f);
-
-		if (skills.Length > 0 && list.Count > 0 && judge <= use_per) {
+		if (skills.Length > 0 ) {
 
 			int index = 0;
 			if (is_random) {
@@ -384,6 +382,10 @@ public class AiProc
 			}
 			UseSkill = skills[index];
 			JudgeAction = ACTION.SKILL;
+
+			List<UnitStatusTran> list = UseSkill.Side 
+				== PowerMast.SIDE.TARGET ? Targets.FindAll(it => it.Hp > 0) : Friends.FindAll( it=> it.Hp > 0 );
+
 			if (UseSkill.isTargettAll) {
 				ActionTargets = list;
 			} else {

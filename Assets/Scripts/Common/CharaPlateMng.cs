@@ -59,6 +59,9 @@ public class CharaPlateMng : MonoBehaviour {
     [SerializeField]
     public GameObject[] BuffIcons = new GameObject[(int)BuffTran.TYPE.ALL];
 
+    [SerializeField]
+    public BuffIconMng EffectBuff;
+
     //[SerializeField]
     //public GameObject[] BuffDowns = new GameObject[(int)BuffTran.TYPE.ALL];
 
@@ -113,6 +116,8 @@ public class CharaPlateMng : MonoBehaviour {
         showBreak(false);
         UtilToolLib.AllObjectActive(BuffIcons, false);
         //UtilToolLib.AllObjectActive(BuffDowns, false);
+
+        EffectBuff.gameObject.SetActive(false);
     }
 
     public void setUnit(UnitStatusTran unit) {

@@ -555,12 +555,18 @@ public class BattleProc
         }
     }
 
+    /// <summary>
+    /// 抵抗ありのパワー効果
+    /// </summary>
+    /// <param name="pow"></param>
+    /// <param name="attacker"></param>
+    /// <param name="defenders"></param>
     private static void PowerEffectRegist( SkillMast pow, UnitStatusTran attacker, List<UnitStatusTran> defenders) {
         foreach (var def in defenders) {
             int hit = attacker.Status.getParam(pow.BaseParam) + (int)attacker.EquipWeapon.SubValue + attacker.Status.judgeParam(StatusMast.TYPE.MAG);
             int dodge = (def.Status.Men + def.TotalRegister) / GUARD_JUDGE_ADJ + def.Status.luckJudge();
-            hit = calcBuffBonus(hit, attacker, BuffTran.TYPE.HIT);
-            dodge = def.IsCrash ? 0 : calcBuffBonus(dodge, def, BuffTran.TYPE.SWAY);
+            hit = calcBuffBonus(hit, attacker, BuffTran.TYPE.MAG);
+            dodge = def.IsCrash ? 0 : calcBuffBonus(dodge, def, BuffTran.TYPE.REG);
 
             var value = 0;
             var is_hit = hit >= dodge;

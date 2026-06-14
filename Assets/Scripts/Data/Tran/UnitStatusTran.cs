@@ -304,7 +304,13 @@ public class UnitStatusTran
                 }
             } 
         } else {
-            return Skills.Where(it => it.Type == SkillMast.TYPE.NORMAL).ToArray();
+            var use_per = mast.UseSkillPercent == 0 ? AiProc.USE_SKILL_DEFAULT : mast.UseSkillPercent;
+            float judge = UnityEngine.Random.Range(0f, 100f);
+            if (judge <= use_per) {
+                return Skills.Where(it => it.Type == SkillMast.TYPE.NORMAL).ToArray();
+            }
+            return new SkillMast[] { };
+
         }
     }
 
