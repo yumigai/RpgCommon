@@ -59,6 +59,8 @@ public class BattleProc
         public List<int> Values = new List<int>();
         public List<bool> IsHit = new List<bool>();
         public List<bool> IsCritical = new List<bool>();
+        public List<float> ElementAdj = new List<float>();
+        
         public SkillMast Skill;
         public ItemTran Item;
         public int SlipHp = 0;
@@ -78,6 +80,8 @@ public class BattleProc
             Def.Add(def);
             Values.Add(0);
             IsHit.Add(false);
+            IsCritical.Add(false);
+            ElementAdj.Add(0);
         }
 
         public void AddDef(List<UnitStatusTran> defs) {
@@ -92,12 +96,13 @@ public class BattleProc
         /// <param name="def"></param>
         /// <param name="value"></param>
         /// <param name="hit">命中（基本当たったら更新されるのでほぼtrue固定）</param>
-        public void updateHitValue(UnitStatusTran def, int value, bool hit = true, bool critical = false) {
+        public void updateHitValue(UnitStatusTran def, int value, bool hit = true, bool critical = false, float element = 0) {
             var index = Def.IndexOf(def);
             if (index >= 0 && index < IsHit.Count && index < Values.Count) {
                 IsHit[index] = hit;
                 IsCritical[index] = critical;
                 Values[index] = value;
+                ElementAdj[index] = element;
             }
         }
     }
@@ -307,9 +312,16 @@ public class BattleProc
 
     }
 
+    /// <summary>
+    /// 行動順終了処理
+    /// </summary>
+    /// <returns></returns>
     public static RESULT endProcess() {
 
-        if (ActionUnit.IsGuard) {
+        if (ActionUnit.IsCrash) {
+            //クラッシュ状態からの復帰
+            ActionUnit.addBurst(ActionUnit.Mst.MaxCrash);
+        } else if (ActionUnit.IsGuard) {
             //ガード中はクラッシュゲージ５回復
             ActionUnit.addBurst(SPECIAL_CRASH_ADD_SUB);
         } else {
@@ -669,7 +681,8 @@ public class BattleProc
 
         hit = calcBuffBonus(hit, attacker, BuffTran.TYPE.HIT);
 
-        dodge = calcBuffBonus(dodge, defender, BuffTran.TYPE.SWAY);
+        //クラッシュ中は自動命中
+        dodge = defender.IsCrash ? 0 : calcBuffBonus(dodge, defender, BuffTran.TYPE.SWAY);
 
         var is_hit = hit >= dodge ? true : false;
 
@@ -752,7 +765,7 @@ public class BattleProc
     /// <param name="ele"></param>
     /// <param name="def"></param>
     /// <returns></returns>
-    private static int elementCulc(int power, GameConst.ELEMENT ele, UnitStatusTran def) {
+    private static float elementCulc(GameConst.ELEMENT ele, UnitStatusTran def) {
 
         if (USE_ELEMENT) {
 
@@ -764,21 +777,20 @@ public class BattleProc
 
                 //攻撃属性の前の属性か、攻撃属性最初、かつ防御属性最後、か
                 if (def_el == (at_el - 1) || (at_el == 1 && def_el == (int)GameConst.ELEMENT.All - 1)) {
-                    power = (int)((float)power * ELEMENT_ADD_CULC);
+                    return ELEMENT_ADD_CULC;
                 } else if (at_el == (def_el - 1) || (def_el == 1 && at_el == (int)GameConst.ELEMENT.All - 1)) {
-                    power = (int)((float)power * ELEMENT_SUB_CULC);
+                    return ELEMENT_SUB_CULC;
                 }
             }
         } else if (USE_WEAK_SYSTEM) {
-            ///TODO defが防御中なら弱点無視
             if (def.Mst.Weak.Any(it => it == ele)) {
-                power = (int)((float)power * ELEMENT_ADD_CULC);
+                return ELEMENT_ADD_CULC;
             } else if (def.Mst.Regist.Any(it => it == ele)) {
-                power = (int)((float)power * ELEMENT_SUB_CULC);
+                return ELEMENT_SUB_CULC;
             }
         }
 
-        return power;
+        return 1;
 
     }
 
@@ -921,15 +933,17 @@ public class BattleProc
         power = calcRuneBonus(power, attacker, RuneMast.KIND.ATTACK_ALL); //全体攻撃の弱体化
         power = calcBuffBonus(power, attacker, atkBuff);
 
-        int no_element_power = power;
-        power = elementCulc(power, elemnt, defender);
+        var element = elementCulc(elemnt, defender);
+        power = (int)(power * element);
 
-        if (power == no_element_power || defender.IsGuard) {
-            //通常または防御側がガード中
-            defender.addBurst(-NORMAL_CRASH_ADD_SUB);
-        } else if (power > no_element_power) {
-            //素値(no_element_power)が補正後の値より大きい（弱点）
-            defender.addBurst(-SPECIAL_CRASH_ADD_SUB);
+        //通常・弱点の場合のみクラッシュゲージを減らす
+        if (element != ELEMENT_SUB_CULC) {
+            if (element == 1 || defender.IsGuard) {
+                //通常または防御側がガード中
+                defender.addBurst(-NORMAL_CRASH_ADD_SUB);
+            } else if (element == ELEMENT_ADD_CULC) {
+                defender.addBurst(-SPECIAL_CRASH_ADD_SUB);
+            }
         }
 
         if (defender.CrashPower <= 0 && !defender.IsCrash) {
@@ -945,14 +959,15 @@ public class BattleProc
         damage = defender.IsGuard ? damage / 2 : damage; //ガード中は被ダメージ1/2
 
         //ゼロ割り防止しつつクリティカル目標値設定
-        var critical_param = ((float)attacker.Status.Luk + 1) / ((float)defender.Status.Luk + 1) * CRITICAL_JUDGE_ADJ;
-        var is_critical = Random.Range(0, critical_param) < critical_param;
+        var critical_param = ((float)attacker.Status.Luk + 1) / ((float)defender.Status.Luk + 1) * CRITICAL_JUDGE_ADJ; // 1-1で4%
+        //クリティカル判定OK、または相手がクラッシュ状態
+        var is_critical = Random.Range(0, 100) < critical_param || defender.IsCrash;
 
-        if (defender.IsCrash || is_critical) {
+        if (is_critical) {
             damage *= DAMAGE_CRITICAL_ADJ;
         }
 
-        BattleAction.updateHitValue(defender, damage, true, is_critical);
+        BattleAction.updateHitValue(defender, damage, true, is_critical, element);
 
         return damage;
     }
@@ -968,6 +983,11 @@ public class BattleProc
         return damage;
     }
 
+    /// <summary>
+    /// 主に初回アドバンスエンカウント用
+    /// </summary>
+    /// <param name="num"></param>
+    /// <param name="defender"></param>
     public static void freeCrash(int num, UnitStatusTran defender) {
         defender.addBurst(num);
     }

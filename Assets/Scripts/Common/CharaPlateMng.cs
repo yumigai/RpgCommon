@@ -149,7 +149,6 @@ public class CharaPlateMng : MonoBehaviour {
                 CharaStatus.setDeadOrAlive(true);
             }
         }
-        
     }
 
     public void resetData() {

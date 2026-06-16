@@ -591,8 +591,9 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
             }
         } else {
             //ターゲットが相手陣営
-            if (i < Log.IsHit.Count) {
-                if (Log.IsHit[i]) {
+                if (i < Log.IsHit.Count && Log.IsHit[i]) {
+
+                    showDamageInfo(tgt, Log.ElementAdj[i], Log.IsCritical[i] );
 
                     damageReaction(tgt, Log.Values[i], posi);
 
@@ -601,7 +602,6 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
                 } else {
                     tgt.miss();
                 }
-            }
         }
     }
 
@@ -628,6 +628,23 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     void healReaction(CharaPlateMng ch, int val) {
         ch.heal(val);
         ch.setData();
+    }
+
+    void showDamageInfo(CharaPlateMng plate, float element, bool crit) {
+        if (element == BattleProc.ELEMENT_SUB_CULC) {
+            //耐性補正
+            plate.showRegist(true);
+            TimeInvokeMng.TimerAction(()=> { plate.showRegist(false); }, 1f, this.gameObject);
+        }
+        if (element == BattleProc.ELEMENT_ADD_CULC) {
+            //弱点補正
+            plate.showWeak(true);
+            TimeInvokeMng.TimerAction(() => { plate.showWeak(false); }, 1f, this.gameObject);
+        }
+        if (crit) {
+            plate.showCritical(crit);
+            TimeInvokeMng.TimerAction(() => { plate.showCritical(false); }, 1f, this.gameObject);
+        }
     }
 
     /// <summary>
