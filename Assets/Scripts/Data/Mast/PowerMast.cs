@@ -88,7 +88,9 @@ abstract public class PowerMast : MulitiUseListMast
 
 	public RANGE Range;
 
-	public BuffTran.TYPE[] BuffTypes;
+	public BuffTran.TYPE[] BuffTypes = new BuffTran.TYPE[0];
+
+
 
 	public int BuffPower;
 

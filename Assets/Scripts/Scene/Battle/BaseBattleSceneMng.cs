@@ -41,7 +41,8 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     private const string regenerate_effect = "Regenerate";
 
     private const string AdvanceEffect = "Blow";
-    private const string PoisonEffect = "Poison";
+    private const string PoisonEffect = "PoisonTurn";
+    private const string ParalyzeEffect = "ParalyzeTurn";
 
     private const int ADVANCE_HIT_EFFECT_NUM = 3;
 
@@ -454,9 +455,9 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         Sequence = SEQUENCE.ACTION;
 
         //既に対象ユニットのターンは終わってるので
-        //var attacker = Log.Atk.Type == UnitMast.TYPE.PLAYER ? PlayerParty : EnemyParty;
-        //CharaPlateMng chara = attacker.getMember(Log.Atk.Id);
         CharaPlateMng chara = getUnitPlate(Log.Atk);
+
+        Vector3 posi = changeScreenPosi(chara.EffectPoint.position);
 
         if (Log.IsBurst || Log.IsStan) {
             var txt = "";
@@ -467,6 +468,11 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
             }
             txt = chara.Unit.Name + txt;
             ShowMessage(txt);
+
+            if (Log.IsStan) {
+                MainEffects[ParalyzeEffect].effect(posi);
+            }
+            
             yield return new WaitForSeconds(0.6f);
 
         } else {
@@ -573,11 +579,7 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
 
         attackEffectSet(posi);
 
-        if (Log.Power != null) {
-            foreach (var buffType in Log.Power.BuffTypes) {
-                tgt.EffectBuff.EffectStart(buffType, Log.Power.BuffPower);
-            }
-        }
+        StartCoroutine( buffIconEffectSet(tgt) );
 
         if (Log.Atk.Type == def.Type) {
             //ターゲットが自陣営
@@ -593,10 +595,6 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
                 if (Log.IsHit[i]) {
 
                     damageReaction(tgt, Log.Values[i], posi);
-
-                    if (Log.Power != null && Log.Power.BuffTypes.Length > 0 && Log.Power.BuffTypes[0] != BuffTran.TYPE.NON) {
-                        buffIconUpdate(tgt);
-                    }
 
                     tgt.showBreak(tgt.Unit.IsCrash);
 
@@ -628,8 +626,6 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     /// <param name="ch"></param>
     /// <param name="val"></param>
     void healReaction(CharaPlateMng ch, int val) {
-        //var uni = ch.Unit;
-        
         ch.heal(val);
         ch.setData();
     }
@@ -645,6 +641,11 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         foreach (var buf in plate.Unit.Buff) {
             if (buf.Turn > 0 && plate.BuffIcons[(int)buf.Type] != null) {
                 plate.BuffIcons[(int)buf.Type].SetActive(true);
+                if (buf.Value > 0) {
+                    plate.BuffIcons[(int)buf.Type].GetComponent<Image>().color = plate.EffectBuff.BuffColor;
+                } else if(buf.Value < 0){
+                    plate.BuffIcons[(int)buf.Type].GetComponent<Image>().color = plate.EffectBuff.DeBuffColor;
+                }
             }
         }
     }
@@ -656,10 +657,6 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     /// <param name="posi"></param>
     protected void attackEffectSet(Vector3 posi) {
 
-        //if (Log.Skill != null && MainEffects.ContainsKey(Log.Skill.Effect)) {
-        //    MainEffects[Log.Skill.Effect]?.effect(posi);
-        //} else if (Log.Item != null && MainEffects.ContainsKey(Log.Item.Mst.Effect)) {
-        //    MainEffects[Log.Item.Mst.Effect]?.effect(posi);
         if (Log.Power != null && MainEffects.ContainsKey(Log.Power.Effect)) {
             MainEffects[Log.Power.Effect]?.effect(posi);
 
@@ -678,7 +675,25 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     }
 
     /// <summary>
-    /// ディレイ関数
+    /// バフ用のアイコンエフェクト
+    /// </summary>
+    /// <param name="tgt"></param>
+    /// <returns></returns>
+    protected IEnumerator buffIconEffectSet(CharaPlateMng tgt) {
+
+        if (Log.Power != null) {
+            if (Log.Power.BuffTypes != null && Log.Power.BuffTypes.Length > 0 && Log.Power.BuffTypes[0] != BuffTran.TYPE.NON) {
+                foreach (var buffType in Log.Power.BuffTypes) {
+                    tgt.EffectBuff.EffectStart(buffType, Log.Power.BuffPower);
+                    yield return new WaitForSeconds(1f);
+                }
+                buffIconUpdate(tgt);
+            }
+        }
+    }
+
+    /// <summary>
+    /// ディレイ関数(TimeInvokeMngに変更する予定）
     /// </summary>
     /// <param name="action"></param>
     /// <param name="delay"></param>

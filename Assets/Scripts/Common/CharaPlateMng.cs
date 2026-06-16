@@ -48,6 +48,9 @@ public class CharaPlateMng : MonoBehaviour {
     public GameObject WeakBoard;
 
     [SerializeField]
+    public GameObject CriticalBoard;
+
+    [SerializeField]
     public GameObject GuardIcon;
 
     [SerializeField]
@@ -64,6 +67,8 @@ public class CharaPlateMng : MonoBehaviour {
 
     //[SerializeField]
     //public GameObject[] BuffDowns = new GameObject[(int)BuffTran.TYPE.ALL];
+
+    
 
     [System.NonSerialized]
     public UnitStatusTran Unit;
@@ -113,6 +118,7 @@ public class CharaPlateMng : MonoBehaviour {
 
         showWeak(false);
         showRegist(false);
+        showCritical(false);
         showBreak(false);
         UtilToolLib.AllObjectActive(BuffIcons, false);
         //UtilToolLib.AllObjectActive(BuffDowns, false);
@@ -250,6 +256,14 @@ public class CharaPlateMng : MonoBehaviour {
     public void showWeak(bool show) {
         showChange(WeakBoard, show);
     }
+    /// <summary>
+    /// クリティカル表示・非表示
+    /// </summary>
+    /// <param name="show"></param>
+    public void showCritical(bool show) {
+        showChange(CriticalBoard, show);
+    }
+
     /// <summary>
     /// ブレイクエフェクト表示・非表示
     /// </summary>

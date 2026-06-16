@@ -48,7 +48,9 @@ public class SkillMast : PowerMast {
 
     public string Info;
 
-    public float AvrPow { get { return PhysicsPower; } }//(PowMax + PowMin) / 2f; } }
+	public GameConst.SPEC[] test = new GameConst.SPEC[0];
+
+	public float AvrPow { get { return PhysicsPower; } }//(PowMax + PowMin) / 2f; } }
 
 	public static SkillMast[] List;
 

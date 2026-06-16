@@ -47,8 +47,10 @@ public static class PowerProcess
 				case PowerMast.SPEC.PANIC:
 				case PowerMast.SPEC.CURSE:
 				case PowerMast.SPEC.BAD:
-				foreach (var buffType in pow.BuffTypes) {
-					tran.setBuff(buffType, GameConst.TIME.BATTLE, pow.EffectTime, pow.BuffPower); //poison‚¾‚¯time.dual‚É‚·‚é‰Â”\«‚ ‚è
+				if (pow.BuffTypes != null) {
+					foreach (var buffType in pow.BuffTypes) {
+						tran.setBuff(buffType, GameConst.TIME.BATTLE, pow.EffectTime, pow.BuffPower); //poison‚¾‚¯time.dual‚É‚·‚é‰Â”\«‚ ‚è
+					}
 				}
 				
 				break;

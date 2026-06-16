@@ -15,10 +15,10 @@ public class BuffIconMng : MonoBehaviour
     private Outline[] OutlineColor;
 
     [SerializeField]
-    private Color BuffColor;
+    public Color BuffColor;
 
     [SerializeField]
-    private Color DeBuffColor;
+    public Color DeBuffColor;
 
     [SerializeField]
     private Image Icon;
@@ -57,7 +57,7 @@ public class BuffIconMng : MonoBehaviour
     }
     private void Ready() {
         ColorAnime.ResetColor();
-        MoveAnime.AnimeRestart();
+        MoveAnime.AnimeStart();
     }
 
     public void EffectStart(BuffTran.TYPE type, int value) {

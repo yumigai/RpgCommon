@@ -31,7 +31,12 @@ public class BattleProc
     /// <summary>
     /// クラッシュ時ダメージ補正
     /// </summary>
-    public const int DAMAGE_CRASH_ADJ = 2;
+    public const int DAMAGE_CRITICAL_ADJ = 2;
+
+    /// <summary>
+    /// クリティカル補正値
+    /// </summary>
+    public const float CRITICAL_JUDGE_ADJ = 4;
 
     /// <summary>
     /// 基本クラッシュポイントの消費量・回復量（ダメージ・通常ターン経過）
@@ -53,13 +58,14 @@ public class BattleProc
         public List<UnitStatusTran> Def = new List<UnitStatusTran>();
         public List<int> Values = new List<int>();
         public List<bool> IsHit = new List<bool>();
+        public List<bool> IsCritical = new List<bool>();
         public SkillMast Skill;
         public ItemTran Item;
         public int SlipHp = 0;
         public bool IsStan = false;
         public bool IsBurst = false;
-        public bool addBuff = false;
-        public bool removeBuff = false;
+        //public bool addBuff = false;
+        public bool removeBuff = false; //いらんかも？（毎ターンバフ状態チェックすればいいし）
 
         public PowerMast Power { get { return Item != null ? (PowerMast)Item.Mst : (PowerMast)Skill;  } }
 
@@ -84,12 +90,13 @@ public class BattleProc
         /// 命中・効果値更新
         /// </summary>
         /// <param name="def"></param>
-        /// <param name="hit"></param>
         /// <param name="value"></param>
-        public void updateHitValue(UnitStatusTran def, bool hit, int value) {
+        /// <param name="hit">命中（基本当たったら更新されるのでほぼtrue固定）</param>
+        public void updateHitValue(UnitStatusTran def, int value, bool hit = true, bool critical = false) {
             var index = Def.IndexOf(def);
             if (index >= 0 && index < IsHit.Count && index < Values.Count) {
                 IsHit[index] = hit;
+                IsCritical[index] = critical;
                 Values[index] = value;
             }
         }
@@ -514,13 +521,14 @@ public class BattleProc
     /// <param name="user"></param>
     /// <param name="target"></param>
     private static void weaponAttack(UnitStatusTran user, UnitStatusTran target) {
-        bool is_hit = false;
-        int damage_val = physicalDamage(user, target, ref is_hit);
+
+        physicalDamage(user, target);
 
         //BattleAction.Values.Add(damage_val);
         //BattleAction.IsHit.Add(is_hit);
 
-        BattleAction.updateHitValue(target, is_hit, damage_val);
+        //physcalDamage内で行う
+        //BattleAction.updateHitValue(target, is_hit, damage_val);
 
         isDead(target, user);
     }
@@ -568,16 +576,14 @@ public class BattleProc
             hit = calcBuffBonus(hit, attacker, BuffTran.TYPE.MAG);
             dodge = def.IsCrash ? 0 : calcBuffBonus(dodge, def, BuffTran.TYPE.REG);
 
-            var value = 0;
             var is_hit = hit >= dodge;
 
             if (is_hit) {
-                value = PowerProcess.execPower(pow, attacker, def);
-                BattleAction.addBuff = true; //addBuff 消す（ややこしくなるから）
-
+                //var value = PowerProcess.execPower(pow, attacker, def);
+                ////BattleAction.addBuff = true; //addBuff 消す（ややこしくなるから）
+                //BattleAction.updateHitValue(def, value);
+                skillEffect(pow, attacker, def);
             }
-            BattleAction.updateHitValue(def, is_hit, value);
-
         }
     }
 
@@ -589,9 +595,20 @@ public class BattleProc
     /// <param name="targets"></param>
     private static void skillEffect(SkillMast skill, UnitStatusTran user, List<UnitStatusTran> targets) {
         foreach (var tar in targets) {
-            var value = PowerProcess.execPower(skill, user, tar);
-            BattleAction.updateHitValue(tar, true, value);
+            //var value = PowerProcess.execPower(skill, user, tar);
+            //BattleAction.updateHitValue(tar, value);
+            skillEffect(skill, user, tar);
         }
+    }
+    /// <summary>
+    /// 抵抗判定を必要としないパワー効果（基本的にPowerEffectRegistか他のskillEffectから呼び出す）
+    /// </summary>
+    /// <param name="skill"></param>
+    /// <param name="user"></param>
+    /// <param name="target"></param>
+    private static void skillEffect(PowerMast pow, UnitStatusTran user, UnitStatusTran target) {
+        var value = PowerProcess.execPower(pow, user, target);
+        BattleAction.updateHitValue(target, value);
     }
 
     /// <summary>
@@ -643,25 +660,30 @@ public class BattleProc
     /// <param name="is_hit"></param>
     /// <returns></returns>
     //んー、迷ったけど、変更しない引数についてはrefは使わん。混乱するし。小サイズの配列ならパフォーマスの影響大きいのは分かるけども
-    private static int physicalDamage(UnitStatusTran attacker, UnitStatusTran defender, ref bool is_hit) {
+    private static int physicalDamage(UnitStatusTran attacker, UnitStatusTran defender) {
 
         int hit = attacker.Status.Str + attacker.Status.judgeParam(StatusMast.TYPE.AGI);
         int dodge = defender.Status.Agi + defender.Status.luckJudge();
+
+        int damage = 0;
 
         hit = calcBuffBonus(hit, attacker, BuffTran.TYPE.HIT);
 
         dodge = calcBuffBonus(dodge, defender, BuffTran.TYPE.SWAY);
 
-        is_hit = hit >= dodge ? true : false;
+        var is_hit = hit >= dodge ? true : false;
 
         if (is_hit) {
             int power = hit + (int)attacker.EquipWeapon.Value;
 
             int guard = defender.TotalDefence / GUARD_JUDGE_ADJ + defender.Status.luckJudge();
-            return damageCulc(power, guard, attacker, defender, GameConst.ELEMENT.Material, BuffTran.TYPE.ATK, BuffTran.TYPE.DEF);
+            damage = damageCulc(power, guard, attacker, defender, GameConst.ELEMENT.Material, BuffTran.TYPE.ATK, BuffTran.TYPE.DEF);
         }
 
-        return 0;
+        //damageCulcの中で行う（デフォルトがhit=false value=0なので、ヒットしなければ更新しないでOK）
+        //BattleAction.updateHitValue(defender, is_hit, damage);
+
+        return damage;
     }
 
     /// <summary>
@@ -694,22 +716,8 @@ public class BattleProc
 
         int damage = damageCulc(val, guard, attacker, defender, mst.Element, BuffTran.TYPE.MAG, BuffTran.TYPE.REG);
 
-        //if (damage > 0) {
-        //    //ダメージ量により0～50%のバフボーナス
-        //    var bonus = 50f;
-        //    if (defender.IsCrash) {
-        //        bonus = 100f;
-        //    } else if (guard > 0) {
-        //        bonus = Mathf.Clamp(bonus * ((float)(val - guard) / guard), 0f, 50f);
-        //    }
-        //    addStatusEffect(mst, attacker, defender, true, (int)bonus);
-        //}
-
-        BattleAction.updateHitValue(defender, true, damage);
-        //BattleAction.Def.Add(defender);
-        //BattleAction.Values.Add(damage);
-        //BattleAction.IsHit.Add(true);
-        //BattleAction.Skill = skill;
+        //damageCulcの中で行う
+        //BattleAction.updateHitValue(defender, true, damage);
 
         return damage;
     }
@@ -893,15 +901,7 @@ public class BattleProc
                     Reward.GetItems.Add(drop_item);
                 }
                 Quest.Enemys.Remove((UnitStatusTran)val);
-                //LogProc.reportAddParam(ReportTran.PARAMS.DESTROY_NUMS);
             }
-            //if( is_log ){
-            //	LogProc.addLog( LogListTran.GROUP.ACTION_APPEND, LogListTran.LOG_TPL.BTL_DOWN, LogListTran.ICON.NON, new string[] { val.Name } );
-            //}
-            //if( val.Type == UnitMast.TYPE.PLAYER ){
-            //	int floor_num = Quest.NowFloorNum + 1;
-            //             LogProc.setTopic(ReportTran.TOPIC_KIND.DEAD_CHARA, new string[] { floor_num.ToString(), val.Name, term });
-            //}
 
             return true;
         }
@@ -917,9 +917,9 @@ public class BattleProc
     /// <returns></returns>
     private static int damageCulc(int power, int guard, UnitStatusTran attacker, UnitStatusTran defender, GameConst.ELEMENT elemnt, BuffTran.TYPE atkBuff, BuffTran.TYPE defBuff) {
 
-        power = calcBuffBonus(power, attacker, atkBuff);
         power = calcRuneBonus(power, attacker, RuneMast.KIND.P_ATK_ADD);
         power = calcRuneBonus(power, attacker, RuneMast.KIND.ATTACK_ALL); //全体攻撃の弱体化
+        power = calcBuffBonus(power, attacker, atkBuff);
 
         int no_element_power = power;
         power = elementCulc(power, elemnt, defender);
@@ -932,30 +932,28 @@ public class BattleProc
             defender.addBurst(-SPECIAL_CRASH_ADD_SUB);
         }
 
-        //if (power > no_element_power) {
-        //    //素値(no_element_power)が補正後の値より大きい（弱点）
-        //    if (defender.IsGuard) { //ガード中は通常
-        //        defender.addBurst(-NORMAL_CRASH_ADD_SUB);
-        //    } else {
-        //        defender.addBurst(-SPECIAL_CRASH_ADD_SUB);
-        //    }
-        //} else if (power == no_element_power) {
-        //    defender.addBurst(-NORMAL_CRASH_ADD_SUB);
-        //}
-
         if (defender.CrashPower <= 0 && !defender.IsCrash) {
             defender.Buff.Add(new BuffTran(BuffTran.TYPE.CRASH_OUT, GameConst.TIME.BATTLE, 1, 1f));
         }
 
         guard = calcBuffBonus(guard, defender, defBuff);
+
         guard = defender.IsCrash ? guard / 4 : guard; //クラッシュ時防御 1/4
+
         int damage = defender.damage(power, guard);
 
         damage = defender.IsGuard ? damage / 2 : damage; //ガード中は被ダメージ1/2
 
-        if (defender.IsCrash) {
-            damage *= DAMAGE_CRASH_ADJ;
+        //ゼロ割り防止しつつクリティカル目標値設定
+        var critical_param = ((float)attacker.Status.Luk + 1) / ((float)defender.Status.Luk + 1) * CRITICAL_JUDGE_ADJ;
+        var is_critical = Random.Range(0, critical_param) < critical_param;
+
+        if (defender.IsCrash || is_critical) {
+            damage *= DAMAGE_CRITICAL_ADJ;
         }
+
+        BattleAction.updateHitValue(defender, damage, true, is_critical);
+
         return damage;
     }
 
