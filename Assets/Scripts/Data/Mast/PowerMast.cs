@@ -90,7 +90,7 @@ abstract public class PowerMast : MulitiUseListMast
 
 	public BuffTran.TYPE[] BuffTypes = new BuffTran.TYPE[0];
 
-
+	public string DetailShort;
 
 	public int BuffPower;
 

@@ -28,10 +28,6 @@ public class SkillMast : PowerMast {
         SPECIAL,
     }
 
-    public string Tag;
-
-	
-
 	//public USE_TIMING UseTiming;
 
 	//public float PowMin;
@@ -45,10 +41,6 @@ public class SkillMast : PowerMast {
 	public StatusMast.TYPE BaseParam;
 
     public TYPE Type;
-
-    public string Info;
-
-	public GameConst.SPEC[] test = new GameConst.SPEC[0];
 
 	public float AvrPow { get { return PhysicsPower; } }//(PowMax + PowMin) / 2f; } }
 

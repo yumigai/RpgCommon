@@ -26,6 +26,7 @@ public class SkillBoardMng : PowerBoardMng
     new private void Awake() {
         base.Awake();
         Board = this;
+        Scroll.IconDirectory = GameConst.Path.ICON_SKILL_PATH;
     }
 
     new private void Start() {
@@ -137,7 +138,7 @@ public class SkillBoardMng : PowerBoardMng
         if (mast != null) {
             switch (Mode) {
                 case MODE.VIEW:
-                CommonProcess.showMessage(mast.Name, mast.Info);
+                CommonProcess.showMessage(mast.Name, mast.Detail);
                 break;
                 case MODE.USE:
                 readyUseTarget(skill);

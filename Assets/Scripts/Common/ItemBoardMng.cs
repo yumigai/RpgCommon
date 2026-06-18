@@ -102,6 +102,7 @@ public class ItemBoardMng : PowerBoardMng
     protected new void Awake() {
         base.Awake();
         Board = this;
+        Scroll.IconDirectory = GameConst.Path.IMG_ITEM_ICON;
     }
 
     new protected void OnEnable() {
@@ -213,7 +214,7 @@ public class ItemBoardMng : PowerBoardMng
 
         for (int i = 0; i < shop_items.Count; i++) {
 
-            Scroll.IconDirectory = GameConst.Path.IMG_ITEM_ICON;
+            
             var list = Scroll.makeListItem(i, shop_items[i].Id, shop_items[i].ItmMst);
 
             if (shop_items[i].ItmMst.isEquip) {

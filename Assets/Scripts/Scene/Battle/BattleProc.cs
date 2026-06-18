@@ -216,18 +216,10 @@ public class BattleProc
         aiSet(true);
 
         foreach (UnitStatusTran val in Battlers) {
-            //int luck_add = val.Status.Luk / 2;
-            //val.speedDice = Random.Range(0, luck_add);
-
-            val.Status.luckJudge();
-
+            val.speedDice = Random.Range(0, val.Status.luckJudge());
         }
 
         Battlers.Sort((a, b) => b.speedFacter - a.speedFacter);
-
-        //Debug.Log("Sort");
-        //var test = Battlers.Select(it => it.Name);
-        //Debug.Log(string.Join(",", test).ToString());
 
     }
 

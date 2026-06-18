@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 [System.Serializable]
 public class StatusMast 
@@ -8,7 +7,7 @@ public class StatusMast
     public const int MAX_STATUS = 9999;
 
 	//幸運判定補正
-	public const int LUCK_JUDGE_ADJ = 2;
+	public const int PARAM_JUDGE_ADJ = 2;
 
 	public enum TYPE
 	{
@@ -115,7 +114,7 @@ public class StatusMast
 	}
 
 	public int judgeParam(TYPE type) {
-		return Random.Range(0, Param[(int)type]) / LUCK_JUDGE_ADJ;
+		return Random.Range(0, Param[(int)type]) / PARAM_JUDGE_ADJ;
 	}
 
 	public int[] ParamCopy(){

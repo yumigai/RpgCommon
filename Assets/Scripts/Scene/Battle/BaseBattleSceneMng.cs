@@ -392,12 +392,14 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
                 var items = SaveMng.Items.Where(it => it.Mst.Category == ItemMast.CATEGORY.CONSUMABLE);
 
                 foreach (var item in items) {
-                    ChoiceList.makeListItem(item.Id, item.Name, GameConst.Path.ICON_ITEM_PATH + item.Icon, "", "", choiceListItem);
+                    var item_num = string.Format("x{0}",item.Num);
+                    ChoiceList.makeListItem(item.Id, item.Name, GameConst.Path.ICON_ITEM_PATH + item.Icon, item_num, item.Detail, choiceListItem);
                 }
             } else {
                 var sikills = BattleProc.ActionUnit.Skills;
                 foreach (var skill in sikills) {
-                    ChoiceList.makeListItem(skill.Id, skill.Name, GameConst.Path.ICON_SKILL_PATH + skill.Icon, "", "", choiceListItem);
+                    var mp_cost = string.Format("MP:{0}", skill.Cost);
+                    ChoiceList.makeListItem(skill.Id, skill.Name, GameConst.Path.ICON_SKILL_PATH + skill.Icon, skill.Detail, mp_cost, choiceListItem);
                 }
             }
 
