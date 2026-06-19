@@ -38,11 +38,11 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         EVEN,
     }
 
-    private const string regenerate_effect = "Regenerate";
-
     private const string AdvanceEffect = "Blow";
     private const string PoisonEffect = "PoisonTurn";
     private const string ParalyzeEffect = "ParalyzeTurn";
+    //private const string regenerate_effect = "Regenerate";
+    private const string CrashOutStart = "CrashOutStart";
 
     private const int ADVANCE_HIT_EFFECT_NUM = 3;
 
@@ -593,9 +593,9 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
             }
         } else {
             //ターゲットが相手陣営
-                if (i < Log.IsHit.Count && Log.IsHit[i]) {
+                if (i < Log.DamageStatus.Count && Log.DamageStatus[i].Contains(BattleProc.ActionData.DAMAGE_STATUS.HIT)) {
 
-                    showDamageInfo(tgt, Log.ElementAdj[i], Log.IsCritical[i] );
+                    showDamageInfo(tgt, Log.DamageStatus[i], posi);
 
                     damageReaction(tgt, Log.Values[i], posi);
 
@@ -632,20 +632,23 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         ch.setData();
     }
 
-    void showDamageInfo(CharaPlateMng plate, float element, bool crit) {
-        if (element == BattleProc.ELEMENT_SUB_CULC) {
+    void showDamageInfo(CharaPlateMng plate, List<BattleProc.ActionData.DAMAGE_STATUS> status, Vector3 posi) {
+        if (status.Contains(BattleProc.ActionData.DAMAGE_STATUS.REGIST)) {
             //耐性補正
             plate.showRegist(true);
             TimeInvokeMng.TimerAction(()=> { plate.showRegist(false); }, 1f, this.gameObject);
         }
-        if (element == BattleProc.ELEMENT_ADD_CULC) {
+        if (status.Contains(BattleProc.ActionData.DAMAGE_STATUS.WEAK)) {
             //弱点補正
             plate.showWeak(true);
             TimeInvokeMng.TimerAction(() => { plate.showWeak(false); }, 1f, this.gameObject);
         }
-        if (crit) {
-            plate.showCritical(crit);
+        if (status.Contains(BattleProc.ActionData.DAMAGE_STATUS.CRITICAL)) {
+            plate.showCritical(true);
             TimeInvokeMng.TimerAction(() => { plate.showCritical(false); }, 1f, this.gameObject);
+        }
+        if (status.Contains(BattleProc.ActionData.DAMAGE_STATUS.CRASH_OUT_START)) {
+            MainEffects[CrashOutStart].effect(posi);
         }
     }
 

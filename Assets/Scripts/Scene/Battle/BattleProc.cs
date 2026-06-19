@@ -53,18 +53,28 @@ public class BattleProc
     /// </summary>
     public class ActionData
     {
+        public enum DAMAGE_STATUS
+        {
+            HIT,
+            CRITICAL,
+            CRASH_OUT_START,
+            WEAK,
+            REGIST,
+        }
+
         public AiProc.ACTION Action;
         public UnitStatusTran Atk;
         public List<UnitStatusTran> Def = new List<UnitStatusTran>();
         public List<int> Values = new List<int>();
-        public List<bool> IsHit = new List<bool>();
-        public List<bool> IsCritical = new List<bool>();
-        public List<float> ElementAdj = new List<float>();
+        //public List<bool> IsHit = new List<bool>();
+        //public List<bool> IsCritical = new List<bool>();
+        //public List<float> ElementAdj = new List<float>();
+        public List<List<DAMAGE_STATUS> > DamageStatus = new List< List<DAMAGE_STATUS> >();
         
         public SkillMast Skill;
         public ItemTran Item;
         public int SlipHp = 0;
-        public bool IsStan = false;
+        public bool IsStan = false; //麻痺の効果が現れたかどうか
         public bool IsBurst = false;
         //public bool addBuff = false;
         public bool removeBuff = false; //いらんかも？（毎ターンバフ状態チェックすればいいし）
@@ -79,9 +89,10 @@ public class BattleProc
         public void AddDef(UnitStatusTran def ) {
             Def.Add(def);
             Values.Add(0);
-            IsHit.Add(false);
-            IsCritical.Add(false);
-            ElementAdj.Add(0);
+            DamageStatus.Add(new List<DAMAGE_STATUS>());
+            //IsHit.Add(false);
+            //IsCritical.Add(false);
+            //ElementAdj.Add(0);
         }
 
         public void AddDef(List<UnitStatusTran> defs) {
@@ -96,13 +107,19 @@ public class BattleProc
         /// <param name="def"></param>
         /// <param name="value"></param>
         /// <param name="hit">命中（基本当たったら更新されるのでほぼtrue固定）</param>
-        public void updateHitValue(UnitStatusTran def, int value, bool hit = true, bool critical = false, float element = 0) {
+        public void updateHitValue(UnitStatusTran def, int value, List<DAMAGE_STATUS> status = null){// bool hit = true, bool critical = false, float element = 0) {
             var index = Def.IndexOf(def);
-            if (index >= 0 && index < IsHit.Count && index < Values.Count) {
-                IsHit[index] = hit;
-                IsCritical[index] = critical;
+            if (index >= 0 && index < DamageStatus.Count && index < Values.Count) {
+                //IsHit[index] = hit;
+                //IsCritical[index] = critical;
                 Values[index] = value;
-                ElementAdj[index] = element;
+                //ElementAdj[index] = element;
+                if (status == null) {
+                    //ステータスnullで更新が走った場合、基本的にデフォルトの命中を入れる（基本外れからの更新になるので）
+                    DamageStatus[index] = new List<DAMAGE_STATUS>() { DAMAGE_STATUS.HIT };
+                } else {
+                    DamageStatus[index] = status;
+                }
             }
         }
     }
@@ -921,6 +938,8 @@ public class BattleProc
     /// <returns></returns>
     private static int damageCulc(int power, int guard, UnitStatusTran attacker, UnitStatusTran defender, GameConst.ELEMENT elemnt, BuffTran.TYPE atkBuff, BuffTran.TYPE defBuff) {
 
+        var damage_status = new List<ActionData.DAMAGE_STATUS>() { ActionData.DAMAGE_STATUS.HIT };
+
         power = calcRuneBonus(power, attacker, RuneMast.KIND.P_ATK_ADD);
         power = calcRuneBonus(power, attacker, RuneMast.KIND.ATTACK_ALL); //全体攻撃の弱体化
         power = calcBuffBonus(power, attacker, atkBuff);
@@ -928,18 +947,38 @@ public class BattleProc
         var element = elementCulc(elemnt, defender);
         power = (int)(power * element);
 
-        //通常・弱点の場合のみクラッシュゲージを減らす
-        if (element != ELEMENT_SUB_CULC) {
-            if (element == 1 || defender.IsGuard) {
-                //通常または防御側がガード中
+        switch (element) {
+            case ELEMENT_ADD_CULC:
+            //弱点　クラッシュゲージ大幅減（ガード中は通常）
+            if (defender.IsGuard) {
                 defender.addBurst(-NORMAL_CRASH_ADD_SUB);
-            } else if (element == ELEMENT_ADD_CULC) {
+            } else {
                 defender.addBurst(-SPECIAL_CRASH_ADD_SUB);
             }
+            damage_status.Add(ActionData.DAMAGE_STATUS.WEAK);
+            break;
+            case ELEMENT_SUB_CULC:
+            //レジスト　クラッシュゲージ減らない
+            damage_status.Add(ActionData.DAMAGE_STATUS.REGIST);
+            break;
+            default:
+            defender.addBurst(-NORMAL_CRASH_ADD_SUB);
+            break;
         }
+
+        ////通常・弱点の場合のみクラッシュゲージを減らす
+        //if (element != ELEMENT_SUB_CULC) {
+        //    if (element == 1 || defender.IsGuard) {
+        //        //通常または防御側がガード中
+        //        defender.addBurst(-NORMAL_CRASH_ADD_SUB);
+        //    } else if (element == ELEMENT_ADD_CULC) {
+        //        defender.addBurst(-SPECIAL_CRASH_ADD_SUB);
+        //    }
+        //}
 
         if (defender.CrashPower <= 0 && !defender.IsCrash) {
             defender.Buff.Add(new BuffTran(BuffTran.TYPE.CRASH_OUT, GameConst.TIME.BATTLE, 1, 1f));
+            damage_status.Add(ActionData.DAMAGE_STATUS.CRASH_OUT_START);
         }
 
         guard = calcBuffBonus(guard, defender, defBuff);
@@ -957,9 +996,10 @@ public class BattleProc
 
         if (is_critical) {
             damage *= DAMAGE_CRITICAL_ADJ;
+            damage_status.Add(ActionData.DAMAGE_STATUS.CRITICAL);
         }
 
-        BattleAction.updateHitValue(defender, damage, true, is_critical, element);
+        BattleAction.updateHitValue(defender, damage, damage_status);
 
         return damage;
     }
