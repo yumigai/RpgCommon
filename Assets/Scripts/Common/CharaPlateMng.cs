@@ -174,10 +174,11 @@ public class CharaPlateMng : MonoBehaviour {
     /// </summary>
     /// <param name="val"></param>
     /// <param name="critical"></param>
-    public void damage(int val, bool critical = false)
+    public void damage(int val)
     {
         DamageNum.color = Color.black;
-        setDamageNum(val, critical);
+        setDamageNum(val);
+        
         playAnime(ANIME.Damage);
     }
 
@@ -195,8 +196,17 @@ public class CharaPlateMng : MonoBehaviour {
     /// </summary>
     /// <param name="val"></param>
     /// <param name="critical"></param>
-    public void setDamageNum(int val, bool critical = false) {
-        DamageNum.text = val.ToString();
+    public void setDamageNum(int val) {
+        if (val != 0) {
+            setDamageNum(val.ToString());
+        }
+    }
+    /// <summary>
+    /// ダメージテキスト表示（０を表示したい場合）
+    /// </summary>
+    /// <param name="val"></param>
+    public void setDamageNum(string val) {
+        DamageNum.text = val;
         DamageNum.gameObject.SetActive(true);
         TimeInvokeMng.TimerHide(DAMEGE_SHOW_TIME, DamageNum.gameObject); //秒後非表示
     }

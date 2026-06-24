@@ -44,7 +44,11 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     //private const string regenerate_effect = "Regenerate";
     private const string CrashOutStart = "CrashOutStart";
 
+    //アドバンスエンカウントで殴るエフェクトの回数
     private const int ADVANCE_HIT_EFFECT_NUM = 3;
+
+    //コマンドユニットを半透明にする敵の数（敵を隠さないように）
+    private const int COMMAND_UNIT_ALPHA_NUM = 4;
 
     [SerializeField]
     public PartyPlatesMng PlayerParty;
@@ -105,6 +109,9 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
 
     [SerializeField]
     protected CharaImgGroupMng ActionSortGroup;
+
+    [SerializeField]
+    private CameraFilterPack_Blur_Focus FucusFilter;
 
     [SerializeField]
     public GameObject SceneBase;
@@ -198,6 +205,7 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         ResultBoard.gameObject.SetActive(false);
         LoseBoard.gameObject.SetActive(false);
         EncountScreen.gameObject.SetActive(false);
+        FucusFilter.enabled = false;
         MainEffects = new Dictionary<string, EffectMng>();
         var eff_list = EffectCamera.transform.parent.GetComponentsInChildren<EffectMng>();
         foreach (var eff in eff_list) {
@@ -323,7 +331,8 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
                     MainEffects[AdvanceEffect].effect(eff_posi);
                     yield return new WaitForSeconds(0.1f);
                 }
-                damageReaction(val, 0, val.transform.position);
+                //TODO: アドバンスエンカでダメージ与えるかどうかは後に調整
+                damageReaction(val, 0, val.transform.position); 
                 yield return new WaitForSeconds(0.2f);
             }
         }
@@ -362,8 +371,12 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
 
         if (BattleProc.ActionUnit.IsAlive && BattleProc.ActionUnit.Tactics == AiProc.TACTICS.COMMAND) {
             CommandUnit.Img.sprite = BattleProc.ActionUnit.getStandImage();
+            CommandUnit.Img.color = Color.white;
             CommandUnit.updImageSize();
             CommandUnit.gameObject.SetActive(true);
+            if (EnemyParty.Units.Count >= COMMAND_UNIT_ALPHA_NUM) {
+                TimeInvokeMng.TimerAction(() => { CommandUnit.Img.color = new Color(1,1,1,0.5f); }, 0.4f, this.gameObject);
+            }
             readyCommand();
         } else {
             Sequence = SEQUENCE.PROCESS;
@@ -480,12 +493,21 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         } else {
             if (Log.Action == AiProc.ACTION.GUARD) {
                 chara.guard();
+            } else if (Log.Action == AiProc.ACTION.ESCAPE) {
+                FucusFilter.enabled = true;
+                playEscapeReaction(); //主に効果音の再生
+                yield return new WaitForSeconds(0.6f);
+                if (BattleResult == BattleProc.RESULT.CONTINUE) {
+                    var txt = SaveMng.IsJp ? "逃げきれない！" : "Couldn't get away!";
+                    FucusFilter.enabled = false;
+                    ShowMessage(txt);
+                }
             } else {
                 chara.action();
 
                 if (Log.Skill != null || Log.Item != null) {
-                    MessageText.text = Log.Skill != null ? Log.Skill.Name : Log.Item.Name;
-                    MessageBoard.SetActive(true);
+                    var txt = Log.Skill != null ? Log.Skill.Name : Log.Item.Name;
+                    ShowMessage(txt);
                 }
 
                 for (int i = 0; i < Log.Def.Count; i++) {
@@ -510,6 +532,9 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.6f);
+        if (MessageBoard.activeSelf) {//メッセージ表示時間
+            yield return new WaitForSeconds(0.8f);
+        }
         MessageBoard.SetActive(false);
 
         ActionSortGroup.RemoveUnit(chara.Unit.Id);
@@ -593,17 +618,25 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
             }
         } else {
             //ターゲットが相手陣営
-                if (i < Log.DamageStatus.Count && Log.DamageStatus[i].Contains(BattleProc.ActionData.DAMAGE_STATUS.HIT)) {
+            if (i < Log.DamageStatus.Count && Log.DamageStatus[i].Contains(BattleProc.ActionData.DAMAGE_STATUS.HIT)) {
 
-                    showDamageInfo(tgt, Log.DamageStatus[i], posi);
+                showDamageInfo(tgt, Log.DamageStatus[i], posi);
 
-                    damageReaction(tgt, Log.Values[i], posi);
+                damageReaction(tgt, Log.Values[i], posi);
 
-                    tgt.showBreak(tgt.Unit.IsCrash);
-
-                } else {
-                    tgt.miss();
+                if ( Log.Values[i] == 0 ){
+                    if (Log.Action == AiProc.ACTION.ATTACK
+                    || (Log.Power != null && Log.Power.Spec == PowerMast.SPEC.ATTACK)) {
+                        //攻撃が命中して値が０の場合はダメージ数値表示
+                        tgt.setDamageNum("0");
+                    }
                 }
+
+                tgt.showBreak(tgt.Unit.IsCrash);
+
+            } else {
+                tgt.miss();
+            }
         }
     }
 
@@ -615,6 +648,7 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     void damageReaction(CharaPlateMng ch, int damage, Vector3 posi) {
 
         ch.damage(damage);
+
         ch.setData();
 
         if (ch.Unit.Hp <= 0) {
@@ -732,7 +766,7 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     private void ShowMessage(string txt) {
         MessageText.text = txt;
         MessageBoard.SetActive(true);
-        waitToAction(() => { MessageBoard.SetActive(false); }, 1f);
+        //waitToAction(() => { MessageBoard.SetActive(false); }, 1.5f);
     }
 
     ///// <summary>
@@ -817,6 +851,12 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         CommandData.Action = AiProc.ACTION.SKILL;
         CommandPanel.SetActive(false);
         Sequence = SEQUENCE.CHOICE;
+    }
+
+    public void pushEscape() {
+        CommandData.Action = AiProc.ACTION.ESCAPE;
+        pushCommand();
+        CommandProcess();
     }
 
     private void pushCommand() {
@@ -969,61 +1009,7 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
             }
         }
 
-
-        //if (SelectSide == SELECT_SIDE.ENEMY) {
-        //    if (members[index] == null || !members[index].gameObject.activeSelf) {
-        //        index = Mathf.Clamp(index += GamePadButtonMng.AxisHorizontal, 0, members.Count - 1);
-        //        if (members[index] == null || !members[index].gameObject.activeSelf) {
-        //            index = Mathf.Clamp(index += GamePadButtonMng.AxisHorizontal, 0, members.Count - 1);
-
-        //        }
-        //    }
-        //}
-
-        
-
-        //if (SelectSide == SELECT_SIDE.ENEMY) {
-        //    index = EnemyParty.Layout.GetIndex(index);
-        //}
-
         changeTarget(members[index]);
-
-
-        //if (SelectSide == SELECT_SIDE.PARTY) {
-
-        //    if (PlayerParty.Members.Count < 2) {
-        //        return;
-        //    }
-
-        //    var index = PlayerParty.Members.IndexOf(SelectedUnit);
-        //    index = Mathf.Clamp(index += GamePadButtonMng.AxisHorizontal, 0, PlayerParty.Members.Count - 1);
-
-        //    changeTarget(PlayerParty.Members[index]);
-
-        //} else {
-        //    //敵パーティの場合は選択対象の並び替え
-        //    if (EnemyParty.Members.Count == 0) {
-        //        return;
-        //    }
-
-        //    var index = EnemyParty.Members.IndexOf(SelectedUnit);
-
-        //    //SiblingIndexの関係上、Membersの並びは画面上の見た目と一致しないのでシンプルにindexをAxisHorizontalで加算（減算）しない
-        //    IEnumerable<CharaPlateMng> selection = Enumerable.Empty<CharaPlateMng>();
-
-        //    if (GamePadButtonMng.AxisHorizontal > 0) {
-        //        selection = EnemyParty.Members.Where(it => SelectedUnit.transform.localPosition.x < it.transform.localPosition.x);
-        //    } else {
-        //        selection = EnemyParty.Members.Where(it => SelectedUnit.transform.localPosition.x > it.transform.localPosition.x);
-        //    }
-
-
-        //    if (selection != null && selection.Count() > 0) {
-        //        var units = selection.OrderBy(it => it.transform.localPosition.x);
-        //        var unit = GamePadButtonMng.AxisHorizontal > 0 ? units.First() : units.Last();
-        //        changeTarget(unit);
-        //    }
-        //}
 
     }
 
@@ -1032,6 +1018,10 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         showTargetPanel(false);
 
         Sequence = SEQUENCE.PROCESS;
+    }
+
+    protected virtual void playEscapeReaction() {
+        
     }
 
     /// <summary>
@@ -1044,15 +1034,16 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
 
             Quest.GetMoney += BattleProc.Reward.GetMoney;
             Quest.GetExp += BattleProc.Reward.GetExp;
-            
+
             //Expはバトル完了時点で付与する（アイテムとお金は帰還時）
             UnitProcess.addExp(BattleProc.Reward.GetExp);
+        }
 
-            BattleProc.Reward = new BattleProc.RewardData(); //念のためリセット
+        BattleProc.Reward = new BattleProc.RewardData(); //念のためリセット
 
-
-        } else {
-            BattleProc.Reward = new BattleProc.RewardData(); //念のためリセット
+        if (BattleResult == BattleProc.RESULT.DRAW) {
+            //現状何もしない
+        } else if(BattleResult == BattleProc.RESULT.LOSE) {
             VersatileProcess.nextDay();
         }
         

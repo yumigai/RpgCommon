@@ -301,19 +301,22 @@ public class BattleProc
             BattleAction = command;
         }
 
+        //確定したアクションをユニットごとのアクションデータに記録する
+        ActionUnit.ActionPlan = BattleAction.Action;
+
         if (judgeSkipTurn(ActionUnit)) {
             //バーストかスタンでターンスキップ
             return endProcess();
         }
 
-        bool to_action = fightAction();
+        bool battle_continue = fightAction();
 
-        if (!to_action) {
-            return RESULT.CONTINUE;
+        if (!battle_continue) {
+            if (BattleAction.Action == AiProc.ACTION.ESCAPE) {
+                //逃亡成功
+                return RESULT.DRAW;
+            }
         }
-
-        //確定したアクションをユニットごとのアクションデータに記録する
-        ActionUnit.ActionPlan = BattleAction.Action;
 
         slipDamage(ActionUnit);
 
@@ -448,6 +451,11 @@ public class BattleProc
             break;
             case AiProc.ACTION.GUARD:
             //ActionPlanでgurdを指定された時点でガード状態になるのでここでは何もしない
+            break;
+            case AiProc.ACTION.ESCAPE:
+                if (judgeEscape()) {
+                    return false;
+                }
             break;
             case AiProc.ACTION.ITEM:
             useItem(BattleAction.Item, BattleAction.Atk, BattleAction.Def);
@@ -1073,34 +1081,42 @@ public class BattleProc
 
     }
 
-    private static List<int[]> getBaseSpeed() {
-
-        List<int[]> base_speeds = new List<int[]>();
-
-        for (int h = 0; h < 2; h++) {
-
-            List<UnitStatusTran> list = new List<UnitStatusTran>();
-
-            if (h == 0) {
-                list = Quest.ActiveParty;
-            } else {
-                foreach (UnitStatusTran val in Quest.Enemys) {
-                    list.Add(val);
-                }
-            }
-
-            for (int i = 0; i < list.Count; i++) {
-                int[] speed = new int[(int)SPEED_INDEX.ALL];
-                speed[(int)SPEED_INDEX.PLAYER_OR_ENEMY] = h;
-                speed[(int)SPEED_INDEX.PARTY_INDEX] = i;
-                speed[(int)SPEED_INDEX.AGI] = list[i].Status.Agi;
-                speed[(int)SPEED_INDEX.LUCK] = list[i].Status.Luk;
-                speed[(int)SPEED_INDEX.SPEED_FACTER] = 0;
-                base_speeds.Add(speed);
-            }
-        }
-
-        return base_speeds;
+    private static bool judgeEscape() {
+        var player_avarage = Quest.ActiveParty.Where(it=>it.Hp > 0).Average(it=>it.Status.Agi + it.Status.Luk);
+        var enemy_avarage = Quest.Enemys.Where(it => it.Hp > 0).Average(it => it.Status.Agi + it.Status.Luk);
+        var rand_player = Random.Range(0, (int)player_avarage);
+        var rand_enemy = Random.Range(0, (int)enemy_avarage);
+        return rand_player >= rand_enemy;
     }
+
+    //private static List<int[]> getBaseSpeed() {
+
+    //    List<int[]> base_speeds = new List<int[]>();
+
+    //    for (int h = 0; h < 2; h++) {
+
+    //        List<UnitStatusTran> list = new List<UnitStatusTran>();
+
+    //        if (h == 0) {
+    //            list = Quest.ActiveParty;
+    //        } else {
+    //            foreach (UnitStatusTran val in Quest.Enemys) {
+    //                list.Add(val);
+    //            }
+    //        }
+
+    //        for (int i = 0; i < list.Count; i++) {
+    //            int[] speed = new int[(int)SPEED_INDEX.ALL];
+    //            speed[(int)SPEED_INDEX.PLAYER_OR_ENEMY] = h;
+    //            speed[(int)SPEED_INDEX.PARTY_INDEX] = i;
+    //            speed[(int)SPEED_INDEX.AGI] = list[i].Status.Agi;
+    //            speed[(int)SPEED_INDEX.LUCK] = list[i].Status.Luk;
+    //            speed[(int)SPEED_INDEX.SPEED_FACTER] = 0;
+    //            base_speeds.Add(speed);
+    //        }
+    //    }
+
+    //    return base_speeds;
+    //}
 
 }

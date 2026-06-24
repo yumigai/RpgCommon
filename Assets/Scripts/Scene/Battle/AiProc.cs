@@ -40,6 +40,7 @@ public class AiProc
 		SKILL,
         GUARD,
         ITEM,
+		ESCAPE,
 
 	}
 
@@ -158,7 +159,7 @@ public class AiProc
 					ActionTargets.Add(list[index]);
 				}
 			break;
-			case ACTION.GUARD:
+			case ACTION.GUARD: //ここでは未使用
 				ActionTargets.Add(_Unit);
 			break;
         }
