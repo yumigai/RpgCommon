@@ -584,7 +584,7 @@ public class BattleProc
                 PowerEffectRegist(skill, user, targets);
                 break;
                 default:
-                skillEffect(skill, user, targets);
+                powerEffect(skill, user, targets);
                 break;
 
             }
@@ -611,7 +611,7 @@ public class BattleProc
                 //var value = PowerProcess.execPower(pow, attacker, def);
                 ////BattleAction.addBuff = true; //addBuff 消す（ややこしくなるから）
                 //BattleAction.updateHitValue(def, value);
-                skillEffect(pow, attacker, def);
+                powerEffect(pow, attacker, def);
             }
         }
     }
@@ -619,14 +619,12 @@ public class BattleProc
     /// <summary>
     /// 抵抗判定を必要としない効果
     /// </summary>
-    /// <param name="skill"></param>
+    /// <param name="pow"></param>
     /// <param name="user"></param>
     /// <param name="targets"></param>
-    private static void skillEffect(SkillMast skill, UnitStatusTran user, List<UnitStatusTran> targets) {
+    private static void powerEffect(PowerMast pow, UnitStatusTran user, List<UnitStatusTran> targets) {
         foreach (var tar in targets) {
-            //var value = PowerProcess.execPower(skill, user, tar);
-            //BattleAction.updateHitValue(tar, value);
-            skillEffect(skill, user, tar);
+            powerEffect(pow, user, tar);
         }
     }
     /// <summary>
@@ -635,7 +633,7 @@ public class BattleProc
     /// <param name="skill"></param>
     /// <param name="user"></param>
     /// <param name="target"></param>
-    private static void skillEffect(PowerMast pow, UnitStatusTran user, UnitStatusTran target) {
+    private static void powerEffect(PowerMast pow, UnitStatusTran user, UnitStatusTran target) {
         var value = PowerProcess.execPower(pow, user, target);
         BattleAction.updateHitValue(target, value);
     }
@@ -649,18 +647,19 @@ public class BattleProc
     private static void useItem(ItemTran item, UnitStatusTran val, List<UnitStatusTran> target) {
         if (val.Status.Hp > 0 && item != null) {
 
-            var mst = item.Mst;
+            powerEffect(item.Mst, val, target);
 
-            switch (mst.Spec) {
-                case SkillMast.SPEC.ATTACK:
-                break;
-                case SkillMast.SPEC.HEAL:
-                break;
-                case SkillMast.SPEC.STATUS_BUFF:
-                break;
+            //switch (mst.Spec) {
+            //    case SkillMast.SPEC.ATTACK:
+            //    break;
+            //    case SkillMast.SPEC.HEAL:
+            //    break;
+            //    case SkillMast.SPEC.STATUS_BUFF:
+            //    break;
 
-            }
-            SaveMng.ItemData.lostItem(item, -1);
+            //}
+            SaveMng.ItemData.lostItem(item);
+            //SaveMng.ItemData.save();
         }
     }
 

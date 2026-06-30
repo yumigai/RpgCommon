@@ -291,7 +291,7 @@ public class ItemBoardMng : PowerBoardMng
         int tranId = (int)obj;
         ItemTran item = SaveMng.Items.Find(it => it.Id == tranId);
         SaveMng.ItemData.lostItem(item);
-        SaveMng.ItemData.save();
+        //SaveMng.ItemData.save();
         reload();
         updateInfo();
     }
@@ -365,7 +365,7 @@ public class ItemBoardMng : PowerBoardMng
         ItemTran old = EquipUnit.Equips[(int)EquipPosi];
         ItemTran item = SaveMng.Items.Find(it => it.Id == Id);
         EquipUnit.Equips[(int)EquipPosi] = item;
-        SaveMng.ItemData.lostItem(item, 1);
+        SaveMng.ItemData.lostItem(item);
         if (old != null && old.Mst != null) {
             SaveMng.ItemData.addItem(old);
         }

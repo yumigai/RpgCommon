@@ -406,7 +406,7 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
 
                 foreach (var item in items) {
                     var item_num = string.Format("x{0}",item.Num);
-                    ChoiceList.makeListItem(item.Id, item.Name, GameConst.Path.ICON_ITEM_PATH + item.Icon, item_num, item.Detail, choiceListItem);
+                    ChoiceList.makeListItem(item.Id, item.Name, GameConst.Path.ICON_ITEM_PATH + item.Icon, item.Detail, item_num, choiceListItem);
                 }
             } else {
                 var sikills = BattleProc.ActionUnit.Skills;
@@ -493,6 +493,7 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         } else {
             if (Log.Action == AiProc.ACTION.GUARD) {
                 chara.guard();
+                playGuardReaction(); //主に効果音の再生
             } else if (Log.Action == AiProc.ACTION.ESCAPE) {
                 FucusFilter.enabled = true;
                 playEscapeReaction(); //主に効果音の再生
@@ -505,8 +506,8 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
             } else {
                 chara.action();
 
-                if (Log.Skill != null || Log.Item != null) {
-                    var txt = Log.Skill != null ? Log.Skill.Name : Log.Item.Name;
+                if (Log.Power != null) {
+                    var txt = Log.Power.Name;
                     ShowMessage(txt);
                 }
 
@@ -1020,8 +1021,18 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         Sequence = SEQUENCE.PROCESS;
     }
 
+    /// <summary>
+    /// 逃亡演出（主に効果音）
+    /// </summary>
     protected virtual void playEscapeReaction() {
         
+    }
+
+    /// <summary>
+    /// 防御演出（主に効果音）
+    /// </summary>
+    protected virtual void playGuardReaction() {
+    
     }
 
     /// <summary>

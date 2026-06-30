@@ -98,6 +98,7 @@ public class ItemTranWrap : SaveMng.SaveClass
             } else {
                 SaveMng.Items.RemoveAt(index);
             }
+            save();
             return true;
         }
         return false;
