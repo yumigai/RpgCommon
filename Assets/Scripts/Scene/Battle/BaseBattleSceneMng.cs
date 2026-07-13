@@ -431,6 +431,8 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     /// </summary>
     public void choiceListItem(int id) {
 
+        CommonProcess.playClickSe();
+
         PowerMast power;
 
         if (CommandData.Action == AiProc.ACTION.ITEM) {
@@ -458,6 +460,7 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     /// スキル・アイテム選択キャンセル
     /// </summary>
     public void choiceCansel() {
+        CommonProcess.playCanselSe();
         ChoicePanel.SetActive(false);
         readyCommand();
     }
@@ -624,6 +627,11 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
                 showDamageInfo(tgt, Log.DamageStatus[i], posi);
 
                 damageReaction(tgt, Log.Values[i], posi);
+
+                if (Log.DamageStatus[i].Contains(BattleProc.ActionData.DAMAGE_STATUS.CRITICAL)) {
+                    //クリティカル時はエフェクトx2
+                    TimeInvokeMng.TimerAction(() => { attackEffectSet(posi); }, 0.2f, this.gameObject);
+                }
 
                 if ( Log.Values[i] == 0 ){
                     if (Log.Action == AiProc.ACTION.ATTACK
@@ -829,6 +837,7 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
 
 
     public void pushAttack() {
+        CommonProcess.playClickSe();
         SelectSide = SELECT_SIDE.ENEMY;
         Sequence = SEQUENCE.SELECT_TARGET;
         CommandData.Action = AiProc.ACTION.ATTACK;
@@ -843,12 +852,14 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     }
 
     public void pushItem() {
+        CommonProcess.playClickSe();
         CommandData.Action = AiProc.ACTION.ITEM;
         CommandPanel.SetActive(false);
         Sequence = SEQUENCE.CHOICE;
     }
 
     public void pushSkill() {
+        CommonProcess.playClickSe();
         CommandData.Action = AiProc.ACTION.SKILL;
         CommandPanel.SetActive(false);
         Sequence = SEQUENCE.CHOICE;
@@ -899,6 +910,9 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     /// ターゲット選択状態から戻る
     /// </summary>
     public void closeTargetSelect() {
+
+        CommonProcess.playCanselSe();
+
         showTargetPanel(false);
         //前の状態がスキルかアイテム選択なら選択シーケンスに戻す
         if (CommandData.Action == AiProc.ACTION.SKILL || CommandData.Action == AiProc.ACTION.ITEM) {
