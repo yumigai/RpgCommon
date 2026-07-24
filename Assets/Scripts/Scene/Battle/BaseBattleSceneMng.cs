@@ -78,6 +78,9 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     public Image EncountScreen;
 
     [SerializeField]
+    protected Canvas OverUI;
+
+    [SerializeField]
     public GameObject ResultBoard;
 
     [SerializeField]
@@ -202,6 +205,7 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
     }
 
     protected void init() {
+        OverUI.gameObject.SetActive(true);//基本はtrue（編集中のバグ防止）
         ResultBoard.gameObject.SetActive(false);
         LoseBoard.gameObject.SetActive(false);
         EncountScreen.gameObject.SetActive(false);
@@ -1109,7 +1113,9 @@ public abstract class BaseBattleSceneMng : MonoBehaviour
         for (int i = 0; i < gauges.Length; i++) {
             if (i < Quest.ActiveParty.Count) {
                 var unit = Quest.ActiveParty[i];
+
                 gauges[i].Init(unit.Img, unit.getNextLvupExp(), unit.Exp);
+                gauges[i].setParam(unit.LvNum);
                 gauges[i].gameObject.SetActive(true);
             } else {
                 gauges[i].gameObject.SetActive(false);

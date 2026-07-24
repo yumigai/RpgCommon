@@ -25,7 +25,7 @@ public class LevelMast : MasterCmn {
     /// <param name="lv"></param>
     /// <returns></returns>
     public static int GetNextExp(int lv) {
-        if (lv < LevelMast.List.Length) {
+        if (lv >= 0 && lv < LevelMast.List.Length) {
             return LevelMast.List[lv].Exp;
         }
         return 0;

@@ -338,6 +338,9 @@ public class UnitStatusTran
         return Resources.Load<Sprite>(path);
     }
 
+    public int getNowLvExp() {
+        return LevelMast.GetNextExp(Lv - 1);
+    }
     public int getNextLvupExp() {
         return LevelMast.GetNextExp(Lv);
     }
