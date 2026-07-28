@@ -12,17 +12,18 @@ public class HomeMessageMast : MasterCmn
         FIRST_MESSAGE,
         HP_LOW,
         GAME_CLEAR,
+        TIME_LIMIT_HARRY,
     }
 
-    /// <summary>
-    /// 表示条件
-    /// </summary>
-    public enum TERMS
-    {
-        ANY,
-        HIGH_LIKE, //好感度・高
-        MAX_LIKE, //好感度・最大
-    }
+    ///// <summary>
+    ///// 表示条件
+    ///// </summary>
+    //public enum TERMS
+    //{
+    //    ANY,
+    //    HIGH_LIKE, //好感度・高
+    //    MAX_LIKE, //好感度・最大
+    //}
 
     public int Id;
     public string Tag;

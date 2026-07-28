@@ -162,19 +162,20 @@ public class PlayerStatusTran : CmnSaveProc.SaveClass
         return false;
     }
 
-    // public void addFlag(string key, int val){
-    //     if(Flags.ContainsKey(key)){
-    //         Flags[key] += val;
-    //     }else{
-    //         Flags.Add(key,val);
-    //     }
-    // }
+    /// <summary>
+    /// チャプタークリア/到達済みか
+    /// </summary>
+    /// <param name="chapterId">章</param>
+    /// <param name="isClear">クリアか到達</param>
+    /// <returns></returns>
+    public bool CheckChapter(int chapterId, bool isClear = true) {
+        var chaps = StageMast.List.Where(it => it.ChapterId == chapterId);
 
-    // public int getFlag(string key){
-    //     if(Flags.ContainsKey(key)){
-    //         return Flags[key];
-    //     }
-    //     return 0;
-    // }
+        if (isClear) {
+            return chaps.All(it => ClearStage.Contains(it.Id));
+        } else {
+            return chaps.Any(it => DiscoveryStage.Contains(it.Id));
+        }
+    }
 
 }

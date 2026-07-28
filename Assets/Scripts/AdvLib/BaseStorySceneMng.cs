@@ -246,8 +246,7 @@ public class BaseStorySceneMng : FaceMessageMng
 		if (!string.IsNullOrEmpty(ReturnSceneOrder)) {
 			ReturnScene = ReturnSceneOrder;
 		}
-		string path = StoryDataDirectory + StoryName;
-		//string txt = UtilToolLib.readResourceText(path);
+		string path = StoryDataDirectory + CmnSaveProc.LangPath + "/" + StoryName;
 		Story = StoryMst.load<StoryMst>(path);
 
 	}

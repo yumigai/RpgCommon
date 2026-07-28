@@ -8,8 +8,6 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class BaseHomeSceneMng : Base2DSceneMng
 {
-
-
     public const float MESSAGE_RELOAD_TIME = 7f;
 
     [SerializeField]
@@ -44,21 +42,18 @@ public class BaseHomeSceneMng : Base2DSceneMng
 
     }
 
-    public void homeMessage(string chara = "" ) {
-        HomeMessageMast[] masts = Array.FindAll(HomeMessageMast.List, it =>
-            it.ChapterIds.Length == 0
-            || it.ChapterIds.Any(it2 => SaveMng.Status.ClearStage.IndexOf(it2) >= 0));
-
-        HomeMessageMast.MESSAGE_SITUATION situation = HomeMessageMast.MESSAGE_SITUATION.NORMAL;
-
-        if (showSituationMessage(masts, situation)) {
+    public void homeMessage(HomeMessageMast.MESSAGE_SITUATION situation = HomeMessageMast.MESSAGE_SITUATION.NORMAL) {
+        
+        if (showSituationMessage( situation)) {
             return;
         }
     }
 
-    public bool showSituationMessage(HomeMessageMast[] masts, HomeMessageMast.MESSAGE_SITUATION situation) {
-        masts = System.Array.FindAll(masts, it =>
-                    it.Situation == situation
+    public bool showSituationMessage(HomeMessageMast.MESSAGE_SITUATION situation) {
+
+        HomeMessageMast[] masts = System.Array.FindAll(HomeMessageMast.List, it =>
+                    ( it.ChapterIds.Length == 0 || it.ChapterIds.Any(chap => SaveMng.Status.CheckChapter(chap)))
+                    && it.Situation == situation
                     && (it.MainCharaId == 0 ||
                         SaveMng.Units.Exists(u => u.MasterId == it.MainCharaId && u.FriendShip >= it.NeedPoint
                         )
@@ -88,11 +83,16 @@ public class BaseHomeSceneMng : Base2DSceneMng
                     continue;
                 }
 
+                for (var j = 0; j < StandBase.GetChild(i).childCount; j++) {
+                    Destroy(StandBase.GetChild(i).GetChild(j).gameObject);
+                }
+
                 string img_path = BaseStorySceneMng.PutImageDirectory + name;
 
                 GameObject stand = Resources.Load<GameObject>(img_path);
 
                 BaseStorySceneMng.putStandChara(stand, mst.Faces[i], new Vector2(), StandBase.GetChild(i));
+
             }
 
             Sprite sp = Resources.Load<Sprite>(CmnConst.Path.ADV_IMG_BACK + mst.Back);

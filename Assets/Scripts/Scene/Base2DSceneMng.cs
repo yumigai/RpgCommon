@@ -66,7 +66,7 @@ public abstract class Base2DSceneMng : MonoBehaviour
 
     protected void BaseProcess() {
         if (SaveMng.Status.RestTimeLimit <= 0) {
-            BaseStorySceneMng.Order(this, "GameOver", CmnConst.SCENE.EndingScene);
+            BaseStorySceneMng.Order(this, "GameOver", CmnConst.SCENE.GameOverScene);
             //StoryListMast.StoryOrder("GameOver");
             //BaseStorySceneMng.ReturnSceneOrder = CmnConst.SCENE.EndingScene.ToString();
             //SceneManagerWrap.LoadAndFadeOut(this, CmnConst.SCENE.StoryScene, false);
