@@ -38,7 +38,7 @@ public class StageTileMng : MonoBehaviour {
                 Rect tile_area = new Rect( new Vector2( posi.x - source.Size.x / 2, posi.y - source.Size.y / 2 ), source.Size);
 
                 if (map != null && map.Any( it => it.Overlaps(tile_area) ) ) {
-                    continue;
+                    //continue;
                 }
 
                 GameObject obj = Instantiate(source.gameObject) as GameObject;

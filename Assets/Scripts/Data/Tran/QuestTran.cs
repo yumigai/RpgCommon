@@ -49,6 +49,18 @@ public class QuestTran : CmnSaveProc.SaveClass {
 		NowFloorNum = 0;
 	}
 
+#if SAVE_QUEST
+#else
+	/// <summary>
+	/// 本タイトルではクエストは保存しない
+	/// </summary>
+	/// <param name="slot"></param>
+	public new void save(int slot = -1) {
+	}
+	public new void save(string class_name, int slot) {
+	}
+#endif
+
 	public void Continue(int stageId) {
 		//StageIndex = StageMast.getStageIndex(stageId);// System.Array.FindIndex(StageMast.List, it => it.Id == stageId);
 		//Stage = StageMast.List.FindById(stageId);
