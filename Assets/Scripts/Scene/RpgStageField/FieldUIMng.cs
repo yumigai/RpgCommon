@@ -237,6 +237,10 @@ public class FieldUIMng : MonoBehaviour
         }
     }
 
+    public void updatePartyStatus() {
+        CharaGroup.UpdateGroup();
+    }
+
     protected void initStageInfo() {
         switch (SaveMng.Quest.Stage.Rule) {
             case StageMast.GAME_RULE.GET_KEY_AND_GOAL:

@@ -72,15 +72,14 @@ public static class UnitProcess
         SaveMng.UnitData.save();
     }
 
-    public static void memberAllDamage(int num, bool isPercent = true) {
+    public static bool memberAllDamage(int num, bool isPercent = true) {
         if (SaveMng.ActiveUnits != null) {
             foreach (var unit in SaveMng.ActiveUnits) {
                 int dam = isPercent ? unit.MaxHp * num / 100 : num;
                 unit.damage(dam);
-                //現状、0にはしない
-                unit.Status.Hp = unit.Hp <= 0 ? 1 : unit.Hp;
             }
         }
+        return SaveMng.Quest.IsGameOver;
     }
 
 }

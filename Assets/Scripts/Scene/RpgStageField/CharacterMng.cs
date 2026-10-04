@@ -109,6 +109,9 @@ public class CharacterMng : MonoBehaviour {
     [System.NonSerialized]
     public bool DownAction;
 
+    [System.NonSerialized]
+    public int NowHp = 0;
+
     virtual public void Awake()
     {
         Anime = CharaObj.GetComponent<Animator>();
@@ -229,12 +232,157 @@ public class CharacterMng : MonoBehaviour {
     }
 
     protected void IsUnderStageBottom() {
-        if (transform.position.y < BaseStageFieldSceneMng.Singleton.StageArea.AreaMin.y) {
-            if (LastTouchRoom == null) {
-                transform.position = RespawnMng.getNearPosi(transform.position);
-            } else {
-                transform.position = LastTouchRoom.RewpawnCenter.position;
+        if (BaseStageFieldSceneMng.Singleton != null) {
+            if (transform.position.y < BaseStageFieldSceneMng.Singleton.StageArea.AreaMin.y) {
+                if (LastTouchRoom == null) {
+                    transform.position = RespawnMng.getNearPosi(transform.position);
+                } else {
+                    transform.position = LastTouchRoom.RewpawnCenter.position;
+                }
             }
         }
     }
+
+    public void weaponDamage(WeaponMng weapon, Vector3 eff_posi, Quaternion rote, AudioClip se) {
+
+        if (RestMuteki > 0f || SaveMng.Quest.IsGameOver) {
+            return;
+        }
+
+        float dm = weapon.Damage;
+        if (Anime.GetBool(TRIGERS.Stun.ToString())) {
+            if (weapon.IsDownAttack) {
+                dm *= BREAK_DAMAGE_BONUS;
+                //IsBreakStance = false;
+                SoundMng.Instance.playSE(StageFieldSceneMng.Singleton.FinishAttackSe);
+                StageFieldSceneMng.criticalEffect(HitEffectPoint.position, this.transform.localRotation);
+                Anime.SetBool(TRIGERS.Stun.ToString(), false);
+
+            }
+        } else if (weapon.IsCounter) {
+            if (Anime.GetBool(TRIGERS.Attacking.ToString())) {
+                dm *= COUNTER_BONUS;
+                SoundMng.Instance.playSE(StageFieldSceneMng.Singleton.CriticalSe);
+                StageFieldSceneMng.criticalEffect(HitEffectPoint.position, this.transform.localRotation);
+                Anime.SetBool(TRIGERS.Stun.ToString(), true);
+                //IsBreakStance = true;
+
+            }
+        } else {
+            //if (weapon.HitEffect == null) {
+            //    StageFieldSceneMng.hitEffect(eff_posi, rote);
+            //} else {
+            //    EffectMng.showEffect(eff_posi, rote, weapon.HitEffect, 1f);
+            //}
+
+            ShowHitEffect(weapon.HitEffect, eff_posi, rote);
+
+            SoundMng.Instance.playSE(se);
+        }
+
+
+        bool is_dead = damage(dm);
+
+        if (!SuperArmor || SaveMng.Quest.IsGameOver) {
+            Anime.SetTrigger(TRIGERS.Damage.ToString());
+            //bool is_down = weapon.IsDownAttack | DownAction;
+            damageReaction(weapon.IsDownAttack);
+        }
+
+        if (is_dead) {
+            Anime.SetBool(TRIGERS.Death.ToString(), true);
+            deadEnd();
+        }
+    }
+
+    protected void ShowHitEffect( GameObject hitEffect, Vector3 eff_posi, Quaternion rote ) {
+        if (hitEffect == null) {
+            StageFieldSceneMng.hitEffect(eff_posi, rote);
+        } else {
+            EffectMng.showEffect(eff_posi, rote, hitEffect, 1f);
+        }
+    }
+
+    public bool damage(float damage) {
+
+        var is_dead = false;
+
+        //SEとエフェクトはここに来る前に処理する（色んなパターンがあるから）
+        //StageFieldSceneMng.hitEffect(HitEffectPoint.position, this.transform.localRotation);
+        //StageFieldSceneMng.playCommonHitSe();
+
+        if (GameConst.COMMAND_BATTLE) {
+            if (this.gameObject == FieldPlayerMng.Hero) {
+                //コマンドRPGではフィールドでダメージを受けるのはプレイヤーのみ
+                UnitProcess.memberAllDamage((int)damage, false);
+                FieldUIMng.Singleton.updatePartyStatus();
+                is_dead = SaveMng.Quest.IsGameOver;
+            }
+        } else {
+
+            //float damval = Mathf.Ceil(damage - Defence / 2);
+
+            //damval = Mathf.Clamp(damval, 1, damval);
+            //NowLife -= damval;
+            //NowLife = Mathf.Clamp(NowLife, 0, MaxLife);
+
+            //if (this.gameObject == StageFieldSceneMng.Hero) {
+            //    float maxdam = Mathf.Ceil(damval / 5);
+            //    MaxLife = Mathf.Clamp(MaxLife - maxdam, 1, MaxLife);
+            //}
+
+            //if (NowLife <= 0f) {
+            //    return true;
+            //}
+        }
+
+        if (!SuperArmor || SaveMng.Quest.IsGameOver) {
+            Anime.SetTrigger(TRIGERS.Damage.ToString());
+            damageReaction(false);
+        }
+
+        if (is_dead) {
+            Anime.SetBool(TRIGERS.Death.ToString(), true);
+            deadEnd();
+        }
+
+        return false;
+    }
+
+    virtual public void damageReaction(bool isDown) {
+
+    }
+
+    virtual public void deadEnd() {
+
+    }
+
+    virtual public bool inSideSense(GameObject hit, SenseAreaMng.TYPE type) {
+        return false;
+    }
+    virtual public void outSideSense(GameObject hit, SenseAreaMng.TYPE type) {
+
+    }
+    virtual public void useSkill() {
+
+    }
+
+    //public bool damage(float damage) {
+
+    //    float damval = Mathf.Ceil(damage - Defence / 2);
+
+    //    damval = Mathf.Clamp(damval, 1, damval);
+    //    NowLife -= damval;
+    //    NowLife = Mathf.Clamp(NowLife, 0, MaxLife);
+
+    //    if (this.gameObject == PlayerMng.Hero) {
+    //        float maxdam = Mathf.Ceil(damval / 5);
+    //        MaxLife = Mathf.Clamp(MaxLife - maxdam, 1, MaxLife);
+    //    }
+
+    //    if (NowLife <= 0f) {
+    //        return true;
+    //    }
+    //    return false;
+    //}
 }

@@ -266,4 +266,22 @@ public class FieldEnemyMng : CharacterMng
     protected Vector3 getTargetPosi(Vector3 posi, Vector3 tar) {
         return new Vector3(tar.x, posi.y, tar.z);
     }
+
+    override public void damageReaction(bool isDown) {
+        if (GameConst.COMMAND_BATTLE) {
+        } else {
+            if (isDown && RestResetHitCount <= 0f) {
+                RestResetHitCount = RESET_HIT_COUNT;
+                Anime.SetTrigger(TRIGERS.Down.ToString());
+                Navi.isStopped = true;
+                //if (ThisCollider != null) {
+                //    Vector3 target = weapon.User.transform.position;
+                //    target.y = this.CharaObj.transform.position.y;
+                //    CharaObj.transform.LookAt(target);
+
+                //    ThisCollider.enabled = false;
+                //}
+            }
+        }
+    }
 }

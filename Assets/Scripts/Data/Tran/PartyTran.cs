@@ -16,7 +16,5 @@ public class PartyTran  {
     public PartyTran(int unit_tran_id) {
         Members = new int[MAX_MEMBER] { unit_tran_id, -1, -1, -1 };
     }
-
-
 }
 

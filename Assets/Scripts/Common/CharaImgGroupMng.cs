@@ -43,7 +43,7 @@ public class CharaImgGroupMng : MonoBehaviour
     }
 
     public void CreateGroup(bool input = false, bool check = false) {
-        CreateGroup(SaveMng.GetActiveAllUnits(), input, check);
+        CreateGroup(SaveMng.GetActiveOrAllUnits(), input, check);
         //allCheck(check);
     }
 
@@ -160,12 +160,17 @@ public class CharaImgGroupMng : MonoBehaviour
         //units.ForEach(it => Destroy(Members.Find(it2 => it.Hp <= 0 && it.Id == it2.UnitTranId)?.gameObject));
         //Members.RemoveAll(it=>it==null); //Destoryは遅れてこの時点ではnullにならない
         if (units != null) {
+            RefleshStatus(units);
             foreach (var unit in units) {
                 if (unit.Hp <= 0) {
                     RemoveUnit(unit.Id);
                 }
             }
         }
+    }
+
+    public void UpdateGroup() {
+        UpdateGroup(SaveMng.Quest.ActiveParty);
     }
 
     /// <summary>

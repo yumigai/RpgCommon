@@ -8,7 +8,7 @@ public class EventTrapMng : EventSenserMng
 
     public const int EMIT_DAMAGE = 10;
 
-    public enum TRAP_TYPE
+    new public enum TYPE
     {
         DAMAGE,
         EMIT,
@@ -18,14 +18,14 @@ public class EventTrapMng : EventSenserMng
     }
 
     [SerializeField]
-    public TRAP_TYPE TrapType;
+    public TYPE TrapType;
 
     override protected void hitArea() {
         switch (TrapType) {
-            case TRAP_TYPE.WARP:
+            case TYPE.WARP:
             RandomWarp();
             break;
-            case TRAP_TYPE.ALERT:
+            case TYPE.ALERT:
             Alert();
             break;
         }
@@ -33,10 +33,10 @@ public class EventTrapMng : EventSenserMng
 
     override protected void stayArea() {
         switch (TrapType) {
-            case TRAP_TYPE.DAMAGE:
+            case TYPE.DAMAGE:
             damage(AREA_DAMAGE);
             break;
-            case TRAP_TYPE.EMIT:
+            case TYPE.EMIT:
             damage(EMIT_DAMAGE);
             break;
         }
@@ -48,7 +48,7 @@ public class EventTrapMng : EventSenserMng
 
     private void damage(int base_damage) {
         int damage = ((int)Rarity + 1) * base_damage;
-        FieldPlayerMng.hero().fieldDamage(damage);
+        FieldPlayerMng.hero().fieldDamage(damage, Effect, EventSe);
     }
 
     private void RandomWarp() {

@@ -20,7 +20,7 @@ public class FieldPlayerMng : CharacterMng
 
     private const int DOWN_HIT_NUM = 3;
     
-    private const float MUTEKI_TIME = 3;
+    private const float MUTEKI_TIME = 2;
 
     public static FieldPlayerMng Instance;
     public static GameObject Hero;
@@ -175,10 +175,24 @@ public class FieldPlayerMng : CharacterMng
         return enemy != null;
     }
 
-    public void fieldDamage(int num, bool isPercent = true) {
-        if (RestMuteki <= 0) {
-            UnitProcess.memberAllDamage(num, isPercent);
+    public bool fieldDamage(int num, GameObject hitEffect, AudioClip se ) {
+        if (RestMuteki <= 0 && !SaveMng.Quest.IsGameOver) {
+            damage(num);
             RestMuteki = MUTEKI_TIME;
+
+            ShowHitEffect(hitEffect, HitEffectPoint.position, this.transform.localRotation);
+            SoundMng.Instance.playSE(se);
+            return true;
+        }
+        return false;
+    }
+
+    override public void damageReaction(bool isDown) {
+        HitCount++;
+        RestResetHitCount = RESET_HIT_COUNT;
+        if (HitCount >= DOWN_HIT_NUM || isDown) {
+            RestMuteki = MUTEKI_TIME;
+            Anime.SetTrigger(TRIGERS.Down.ToString());
         }
     }
 

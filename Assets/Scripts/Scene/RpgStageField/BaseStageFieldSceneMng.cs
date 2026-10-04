@@ -62,6 +62,9 @@ public class BaseStageFieldSceneMng : MonoBehaviour
     //public JemMng[] DefaultJems;
 
     [SerializeField]
+    public AudioClip CommonHitSe;
+
+    [SerializeField]
     public AudioClip CriticalSe;
     [SerializeField]
     public AudioClip FinishAttackSe;
@@ -608,6 +611,13 @@ public class BaseStageFieldSceneMng : MonoBehaviour
             stageExit();
         }
         
+    }
+
+    /// <summary>
+    /// 共通ヒットSE再生
+    /// </summary>
+    public static void playCommonHitSe() {
+        SoundMng.Instance.playSE(Singleton.CommonHitSe);
     }
 
     //public void stageClearAction() {

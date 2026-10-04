@@ -10,7 +10,6 @@ public class BulletMng : MonoBehaviour {
         HOMING,
         HOMING_ONE_TIME,
         HOMING_ONE_TIME_Y_ONRY,
-        SELF_HEAL,
         OTHER_HEAL,
         ALL
     }
@@ -86,12 +85,6 @@ public class BulletMng : MonoBehaviour {
         else
         {
             this.transform.localRotation = rotate;
-        }
-
-        if( Type == TYPE.SELF_HEAL && SourceWeapon != null && SourceWeapon.User != null )
-        {
-            int value = (int)SourceWeapon.Damage / 2;
-            SourceWeapon.User.heal(value, 0f);
         }
 
         if ( random_h != 0f || random_v != 0f ){

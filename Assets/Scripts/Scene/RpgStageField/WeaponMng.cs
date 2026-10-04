@@ -23,29 +23,22 @@ public class WeaponMng : MonoBehaviour {
 
     [System.NonSerialized]
     public CharacterMng User;
-
     public void Awake()
     {
         User = GetComponentInParent<CharacterMng>();
     }
 
-    //public bool isHit( Collider hit )
-    //{
-    //    if (User.name == FieldPlayerMng.Hero.name)
-    //    {
-    //        if( hit.GetComponent<FieldEnemyMng>() != null)
-    //        {
-    //            return true;
-    //        }
-    //    }
-    //    else
-    //    {
-    //        if (hit.name == FieldPlayerMng.Hero.name)
-    //        {
-    //            return true;
-    //        }
-    //    }
-    //    return false;
-    //}
+    public bool isHit(Collider hit) {
+        if (User.name == FieldPlayerMng.Hero.name) {
+            if (hit.GetComponent<FieldEnemyMng>() != null) {
+                return true;
+            }
+        } else {
+            if (hit.name == FieldPlayerMng.Hero.name) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

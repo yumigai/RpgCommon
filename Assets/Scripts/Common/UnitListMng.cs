@@ -35,7 +35,7 @@ public class UnitListMng : MonoBehaviour
     }
 
     IEnumerator initListProcess() {
-        ListItems.CreateGroup(SaveMng.GetActiveAllUnits());
+        ListItems.CreateGroup(SaveMng.GetActiveOrAllUnits());
         yield return new WaitForEndOfFrame(); //リスト更新のためフレーム終了まで待つ
         Recive.initSetupWithFrameEnd(true);
     }

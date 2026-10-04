@@ -6,11 +6,12 @@ public class EventSenserMng : MonoBehaviour
 {
     public enum TYPE
     {
+        FREE, //オーバーライド用（EventTrapなど、子要素のクラス自身で定義）
         GATE,
         KEY,
         DROP_ITEM,
         MESSAGE,
-        DAMAGE,
+        DAMAGE, //EventTrapで設定でも良い
         GIMMICK_ENTER,
         GIMMICK_STAY,
         GIMMICK_SWITCH,
@@ -28,6 +29,9 @@ public class EventSenserMng : MonoBehaviour
 
     //[SerializeField]
     //protected JemMng SymbolJem;
+
+    [SerializeField]
+    protected AudioClip EventSe;
 
     [SerializeField,Header("イベント開始時に表示するオブジェクト")]
     protected GameObject ShowObject;

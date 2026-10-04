@@ -91,7 +91,7 @@ public class SaveMng : CmnSaveProc
 
     public static List<UnitStatusTran> ActiveUnits {
         get {
-            if (Quest != null && Quest.ActiveParty != null) {
+            if (Quest != null) {
                 return Quest.ActiveParty;
             }
             return null;
@@ -199,13 +199,9 @@ public class SaveMng : CmnSaveProc
         saveAll();
     }
 
-    public static List<UnitStatusTran> GetActiveAllUnits() {
+    public static List<UnitStatusTran> GetActiveOrAllUnits() {
         return (Quest != null && Quest.IsQuest)
             ? Quest.ActiveParty : Units;
     }
 
-    public static List<UnitStatusTran> GetActivePartyUnits() {
-        return (Quest != null && Quest.IsQuest)
-            ? Quest.ActiveParty : Status.getActiveMembers(false);
-    }
 }

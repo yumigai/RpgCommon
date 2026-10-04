@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class QuestTran : CmnSaveProc.SaveClass {
 
@@ -31,10 +32,16 @@ public class QuestTran : CmnSaveProc.SaveClass {
 	public bool IsBattle{ get { return (Enemys != null && Enemys.Count > 0); } }
 
 	//消したい
-    public bool IsGameOver { get { return ActiveParty.Count == 0; } }
+    public bool IsGameOver { get { return !IsQuest; } }
 
 	//クエスト中か
-	public bool IsQuest { get { return ActiveParty.Count > 0; } }
+	public bool IsQuest { get {
+			if (GameConst.COMMAND_BATTLE) {
+				return ActiveParty.Count > 0 && ActiveParty.Exists(it => it.Hp > 0);
+			} else {
+				return FieldPlayerMng.hero().NowHp > 0;
+			}
+		} }
 
 
 	//QuestTran(int stageId, List<UnitStatusTran> party) {
